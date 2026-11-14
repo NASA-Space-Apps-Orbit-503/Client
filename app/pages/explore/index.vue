@@ -57,10 +57,6 @@ const selectedAggregationLevel = ref('Monthly')
 
 <template>
   <UPage class="px-8">
-    <UPageHeader
-      title="Explore"
-      description="Compare satellite-detected activity across places and time."
-    />
     <UPageBody>
       <!-- Cards -->
       <UPageGrid>
@@ -110,17 +106,29 @@ const selectedAggregationLevel = ref('Monthly')
         <UCard
           title="Activity grid. April 2024"
           description="Layer: Activity grid (broad zoom). Detections appear when zoomed in"
-          class="col-span-8"
+          class="col-span-10"
         >
           <template #default>
-            <div>Map</div>
+            <LMap
+              style="height: 500px"
+              :zoom="6"
+              :center="[47.21322, -1.559482]"
+              :use-global-leaflet="false"
+            >
+              <LTileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
+                layer-type="base"
+                name="OpenStreetMap"
+              />
+            </LMap>
           </template>
         </UCard>
         <!-- Info -->
         <UCard
           title="Data. April 2024"
           description="El Salvador. All sensors"
-          class="col-span-4"
+          class="col-span-2"
         >
           <template #default>
             <UPageGrid>
