@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    'nuxt-open-fetch'
   ],
 
   devtools: {
@@ -25,6 +26,14 @@ export default defineNuxtConfig({
       stylistic: {
         commaDangle: 'never',
         braceStyle: '1tbs'
+      }
+    }
+  },
+
+  openFetch: {
+    clients: {
+      api: {
+        baseURL: process.env.NUXT_PUBLIC_API_BASE_URL
       }
     }
   }
