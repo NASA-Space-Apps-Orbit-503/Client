@@ -3,9 +3,10 @@
 
 <template>
   <UPage class="px-8">
-    <UPageHeader
-      title="Historical Trends"
-      description="Explore the historical trends of fire activity."
-    />
+    <UPageBody>
+      <UPageGrid>
+        <Filters />
+      </UPageGrid>
+    </UPageBody>
   </UPage>
 </template>

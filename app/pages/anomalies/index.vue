@@ -3,9 +3,10 @@
 
 <template>
   <UPage class="px-8">
-    <UPageHeader
-      title="Anomalies"
-      description="Identify and analyze unusual patterns in fire activity."
-    />
+    <UPageBody>
+      <UPageGrid>
+        <Filters />
+      </UPageGrid>
+    </UPageBody>
   </UPage>
 </template>

@@ -1,5 +1,4 @@
 import type { DateValue } from '@internationalized/date'
-import type { SelectMenuItem } from '@nuxt/ui'
 
 export interface DateRangeInput {
   start: DateValue | undefined
@@ -8,7 +7,7 @@ export interface DateRangeInput {
 
 export interface Filters {
   dateRange: DateRangeInput
-  instruments: SelectMenuItem[]
+  instruments: string[]
   latitude: number | null
   longitude: number | null
 }

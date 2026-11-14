@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
 
+useFilters()
+
 const items = ref<NavigationMenuItem[]>([
   {
     label: 'Explore',
