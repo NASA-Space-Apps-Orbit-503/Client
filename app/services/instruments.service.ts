@@ -15,13 +15,13 @@ const InstrumentsService = {
   async createInstrument(body: NewInstrument): Promise<Instrument> {
     if (useMocksEnabled()) return firstInstrumentMock
     const { $api } = useNuxtApp()
-    return $api('/instruments', { method: 'POST', body })
+    return $api('/instruments', { method: 'POST', body }) as Promise<Instrument>
   },
 
   async createInstrumentsBulk(body: NewInstrument[]): Promise<InstrumentBulkCreated> {
     if (useMocksEnabled()) return { count: body.length, items: body.map((_, index) => typedInstrumentsMock[index % typedInstrumentsMock.length] ?? firstInstrumentMock) }
     const { $api } = useNuxtApp()
-    return $api('/instruments/bulk', { method: 'POST', body })
+    return $api('/instruments', { method: 'POST', body }) as Promise<InstrumentBulkCreated>
   },
 
   async getInstrument(id: number): Promise<Instrument> {
