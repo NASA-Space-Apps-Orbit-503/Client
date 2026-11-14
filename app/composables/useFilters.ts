@@ -1,8 +1,10 @@
-import { listInstruments, type Instrument } from '~/services/instruments.service'
+import InstrumentsService from '~/services/instruments.service'
+import { FilterQueryKeyEnum } from '~/enums/filter-query-key.enum'
+import type { Instrument } from '~/types/api/instruments'
 import type { SelectMenuItem } from '@nuxt/ui'
 import { parseDate, type DateValue } from '@internationalized/date'
 
-const filterQueryKeys = ['startDate', 'endDate', 'latitude', 'longitude', 'instruments'] as const
+const filterQueryKeys = Object.values(FilterQueryKeyEnum)
 
 function getQueryValue(value: string | null | Array<string | null> | undefined) {
   const queryValue = Array.isArray(value) ? value[0] : value
@@ -74,7 +76,7 @@ export default function useFilters() {
 
   const withoutFilterQuery = (query: typeof route.query) =>
     Object.fromEntries(
-      Object.entries(query).filter(([key]) => !filterQueryKeys.includes(key as typeof filterQueryKeys[number]))
+      Object.entries(query).filter(([key]) => !filterQueryKeys.includes(key as FilterQueryKeyEnum))
     )
 
   const syncFiltersFromQuery = () => {
@@ -167,7 +169,7 @@ export default function useFilters() {
    */
   const fetchInstruments = async () => {
     try {
-      const data = await listInstruments()
+      const data = await InstrumentsService.listInstruments()
       instrumentsList.value = data.map((instrument: Instrument) => ({
         id: instrument.code,
         label: instrument.name

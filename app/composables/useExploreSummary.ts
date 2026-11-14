@@ -1,10 +1,10 @@
-import { getSummary } from '~/services/stats.service'
+import StatsService from '~/services/stats.service'
 import type { InfoCard } from '~/types/info-card'
 
 export default async function useExploreSummary() {
   const { data: summary, error: summaryError } = await useAsyncData(
     'explore-summary',
-    () => getSummary()
+    () => StatsService.getSummary()
   )
 
   const cards = computed<InfoCard[]>(() => {
