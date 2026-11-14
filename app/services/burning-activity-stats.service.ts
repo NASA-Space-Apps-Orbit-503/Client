@@ -26,13 +26,13 @@ const BurningActivityStatsService = {
   async createBurningActivityStat(body: NewBurningActivityStat): Promise<BurningActivityStat> {
     if (useMocksEnabled()) return firstStatsMock
     const { $api } = useNuxtApp()
-    return $api('/burning-activity-stats', { method: 'POST', body })
+    return $api('/burning-activity-stats', { method: 'POST', body }) as Promise<BurningActivityStat>
   },
 
   async createBurningActivityStatsBulk(body: NewBurningActivityStat[]): Promise<BurningActivityStatBulkCreated> {
     if (useMocksEnabled()) return { count: body.length, items: body.map((_, index) => typedStatsMock[index % typedStatsMock.length] ?? firstStatsMock) }
     const { $api } = useNuxtApp()
-    return $api('/burning-activity-stats/bulk', { method: 'POST', body })
+    return $api('/burning-activity-stats', { method: 'POST', body }) as Promise<BurningActivityStatBulkCreated>
   },
 
   async rebuildBurningActivityStats(query?: RebuildQuery): Promise<RebuildResponse> {

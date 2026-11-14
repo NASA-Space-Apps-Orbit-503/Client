@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: marro-api
-  version: 2.0.0
+  title: api-nasa
+  version: 3.0.0
   description: |
     API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
 
@@ -9,7 +9,8 @@ info:
     - Todas las rutas, excepto `/health`, requieren el header `x-api-key`.
       Si el servidor tiene `PUBLIC_READ=true`, las peticiones `GET` no la necesitan.
     - Todas las respuestas son JSON (salvo `GET /detections?format=csv`). Los errores tienen la forma `Error`.
-    - Las creaciones masivas (`/bulk`) son **todo o nada**: si un elemento falla no se guarda
+    - Los `POST` de cada entidad aceptan **un objeto o un arreglo de objetos** en la misma ruta.
+      Con un arreglo la creación es **todo o nada**: si un elemento falla no se guarda
       ninguno, y el error indica su posición en `index` (base 0).
     - Fechas: `YYYY-MM-DD`. Horas: `HHMM` en UTC (formato FIRMS).
 
@@ -29,10 +30,8 @@ info:
     (VIIRS `l/n/h`; MODIS 0-29 / 30-79 / 80-100).
 
 servers:
-  - url: https://api.tudominio.com
-    description: Producción (Dokploy)
-  - url: http://localhost:8080
-    description: Desarrollo local
+  - url: https://api-nasa.fopinet.com
+    description: Producción
 
 security:
   - ApiKey: []
@@ -70,44 +69,40 @@ paths:
     post:
       tags: [Instruments]
       operationId: createInstrument
-      summary: Crear un instrumento
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/NewInstrument' }
-            example: { code: VIIRS, name: Visible Infrared Imaging Radiometer Suite }
-      responses:
-        '201':
-          description: Instrumento creado
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/Instrument' }
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '409': { $ref: '#/components/responses/Conflict' }
-        '422': { $ref: '#/components/responses/ValidationError' }
-
-  /instruments/bulk:
-    post:
-      tags: [Instruments]
-      operationId: createInstrumentsBulk
-      summary: Crear varios instrumentos (todo o nada)
+      summary: Crear uno o varios instrumentos
+      description: |
+        El cuerpo puede ser **un objeto** o **un arreglo de objetos**:
+        - Objeto → responde `201` con el registro creado.
+        - Arreglo → responde `201` con `{count, items}`. Es **todo o nada**: si un elemento
+          falla no se guarda ninguno, y el error indica su posición en `index` (base 0).
+          Máximo `MAX_BULK` elementos (10000 por defecto).
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: array
-              minItems: 1
-              maxItems: 10000
-              items: { $ref: '#/components/schemas/NewInstrument' }
+              oneOf:
+                - $ref: '#/components/schemas/NewInstrument'
+                - type: array
+                  minItems: 1
+                  maxItems: 10000
+                  items: { $ref: '#/components/schemas/NewInstrument' }
+            examples:
+              uno:
+                summary: Un registro
+                value: { code: VIIRS, name: Visible Infrared Imaging Radiometer Suite }
+              varios:
+                summary: Varios registros
+                value: [{ code: AVHRR, name: Advanced Very High Resolution Radiometer }, { code: SLSTR, name: Sea and Land Surface Temperature Radiometer }]
       responses:
         '201':
-          description: Instrumentos creados
+          description: Creado. Un objeto si se mandó un objeto; `{count, items}` si se mandó un arreglo.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/InstrumentBulkCreated' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Instrument'
+                  - $ref: '#/components/schemas/InstrumentBulkCreated'
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '409': { $ref: '#/components/responses/Conflict' }
@@ -177,33 +172,40 @@ paths:
     post:
       tags: [Detections]
       operationId: createDetection
-      summary: Crear una detección
+      summary: Crear una o varias detecciones
+      description: |
+        El cuerpo puede ser **un objeto** o **un arreglo de objetos**:
+        - Objeto → responde `201` con el registro creado.
+        - Arreglo → responde `201` con `{count, items}`. Es **todo o nada**: si un elemento
+          falla no se guarda ninguno, y el error indica su posición en `index` (base 0).
+          Máximo `MAX_BULK` elementos (10000 por defecto).
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/NewDetection' }
-            example:
-              latitude: 13.6929
-              longitude: -89.2182
-              bright_ti4: 330.5
-              scan: 0.39
-              track: 0.36
-              acq_date: '2024-03-14'
-              acq_time: '0748'
-              satellite: N
-              instrument: VIIRS
-              confidence: n
-              version: 2.0NRT
-              bright_ti5: 295.1
-              frp: 4.2
-              daynight: N
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/NewDetection'
+                - type: array
+                  minItems: 1
+                  maxItems: 10000
+                  items: { $ref: '#/components/schemas/NewDetection' }
+            examples:
+              uno:
+                summary: Un registro
+                value: { latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: "n", version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }
+              varios:
+                summary: Varios registros
+                value: [{ latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: "n", version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }, { latitude: 13.70, longitude: -89.20, acq_date: "2024-03-14", acq_time: "1630", satellite: Aqua, instrument: MODIS, confidence: "65", frp: 12.3, daynight: D }]
       responses:
         '201':
-          description: Detección creada
+          description: Creado. Un objeto si se mandó un objeto; `{count, items}` si se mandó un arreglo.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Detection' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Detection'
+                  - $ref: '#/components/schemas/DetectionBulkCreated'
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '409':
@@ -211,31 +213,6 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
-        '422': { $ref: '#/components/responses/ValidationError' }
-
-  /detections/bulk:
-    post:
-      tags: [Detections]
-      operationId: createDetectionsBulk
-      summary: Crear varias detecciones (todo o nada)
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              minItems: 1
-              maxItems: 10000
-              items: { $ref: '#/components/schemas/NewDetection' }
-      responses:
-        '201':
-          description: Detecciones creadas
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/DetectionBulkCreated' }
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '409': { $ref: '#/components/responses/Conflict' }
         '413': { $ref: '#/components/responses/TooLarge' }
         '422': { $ref: '#/components/responses/ValidationError' }
 
@@ -327,43 +304,40 @@ paths:
     post:
       tags: [Burning Activity Stats]
       operationId: createBurningActivityStat
-      summary: Crear una estadística diaria
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: '#/components/schemas/NewBurningActivityStat' }
-            example: { day: 14, month: 3, year: 2024, count: 57, max_frp: 38.4 }
-      responses:
-        '201':
-          description: Estadística creada
-          content:
-            application/json:
-              schema: { $ref: '#/components/schemas/BurningActivityStat' }
-        '400': { $ref: '#/components/responses/BadRequest' }
-        '401': { $ref: '#/components/responses/Unauthorized' }
-        '422': { $ref: '#/components/responses/ValidationError' }
-
-  /burning-activity-stats/bulk:
-    post:
-      tags: [Burning Activity Stats]
-      operationId: createBurningActivityStatsBulk
-      summary: Crear varias estadísticas diarias (todo o nada)
+      summary: Crear una o varias estadísticas diarias
+      description: |
+        El cuerpo puede ser **un objeto** o **un arreglo de objetos**:
+        - Objeto → responde `201` con el registro creado.
+        - Arreglo → responde `201` con `{count, items}`. Es **todo o nada**: si un elemento
+          falla no se guarda ninguno, y el error indica su posición en `index` (base 0).
+          Máximo `MAX_BULK` elementos (10000 por defecto).
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: array
-              minItems: 1
-              maxItems: 10000
-              items: { $ref: '#/components/schemas/NewBurningActivityStat' }
+              oneOf:
+                - $ref: '#/components/schemas/NewBurningActivityStat'
+                - type: array
+                  minItems: 1
+                  maxItems: 10000
+                  items: { $ref: '#/components/schemas/NewBurningActivityStat' }
+            examples:
+              uno:
+                summary: Un registro
+                value: { day: 14, month: 3, year: 2024, count: 57, max_frp: 38.4 }
+              varios:
+                summary: Varios registros
+                value: [{ day: 14, month: 3, year: 2024, count: 57, max_frp: 38.4 }, { day: 15, month: 3, year: 2024, count: 12 }]
       responses:
         '201':
-          description: Estadísticas creadas
+          description: Creado. Un objeto si se mandó un objeto; `{count, items}` si se mandó un arreglo.
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/BurningActivityStatBulkCreated' }
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/BurningActivityStat'
+                  - $ref: '#/components/schemas/BurningActivityStatBulkCreated'
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '413': { $ref: '#/components/responses/TooLarge' }
@@ -766,7 +740,7 @@ components:
     DayNight:
       name: daynight
       in: query
-      schema: { type: string, enum: [D, N] }
+      schema: { type: string, enum: ['D', 'N'] }
     Metric:
       name: metric
       in: query
@@ -829,7 +803,7 @@ components:
         index:
           type: integer
           minimum: 0
-          description: Solo en creaciones masivas, posición (base 0) del elemento que falló
+          description: Solo al crear con un arreglo, posición (base 0) del elemento que falló
 
     # ---------- Instrument
     NewInstrument:
@@ -896,7 +870,7 @@ components:
         version: { type: [string, 'null'], maxLength: 20, examples: [2.0NRT] }
         bright_ti5: { type: [number, 'null'], minimum: 0, description: 'Temperatura de brillo canal I-5 (K). En MODIS, `bright_t31`.' }
         frp: { type: [number, 'null'], minimum: 0, description: Fire Radiative Power (MW) }
-        daynight: { type: [string, 'null'], enum: [D, N, null] }
+        daynight: { type: [string, 'null'], enum: ['D', 'N', null] }
     Detection:
       type: object
       required: [id, latitude, longitude, bright_ti4, scan, track, acq_date, acq_time, satellite,
@@ -916,7 +890,7 @@ components:
         version: { type: [string, 'null'] }
         bright_ti5: { type: [number, 'null'] }
         frp: { type: [number, 'null'] }
-        daynight: { type: [string, 'null'], enum: [D, N, null] }
+        daynight: { type: [string, 'null'], enum: ['D', 'N', null] }
     DetectionBulkCreated:
       type: object
       required: [count, items]

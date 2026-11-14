@@ -28,13 +28,13 @@ const DetectionsService = {
   async createDetection(body: NewDetection): Promise<Detection> {
     if (useMocksEnabled()) return firstDetectionMock
     const { $api } = useNuxtApp()
-    return $api('/detections', { method: 'POST', body })
+    return $api('/detections', { method: 'POST', body }) as Promise<Detection>
   },
 
   async createDetectionsBulk(body: NewDetection[]): Promise<DetectionBulkCreated> {
     if (useMocksEnabled()) return { count: body.length, items: body.map((_, index) => typedDetectionsMock[index % typedDetectionsMock.length] ?? firstDetectionMock) }
     const { $api } = useNuxtApp()
-    return $api('/detections/bulk', { method: 'POST', body })
+    return $api('/detections', { method: 'POST', body }) as Promise<DetectionBulkCreated>
   },
 
   async importDetectionsCsv(body: string, query?: ImportDetectionsCsvQuery): Promise<ImportResult> {
