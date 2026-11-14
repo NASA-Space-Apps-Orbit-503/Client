@@ -12,6 +12,12 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  runtimeConfig: {
+    public: {
+      useMocks: process.env.USE_MOCKS === 'true' || process.env.NUXT_PUBLIC_USE_MOCKS === 'true'
+    }
+  },
+
   routeRules: {
     '/': {
       prerender: true,

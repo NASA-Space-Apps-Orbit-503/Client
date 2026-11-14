@@ -1,0 +1,20 @@
+{
+  "metric": "cells",
+  "cell_deg": 0.01,
+  "from": "2020-01-01",
+  "to": "2024-12-31",
+  "months": [
+    {
+      "month": 3,
+      "years": 5,
+      "median": 120,
+      "mean": 126.4,
+      "stddev": 18.2,
+      "min": 98,
+      "max": 155,
+      "p25": 108,
+      "p75": 141,
+      "max_year": 2024
+    }
+  ]
+}

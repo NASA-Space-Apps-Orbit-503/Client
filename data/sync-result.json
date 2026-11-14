@@ -1,0 +1,12 @@
+{
+  "received": 2,
+  "valid": 2,
+  "inserted": 2,
+  "duplicates": 0,
+  "invalid": 0,
+  "errors": [],
+  "source": "VIIRS_SNPP_NRT",
+  "area": "-90.13,13.15,-87.68,14.45",
+  "days": 2,
+  "date": "2024-03-14"
+}

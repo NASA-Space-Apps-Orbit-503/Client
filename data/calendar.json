@@ -1,0 +1,17 @@
+{
+  "metric": "cells",
+  "cell_deg": 0.01,
+  "granularity": "month",
+  "from": "2024-01-01",
+  "to": "2024-12-31",
+  "items": [
+    {
+      "year": 2024,
+      "month": 3,
+      "day": null,
+      "count": 140,
+      "max_frp": 52.1,
+      "active_days": 2
+    }
+  ]
+}
