@@ -2,33 +2,7 @@
 import Filters from '~/components/Filters/Filters.vue'
 
 const { init } = useFilters()
-
-const cards = ref([
-  {
-    title: '62,563',
-    description: 'Active fire detections',
-    footer: '2015-2025. All sensors',
-    class: 'col-span-1 md:col-span-3 lg:col-span-3'
-  },
-  {
-    title: 'Apr 2024',
-    description: 'Peak activity period',
-    footer: '2,244 detections',
-    class: 'col-span-1 md:col-span-3 lg:col-span-3'
-  },
-  {
-    title: '2',
-    description: 'Unusual periods',
-    footer: 'months >= 1.4* their baseline (demo rule)',
-    class: 'col-span-1 md:col-span-3 lg:col-span-3'
-  },
-  {
-    title: 'MODIS + VIIRS',
-    description: 'Sensors represented',
-    footer: 'Counts not directly comparable across sensors',
-    class: 'col-span-1 md:col-span-3 lg:col-span-3'
-  }
-])
+const { cards } = await useExploreSummary()
 
 onMounted(() => {
   init()
