@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import Filters from '~/components/Filters/Filters.vue'
+import StatsService from '~/services/stats.service'
+import { StatsGranularityEnum } from '~/enums/stats-granularity.enum'
 
 const { init } = useFilters()
 const { cards } = await useExploreSummary()
+const { data: calendar, error: calendarError } = await useAsyncData(
+  'explore-calendar',
+  () => StatsService.getCalendar({ granularity: StatsGranularityEnum.Month })
+)
+
+if (calendarError.value) {
+  console.error('Error fetching explore calendar:', calendarError.value)
+}
 
 onMounted(() => {
   init()
@@ -44,18 +54,16 @@ onMounted(() => {
           title="Burning activity calendar"
           class="col-span-12"
         >
-          <template #default>
-            <UCalendar
-              type="month"
-              :events="[
-                {
-                  title: 'Peak activity period',
-                  start: '2024-04-01',
-                  end: '2024-04-30'
-                }
-              ]"
-            />
-          </template>
+          <HeatmapCalendar
+            v-if="calendar"
+            :data="calendar"
+          />
+          <UAlert
+            v-else
+            color="error"
+            variant="subtle"
+            title="Unable to load burning activity calendar"
+          />
         </UCard>
       </UPageGrid>
     </UPageBody>
