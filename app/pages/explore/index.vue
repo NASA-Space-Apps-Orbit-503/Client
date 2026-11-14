@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { CalendarDate } from '@internationalized/date'
+import Filters from '~/components/Filters/Filters.vue'
+
+const { init } = useFilters()
 
 const cards = ref([
   {
@@ -28,31 +30,9 @@ const cards = ref([
   }
 ])
 
-const countries = ref([
-  'El Salvador',
-  'Brazil',
-  'United States'
-])
-
-const sensors = ref([
-  'MODIS',
-  'VIIRS'
-])
-
-const aggregationLevels = ref([
-  'Daily',
-  'Weekly',
-  'Monthly',
-  'Yearly'
-])
-
-const selectedCountry = ref('El Salvador')
-const selectedDateRange = ref({
-  start: new CalendarDate(2022, 2, 3),
-  end: new CalendarDate(2024, 4, 30)
+onMounted(() => {
+  init()
 })
-const selectedSensors = ref(['MODIS', 'VIIRS'])
-const selectedAggregationLevel = ref('Monthly')
 </script>
 
 <template>
@@ -60,48 +40,14 @@ const selectedAggregationLevel = ref('Monthly')
     <UPageBody>
       <!-- Cards -->
       <UPageGrid>
-        <div class="col-span-12 flex justify-start items-center gap-4">
-          <USelect
-            v-model="selectedCountry"
-            :items="countries"
-            label="Country"
-          />
-          <UInputDate
-            v-model="selectedDateRange"
-            range
-          />
-          <USelectMenu
-            v-model="selectedSensors"
-            :items="sensors"
-            label="Sensors"
-            multiple
-          />
-          <USelect
-            v-model="selectedAggregationLevel"
-            :items="aggregationLevels"
-            label="Aggregation level"
-          />
-        </div>
-        <UCard
+        <!-- Filters -->
+        <Filters />
+        <!-- Info Cards -->
+        <InfoCard
           v-for="card in cards"
           :key="card.title"
-          :title="card.title"
-          :description="card.description"
-          :class="card.class"
-        >
-          <!-- Information -->
-          <template #footer>
-            <div class="relative pr-6">
-              <UIcon
-                name="i-carbon-information"
-                class="mr-2 absolute right-0 top-0 text-gray-400 hover:cursor-pointer"
-              />
-              <p class="text-sm text-gray-500">
-                {{ card.footer }}
-              </p>
-            </div>
-          </template>
-        </UCard>
+          :card="card"
+        />
         <!-- Map -->
         <UCard
           title="Activity grid. April 2024"
@@ -109,19 +55,15 @@ const selectedAggregationLevel = ref('Monthly')
           class="col-span-10"
         >
           <template #default>
-            <LMap
-              style="height: 500px"
+            <LazyLeafletMap
+              hydrate-on-visible
               :zoom="6"
               :center="[47.21322, -1.559482]"
-              :use-global-leaflet="false"
             >
-              <LTileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&amp;copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors"
-                layer-type="base"
-                name="OpenStreetMap"
-              />
-            </LMap>
+              <template #fallback>
+                <div class="h-125 animate-pulse rounded bg-muted" />
+              </template>
+            </LazyLeafletMap>
           </template>
         </UCard>
         <!-- Info -->

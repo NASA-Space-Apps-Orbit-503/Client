@@ -2,9 +2,9 @@ import instrumentsMock from '~~/data/instruments.json'
 import type { components } from '#open-fetch-schemas/api'
 import { useMocksEnabled } from './config'
 
-type Instrument = components['schemas']['Instrument']
-type NewInstrument = components['schemas']['NewInstrument']
-type InstrumentBulkCreated = components['schemas']['InstrumentBulkCreated']
+export type Instrument = components['schemas']['Instrument']
+export type NewInstrument = components['schemas']['NewInstrument']
+export type InstrumentBulkCreated = components['schemas']['InstrumentBulkCreated']
 const typedInstrumentsMock = instrumentsMock as Instrument[]
 const firstInstrumentMock = typedInstrumentsMock[0]!
 
