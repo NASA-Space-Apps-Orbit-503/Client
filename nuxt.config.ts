@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     enabled: true
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', 'leaflet-draw/dist/leaflet.draw.css'],
 
   runtimeConfig: {
     public: {
