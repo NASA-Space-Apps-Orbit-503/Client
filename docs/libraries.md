@@ -1,142 +1,189 @@
-# Selección de librerías: calendario armonizado de actividad de quemas
+# Library selection: harmonized burning activity calendar
 
-Este documento explica por qué se eligió cada herramienta para las dos partes principales de la aplicación web: **mapa y selección de área**, y **calendario y gráficos**. La fuente de datos en todo el proyecto es el registro armonizado de NASA FIRMS (puntos calientes de MODIS + VIIRS).
-
----
-
-## 1. Mapa y selección de área
-
-**Conjunto elegido:** datos de WorldCover, Leaflet, Leaflet.draw, Turf.js y Nominatim
-
-### Cómo encajan las piezas
-
-1. La persona usuaria escribe el nombre de un lugar (**Nominatim**) o dibuja una forma en el mapa (**Leaflet.draw** sobre **Leaflet**).
-2. La aplicación convierte esa selección en un polígono y usa **Turf.js** para encontrar qué celdas de la cuadrícula preagregada o qué puntos calientes caen dentro.
-3. Los resultados alimentan el calendario y los gráficos. La cobertura del suelo (**WorldCover**) ya está asociada a cada punto caliente, por lo que puede usarse como filtro o desglose.
+This document explains why each tool was selected for the two main parts of the web
+application: **map and area selection**, and **calendar and charts**. The project-wide data
+source is the harmonized NASA FIRMS record (MODIS + VIIRS hotspots).
 
 ---
 
-### WorldCover (datos de cobertura del suelo)
+## 1. Map and area selection
 
-**Qué es:** un ráster global de cobertura del suelo a 10 m de la ESA, con 11 clases (cobertura arbórea, matorral, pastizal, cultivos, áreas construidas, vegetación escasa o suelo desnudo, agua, humedales y otras), producido con un único método en todo el mundo.
+**Selected set:** WorldCover data, Leaflet, Leaflet.draw, Turf.js, and Nominatim
 
-**Por qué se eligió**
+### How the pieces fit together
 
-- **Consistencia.** Cada píxel tiene una clase y el método es el mismo en todas partes. No existe el estado "sin mapear", así que las diferencias entre regiones reflejan el territorio y no el esfuerzo de mapeo. Esto importa en una herramienta cuyo objetivo es ofrecer un panorama consistente y comparable.
-- **Ayuda a interpretar los puntos calientes.** La cobertura del suelo permite separar los probables incendios forestales (bosque, matorral, pastizal) de las quemas agrícolas (cultivos) y de las fuentes de calor industriales o urbanas (áreas construidas).
-- **Bajo costo en tiempo de ejecución.** La clase de cobertura se muestrea una sola vez en el pipeline de datos y se guarda como una columna de cada punto caliente. El navegador solo filtra y agrega, y la exportación CSV incluye la clase sin costo adicional.
+1. The user searches for a place with **Nominatim** or draws a shape on the map with
+   **Leaflet.draw** on top of **Leaflet**.
+2. The application converts the selection into a polygon and uses **Turf.js** to find which
+   cells from the pre-aggregated grid or which hotspots fall inside it.
+3. The results feed the calendar and charts. Land cover (**WorldCover**) is already associated
+   with each hotspot, so it can be used as a filter or breakdown.
 
-**Cómo usarlo**
+### WorldCover (land-cover data)
 
-- Pipeline: muestrear el ráster en las coordenadas de cada punto caliente (por ejemplo, con `rasterio`).
-- Como un píxel de MODIS (~1 km) o de VIIRS (~375 m) abarca muchas celdas de 10 m, conviene asignar la **clase dominante** o guardar las **fracciones por clase**, en lugar de un valor puntual.
-- Opcionalmente, mostrarlo como capa superpuesta en el mapa para dar contexto.
+**What it is:** a global 10 m ESA land-cover raster with 11 classes (tree cover, shrubland,
+grassland, cropland, built-up areas, sparse vegetation or bare soil, water, wetlands, and
+others), produced with one method worldwide.
 
-**Salvedades**
+**Why it was selected**
 
-- Es una instantánea (versiones de 2020 y 2021) y no captura el cambio de cobertura entre 2000 y 2026. Como alternativa consistente en el tiempo, considera la cobertura del suelo de MODIS (MCD12Q1, ~500 m, anual, desde 2001), que es más gruesa.
-- Su exactitud es buena pero no perfecta, así que conviene presentar los desgloses por cobertura como indicativos.
+- **Consistency.** Every pixel has a class and the same method is used everywhere. There is no
+  "unmapped" state, so regional differences reflect the territory rather than mapping effort.
+  This matters for a tool whose goal is to provide a consistent, comparable view.
+- **Helps interpret hotspots.** Land cover can separate likely wildfires (forest, shrubland,
+  grassland) from agricultural burns (cropland) and industrial or urban heat sources
+  (built-up areas).
+- **Low runtime cost.** The land-cover class is sampled once in the data pipeline and stored
+  as a column for each hotspot. The browser only filters and aggregates, and CSV export
+  includes the class at no additional cost.
+
+**How to use it**
+
+- Pipeline: sample the raster at each hotspot coordinate (for example, with `rasterio`).
+- Because a MODIS pixel (~1 km) or VIIRS pixel (~375 m) covers many 10 m cells, assign the
+  **dominant class** or store **class fractions** instead of using a point value.
+- Optionally display it as an overlay on the map for context.
+
+**Caveats**
+
+- It is a snapshot (2020 and 2021 versions) and does not capture land-cover change between
+  2000 and 2026. For a consistent time series, consider MODIS land cover (MCD12Q1, ~500 m,
+  annual, since 2001), which is coarser.
+- Its accuracy is good but not perfect, so land-cover breakdowns should be presented as
+  indicative.
+
+### Leaflet (base map)
+
+**What it is:** a lightweight, widely used JavaScript mapping library.
+
+**Why it was selected**
+
+- **Simple and fast to use.** Its learning curve is short, which is ideal for hackathon
+  timelines.
+- **Large plugin ecosystem.** Drawing tools, geocoding controls, and overlay layers have
+  mature plugins.
+- **Sufficient for the data volume.** Hotspots are pre-aggregated into cells or monthly
+  counts, so the browser does not need to draw millions of points; Leaflet's canvas/SVG
+  rendering is sufficient.
+- **Works immediately with OpenStreetMap tiles**, with the required attribution
+  ("© OpenStreetMap contributors").
+
+**Tradeoff:** if large point layers later need to be drawn smoothly, MapLibre GL JS (WebGL) is
+the best option, although it requires more configuration.
+
+### Leaflet.draw (area of interest)
+
+**What it is:** a Leaflet plugin that adds tools for drawing, editing, and deleting rectangles,
+polygons, and circles.
+
+**Why it was selected**
+
+- **Directly meets the challenge.** The challenge suggests allowing users to draw an area of
+  interest on the map.
+- **Native Leaflet integration.** Drawn shapes become GeoJSON, which Turf.js and the rest of
+  the application can use immediately.
+- **Familiar interaction.** Rectangle and polygon tools are intuitive for emergency and land
+  managers.
+
+**Tradeoff:** Leaflet.draw has seen limited active development in recent years. If bugs or
+additional features are needed (vertex snapping or editing modes), **Leaflet-Geoman** is a
+direct alternative. Review its maintenance status before deciding.
+
+### Turf.js (browser geometry)
+
+**What it is:** a modular JavaScript geospatial analysis library that works with GeoJSON.
+
+**Why it was selected**
+
+- **Handles spatial logic without a backend.** `booleanPointInPolygon`, `bbox`, and `area` are
+  the operations needed to move from a drawn shape to "which hotspots or cells are inside".
+- **Same format as the rest of the set.** It consumes GeoJSON from Leaflet.draw and boundary
+  polygons from Nominatim.
+- **Useful as a safeguard.** Calculating the selection area allows warnings when a region is
+  too large or too small for meaningful statistics.
+- **Modular.** Only required functions are imported, keeping the bundle small.
+
+**Tip:** filter first with the polygon bounding box, then apply point-in-polygon testing so
+selections remain responsive.
+
+### Nominatim (place and boundary search)
+
+**What it is:** the OpenStreetMap geocoding service (a web API, not a library).
+
+**Why it was selected**
+
+- **Matches how people think.** Emergency responders search for "Kruger National Park" or
+  "Los Angeles County", not coordinates.
+- **Boundaries as an area of interest.** With `polygon_geojson=1`, Nominatim can return an
+  administrative boundary, allowing a region to be selected by name rather than drawn.
+- **Free and easy to query** with a simple `fetch` request.
+
+**Caveats**
+
+- The public instance has usage limits (approximately one request per second, with a
+  User-Agent or Referer identifying the application). It is suitable for a demo, but a
+  production tool should use a self-hosted instance or a commercial geocoder.
+- Boundary quality varies by region and large polygons can be heavy, so simplify them (for
+  example with Turf's `simplify`) before using them.
+- Attribution to OpenStreetMap contributors is required.
 
 ---
 
-### Leaflet (mapa base)
+## 2. Calendar and charts
 
-**Qué es:** una librería de JavaScript ligera y muy usada para mapas.
+**Selected library:** Apache ECharts
 
-**Por qué se eligió**
+### Why ECharts was selected
 
-- **Sencilla y rápida de usar.** La curva de aprendizaje es corta, algo ideal para los tiempos de un hackatón.
-- **Gran ecosistema de plugins.** Herramientas de dibujo, controles de geocodificación y capas superpuestas tienen plugins maduros.
-- **Suficiente para el volumen de datos.** Como los puntos calientes se preagregan en celdas o conteos mensuales, el navegador no necesita dibujar millones de puntos, por lo que el renderizado de Leaflet (canvas/SVG) alcanza.
-- **Funciona de inmediato con teselas de OpenStreetMap**, con la atribución requerida ("© OpenStreetMap contributors").
+- **Integrated calendar and heatmap.** ECharts includes calendar coordinates and heatmap series,
+  so the challenge's central visualization does not need to be built from scratch.
+- **Color ramps through `visualMap`.** One component maps counts to colors with continuous or
+  stepped scales. This makes accessible palettes (viridis, cividis, ColorBrewer) and a
+  **diverging** palette for anomalies against the historical median easy to apply.
+- **One library for every chart.** The same tool covers the other outputs in the challenge:
+  yearly hotspot bars and lines, anomaly charts against multi-year averages, and detected-fire
+  counts.
+- **Built-in interactivity.** Tooltips, legends, zoom, and click events let users hover over a
+  month to see its count or click a cell to filter the map and table.
+- **Built-in export helpers.** Charts can be saved as images with `getDataURL`, supporting the
+  goal of downloading analyses and visualizations.
+- **Faster delivery.** Compared with D3, which offers more control but requires much more code,
+  ECharts lets a small team deliver a polished result within a hackathon timeline.
 
-**Compromiso:** si más adelante necesitas dibujar capas de puntos muy grandes con fluidez, MapLibre GL JS (WebGL) es la mejor opción, aunque requiere más configuración.
+### Design notes
 
----
+- **Year-by-month grid.** The native calendar component is organized by day. For a burning
+  calendar with "years down and months across", use a **heatmap series over two categorical
+  axes** (x = month, y = year). Use the native calendar view for a daily view of a selected
+  year.
+- **Two color scales.** Use a sequential ramp for raw counts and a diverging ramp centered on
+  zero for anomalies. Do not rely on color alone: show the count in the tooltip and consider
+  printing values inside cells.
+- **Current month versus historical median.** Calculate the median for each calendar month
+  across harmonized years and chart the current month's count against it (for example, with a
+  bar plus a median line, or as a percentage anomaly).
+- **Accessibility.** Choose color-blind-friendly palettes, ensure sufficient contrast, and
+  keep text labels for key figures.
 
-### Leaflet.draw (área de interés)
+### Tradeoffs
 
-**Qué es:** un plugin de Leaflet que añade herramientas para dibujar rectángulos, polígonos y círculos, y para editarlos o eliminarlos.
-
-**Por qué se eligió**
-
-- **Cumple directamente con el reto.** El planteamiento sugiere permitir que las personas dibujen un área de interés en el mapa.
-- **Se integra de forma nativa con Leaflet.** Las formas dibujadas se convierten en GeoJSON, que Turf.js y el resto de la aplicación pueden usar de inmediato.
-- **Interacción conocida.** Las herramientas de rectángulo y polígono son intuitivas para responsables de emergencias y de manejo de tierras.
-
-**Compromiso:** Leaflet.draw ha tenido poco desarrollo activo en los últimos años. Si encuentras errores o quieres más funciones (ajuste a vértices, modos de edición), **Leaflet-Geoman** es una alternativa directa. Revisa su estado de mantenimiento antes de decidirte.
-
----
-
-### Turf.js (geometría en el navegador)
-
-**Qué es:** una librería modular de análisis geoespacial en JavaScript que trabaja con GeoJSON.
-
-**Por qué se eligió**
-
-- **Resuelve la lógica espacial sin backend.** El punto dentro de polígono (`booleanPointInPolygon`), las cajas envolventes (`bbox`) y el área (`area`) son las operaciones necesarias para pasar de una forma dibujada a "qué puntos calientes o celdas están dentro".
-- **Mismo formato que el resto del conjunto.** Consume el GeoJSON producido por Leaflet.draw y los polígonos de límites de Nominatim.
-- **Útil como salvaguarda.** Calcular el área de la selección permite advertir cuando la región es demasiado grande o demasiado pequeña para obtener estadísticas significativas.
-- **Modular.** Solo se importan las funciones necesarias, lo que mantiene pequeño el paquete.
-
-**Consejo:** filtra primero con la caja envolvente del polígono y luego aplica punto dentro de polígono, para que las selecciones respondan rápido.
-
----
-
-### Nominatim (búsqueda de lugares y límites)
-
-**Qué es:** el servicio de geocodificación de OpenStreetMap (una API web, no requiere librería).
-
-**Por qué se eligió**
-
-- **Coincide con cómo piensa la gente.** Quienes responden a emergencias buscan "Parque Nacional Kruger" o "Condado de Los Ángeles", no coordenadas.
-- **Límites como área de interés.** Con `polygon_geojson=1`, Nominatim puede devolver el límite administrativo, de modo que se puede seleccionar una región por nombre en lugar de dibujarla.
-- **Gratuito y fácil de consultar** con una simple solicitud `fetch`.
-
-**Salvedades**
-
-- La instancia pública tiene límites de uso (aproximadamente una solicitud por segundo, y se espera un User-Agent o Referer que identifique a la aplicación). Está bien para una demostración, pero una herramienta en producción debería usar una instancia propia o un geocodificador comercial.
-- La calidad de los límites varía según la región y los polígonos grandes pueden ser pesados, así que conviene simplificarlos (por ejemplo, con `simplify` de Turf) antes de usarlos.
-- Se requiere atribución a los colaboradores de OpenStreetMap.
+- ECharts produces a larger bundle than some alternatives. Import only the chart types and
+  components used (tree-shaking) to keep it manageable.
+- If highly custom visualizations are needed that ECharts cannot express, D3 is the
+  alternative, at the cost of more development time.
 
 ---
 
-## 2. Calendario y gráficos
+## Summary table
 
-**Librería elegida:** Apache ECharts
-
-### Por qué se eligió ECharts
-
-- **Calendario y mapa de calor integrados.** ECharts incluye un sistema de coordenadas de calendario y series de mapa de calor, por lo que la visualización central del reto no hay que construirla desde cero.
-- **Rampas de color mediante `visualMap`.** Un solo componente asigna colores a los conteos, con escalas continuas o por tramos. Esto facilita aplicar paletas accesibles (viridis, cividis, ColorBrewer) y usar una paleta **divergente** para las anomalías respecto a la mediana histórica.
-- **Una sola librería para todos los gráficos.** La misma herramienta cubre las demás salidas que menciona el reto: barras y líneas de puntos calientes por año, gráficos de anomalías frente a promedios de varios años y conteos de incendios detectados.
-- **Interactividad lista para usar.** Las descripciones emergentes, leyendas, zoom y eventos de clic permiten pasar el cursor sobre un mes para ver su conteo, o hacer clic en una celda para filtrar el mapa y la tabla.
-- **Ayudas de exportación incluidas.** Los gráficos pueden guardarse como imagen (`getDataURL`), lo que apoya el objetivo de descargar análisis y visualizaciones.
-- **Más rápido de entregar.** En comparación con D3, que ofrece más control pero exige mucho más código, ECharts permite que un equipo pequeño entregue un resultado pulido en el tiempo de un hackatón.
-
-### Notas de diseño
-
-- **Cuadrícula mes por año.** El componente de calendario nativo se organiza por día. Para un calendario de quemas con "años hacia abajo y meses a lo ancho", usa una **serie de mapa de calor sobre dos ejes categóricos** (x = mes, y = año). Usa la vista de calendario nativa si quieres una vista diaria de un año seleccionado.
-- **Dos escalas de color.** Usa una rampa secuencial para los conteos brutos y una rampa divergente (centrada en cero) para las anomalías. No dependas solo del color: muestra el conteo en la descripción emergente y considera imprimir los valores dentro de las celdas.
-- **Mes actual frente a mediana histórica.** Calcula la mediana de cada mes calendario a lo largo de los años armonizados y grafica el conteo del mes actual frente a ella (por ejemplo, con una barra más una línea de mediana, o como anomalía porcentual).
-- **Accesibilidad.** Elige paletas aptas para daltonismo, asegura un contraste suficiente y mantén etiquetas de texto en las cifras clave.
-
-### Compromisos
-
-- ECharts genera un paquete más grande que otras alternativas. Importa solo los tipos de gráfico y componentes que uses (tree-shaking) para mantenerlo manejable.
-- Si necesitas visualizaciones muy personalizadas que ECharts no puede expresar, D3 es la alternativa, a costa de más tiempo de desarrollo.
-
----
-
-## Tabla resumen
-
-| Componente | Función | Razón principal de la elección |
+| Component | Role | Main reason for selection |
 |---|---|---|
-| WorldCover | Clase de cobertura del suelo por punto caliente | Clasificación global consistente, calculada una vez en el pipeline |
-| Leaflet | Mapa base | Simple, maduro, con muchos plugins y suficiente para datos preagregados |
-| Leaflet.draw | Dibujar el área de interés | Herramientas de dibujo nativas que generan GeoJSON |
-| Turf.js | Operaciones espaciales en el navegador | Punto en polígono, caja envolvente y área, sin necesidad de backend |
-| Nominatim | Búsqueda de lugares y límites | Seleccionar regiones por nombre, con polígonos para el área de interés |
-| Apache ECharts | Mapa de calor del calendario, anomalías y gráficos | Mapa de calor/calendario integrado, rampas de color flexibles, rápido de implementar |
+| WorldCover | Land-cover class per hotspot | Consistent global classification computed once in the pipeline |
+| Leaflet | Base map | Simple, mature, many plugins, and sufficient for pre-aggregated data |
+| Leaflet.draw | Draw the area of interest | Native drawing tools that generate GeoJSON |
+| Turf.js | Browser spatial operations | Point-in-polygon, bounding box, and area without a backend |
+| Nominatim | Place and boundary search | Select regions by name, with polygons for the area of interest |
+| Apache ECharts | Calendar heatmap, anomalies, and charts | Integrated calendar/heatmap, flexible color ramps, fast implementation |
 
-> Antes de finalizar, verifica el estado actual de Leaflet.draw, la política de uso de Nominatim y la disponibilidad de WorldCover (alojamiento o teselas), ya que estos detalles pueden cambiar.
+> Before finalizing, verify the current status of Leaflet.draw, Nominatim's usage policy, and
+> WorldCover availability (hosting or tiles), as these details may change.
