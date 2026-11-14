@@ -9,8 +9,12 @@ export type BurningActivityStatBulkCreated = components['schemas']['BurningActiv
 export type BurningActivityStatPage = components['schemas']['BurningActivityStatPage']
 
 export interface ListStatsQuery {
-  year?: number
-  month?: number
+  /** One or more comma-separated years, e.g. "2023,2024". */
+  year?: string
+  /** One or more comma-separated months (1-12). */
+  month?: string
+  /** One or more comma-separated days of the month (1-31). */
+  day?: string
   limit?: number
   offset?: number
 }
@@ -23,6 +27,10 @@ export interface RebuildQuery {
   polygon?: string
   from?: string
   to?: string
+  date?: string
+  year?: string
+  month?: string
+  day?: string
   instrument?: string
   satellite?: string
   min_confidence?: `${ConfidenceEnum}`

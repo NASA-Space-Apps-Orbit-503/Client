@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: api-nasa
-  version: 3.0.0
+  version: 4.0.0
   description: |
     API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
 
@@ -19,6 +19,16 @@ info:
     - `lat` + `lon` + `radius_km`
     - `polygon` = geometría GeoJSON (`Polygon` o `MultiPolygon`) codificada en la URL.
       Requiere la extensión spatial en el servidor; si no está, responde 501.
+
+    **Filtros de tiempo** (búsqueda, CSV, `/stats/*` y rebuild). Se combinan con AND:
+    - `from` / `to`: rango inclusivo. `date`: un día exacto.
+    - `year`, `month`, `day`: uno o varios valores separados por coma (`month=3,4`).
+
+    **Sintaxis `filter[...]`** (estilo spatie/laravel-query-builder): cada filtro también se
+    acepta como `filter[nombre]=valor`, por ejemplo `filter[month]=3&filter[severity]=high`.
+    Un `filter[...]` que no existe responde 400 con la lista de filtros permitidos:
+    `bbox`, `lat`, `lon`, `radius_km`, `polygon`, `from`, `to`, `date`, `year`, `month`, `day`,
+    `instrument`, `satellite`, `min_confidence`, `daynight`, `min_score`, `severity`.
 
     **Armonización MODIS / VIIRS** (`metric`)
     - `cells` (por defecto): cuenta celdas de una cuadrícula común (`cell_deg`, 0.01° ≈ 1.1 km)
@@ -44,7 +54,7 @@ tags:
   - name: Burning Activity Stats
     description: Serie diaria guardada de actividad de quema
   - name: Stats
-    description: Calendario, climatología, anomalías y resumen, calculados en el momento para cualquier área
+    description: Calendario, climatología, anomalías por celda y resumen, calculados en el momento para cualquier área
   - name: FIRMS
     description: Descarga de datos desde NASA FIRMS
   - name: Explorer
@@ -143,6 +153,10 @@ paths:
         - $ref: '#/components/parameters/Polygon'
         - $ref: '#/components/parameters/From'
         - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -286,12 +300,9 @@ paths:
       operationId: listBurningActivityStats
       summary: Listar las estadísticas diarias guardadas
       parameters:
-        - name: year
-          in: query
-          schema: { type: integer }
-        - name: month
-          in: query
-          schema: { type: integer, minimum: 1, maximum: 12 }
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
       responses:
@@ -359,6 +370,10 @@ paths:
         - $ref: '#/components/parameters/Polygon'
         - $ref: '#/components/parameters/From'
         - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -415,6 +430,10 @@ paths:
         - $ref: '#/components/parameters/Polygon'
         - $ref: '#/components/parameters/From'
         - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -448,6 +467,10 @@ paths:
         - $ref: '#/components/parameters/Polygon'
         - $ref: '#/components/parameters/From'
         - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -464,15 +487,22 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '501': { $ref: '#/components/responses/NoSpatial' }
 
-  /stats/anomaly:
+  /stats/anomalies:
     get:
       tags: [Stats]
-      operationId: getAnomaly
-      summary: Comparar un mes contra el mismo mes de los años anteriores
+      operationId: listAnomalies
+      summary: Listar anomalías por celda y día
       description: |
-        Por defecto evalúa el mes actual. Si es el mes en curso, se compara solo hasta el mismo
-        día del mes en todos los años (`partial_month = true`). La referencia son los años anteriores
-        desde el primer dato del área (o desde el año de `from`).
+        Divide el área en celdas de `cell_deg` grados y, para cada celda y día con actividad,
+        compara las detecciones observadas con las esperadas: el promedio diario de esa celda en
+        el mismo mes de los años anteriores (desde el primer año con datos del área).
+
+        `score = 2 · (√(observed + 3/8) − √(expected + 3/8))` (desviación de Poisson con la
+        transformación de Anscombe; se lee como un z-score). `severity`: `low` ≥ 2,
+        `moderate` ≥ 3, `high` ≥ 5, `extreme` ≥ 8; por debajo de 2, `normal`.
+
+        Los filtros de tiempo eligen qué días se reportan; la referencia histórica siempre
+        usa todos los años anteriores.
       parameters:
         - $ref: '#/components/parameters/Bbox'
         - $ref: '#/components/parameters/Lat'
@@ -481,31 +511,73 @@ paths:
         - $ref: '#/components/parameters/Polygon'
         - $ref: '#/components/parameters/From'
         - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
         - $ref: '#/components/parameters/DayNight'
-        - $ref: '#/components/parameters/Metric'
-        - $ref: '#/components/parameters/CellDeg'
-        - name: year
+        - $ref: '#/components/parameters/AnomalyCellDeg'
+        - $ref: '#/components/parameters/MinBaselineYears'
+        - name: min_score
           in: query
-          schema: { type: integer, minimum: 1900, maximum: 2100 }
-        - name: month
+          description: Score mínimo (también `filter[min_score]`)
+          schema: { type: number, default: 2 }
+        - name: severity
           in: query
-          schema: { type: integer, minimum: 1, maximum: 12 }
+          description: 'Una o varias de low, moderate, high, extreme separadas por coma (también `filter[severity]`). `normal` no se acepta: queda por debajo de `min_score`. Ej.: high,extreme'
+          schema: { type: string }
+        - name: sort
+          in: query
+          schema: { type: string, enum: [score, -score, date, -date, observed, -observed], default: -score }
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
       responses:
         '200':
-          description: Anomalía del mes
+          description: Página de anomalías
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/AnomalyResponse' }
+              schema: { $ref: '#/components/schemas/AnomalyPage' }
         '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
-        '422':
-          description: El mes está en el futuro o es anterior al primer dato del área
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  /stats/anomalies/{id}:
+    get:
+      tags: [Stats]
+      operationId: getAnomaly
+      summary: Obtener una anomalía por id
+      description: |
+        Recalcula la anomalía de esa celda y día. Se aplican los filtros de área y atributos de
+        la query (deben ser los mismos que en el listado para obtener el mismo valor); los
+        filtros de tiempo se ignoran porque la fecha va en el id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: '`{fecha}_{cell_deg}_{fila}_{columna}`, tal como lo devuelve el listado. Ej.: 2024-03-14_0.1_136_-893'
+          schema: { type: string, pattern: '^\d{4}-\d{2}-\d{2}_[0-9.]+_-?\d+_-?\d+$' }
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/MinBaselineYears'
+      responses:
+        '200':
+          description: Anomalía
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Error' }
+              schema: { $ref: '#/components/schemas/AnomalyItem' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
         '501': { $ref: '#/components/responses/NoSpatial' }
 
   /stats/summary:
@@ -521,6 +593,10 @@ paths:
         - $ref: '#/components/parameters/Polygon'
         - $ref: '#/components/parameters/From'
         - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Date'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/Day'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -722,6 +798,26 @@ components:
       in: query
       description: Fecha final inclusiva
       schema: { type: string, format: date }
+    Date:
+      name: date
+      in: query
+      description: Un día exacto (también `filter[date]`)
+      schema: { type: string, format: date }
+    Year:
+      name: year
+      in: query
+      description: 'Uno o varios años (1900..2100) separados por coma (también `filter[year]`). Ej.: 2023,2024'
+      schema: { type: string, pattern: '^\s*\d{4}(\s*,\s*\d{4})*\s*$' }
+    Month:
+      name: month
+      in: query
+      description: 'Uno o varios meses (1..12) separados por coma (también `filter[month]`). Ej.: 3,4'
+      schema: { type: string, pattern: '^\s*\d{1,2}(\s*,\s*\d{1,2})*\s*$' }
+    Day:
+      name: day
+      in: query
+      description: 'Uno o varios días del mes (1..31) separados por coma (también `filter[day]`). Ej.: 1,15'
+      schema: { type: string, pattern: '^\s*\d{1,2}(\s*,\s*\d{1,2})*\s*$' }
     InstrumentFilter:
       name: instrument
       in: query
@@ -751,6 +847,16 @@ components:
       in: query
       description: Tamaño de celda en grados para metric=cells (0.01 ≈ 1.1 km)
       schema: { type: number, minimum: 0.001, maximum: 1, default: 0.01 }
+    AnomalyCellDeg:
+      name: cell_deg
+      in: query
+      description: Tamaño de celda en grados para las anomalías (0.1 ≈ 11 km)
+      schema: { type: number, minimum: 0.001, maximum: 1, default: 0.1 }
+    MinBaselineYears:
+      name: min_baseline_years
+      in: query
+      description: Años anteriores mínimos para tener referencia
+      schema: { type: integer, minimum: 1, maximum: 50, default: 3 }
 
   responses:
     BadRequest:
@@ -1023,55 +1129,42 @@ components:
             months:
               type: array
               items: { $ref: '#/components/schemas/MonthClimatology' }
-    YearValue:
+    Severity:
+      type: string
+      enum: [normal, low, moderate, high, extreme]
+      description: 'Por score: low ≥ 2, moderate ≥ 3, high ≥ 5, extreme ≥ 8'
+    AnomalyLocation:
       type: object
-      required: [year, count, max_frp]
+      required: [latitude, longitude, cell_deg]
       properties:
-        year: { type: integer }
-        count: { type: integer }
+        latitude: { type: number, description: Latitud del centro de la celda }
+        longitude: { type: number, description: Longitud del centro de la celda }
+        cell_deg: { type: number }
+    AnomalyItem:
+      type: object
+      required: [id, date, location, observed, expected, ratio, score, severity, max_frp, baseline_years]
+      properties:
+        id: { type: string, examples: [2024-03-14_0.1_136_-893] }
+        date: { type: string, format: date }
+        location: { $ref: '#/components/schemas/AnomalyLocation' }
+        observed: { type: integer, description: Detecciones en la celda ese día }
+        expected: { type: number, description: Promedio diario de la celda en el mismo mes de los años anteriores }
+        ratio: { type: [number, 'null'], description: observed / expected. Null si expected es 0 }
+        score: { type: number, description: Desviación de Poisson estandarizada (≈ z-score) }
+        severity: { $ref: '#/components/schemas/Severity' }
         max_frp: { type: [number, 'null'] }
-    Baseline:
+        baseline_years: { type: integer, description: Años anteriores usados como referencia }
+    AnomalyPage:
       type: object
-      required: [years, first_year, last_year, median, mean, stddev, min, max]
+      required: [cell_deg, total, limit, offset, items]
       properties:
-        years: { type: integer, description: Años anteriores usados como referencia }
-        first_year: { type: [integer, 'null'] }
-        last_year: { type: [integer, 'null'] }
-        median: { type: [number, 'null'] }
-        mean: { type: [number, 'null'] }
-        stddev: { type: [number, 'null'] }
-        min: { type: [integer, 'null'] }
-        max: { type: [integer, 'null'] }
-    Anomaly:
-      type: object
-      required: [vs_median, vs_median_pct, vs_mean, z_score, category]
-      properties:
-        vs_median: { type: [number, 'null'], description: count - mediana }
-        vs_median_pct: { type: [number, 'null'], description: '(count - mediana) / mediana × 100' }
-        vs_mean: { type: [number, 'null'] }
-        z_score: { type: [number, 'null'] }
-        category:
-          type: string
-          enum: [much_below, below, normal, above, much_above, no_baseline]
-          description: Por z-score (±1 y ±2); si no hay variación, comparado con la mediana
-    AnomalyResponse:
-      allOf:
-        - $ref: '#/components/schemas/MetricInfo'
-        - type: object
-          required: [year, month, partial_month, compared_days, count, max_frp, rank, baseline, anomaly, history]
-          properties:
-            year: { type: integer }
-            month: { type: integer }
-            partial_month: { type: boolean, description: true si es el mes en curso }
-            compared_days: { type: [integer, 'null'], description: Días comparados (1..N) si es parcial }
-            count: { type: integer }
-            max_frp: { type: [number, 'null'] }
-            rank: { type: integer, description: 1 = el año con más actividad en ese mes }
-            baseline: { $ref: '#/components/schemas/Baseline' }
-            anomaly: { $ref: '#/components/schemas/Anomaly' }
-            history:
-              type: array
-              items: { $ref: '#/components/schemas/YearValue' }
+        cell_deg: { type: number }
+        total: { type: integer }
+        limit: { type: integer }
+        offset: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/AnomalyItem' }
     SummaryResponse:
       allOf:
         - $ref: '#/components/schemas/MetricInfo'

@@ -1,10 +1,12 @@
 import calendarMock from '~~/data/calendar.json'
 import climatologyMock from '~~/data/climatology.json'
-import anomalyMock from '~~/data/anomaly.json'
+import anomaliesMock from '~~/data/anomalies.json'
 import summaryMock from '~~/data/summary.json'
 import type {
+  AnomalyItem,
+  AnomalyListQuery,
+  AnomalyPage,
   AnomalyQuery,
-  AnomalyResponse,
   CalendarQuery,
   CalendarResponse,
   ClimatologyResponse,
@@ -16,7 +18,8 @@ import { useMocksEnabled } from './config'
 
 const typedCalendarMock = calendarMock as CalendarResponse
 const typedClimatologyMock = climatologyMock as ClimatologyResponse
-const typedAnomalyMock = anomalyMock as AnomalyResponse
+const typedAnomaliesMock = anomaliesMock as AnomalyPage
+const firstAnomalyMock = typedAnomaliesMock.items[0]!
 const typedSummaryMock = summaryMock as SummaryResponse
 
 const StatsService = {
@@ -32,10 +35,16 @@ const StatsService = {
     return $api('/stats/climatology', { query })
   },
 
-  async getAnomaly(query?: AnomalyQuery): Promise<AnomalyResponse> {
-    if (useMocksEnabled()) return typedAnomalyMock
+  async listAnomalies(query?: AnomalyListQuery): Promise<AnomalyPage> {
+    if (useMocksEnabled()) return typedAnomaliesMock
     const { $api } = useNuxtApp()
-    return $api('/stats/anomaly', { query })
+    return $api('/stats/anomalies', { query })
+  },
+
+  async getAnomaly(id: string, query?: AnomalyQuery): Promise<AnomalyItem> {
+    if (useMocksEnabled()) return typedAnomaliesMock.items.find(anomaly => anomaly.id === id) ?? firstAnomalyMock
+    const { $api } = useNuxtApp()
+    return $api('/stats/anomalies/{id}', { path: { id }, query })
   },
 
   async getSummary(query?: SummaryQuery): Promise<SummaryResponse> {

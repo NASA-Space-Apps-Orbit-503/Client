@@ -17,6 +17,10 @@ export interface DetectionQuery {
   polygon?: string
   from?: string
   to?: string
+  date?: string
+  year?: string
+  month?: string
+  day?: string
   instrument?: string
   satellite?: string
   min_confidence?: `${ConfidenceEnum}`
