@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     'nuxt-open-fetch',
     '@nuxtjs/leaflet',
-    'nuxt-echarts'
+    'nuxt-echarts',
+    '@nuxtjs/i18n'
   ],
 
   devtools: {
