@@ -26,7 +26,7 @@ onMounted(() => {
         <UCard
           title="Activity grid. April 2024"
           description="Layer: Activity grid (broad zoom). Detections appear when zoomed in"
-          class="col-span-10"
+          class="col-span-12"
         >
           <template #default>
             <LazyLeafletMap
@@ -38,44 +38,6 @@ onMounted(() => {
                 <div class="h-125 animate-pulse rounded bg-muted" />
               </template>
             </LazyLeafletMap>
-          </template>
-        </UCard>
-        <!-- Info -->
-        <UCard
-          title="Data. April 2024"
-          description="El Salvador. All sensors"
-          class="col-span-2"
-        >
-          <template #default>
-            <UPageGrid>
-              <h1 class="col-span-6">
-                <p class="text-highlighted font-semibold">
-                  2,244
-                </p>
-                <p class="mt-1 text-muted text-sm">
-                  active fire detections
-                </p>
-              </h1>
-              <h1 class="col-span-6">
-                <p class="text-highlighted font-semibold">
-                  1,383
-                </p>
-                <p class="mt-1 text-muted text-sm">
-                  typical April (2015-2025)
-                </p>
-              </h1>
-              <p class="col-span-12">
-                Detected activity was higher than this area’s typical level for April (162% of the 2015–2025 mean, demo baseline). Detections are satellite thermal anomalies, not confirmed wildfires.
-              </p>
-              <div>
-                Chart
-              </div>
-              <UButton
-                class="col-span-12"
-                color="primary"
-                label="View detections on map"
-              />
-            </UPageGrid>
           </template>
         </UCard>
         <UCard
