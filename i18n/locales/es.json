@@ -1,0 +1,40 @@
+{
+  "header": {
+    "nav": {
+      "explore": "Explorar",
+      "historicalTrends": "Tendencias Históricas",
+      "anomalies": "Anomalías",
+      "methodology": "Metodología"
+    }
+  },
+  "filters": {
+    "dateRange": {
+      "label": "Rango de fechas",
+      "startDate": "Fecha de inicio",
+      "endDate": "Fecha de fin"
+    },
+    "latitude": {
+      "label": "Latitud",
+      "placeholder": "Ingresa la latitud"
+    },
+    "longitude": {
+      "label": "Longitud",
+      "placeholder": "Ingresa la longitud"
+    },
+    "instruments": {
+      "label": "Instrumentos",
+      "placeholder": "Selecciona instrumentos"
+    }
+  },
+  "explore": {
+    "calendar": {
+      "title": "Calendario de actividad de quema",
+      "error": "No se puede cargar el calendario de actividad de quema"
+    },
+    "map": {
+      "title": "Mapa de actividad de quema",
+      "description": "Explora la actividad de quema a través del mundo. El mapa muestra las ubicaciones de los eventos de quema basados en datos de satélite.",
+      "error": "No se puede cargar el mapa de actividad de quema"
+    }
+  }
+}

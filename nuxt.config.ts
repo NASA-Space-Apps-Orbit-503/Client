@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     'nuxt-open-fetch',
     '@nuxtjs/leaflet',
-    'nuxt-echarts'
+    'nuxt-echarts',
+    '@nuxtjs/i18n'
   ],
 
   devtools: {
@@ -36,6 +37,14 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  i18n: {
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'es', name: 'Spanish', file: 'es.json' }
+    ]
   },
 
   openFetch: {
