@@ -1,4 +1,5 @@
 import type { components } from '#open-fetch-schemas/api'
+import type { DateRangeQuery } from '~/types/api/date-range'
 import type { ConfidenceEnum } from '~/enums/confidence.enum'
 import type { DayNightEnum } from '~/enums/day-night.enum'
 import type { MetricEnum } from '~/enums/metric.enum'
@@ -8,21 +9,17 @@ export type NewBurningActivityStat = components['schemas']['NewBurningActivitySt
 export type BurningActivityStatBulkCreated = components['schemas']['BurningActivityStatBulkCreated']
 export type BurningActivityStatPage = components['schemas']['BurningActivityStatPage']
 
-export interface ListStatsQuery {
-  year?: number
-  month?: number
+export type ListStatsQuery = DateRangeQuery & {
   limit?: number
   offset?: number
 }
 
-export interface RebuildQuery {
+interface RebuildFilterQuery {
   bbox?: string
   lat?: number
   lon?: number
   radius_km?: number
   polygon?: string
-  from?: string
-  to?: string
   instrument?: string
   satellite?: string
   min_confidence?: `${ConfidenceEnum}`
@@ -31,8 +28,6 @@ export interface RebuildQuery {
   cell_deg?: number
 }
 
-export type RebuildResponse = {
-  rows: number
-  metric: `${MetricEnum}`
-  cell_deg: number | null
-}
+export type RebuildQuery = RebuildFilterQuery & DateRangeQuery
+
+export type RebuildResponse = components['schemas']['RebuildResult']

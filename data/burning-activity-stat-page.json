@@ -5,17 +5,13 @@
   "items": [
     {
       "id": 201,
-      "day": 14,
-      "month": 3,
-      "year": 2024,
+      "date": 1710374400000,
       "count": 57,
       "max_frp": 38.4
     },
     {
       "id": 202,
-      "day": 15,
-      "month": 3,
-      "year": 2024,
+      "date": 1710460800000,
       "count": 83,
       "max_frp": 52.1
     }
