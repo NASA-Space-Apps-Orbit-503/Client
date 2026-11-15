@@ -1,6 +1,6 @@
 {
   "run": {
-    "computed_at": "2026-11-14T18:00:00Z",
+    "computed_at": 1794679200000,
     "status": "ok",
     "detections": 182450,
     "after_confidence": 151230,
@@ -8,10 +8,10 @@
     "static_cells": 14,
     "after_static": 147310,
     "used": 98640,
-    "first_month": "2003-01",
-    "last_month": "2026-10",
-    "overlap_start": "2012-02",
-    "overlap_end": "2025-12",
+    "first_month": 1041379200000,
+    "last_month": 1790812800000,
+    "overlap_start": 1328054400000,
+    "overlap_end": 1764547200000,
     "overlap_months": 167,
     "mean_raw_diff_pct": 142.6,
     "mean_abs_harmonized_diff_pct": 6.3,
@@ -22,13 +22,13 @@
       "min_confidence": "nominal",
       "static_threshold": 0.3,
       "static_min_months": 12,
-      "snpp_end": "2026-11-02",
+      "snpp_end": 1793577600000,
       "viirs_priority": [
         "Suomi NPP",
         "NOAA-20",
         "NOAA-21"
       ],
-      "overlap_end": "2025-12",
+      "overlap_end": 1764547200000,
       "min_cells_month": 30.0,
       "dry_months": [
         11,
@@ -47,7 +47,7 @@
   },
   "items": [
     {
-      "month": "2011-03",
+      "month": 1298937600000,
       "modis": 4980.0,
       "viirs": null,
       "harmonized": 4980.0,
@@ -60,7 +60,7 @@
       "level": "normal"
     },
     {
-      "month": "2026-01",
+      "month": 1767225600000,
       "modis": null,
       "viirs": 812.0,
       "harmonized": 1650.0,
@@ -73,7 +73,7 @@
       "level": "normal"
     },
     {
-      "month": "2026-02",
+      "month": 1769904000000,
       "modis": null,
       "viirs": 1610.0,
       "harmonized": 3520.0,
@@ -86,7 +86,7 @@
       "level": "normal"
     },
     {
-      "month": "2026-03",
+      "month": 1772323200000,
       "modis": null,
       "viirs": 3270.0,
       "harmonized": 7200.0,
@@ -99,7 +99,7 @@
       "level": "very_high"
     },
     {
-      "month": "2026-04",
+      "month": 1775001600000,
       "modis": null,
       "viirs": 1530.0,
       "harmonized": 3300.0,
@@ -112,7 +112,7 @@
       "level": "low"
     },
     {
-      "month": "2026-11",
+      "month": 1793491200000,
       "modis": null,
       "viirs": 95.0,
       "harmonized": 209.0,

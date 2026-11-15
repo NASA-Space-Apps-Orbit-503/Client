@@ -3,8 +3,8 @@
   "cell_deg": 0.01,
   "detections": 287,
   "total": 140,
-  "first_date": "2020-01-12",
-  "last_date": "2024-12-28",
+  "first_date": 1578787200000,
+  "last_date": 1735344000000,
   "max_frp": 89.7,
   "by_instrument": [
     {
@@ -24,8 +24,7 @@
   ],
   "top_months": [
     {
-      "year": 2024,
-      "month": 3,
+      "date": 1709251200000,
       "count": 140,
       "max_frp": 52.1
     }

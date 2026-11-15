@@ -1,5 +1,6 @@
 import StatsService from '~/services/stats.service'
 import type { InfoCard } from '~/types/info-card'
+import { epochMonth, epochYear, formatEpochDate } from '~/utils/epoch'
 
 export default async function useExploreSummary() {
   const { data: summary, error: summaryError } = await useAsyncData(
@@ -21,11 +22,13 @@ export default async function useExploreSummary() {
       {
         title: detections.toLocaleString(),
         description: 'Active fire detections',
-        footer: first_date && last_date ? `${first_date} - ${last_date}. All sensors` : 'Date range unavailable',
+        footer: first_date !== null && last_date !== null
+          ? `${formatEpochDate(first_date)} - ${formatEpochDate(last_date)}. All sensors`
+          : 'Date range unavailable',
         class: 'col-span-1 md:col-span-3 lg:col-span-3'
       },
       {
-        title: peakMonth ? `${peakMonth.month}/${peakMonth.year}` : 'N/A',
+        title: peakMonth ? `${epochMonth(peakMonth.date)}/${epochYear(peakMonth.date)}` : 'N/A',
         description: 'Peak activity period',
         footer: peakMonth ? `${peakMonth.count.toLocaleString()} detections` : 'No peak period available',
         class: 'col-span-1 md:col-span-3 lg:col-span-3'

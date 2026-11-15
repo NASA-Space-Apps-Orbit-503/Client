@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: api-nasa
-  version: 5.0.0
+  version: 6.0.0
   description: |
     API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
 
@@ -12,7 +12,11 @@ info:
     - Los `POST` de cada entidad aceptan **un objeto o un arreglo de objetos** en la misma ruta.
       Con un arreglo la creación es **todo o nada**: si un elemento falla no se guarda
       ninguno, y el error indica su posición en `index` (base 0).
-    - Fechas: `YYYY-MM-DD`. Horas: `HHMM` en UTC (formato FIRMS).
+    - Fechas de entrada (parámetros y cuerpos): `YYYY-MM-DD`. Horas: `HHMM` en UTC (formato FIRMS).
+    - **Fechas de salida**: toda fecha de una respuesta JSON es un timestamp `EpochMs`
+      (milisegundos desde 1970-01-01 UTC). Los meses son su primer día a las 00:00 UTC.
+      El CSV de `/detections?format=csv` mantiene `acq_date` como `YYYY-MM-DD` (formato FIRMS),
+      y `/tables` y `/query` devuelven las columnas tal como las entrega DuckDB.
 
     **Filtros de área** (búsqueda, CSV, rebuild de estadísticas y `/stats/*` salvo la serie
     armonizada, cuya área es `HARMONIZE_BBOX` del servidor). Usa solo UNA forma:
@@ -929,6 +933,11 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
 
   schemas:
+    EpochMs:
+      type: integer
+      format: int64
+      description: Fecha como milisegundos desde 1970-01-01 UTC (lista para `new Date(ms)`)
+      examples: [1710402480000]
     Error:
       type: object
       required: [error]
@@ -1024,7 +1033,9 @@ components:
         bright_ti4: { type: [number, 'null'] }
         scan: { type: [number, 'null'] }
         track: { type: [number, 'null'] }
-        acq_date: { type: string, format: date }
+        acq_date:
+          $ref: '#/components/schemas/EpochMs'
+          description: Momento de la adquisición (acq_date + acq_time del registro)
         acq_time: { type: string, pattern: '^\d{4}$' }
         satellite: { type: string }
         instrument: { type: string }
@@ -1092,7 +1103,7 @@ components:
                  after_static, used, first_month, last_month, overlap_start, overlap_end,
                  overlap_months, mean_raw_diff_pct, mean_abs_harmonized_diff_pct, correlation, params]
       properties:
-        computed_at: { type: string, format: date-time }
+        computed_at: { $ref: '#/components/schemas/EpochMs' }
         status: { $ref: '#/components/schemas/HarmonizationStatus' }
         detections: { type: integer, description: Tras quitar duplicados y aplicar el área }
         after_confidence: { type: integer }
@@ -1100,10 +1111,10 @@ components:
         static_cells: { type: integer, description: Celdas descartadas como fuentes estáticas }
         after_static: { type: integer }
         used: { type: integer, description: Detecciones de Aqua y del VIIRS de referencia }
-        first_month: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
-        last_month: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
-        overlap_start: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
-        overlap_end: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
+        first_month: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        last_month: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        overlap_start: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        overlap_end: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
         overlap_months: { type: integer }
         mean_raw_diff_pct: { type: [number, 'null'], description: Diferencia anual promedio VIIRS crudo vs MODIS (%) }
         mean_abs_harmonized_diff_pct:
@@ -1124,9 +1135,13 @@ components:
         min_confidence: { type: string, enum: [nominal, high] }
         static_threshold: { type: number }
         static_min_months: { type: integer }
-        snpp_end: { type: string, format: date }
+        snpp_end:
+          $ref: '#/components/schemas/EpochMs'
+          description: Primer día sin Suomi NPP
         viirs_priority: { type: array, items: { type: string } }
-        overlap_end: { type: string, pattern: '^\d{4}-\d{2}$', description: Último mes usado para el factor }
+        overlap_end:
+          $ref: '#/components/schemas/EpochMs'
+          description: Último mes usado para el factor
         min_cells_month: { type: number }
         dry_months: { type: array, items: { type: integer, minimum: 1, maximum: 12 } }
         reference_years:
@@ -1180,7 +1195,7 @@ components:
       type: object
       required: [month, modis, viirs, harmonized, source, complete, median, p25, p75, anomaly, level]
       properties:
-        month: { type: string, pattern: '^\d{4}-\d{2}$' }
+        month: { $ref: '#/components/schemas/EpochMs' }
         modis: { type: [number, 'null'], description: Celdas-día MODIS Aqua }
         viirs: { type: [number, 'null'], description: Celdas-día del VIIRS de referencia }
         harmonized: { type: [number, 'null'], description: Equivalente MODIS }
@@ -1219,12 +1234,10 @@ components:
         max_frp: { type: [number, 'null'], minimum: 0, description: FRP máximo del día (MW) }
     BurningActivityStat:
       type: object
-      required: [id, day, month, year, count, max_frp]
+      required: [id, date, count, max_frp]
       properties:
         id: { type: integer, format: int64 }
-        day: { type: integer }
-        month: { type: integer }
-        year: { type: integer }
+        date: { $ref: '#/components/schemas/EpochMs' }
         count: { type: integer, format: int64 }
         max_frp: { type: [number, 'null'] }
     BurningActivityStatBulkCreated:
@@ -1263,11 +1276,11 @@ components:
         cell_deg: { type: [number, 'null'], description: Solo con metric=cells }
     CalendarPoint:
       type: object
-      required: [year, month, day, count, max_frp, active_days]
+      required: [date, count, max_frp, active_days]
       properties:
-        year: { type: integer }
-        month: { type: integer, minimum: 1, maximum: 12 }
-        day: { type: [integer, 'null'], description: Solo con granularity=day }
+        date:
+          $ref: '#/components/schemas/EpochMs'
+          description: Inicio del periodo (el día, o el primer día del mes)
         count: { type: integer }
         max_frp: { type: [number, 'null'] }
         active_days: { type: [integer, 'null'], description: Solo por mes. Días con al menos un hotspot }
@@ -1278,8 +1291,8 @@ components:
           required: [granularity, from, to, items]
           properties:
             granularity: { type: string, enum: [month, day] }
-            from: { type: [string, 'null'], format: date, description: '`startDate` aplicado (null sin rango)' }
-            to: { type: [string, 'null'], format: date, description: '`endDate` aplicado (null sin rango)' }
+            from: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`startDate` aplicado (null sin rango)' }
+            to: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`endDate` aplicado (null sin rango)' }
             items:
               type: array
               items: { $ref: '#/components/schemas/CalendarPoint' }
@@ -1303,8 +1316,8 @@ components:
         - type: object
           required: [from, to, months]
           properties:
-            from: { type: [string, 'null'], format: date, description: '`startDate` aplicado (null sin rango)' }
-            to: { type: [string, 'null'], format: date, description: '`endDate` aplicado (null sin rango)' }
+            from: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`startDate` aplicado (null sin rango)' }
+            to: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`endDate` aplicado (null sin rango)' }
             months:
               type: array
               items: { $ref: '#/components/schemas/MonthClimatology' }
@@ -1324,7 +1337,7 @@ components:
       required: [id, date, location, observed, expected, ratio, score, severity, max_frp, baseline_years]
       properties:
         id: { type: string, examples: [2024-03-14_0.1_136_-893] }
-        date: { type: string, format: date }
+        date: { $ref: '#/components/schemas/EpochMs' }
         location: { $ref: '#/components/schemas/AnomalyLocation' }
         observed: { type: integer, description: Detecciones en la celda ese día }
         expected: { type: number, description: Promedio diario de la celda en el mismo mes de los años anteriores }
@@ -1352,8 +1365,8 @@ components:
           properties:
             detections: { type: integer, description: Detecciones crudas }
             total: { type: integer, description: Total según la métrica }
-            first_date: { type: [string, 'null'], format: date }
-            last_date: { type: [string, 'null'], format: date }
+            first_date: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+            last_date: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
             max_frp: { type: [number, 'null'] }
             by_instrument:
               type: array
@@ -1375,10 +1388,11 @@ components:
               type: array
               items:
                 type: object
-                required: [year, month, count, max_frp]
+                required: [date, count, max_frp]
                 properties:
-                  year: { type: integer }
-                  month: { type: integer }
+                  date:
+                    $ref: '#/components/schemas/EpochMs'
+                    description: Primer día del mes
                   count: { type: integer }
                   max_frp: { type: [number, 'null'] }
 
@@ -1406,7 +1420,7 @@ components:
             source: { type: string }
             area: { type: string }
             days: { type: integer }
-            date: { type: [string, 'null'], format: date }
+            date: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: Día inicial pedido }
 
     # ---------- Explorer
     TableInfo:

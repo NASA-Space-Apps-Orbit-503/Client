@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CalendarResponse } from '~/types/api/stats'
+import { epochMonth, epochYear, formatEpochDate } from '~/utils/epoch'
 
 const props = defineProps<{
   data: CalendarResponse
@@ -12,9 +13,9 @@ const monthLabels = computed(() =>
 )
 
 const years = computed(() => {
-  const itemYears = props.data.items.map(item => item.year)
-  const fromYear = props.data.from ? Number(props.data.from.slice(0, 4)) : Math.min(...itemYears)
-  const toYear = props.data.to ? Number(props.data.to.slice(0, 4)) : Math.max(...itemYears)
+  const itemYears = props.data.items.map(item => epochYear(item.date))
+  const fromYear = props.data.from !== null ? epochYear(props.data.from) : Math.min(...itemYears)
+  const toYear = props.data.to !== null ? epochYear(props.data.to) : Math.max(...itemYears)
 
   if (!Number.isFinite(fromYear) || !Number.isFinite(toYear)) return []
 
@@ -27,7 +28,7 @@ const countByMonth = computed(() => {
   const counts = new Map<string, number>()
 
   for (const item of props.data.items) {
-    counts.set(`${item.year}-${item.month}`, item.count)
+    counts.set(`${epochYear(item.date)}-${epochMonth(item.date)}`, item.count)
   }
 
   return counts
@@ -58,7 +59,7 @@ function getCellLabel(year: number, month: number, count: number) {
           Monthly active cells
         </p>
         <p class="text-muted text-sm">
-          {{ data.from ?? 'Start unavailable' }} - {{ data.to ?? 'End unavailable' }}
+          {{ data.from !== null ? formatEpochDate(data.from) : 'Start unavailable' }} - {{ data.to !== null ? formatEpochDate(data.to) : 'End unavailable' }}
         </p>
       </div>
       <div class="flex items-center gap-2 text-muted text-xs">
