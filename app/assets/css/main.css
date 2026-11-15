@@ -28,3 +28,26 @@
   --color-papaya-whip-900: #312102;
   --color-papaya-whip-950: #221702;
 }
+
+.leaflet-container {
+  background: var(--ui-bg);
+  position: relative;
+}
+.leaflet-tile-pane {
+  filter: grayscale(1) contrast(1.05);
+}
+.leaflet-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ui-default);
+  mix-blend-mode: color;   /* or 'multiply' / 'soft-light' */
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 450;            /* above tiles, below controls (800+) */
+}
+
+/* dark mode */
+.dark .leaflet-tile-pane {
+  filter: grayscale(1) invert(1) brightness(0.9) contrast(0.9);
+}

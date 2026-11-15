@@ -35,10 +35,17 @@ async function clearArea() {
   selectingPoint.value = false
   await clearAppliedArea()
 }
+
+defineEmits<{
+  'map:loaded': [value: boolean]
+}>()
 </script>
 
 <template>
-  <BaseMap :class="{ 'h-screen [&_.leaflet-container]:cursor-crosshair': selectingPoint }">
+  <BaseMap
+    :class="{ 'h-screen [&_.leaflet-container]:cursor-crosshair': selectingPoint }"
+    @ready="$emit('map:loaded', true)"
+  >
     <!-- Draw Controls -->
     <template #draw-controls>
       <MapDrawControl
@@ -59,18 +66,9 @@ async function clearArea() {
     </template>
     <!-- Area Description -->
     <template #area-description>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-wrap items-center justify-between gap-2 text-sm min-h-1/12">
         <span class="align-middle">{{ areaLabel ?? t('map.area.none') }}</span>
         <div class="ml-auto flex flex-wrap items-center justify-end gap-2">
-          <UButton
-            v-if="circle || point"
-            :label="t('map.area.clear')"
-            icon="i-lucide-x"
-            color="neutral"
-            variant="ghost"
-            size="sm"
-            @click="clearArea"
-          />
           <UButton
             :label="selectingPoint ? t('map.area.cancelPoint') : t('map.area.selectPoint')"
             icon="i-lucide-map-pin"
