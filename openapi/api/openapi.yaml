@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: api-nasa
-  version: 4.1.0
+  version: 4.2.0
   description: |
     API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
 
@@ -36,8 +36,8 @@ info:
       (MODIS 1 km, VIIRS 375 m) y las detecciones repetidas de varios satélites.
     - `detections`: cuenta detecciones crudas.
 
-    La confianza se normaliza a `low` / `nominal` / `high` para ambos sensores
-    (VIIRS `l/n/h`; MODIS 0-29 / 30-79 / 80-100).
+    La confianza se guarda como categoría `low` / `nominal` / `high` para ambos sensores.
+    Al crear o importar se aceptan también VIIRS `l/n/h` y MODIS 0-100 (0-29 low, 30-79 nominal, 80-100 high).
 
     **Serie armonizada mensual** (`/stats/harmonized`, `/stats/harmonization`)
     Cada importación con filas nuevas (`/detections/import`, `/firms/sync`) recalcula sobre todo
@@ -216,7 +216,7 @@ paths:
             examples:
               uno:
                 summary: Un registro
-                value: { latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: "n", version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }
+                value: { latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: nominal, version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }
               varios:
                 summary: Varios registros
                 value: [{ latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: "n", version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }, { latitude: 13.70, longitude: -89.20, acq_date: "2024-03-14", acq_time: "1630", satellite: Aqua, instrument: MODIS, confidence: "65", frp: 12.3, daynight: D }]
@@ -1044,8 +1044,10 @@ components:
           description: Código de un instrumento existente (`Instrument.code`). Se guarda en mayúsculas.
         confidence:
           type: [string, 'null']
-          maxLength: 10
-          description: 'VIIRS: l | n | h. MODIS: 0-100.'
+          description: |
+            Se guarda como `low` | `nominal` | `high`. También acepta VIIRS `l` | `n` | `h`
+            y MODIS 0-100 (menos de 30 low, menos de 80 nominal, el resto high).
+          examples: [nominal, n, '65']
         version: { type: [string, 'null'], maxLength: 20, examples: [2.0NRT] }
         bright_ti5: { type: [number, 'null'], minimum: 0, description: 'Temperatura de brillo canal I-5 (K). En MODIS, `bright_t31`.' }
         frp: { type: [number, 'null'], minimum: 0, description: Fire Radiative Power (MW) }
@@ -1069,7 +1071,7 @@ components:
         acq_time: { type: string, pattern: '^\d{4}$' }
         satellite: { type: string }
         instrument: { type: string }
-        confidence: { type: [string, 'null'] }
+        confidence: { type: [string, 'null'], enum: [low, nominal, high, null] }
         version: { type: [string, 'null'] }
         bright_ti5: { type: [number, 'null'] }
         frp: { type: [number, 'null'] }
