@@ -36,6 +36,12 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2026-06-30',
 
+  echarts: {
+    renderer: 'canvas',
+    charts: ['LineChart', 'BarChart'],
+    components: ['GridComponent', 'TooltipComponent', 'LegendComponent']
+  },
+
   eslint: {
     config: {
       stylistic: {

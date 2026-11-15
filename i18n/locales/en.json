@@ -90,5 +90,83 @@
       "date": "Acquisition date",
       "partial": "Only the displayed points are drawn (up to 5,000). Narrow the filters or load more points to explore other detections."
     }
+  },
+  "historicalTrends": {
+    "title": "Historical trends",
+    "description": "Compare regional MODIS, VIIRS and harmonized activity over time using the selected dates. The table and bars use all applied filters.",
+    "granularity": {
+      "label": "Period",
+      "year": "Year",
+      "month": "Month"
+    },
+    "compare": {
+      "years": "Years to compare",
+      "yearsHint": "Up to {max}",
+      "yearsPlaceholder": "Select years",
+      "months": "Months to compare",
+      "monthsPlaceholder": "Select months",
+      "empty": "Select at least one year (and one month) to compare."
+    },
+    "metric": {
+      "cells": "Active cells",
+      "detections": "Detections"
+    },
+    "table": {
+      "title": "Aggregated activity per period",
+      "description": "Total per period and change vs the previous period. Click a column header to sort.",
+      "period": "Period",
+      "change": "Change",
+      "changePct": "Change %",
+      "sortBy": "Sort by {column}",
+      "firstPeriod": "First period: there is no previous period to compare with",
+      "fromZero": "New activity",
+      "fromZeroHint": "The previous period had 0, so the % change is not defined"
+    },
+    "charts": {
+      "line": {
+        "title": "Regional activity over time",
+        "description": "Compare MODIS, VIIRS and Harmonized activity for the selected years and months.",
+        "ariaLabel": "Line chart of {metric} over {periods} periods",
+        "cellDays": "Cell-days",
+        "harmonized": "Harmonized",
+        "harmonizedScope": "Regional comparison in cell-days: MODIS Aqua, reference VIIRS and harmonized MODIS-equivalent activity. Only the applied date range affects this chart; point, radius, instrument and satellite filters apply to the table and bars.",
+        "unsupportedFilters": "The harmonized API does not support area, satellite or single-instrument filters. Showing the filtered sensor counts without a harmonized curve.",
+        "harmonizedUnavailable": "The regional comparison is unavailable. The three series could not be loaded."
+      },
+      "bar": {
+        "titleMonthly": "Same month across years",
+        "titleYearly": "Year-over-year totals",
+        "descriptionMonthly": "Each bar is one year; months outside the data range have no bar.",
+        "descriptionYearly": "Total per compared year.",
+        "ariaLabelMonthly": "Bar chart of {metric} per month for the years {years}",
+        "ariaLabelYearly": "Bar chart of {metric} for the years {years}"
+      },
+      "axis": {
+        "year": "Year",
+        "month": "Month"
+      },
+      "noData": "No data"
+    },
+    "csv": {
+      "filters": "Applied filters",
+      "bounds": "Local cell bounds",
+      "all": "All",
+      "sensorScope": "Sensor counts use all applied filters. Blank values indicate a sensor excluded by the instrument filter. Sensor cell counts can overlap and must not be added to reproduce the combined table.",
+      "download": "Download CSV",
+      "error": "Unable to export CSV. Please try again.",
+      "regionalModis": "Regional MODIS",
+      "regionalViirs": "Regional VIIRS",
+      "regionalHarmonized": "Regional Harmonized",
+      "regionalScope": "Regional data scope"
+    },
+    "empty": {
+      "title": "No activity data",
+      "description": "There are no periods for the current filters. Try a wider date range or another area."
+    },
+    "error": {
+      "title": "Unable to load historical trends",
+      "description": "The burning activity data could not be loaded. Check your connection and try again.",
+      "retry": "Retry"
+    }
   }
 }

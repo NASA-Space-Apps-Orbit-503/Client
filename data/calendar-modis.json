@@ -1,0 +1,105 @@
+{
+  "metric": "cells",
+  "cell_deg": 0.01,
+  "granularity": "month",
+  "from": 1577836800000,
+  "to": 1735603200000,
+  "items": [
+    {
+      "date": 1577836800000,
+      "count": 12,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1583020800000,
+      "count": 28,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1593561600000,
+      "count": 4,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1612137600000,
+      "count": 17,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1617235200000,
+      "count": 34,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1627776000000,
+      "count": 9,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1640995200000,
+      "count": 11,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1646092800000,
+      "count": 45,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1654041600000,
+      "count": 23,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1675209600000,
+      "count": 24,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1682899200000,
+      "count": 32,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1693526400000,
+      "count": 11,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1704067200000,
+      "count": 16,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1709251200000,
+      "count": 40,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1719792000000,
+      "count": 18,
+      "max_frp": null,
+      "active_days": null
+    },
+    {
+      "date": 1730419200000,
+      "count": 9,
+      "max_frp": null,
+      "active_days": null
+    }
+  ]
+}

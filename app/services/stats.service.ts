@@ -1,3 +1,6 @@
+import modisCalendarMock from '~~/data/calendar-modis.json'
+import viirsCalendarMock from '~~/data/calendar-viirs.json'
+import { InstrumentEnum } from '~/enums/instrument.enum'
 import calendarMock from '~~/data/calendar.json'
 import climatologyMock from '~~/data/climatology.json'
 import anomaliesMock from '~~/data/anomalies.json'
@@ -24,7 +27,11 @@ const typedSummaryMock = summaryMock as SummaryResponse
 
 const StatsService = {
   async getCalendar(query?: CalendarQuery): Promise<CalendarResponse> {
-    if (useMocksEnabled()) return typedCalendarMock
+    if (useMocksEnabled()) {
+      if (query?.instrument === InstrumentEnum.Modis) return modisCalendarMock as CalendarResponse
+      if (query?.instrument === InstrumentEnum.Viirs) return viirsCalendarMock as CalendarResponse
+      return typedCalendarMock
+    }
     const { $api } = useNuxtApp()
     return $api('/stats/calendar', { query })
   },
