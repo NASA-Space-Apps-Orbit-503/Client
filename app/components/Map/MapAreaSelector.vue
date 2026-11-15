@@ -22,11 +22,18 @@ const areaLabel = computed(() => {
 function clearArea() {
   circle.value = null
 }
+
+defineEmits<{
+  'map:loaded': [value: boolean]
+}>()
 </script>
 
 <template>
   <div class="flex flex-col gap-2">
-    <BaseMap class="h-screen">
+    <BaseMap
+      class="h-full"
+      @ready="$emit('map:loaded', true)"
+    >
       <!-- Draw Controls -->
       <template #draw-controls>
         <MapDrawControl

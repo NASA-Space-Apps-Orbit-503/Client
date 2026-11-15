@@ -41,6 +41,11 @@
       "title": "Burning activity map",
       "description": "Explore the burning activity across the globe. The map shows the locations of burning events based on satellite data.",
       "error": "Unable to load burning activity map"
+    },
+    "navigation": {
+      "secondSection": "Explore details",
+      "toMap": "Go to map",
+      "toSecondSection": "Go to next section"
     }
   },
   "map": {

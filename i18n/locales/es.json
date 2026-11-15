@@ -42,6 +42,11 @@
       "title": "Mapa de actividad de quema",
       "description": "Explora la actividad de quema a través del mundo. El mapa muestra las ubicaciones de los eventos de quema basados en datos de satélite.",
       "error": "No se puede cargar el mapa de actividad de quema"
+    },
+    "navigation": {
+      "secondSection": "Detalles de exploración",
+      "toMap": "Ir al mapa",
+      "toSecondSection": "Ir a la siguiente sección"
     }
   },
   "map": {
