@@ -5,8 +5,9 @@ export interface CircleArea {
   radiusKm: number
 }
 
-/** Area query parameters accepted by `/detections` and `/stats/*` (`lat` + `lon` + `radius_km`). */
+/** Area query parameters accepted by `/detections` and `/stats/*` (a bbox or `lat` + `lon` + `radius_km`). */
 export interface AreaQuery {
+  bbox?: string
   lat?: number
   lon?: number
   radius_km?: number
