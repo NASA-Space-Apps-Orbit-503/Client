@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "code": "Terra",
+    "name": "Terra",
+    "instrument": "MODIS"
+  },
+  {
+    "id": 2,
+    "code": "Aqua",
+    "name": "Aqua",
+    "instrument": "MODIS"
+  },
+  {
+    "id": 3,
+    "code": "N",
+    "name": "Suomi NPP",
+    "instrument": "VIIRS"
+  },
+  {
+    "id": 4,
+    "code": "N20",
+    "name": "NOAA-20",
+    "instrument": "VIIRS"
+  },
+  {
+    "id": 5,
+    "code": "N21",
+    "name": "NOAA-21",
+    "instrument": "VIIRS"
+  }
+]
