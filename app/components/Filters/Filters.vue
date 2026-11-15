@@ -1,6 +1,15 @@
 <script setup lang="ts">
 const { t } = useI18n()
-const { dateRange, latitude, longitude, instruments, getInstrumentsList } = useFilters()
+const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList } = useFilters()
+
+/**
+ * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
+ * locale `13.6929` would be parsed as `136929`. Six decimals keep the precision of the circle
+ * drawn on the map (default formatting keeps 3).
+ */
+const COORDINATE_LOCALE = 'en-US'
+const coordinateFormat = { maximumFractionDigits: 6, useGrouping: false }
+const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
 </script>
 
 <template>
@@ -26,6 +35,8 @@ const { dateRange, latitude, longitude, instruments, getInstrumentsList } = useF
         :min="-90"
         :max="90"
         :step="0.000001"
+        :format-options="coordinateFormat"
+        :locale="COORDINATE_LOCALE"
         class="w-full"
       />
     </UFormField>
@@ -39,6 +50,19 @@ const { dateRange, latitude, longitude, instruments, getInstrumentsList } = useF
         :min="-180"
         :max="180"
         :step="0.000001"
+        :format-options="coordinateFormat"
+        :locale="COORDINATE_LOCALE"
+        class="w-full"
+      />
+    </UFormField>
+    <UFormField :label="t('filters.radiusKm.label')">
+      <UInputNumber
+        v-model="radiusKm"
+        :min="0.001"
+        :max="300"
+        :step="0.001"
+        :format-options="radiusFormat"
+        :locale="COORDINATE_LOCALE"
         class="w-full"
       />
     </UFormField>
@@ -54,6 +78,15 @@ const { dateRange, latitude, longitude, instruments, getInstrumentsList } = useF
         value-key="id"
         multiple
         class="w-full"
+      />
+    </UFormField>
+    <UFormField :label="t('filters.satellites.label')">
+      <USelectMenu
+        v-model="satellites"
+        :items="getSatellitesList"
+        :placeholder="t('filters.satellites.placeholder')"
+        value-key="id"
+        multiple
       />
     </UFormField>
   </div>

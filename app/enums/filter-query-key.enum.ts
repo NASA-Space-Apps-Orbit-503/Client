@@ -3,5 +3,7 @@ export enum FilterQueryKeyEnum {
   EndDate = 'endDate',
   Latitude = 'latitude',
   Longitude = 'longitude',
-  Instruments = 'instruments'
+  RadiusKm = 'radiusKm',
+  Instruments = 'instruments',
+  Satellites = 'satellites'
 }

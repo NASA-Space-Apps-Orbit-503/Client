@@ -1,6 +1,9 @@
 import InstrumentsService from '~/services/instruments.service'
+import SatellitesService from '~/services/satellites.service'
 import { FilterQueryKeyEnum } from '~/enums/filter-query-key.enum'
 import type { Instrument } from '~/types/api/instruments'
+import type { Satellite } from '~/types/api/satellites'
+import type { CircleArea } from '~/types/area'
 import type { SelectMenuItem } from '@nuxt/ui'
 import { parseDate, type DateValue } from '@internationalized/date'
 
@@ -35,11 +38,14 @@ export default function useFilters() {
     },
     latitude: null,
     longitude: null,
-    instruments: []
+    radiusKm: null,
+    instruments: [],
+    satellites: []
   }))
   const urlSyncInitialized = useState<boolean>('filters-url-sync-initialized', () => false)
 
   const instrumentsList = useState<SelectMenuItem[]>('instruments', () => [])
+  const satellitesList = useState<SelectMenuItem[]>('satellites', () => [])
 
   const dateRange = computed({
     get: () => filters.value.dateRange,
@@ -62,6 +68,32 @@ export default function useFilters() {
     }
   })
 
+  const radiusKm = computed({
+    get: () => filters.value.radiusKm,
+    set: (value: number | null) => {
+      filters.value.radiusKm = value
+    }
+  })
+
+  /**
+   * Circle drawn on the map: `latitude`/`longitude` are its center and `radiusKm` its radius.
+   * Setting it fills (or clears) the three filters at once.
+   */
+  const circle = computed<CircleArea | null>({
+    get: () => {
+      const { latitude: lat, longitude: lon, radiusKm: radius } = filters.value
+      return lat !== null && lon !== null && radius !== null ? { lat, lon, radiusKm: radius } : null
+    },
+    set: (value) => {
+      filters.value.latitude = value ? roundCoordinate(value.lat) : null
+      filters.value.longitude = value ? roundCoordinate(value.lon) : null
+      filters.value.radiusKm = value ? roundCoordinate(value.radiusKm, RADIUS_PRECISION) : null
+    }
+  })
+
+  /** `lat` + `lon` + `radius_km` parameters ready for API queries (empty without a full circle). */
+  const areaQuery = computed(() => circleToQuery(circle.value))
+
   const instruments = computed({
     get: () => filters.value.instruments,
     set: (value: string[]) => {
@@ -69,7 +101,25 @@ export default function useFilters() {
     }
   })
 
+  const satellites = computed({
+    get: () => filters.value.satellites,
+    set: (value: string[]) => {
+      filters.value.satellites = value
+    }
+  })
+
+  /** Value for the API `satellite` parameter (comma-separated codes). */
+  const satelliteQuery = computed(() => filters.value.satellites.length ? filters.value.satellites.join(',') : undefined)
+
   const getInstrumentsList = computed(() => instrumentsList.value)
+  const getSatellitesList = computed(() => satellitesList.value)
+
+  /** Drops satellite codes missing from the loaded catalog (kept as-is until it loads). */
+  const onlyKnownSatellites = (codes: string[]) => {
+    if (!satellitesList.value.length) return codes
+    const known = new Set(satellitesList.value.map(item => item.id))
+    return codes.filter(code => known.has(code))
+  }
 
   const hasFilterQuery = (query: typeof route.query) =>
     filterQueryKeys.some(key => query[key] !== undefined)
@@ -84,19 +134,26 @@ export default function useFilters() {
     const endDate = getQueryValue(route.query.endDate)
     const latitudeValue = getQueryValue(route.query.latitude)
     const longitudeValue = getQueryValue(route.query.longitude)
+    const radiusValue = getQueryValue(route.query.radiusKm)
     const instrumentsValue = getQueryValue(route.query.instruments)
+    const satellitesValue = getQueryValue(route.query.satellites)
 
     const start = import.meta.client ? parseQueryDate(startDate) : undefined
     const end = import.meta.client ? parseQueryDate(endDate) : undefined
 
     const latitudeValueAsNumber = latitudeValue === undefined ? null : Number(latitudeValue)
     const longitudeValueAsNumber = longitudeValue === undefined ? null : Number(longitudeValue)
+    const radiusValueAsNumber = radiusValue === undefined ? null : Number(radiusValue)
 
     filters.value = {
       dateRange: { start, end },
       latitude: Number.isFinite(latitudeValueAsNumber) ? latitudeValueAsNumber : null,
       longitude: Number.isFinite(longitudeValueAsNumber) ? longitudeValueAsNumber : null,
-      instruments: instrumentsValue ? instrumentsValue.split(',').filter(Boolean) : []
+      radiusKm: radiusValueAsNumber !== null && Number.isFinite(radiusValueAsNumber) && radiusValueAsNumber > 0
+        ? radiusValueAsNumber
+        : null,
+      instruments: instrumentsValue ? instrumentsValue.split(',').filter(Boolean) : [],
+      satellites: satellitesValue ? onlyKnownSatellites([...new Set(satellitesValue.split(',').filter(Boolean))]) : []
     }
   }
 
@@ -112,7 +169,9 @@ export default function useFilters() {
     if (endDate) query.endDate = endDate
     if (filters.value.latitude !== null) query.latitude = String(filters.value.latitude)
     if (filters.value.longitude !== null) query.longitude = String(filters.value.longitude)
+    if (filters.value.radiusKm !== null) query.radiusKm = String(filters.value.radiusKm)
     if (filters.value.instruments.length) query.instruments = filters.value.instruments.join(',')
+    if (filters.value.satellites.length) query.satellites = filters.value.satellites.join(',')
 
     const currentQuery = route.query as Record<string, string | string[]>
     const currentKeys = Object.keys(currentQuery)
@@ -179,8 +238,26 @@ export default function useFilters() {
     }
   }
 
+  /**
+   * Fetches the list of satellites and updates the satellites state.
+   * If the request fails, it logs the error to the console.
+   */
+  const fetchSatellites = async () => {
+    try {
+      const data = await SatellitesService.listSatellites()
+      satellitesList.value = data.map((satellite: Satellite) => ({
+        id: satellite.code,
+        label: `${satellite.name} (${satellite.instrument})`
+      }))
+      const selected = onlyKnownSatellites(filters.value.satellites)
+      if (selected.length !== filters.value.satellites.length) filters.value.satellites = selected
+    } catch (error) {
+      console.error('Error fetching satellites:', error)
+    }
+  }
+
   const init = async () => {
-    await fetchInstruments()
+    await Promise.all([fetchInstruments(), fetchSatellites()])
   }
 
   return {
@@ -188,10 +265,17 @@ export default function useFilters() {
     dateRange,
     latitude,
     longitude,
+    radiusKm,
+    circle,
+    areaQuery,
     instruments,
+    satellites,
+    satelliteQuery,
     getInstrumentsList,
+    getSatellitesList,
     // Methods
     init,
-    fetchInstruments
+    fetchInstruments,
+    fetchSatellites
   }
 }

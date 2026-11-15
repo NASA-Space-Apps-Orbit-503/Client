@@ -39,17 +39,7 @@ onMounted(() => {
           :description="t('explore.map.description')"
           class="col-span-12"
         >
-          <template #default>
-            <LazyLeafletMap
-              hydrate-on-visible
-              :zoom="6"
-              :center="[47.21322, -1.559482]"
-            >
-              <template #fallback>
-                <div class="h-125 animate-pulse rounded bg-muted" />
-              </template>
-            </LazyLeafletMap>
-          </template>
+          <MapAreaSelector />
         </UCard>
         <UCard
           :title="t('explore.calendar.title')"

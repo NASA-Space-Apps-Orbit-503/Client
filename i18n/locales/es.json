@@ -24,6 +24,13 @@
     "instruments": {
       "label": "Instrumentos",
       "placeholder": "Selecciona instrumentos"
+    },
+    "radiusKm": {
+      "label": "Radio (km)"
+    },
+    "satellites": {
+      "label": "Satélites",
+      "placeholder": "Selecciona satélites"
     }
   },
   "explore": {
@@ -35,6 +42,22 @@
       "title": "Mapa de actividad de quema",
       "description": "Explora la actividad de quema a través del mundo. El mapa muestra las ubicaciones de los eventos de quema basados en datos de satélite.",
       "error": "No se puede cargar el mapa de actividad de quema"
+    }
+  },
+  "map": {
+    "ariaLabel": "Mapa de El Salvador",
+    "loading": "Cargando mapa…",
+    "area": {
+      "title": "Área de interés",
+      "none": "No hay un área seleccionada. Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros.",
+      "point": "Punto {lat}, {lon} · dibuja un círculo o ingresa un radio",
+      "circle": "Círculo · centro {lat}, {lon} · radio {radius} km",
+      "clear": "Quitar área",
+      "outsideTitle": "Área fuera de El Salvador",
+      "outsideDescription": "El círculo debe quedar completamente dentro de El Salvador. Dibújalo de nuevo dentro del país.",
+      "pointOutsideTitle": "Coordenadas fuera de El Salvador",
+      "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
+      "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país."
     }
   }
 }
