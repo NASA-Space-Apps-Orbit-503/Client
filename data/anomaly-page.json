@@ -1,0 +1,4009 @@
+{
+  "metric": "cells",
+  "cell_deg": 0.01,
+  "total": 400,
+  "limit": 400,
+  "offset": 0,
+  "items": [
+    {
+      "id": "anm-0167",
+      "date": "2024-12-31",
+      "latitude": 13.88,
+      "longitude": -89.6,
+      "region": "Santa Ana",
+      "observed": 31,
+      "expected": 15.5,
+      "score": 50.7
+    },
+    {
+      "id": "anm-0074",
+      "date": "2024-12-30",
+      "latitude": 13.51,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 10,
+      "expected": 4.3,
+      "score": 68.9
+    },
+    {
+      "id": "anm-0079",
+      "date": "2024-12-30",
+      "latitude": 13.63,
+      "longitude": -88.78,
+      "region": null,
+      "observed": 20,
+      "expected": 7.4,
+      "score": 87
+    },
+    {
+      "id": "anm-0355",
+      "date": "2024-12-30",
+      "latitude": 13.73,
+      "longitude": -89.26,
+      "region": "San Salvador",
+      "observed": 12,
+      "expected": 5,
+      "score": 66.3
+    },
+    {
+      "id": "anm-0053",
+      "date": "2024-12-29",
+      "latitude": 13.74,
+      "longitude": -89.62,
+      "region": "Sonsonate",
+      "observed": 24,
+      "expected": 9.3,
+      "score": 77.2
+    },
+    {
+      "id": "anm-0305",
+      "date": "2024-12-29",
+      "latitude": 13.55,
+      "longitude": -89.12,
+      "region": "San Salvador",
+      "observed": 2,
+      "expected": 2.1,
+      "score": 8.6
+    },
+    {
+      "id": "anm-0279",
+      "date": "2024-12-28",
+      "latitude": 13.99,
+      "longitude": -89.8,
+      "region": "Ahuachapán",
+      "observed": 19,
+      "expected": 14.8,
+      "score": 15.4
+    },
+    {
+      "id": "anm-0320",
+      "date": "2024-12-28",
+      "latitude": 13.69,
+      "longitude": -88.98,
+      "region": null,
+      "observed": 1,
+      "expected": 1.2,
+      "score": 28.7
+    },
+    {
+      "id": "anm-0344",
+      "date": "2024-12-25",
+      "latitude": 13.34,
+      "longitude": -87.78,
+      "region": "La Unión",
+      "observed": 4,
+      "expected": 1.3,
+      "score": 98.7
+    },
+    {
+      "id": "anm-0107",
+      "date": "2024-12-24",
+      "latitude": 13.54,
+      "longitude": -88.96,
+      "region": null,
+      "observed": 23,
+      "expected": 9,
+      "score": 79.2
+    },
+    {
+      "id": "anm-0278",
+      "date": "2024-12-24",
+      "latitude": 13.4,
+      "longitude": -88.15,
+      "region": "San Miguel",
+      "observed": 3,
+      "expected": 6.9,
+      "score": 65.1
+    },
+    {
+      "id": "anm-0118",
+      "date": "2024-12-23",
+      "latitude": 14.02,
+      "longitude": -89.55,
+      "region": "Santa Ana",
+      "observed": 55,
+      "expected": 19.7,
+      "score": 89.7
+    },
+    {
+      "id": "anm-0263",
+      "date": "2024-12-23",
+      "latitude": 13.85,
+      "longitude": -88.15,
+      "region": "Morazán",
+      "observed": 20,
+      "expected": 13.9,
+      "score": 22.7
+    },
+    {
+      "id": "anm-0375",
+      "date": "2024-12-23",
+      "latitude": 13.93,
+      "longitude": -89.59,
+      "region": "Santa Ana",
+      "observed": 3,
+      "expected": 6.3,
+      "score": 53.8
+    },
+    {
+      "id": "anm-0027",
+      "date": "2024-12-22",
+      "latitude": 13.75,
+      "longitude": -89.26,
+      "region": "San Salvador",
+      "observed": 32,
+      "expected": 14.4,
+      "score": 59.9
+    },
+    {
+      "id": "anm-0141",
+      "date": "2024-12-22",
+      "latitude": 13.81,
+      "longitude": -88.22,
+      "region": "Morazán",
+      "observed": 1,
+      "expected": 5.4,
+      "score": 84.1
+    },
+    {
+      "id": "anm-0098",
+      "date": "2024-12-21",
+      "latitude": 13.59,
+      "longitude": -89.1,
+      "region": "San Salvador",
+      "observed": 35,
+      "expected": 11.7,
+      "score": 98.4
+    },
+    {
+      "id": "anm-0349",
+      "date": "2024-12-21",
+      "latitude": 14.04,
+      "longitude": -89.62,
+      "region": "Santa Ana",
+      "observed": 8,
+      "expected": 13.1,
+      "score": 45.3
+    },
+    {
+      "id": "anm-0239",
+      "date": "2024-12-18",
+      "latitude": 13.24,
+      "longitude": -88.5,
+      "region": "Usulután",
+      "observed": 25,
+      "expected": 12.4,
+      "score": 51.2
+    },
+    {
+      "id": "anm-0272",
+      "date": "2024-12-18",
+      "latitude": 13.29,
+      "longitude": -88.32,
+      "region": "Usulután",
+      "observed": 23,
+      "expected": 9.8,
+      "score": 66.3
+    },
+    {
+      "id": "anm-0298",
+      "date": "2024-12-18",
+      "latitude": 13.34,
+      "longitude": -88.18,
+      "region": "San Miguel",
+      "observed": 7,
+      "expected": 8.4,
+      "score": 13.8
+    },
+    {
+      "id": "anm-0041",
+      "date": "2024-12-17",
+      "latitude": 13.63,
+      "longitude": -89.78,
+      "region": "Sonsonate",
+      "observed": 18,
+      "expected": 16.3,
+      "score": 5
+    },
+    {
+      "id": "anm-0182",
+      "date": "2024-12-13",
+      "latitude": 13.66,
+      "longitude": -88.04,
+      "region": "Morazán",
+      "observed": 25,
+      "expected": 13.1,
+      "score": 45.1
+    },
+    {
+      "id": "anm-0265",
+      "date": "2024-12-12",
+      "latitude": 13.94,
+      "longitude": -89.44,
+      "region": "Santa Ana",
+      "observed": 17,
+      "expected": 14.6,
+      "score": 7
+    },
+    {
+      "id": "anm-0276",
+      "date": "2024-12-11",
+      "latitude": 13.76,
+      "longitude": -88.27,
+      "region": "Morazán",
+      "observed": 3,
+      "expected": 5.3,
+      "score": 58.7
+    },
+    {
+      "id": "anm-0176",
+      "date": "2024-12-09",
+      "latitude": 13.32,
+      "longitude": -88.46,
+      "region": "Usulután",
+      "observed": 35,
+      "expected": 18.7,
+      "score": 43.9
+    },
+    {
+      "id": "anm-0296",
+      "date": "2024-12-09",
+      "latitude": 13.35,
+      "longitude": -88.28,
+      "region": "San Miguel",
+      "observed": 22,
+      "expected": 10.6,
+      "score": 52.1
+    },
+    {
+      "id": "anm-0347",
+      "date": "2024-12-09",
+      "latitude": 13.54,
+      "longitude": -88.81,
+      "region": null,
+      "observed": 29,
+      "expected": 18.1,
+      "score": 31.4
+    },
+    {
+      "id": "anm-0088",
+      "date": "2024-12-04",
+      "latitude": 13.5,
+      "longitude": -88.83,
+      "region": null,
+      "observed": 7,
+      "expected": 13.6,
+      "score": 53
+    },
+    {
+      "id": "anm-0374",
+      "date": "2024-12-04",
+      "latitude": 13.21,
+      "longitude": -88.55,
+      "region": "Usulután",
+      "observed": 1,
+      "expected": 2.1,
+      "score": 67.7
+    },
+    {
+      "id": "anm-0042",
+      "date": "2024-12-03",
+      "latitude": 13.81,
+      "longitude": -89.74,
+      "region": "Sonsonate",
+      "observed": 10,
+      "expected": 17.1,
+      "score": 46.2
+    },
+    {
+      "id": "anm-0069",
+      "date": "2024-12-02",
+      "latitude": 13.71,
+      "longitude": -88.79,
+      "region": null,
+      "observed": 8,
+      "expected": 7.2,
+      "score": 8.6
+    },
+    {
+      "id": "anm-0096",
+      "date": "2024-12-02",
+      "latitude": 13.45,
+      "longitude": -88.5,
+      "region": "Usulután",
+      "observed": 1,
+      "expected": 4.6,
+      "score": 80.5
+    },
+    {
+      "id": "anm-0023",
+      "date": "2024-11-26",
+      "latitude": 13.91,
+      "longitude": -88.08,
+      "region": "Morazán",
+      "observed": 33,
+      "expected": 15.8,
+      "score": 53.7
+    },
+    {
+      "id": "anm-0140",
+      "date": "2024-11-25",
+      "latitude": 13.35,
+      "longitude": -88.45,
+      "region": "Usulután",
+      "observed": 30,
+      "expected": 10,
+      "score": 99.9
+    },
+    {
+      "id": "anm-0317",
+      "date": "2024-11-25",
+      "latitude": 13.84,
+      "longitude": -88.21,
+      "region": "Morazán",
+      "observed": 5,
+      "expected": 14.5,
+      "score": 72.1
+    },
+    {
+      "id": "anm-0257",
+      "date": "2024-11-24",
+      "latitude": 13.48,
+      "longitude": -87.74,
+      "region": "La Unión",
+      "observed": 20,
+      "expected": 19,
+      "score": 2.6
+    },
+    {
+      "id": "anm-0205",
+      "date": "2024-11-23",
+      "latitude": 13.65,
+      "longitude": -89.73,
+      "region": "Sonsonate",
+      "observed": 14,
+      "expected": 6.6,
+      "score": 56.9
+    },
+    {
+      "id": "anm-0090",
+      "date": "2024-11-19",
+      "latitude": 14.13,
+      "longitude": -89.53,
+      "region": "Santa Ana",
+      "observed": 18,
+      "expected": 11.1,
+      "score": 30.7
+    },
+    {
+      "id": "anm-0393",
+      "date": "2024-11-19",
+      "latitude": 13.47,
+      "longitude": -87.89,
+      "region": "La Unión",
+      "observed": 12,
+      "expected": 5,
+      "score": 69.5
+    },
+    {
+      "id": "anm-0028",
+      "date": "2024-11-18",
+      "latitude": 13.63,
+      "longitude": -88.97,
+      "region": null,
+      "observed": 28,
+      "expected": 12.1,
+      "score": 65.5
+    },
+    {
+      "id": "anm-0124",
+      "date": "2024-11-17",
+      "latitude": 13.48,
+      "longitude": -88.06,
+      "region": "San Miguel",
+      "observed": 15,
+      "expected": 8.2,
+      "score": 39.6
+    },
+    {
+      "id": "anm-0148",
+      "date": "2024-11-17",
+      "latitude": 13.49,
+      "longitude": -88.11,
+      "region": "San Miguel",
+      "observed": 25,
+      "expected": 11.7,
+      "score": 56.4
+    },
+    {
+      "id": "anm-0200",
+      "date": "2024-11-17",
+      "latitude": 13.66,
+      "longitude": -89.71,
+      "region": "Sonsonate",
+      "observed": 8,
+      "expected": 4.5,
+      "score": 34.9
+    },
+    {
+      "id": "anm-0282",
+      "date": "2024-11-16",
+      "latitude": 13.49,
+      "longitude": -89.04,
+      "region": null,
+      "observed": 27,
+      "expected": 17.2,
+      "score": 29.9
+    },
+    {
+      "id": "anm-0331",
+      "date": "2024-11-16",
+      "latitude": 13.59,
+      "longitude": -88.23,
+      "region": "San Miguel",
+      "observed": 1,
+      "expected": 10.5,
+      "score": 97.8
+    },
+    {
+      "id": "anm-0002",
+      "date": "2024-11-15",
+      "latitude": 14.04,
+      "longitude": -89.45,
+      "region": "Santa Ana",
+      "observed": 57,
+      "expected": 20.9,
+      "score": 85.3
+    },
+    {
+      "id": "anm-0106",
+      "date": "2024-11-15",
+      "latitude": 13.58,
+      "longitude": -89.57,
+      "region": "Sonsonate",
+      "observed": 34,
+      "expected": 20,
+      "score": 34.2
+    },
+    {
+      "id": "anm-0337",
+      "date": "2024-11-15",
+      "latitude": 13.74,
+      "longitude": -89.31,
+      "region": "San Salvador",
+      "observed": 8,
+      "expected": 3.2,
+      "score": 79.8
+    },
+    {
+      "id": "anm-0049",
+      "date": "2024-11-14",
+      "latitude": 13.85,
+      "longitude": -88.23,
+      "region": "Morazán",
+      "observed": 35,
+      "expected": 13.9,
+      "score": 77
+    },
+    {
+      "id": "anm-0083",
+      "date": "2024-11-13",
+      "latitude": 13.72,
+      "longitude": -89.76,
+      "region": "Sonsonate",
+      "observed": 40,
+      "expected": 16.1,
+      "score": 73.8
+    },
+    {
+      "id": "anm-0266",
+      "date": "2024-11-12",
+      "latitude": 13.34,
+      "longitude": -88.45,
+      "region": "Usulután",
+      "observed": 19,
+      "expected": 17.1,
+      "score": 6.9
+    },
+    {
+      "id": "anm-0396",
+      "date": "2024-11-12",
+      "latitude": 13.82,
+      "longitude": -89.73,
+      "region": "Ahuachapán",
+      "observed": 7,
+      "expected": 10,
+      "score": 37.2
+    },
+    {
+      "id": "anm-0248",
+      "date": "2024-11-11",
+      "latitude": 13.98,
+      "longitude": -89.6,
+      "region": "Santa Ana",
+      "observed": 43,
+      "expected": 16.1,
+      "score": 84.9
+    },
+    {
+      "id": "anm-0325",
+      "date": "2024-11-08",
+      "latitude": 13.98,
+      "longitude": -89.74,
+      "region": "Ahuachapán",
+      "observed": 21,
+      "expected": 17.7,
+      "score": 9.6
+    },
+    {
+      "id": "anm-0188",
+      "date": "2024-11-07",
+      "latitude": 14.12,
+      "longitude": -89.52,
+      "region": "Santa Ana",
+      "observed": 18,
+      "expected": 14.9,
+      "score": 9.1
+    },
+    {
+      "id": "anm-0259",
+      "date": "2024-11-07",
+      "latitude": 13.34,
+      "longitude": -88.48,
+      "region": "Usulután",
+      "observed": 16,
+      "expected": 8.9,
+      "score": 41.6
+    },
+    {
+      "id": "anm-0332",
+      "date": "2024-11-07",
+      "latitude": 13.45,
+      "longitude": -88.56,
+      "region": "Usulután",
+      "observed": 7,
+      "expected": 2.6,
+      "score": 75.6
+    },
+    {
+      "id": "anm-0077",
+      "date": "2024-11-05",
+      "latitude": 13.61,
+      "longitude": -89.65,
+      "region": "Sonsonate",
+      "observed": 16,
+      "expected": 5.7,
+      "score": 90.8
+    },
+    {
+      "id": "anm-0299",
+      "date": "2024-11-05",
+      "latitude": 13.56,
+      "longitude": -88.89,
+      "region": null,
+      "observed": 45,
+      "expected": 18.7,
+      "score": 70.9
+    },
+    {
+      "id": "anm-0099",
+      "date": "2024-11-04",
+      "latitude": 14.05,
+      "longitude": -89.82,
+      "region": "Ahuachapán",
+      "observed": 20,
+      "expected": 15,
+      "score": 16.7
+    },
+    {
+      "id": "anm-0130",
+      "date": "2024-11-03",
+      "latitude": 13.61,
+      "longitude": -89.16,
+      "region": "San Salvador",
+      "observed": 2,
+      "expected": 1.2,
+      "score": 12.7
+    },
+    {
+      "id": "anm-0222",
+      "date": "2024-11-02",
+      "latitude": 13.55,
+      "longitude": -89.2,
+      "region": "San Salvador",
+      "observed": 17,
+      "expected": 8.7,
+      "score": 48.2
+    },
+    {
+      "id": "anm-0351",
+      "date": "2024-11-02",
+      "latitude": 13.66,
+      "longitude": -88.2,
+      "region": "Morazán",
+      "observed": 16,
+      "expected": 15.9,
+      "score": 1
+    },
+    {
+      "id": "anm-0226",
+      "date": "2024-11-01",
+      "latitude": 13.67,
+      "longitude": -88.07,
+      "region": "Morazán",
+      "observed": 8,
+      "expected": 3,
+      "score": 85
+    },
+    {
+      "id": "anm-0366",
+      "date": "2024-11-01",
+      "latitude": 13.44,
+      "longitude": -88.18,
+      "region": "San Miguel",
+      "observed": 4,
+      "expected": 1.9,
+      "score": 57.2
+    },
+    {
+      "id": "anm-0394",
+      "date": "2024-11-01",
+      "latitude": 13.74,
+      "longitude": -88.99,
+      "region": null,
+      "observed": 10,
+      "expected": 17.2,
+      "score": 43.5
+    },
+    {
+      "id": "anm-0206",
+      "date": "2024-10-30",
+      "latitude": 13.73,
+      "longitude": -89.07,
+      "region": "San Salvador",
+      "observed": 48,
+      "expected": 18.7,
+      "score": 79.4
+    },
+    {
+      "id": "anm-0341",
+      "date": "2024-10-30",
+      "latitude": 13.79,
+      "longitude": -88.06,
+      "region": "Morazán",
+      "observed": 8,
+      "expected": 6.4,
+      "score": 15.3
+    },
+    {
+      "id": "anm-0360",
+      "date": "2024-10-30",
+      "latitude": 13.73,
+      "longitude": -88.04,
+      "region": "Morazán",
+      "observed": 10,
+      "expected": 16.9,
+      "score": 43
+    },
+    {
+      "id": "anm-0237",
+      "date": "2024-10-29",
+      "latitude": 13.79,
+      "longitude": -89.66,
+      "region": "Sonsonate",
+      "observed": 25,
+      "expected": 13.7,
+      "score": 41
+    },
+    {
+      "id": "anm-0333",
+      "date": "2024-10-27",
+      "latitude": 13.97,
+      "longitude": -89.53,
+      "region": "Santa Ana",
+      "observed": 34,
+      "expected": 15.9,
+      "score": 57.4
+    },
+    {
+      "id": "anm-0376",
+      "date": "2024-10-26",
+      "latitude": 14.03,
+      "longitude": -89.58,
+      "region": "Santa Ana",
+      "observed": 21,
+      "expected": 9.1,
+      "score": 66.6
+    },
+    {
+      "id": "anm-0020",
+      "date": "2024-10-25",
+      "latitude": 13.63,
+      "longitude": -88.17,
+      "region": "Morazán",
+      "observed": 15,
+      "expected": 7.2,
+      "score": 56.4
+    },
+    {
+      "id": "anm-0039",
+      "date": "2024-10-25",
+      "latitude": 13.81,
+      "longitude": -89.97,
+      "region": "Ahuachapán",
+      "observed": 37,
+      "expected": 20.6,
+      "score": 40
+    },
+    {
+      "id": "anm-0324",
+      "date": "2024-10-24",
+      "latitude": 13.72,
+      "longitude": -89.58,
+      "region": "Sonsonate",
+      "observed": 30,
+      "expected": 13.5,
+      "score": 60.5
+    },
+    {
+      "id": "anm-0252",
+      "date": "2024-10-23",
+      "latitude": 13.59,
+      "longitude": -89.82,
+      "region": "Sonsonate",
+      "observed": 6,
+      "expected": 6.2,
+      "score": 8.7
+    },
+    {
+      "id": "anm-0329",
+      "date": "2024-10-22",
+      "latitude": 13.4,
+      "longitude": -87.71,
+      "region": "La Unión",
+      "observed": 5,
+      "expected": 4.9,
+      "score": 4.7
+    },
+    {
+      "id": "anm-0058",
+      "date": "2024-10-19",
+      "latitude": 13.89,
+      "longitude": -89.7,
+      "region": "Santa Ana",
+      "observed": 24,
+      "expected": 10.6,
+      "score": 64.7
+    },
+    {
+      "id": "anm-0397",
+      "date": "2024-10-19",
+      "latitude": 13.53,
+      "longitude": -88.3,
+      "region": "San Miguel",
+      "observed": 37,
+      "expected": 17.3,
+      "score": 56.1
+    },
+    {
+      "id": "anm-0211",
+      "date": "2024-10-16",
+      "latitude": 13.62,
+      "longitude": -89.33,
+      "region": "San Salvador",
+      "observed": 42,
+      "expected": 16,
+      "score": 81.6
+    },
+    {
+      "id": "anm-0127",
+      "date": "2024-10-15",
+      "latitude": 14.03,
+      "longitude": -89.74,
+      "region": "Ahuachapán",
+      "observed": 17,
+      "expected": 15.5,
+      "score": 3.3
+    },
+    {
+      "id": "anm-0368",
+      "date": "2024-10-13",
+      "latitude": 13.94,
+      "longitude": -89.42,
+      "region": "Santa Ana",
+      "observed": 17,
+      "expected": 10.9,
+      "score": 26.8
+    },
+    {
+      "id": "anm-0081",
+      "date": "2024-10-12",
+      "latitude": 14.02,
+      "longitude": -89.86,
+      "region": "Ahuachapán",
+      "observed": 19,
+      "expected": 15.9,
+      "score": 9.3
+    },
+    {
+      "id": "anm-0160",
+      "date": "2024-10-11",
+      "latitude": 13.33,
+      "longitude": -88.45,
+      "region": "Usulután",
+      "observed": 36,
+      "expected": 16,
+      "score": 61.6
+    },
+    {
+      "id": "anm-0326",
+      "date": "2024-10-10",
+      "latitude": 13.29,
+      "longitude": -88.53,
+      "region": "Usulután",
+      "observed": 36,
+      "expected": 19.2,
+      "score": 44.9
+    },
+    {
+      "id": "anm-0021",
+      "date": "2024-10-07",
+      "latitude": 13.29,
+      "longitude": -88.4,
+      "region": "Usulután",
+      "observed": 22,
+      "expected": 20.4,
+      "score": 3.8
+    },
+    {
+      "id": "anm-0158",
+      "date": "2024-10-05",
+      "latitude": 13.61,
+      "longitude": -89.15,
+      "region": "San Salvador",
+      "observed": 23,
+      "expected": 15,
+      "score": 26.6
+    },
+    {
+      "id": "anm-0199",
+      "date": "2024-10-03",
+      "latitude": 13.52,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 25,
+      "expected": 13.9,
+      "score": 40.9
+    },
+    {
+      "id": "anm-0291",
+      "date": "2024-10-01",
+      "latitude": 13.42,
+      "longitude": -87.97,
+      "region": "La Unión",
+      "observed": 3,
+      "expected": 1.1,
+      "score": 86.3
+    },
+    {
+      "id": "anm-0115",
+      "date": "2024-09-30",
+      "latitude": 13.78,
+      "longitude": -89.78,
+      "region": "Ahuachapán",
+      "observed": 2,
+      "expected": 13.4,
+      "score": 96.6
+    },
+    {
+      "id": "anm-0233",
+      "date": "2024-09-29",
+      "latitude": 13.35,
+      "longitude": -88.34,
+      "region": "Usulután",
+      "observed": 4,
+      "expected": 1.9,
+      "score": 48.6
+    },
+    {
+      "id": "anm-0245",
+      "date": "2024-09-29",
+      "latitude": 13.22,
+      "longitude": -88.32,
+      "region": "Usulután",
+      "observed": 15,
+      "expected": 11.4,
+      "score": 17.9
+    },
+    {
+      "id": "anm-0116",
+      "date": "2024-09-28",
+      "latitude": 13.63,
+      "longitude": -89.63,
+      "region": "Sonsonate",
+      "observed": 8,
+      "expected": 6.1,
+      "score": 13.7
+    },
+    {
+      "id": "anm-0120",
+      "date": "2024-09-27",
+      "latitude": 13.61,
+      "longitude": -89.62,
+      "region": "Sonsonate",
+      "observed": 10,
+      "expected": 20.3,
+      "score": 54.6
+    },
+    {
+      "id": "anm-0264",
+      "date": "2024-09-25",
+      "latitude": 13.48,
+      "longitude": -87.93,
+      "region": "La Unión",
+      "observed": 11,
+      "expected": 14.7,
+      "score": 26.5
+    },
+    {
+      "id": "anm-0173",
+      "date": "2024-09-24",
+      "latitude": 13.49,
+      "longitude": -88.43,
+      "region": "Usulután",
+      "observed": 8,
+      "expected": 6,
+      "score": 18.3
+    },
+    {
+      "id": "anm-0059",
+      "date": "2024-09-23",
+      "latitude": 13.63,
+      "longitude": -88.24,
+      "region": "San Miguel",
+      "observed": 30,
+      "expected": 18.1,
+      "score": 33.4
+    },
+    {
+      "id": "anm-0213",
+      "date": "2024-09-22",
+      "latitude": 13.41,
+      "longitude": -88.33,
+      "region": "Usulután",
+      "observed": 3,
+      "expected": 1.2,
+      "score": 95
+    },
+    {
+      "id": "anm-0292",
+      "date": "2024-09-22",
+      "latitude": 13.77,
+      "longitude": -89.59,
+      "region": "Sonsonate",
+      "observed": 58,
+      "expected": 19.6,
+      "score": 97.6
+    },
+    {
+      "id": "anm-0345",
+      "date": "2024-09-21",
+      "latitude": 13.43,
+      "longitude": -87.96,
+      "region": "La Unión",
+      "observed": 2,
+      "expected": 1.7,
+      "score": 14.5
+    },
+    {
+      "id": "anm-0102",
+      "date": "2024-09-20",
+      "latitude": 14,
+      "longitude": -89.87,
+      "region": "Ahuachapán",
+      "observed": 3,
+      "expected": 1.4,
+      "score": 74.6
+    },
+    {
+      "id": "anm-0271",
+      "date": "2024-09-20",
+      "latitude": 13.98,
+      "longitude": -89.88,
+      "region": "Ahuachapán",
+      "observed": 2,
+      "expected": 1.5,
+      "score": 30.4
+    },
+    {
+      "id": "anm-0273",
+      "date": "2024-09-20",
+      "latitude": 13.29,
+      "longitude": -88.55,
+      "region": "Usulután",
+      "observed": 41,
+      "expected": 14.1,
+      "score": 93.7
+    },
+    {
+      "id": "anm-0067",
+      "date": "2024-09-19",
+      "latitude": 13.62,
+      "longitude": -89.01,
+      "region": null,
+      "observed": 48,
+      "expected": 18.7,
+      "score": 77.5
+    },
+    {
+      "id": "anm-0236",
+      "date": "2024-09-18",
+      "latitude": 13.92,
+      "longitude": -88.24,
+      "region": "Morazán",
+      "observed": 10,
+      "expected": 5.5,
+      "score": 38
+    },
+    {
+      "id": "anm-0285",
+      "date": "2024-09-18",
+      "latitude": 13.33,
+      "longitude": -87.81,
+      "region": "La Unión",
+      "observed": 30,
+      "expected": 11.2,
+      "score": 82.8
+    },
+    {
+      "id": "anm-0336",
+      "date": "2024-09-16",
+      "latitude": 13.48,
+      "longitude": -89,
+      "region": null,
+      "observed": 26,
+      "expected": 13.8,
+      "score": 42.7
+    },
+    {
+      "id": "anm-0155",
+      "date": "2024-09-15",
+      "latitude": 13.81,
+      "longitude": -89.78,
+      "region": "Sonsonate",
+      "observed": 20,
+      "expected": 7.3,
+      "score": 88.9
+    },
+    {
+      "id": "anm-0175",
+      "date": "2024-09-13",
+      "latitude": 13.87,
+      "longitude": -89.5,
+      "region": "Santa Ana",
+      "observed": 37,
+      "expected": 16.8,
+      "score": 60.8
+    },
+    {
+      "id": "anm-0203",
+      "date": "2024-09-13",
+      "latitude": 13.66,
+      "longitude": -88.18,
+      "region": "Morazán",
+      "observed": 9,
+      "expected": 7.2,
+      "score": 13.8
+    },
+    {
+      "id": "anm-0352",
+      "date": "2024-09-13",
+      "latitude": 14.13,
+      "longitude": -89.52,
+      "region": "Santa Ana",
+      "observed": 28,
+      "expected": 9.6,
+      "score": 94.4
+    },
+    {
+      "id": "anm-0364",
+      "date": "2024-09-13",
+      "latitude": 13.72,
+      "longitude": -89.6,
+      "region": "Sonsonate",
+      "observed": 43,
+      "expected": 20,
+      "score": 58.6
+    },
+    {
+      "id": "anm-0168",
+      "date": "2024-09-12",
+      "latitude": 13.5,
+      "longitude": -88.17,
+      "region": "San Miguel",
+      "observed": 3,
+      "expected": 1.1,
+      "score": 68.8
+    },
+    {
+      "id": "anm-0044",
+      "date": "2024-09-11",
+      "latitude": 13.26,
+      "longitude": -87.77,
+      "region": "La Unión",
+      "observed": 1,
+      "expected": 2.2,
+      "score": 82.1
+    },
+    {
+      "id": "anm-0262",
+      "date": "2024-09-09",
+      "latitude": 13.82,
+      "longitude": -89.09,
+      "region": "San Salvador",
+      "observed": 10,
+      "expected": 8.3,
+      "score": 12.3
+    },
+    {
+      "id": "anm-0153",
+      "date": "2024-09-08",
+      "latitude": 13.91,
+      "longitude": -89.84,
+      "region": "Ahuachapán",
+      "observed": 1,
+      "expected": 4.4,
+      "score": 85.5
+    },
+    {
+      "id": "anm-0031",
+      "date": "2024-09-07",
+      "latitude": 13.86,
+      "longitude": -88.01,
+      "region": "Morazán",
+      "observed": 17,
+      "expected": 6.5,
+      "score": 80.3
+    },
+    {
+      "id": "anm-0346",
+      "date": "2024-09-07",
+      "latitude": 13.76,
+      "longitude": -88.14,
+      "region": "Morazán",
+      "observed": 14,
+      "expected": 5,
+      "score": 93
+    },
+    {
+      "id": "anm-0149",
+      "date": "2024-09-06",
+      "latitude": 13.23,
+      "longitude": -87.95,
+      "region": "La Unión",
+      "observed": 8,
+      "expected": 9.8,
+      "score": 21.3
+    },
+    {
+      "id": "anm-0316",
+      "date": "2024-09-06",
+      "latitude": 13.75,
+      "longitude": -88.79,
+      "region": null,
+      "observed": 22,
+      "expected": 13.4,
+      "score": 33.7
+    },
+    {
+      "id": "anm-0036",
+      "date": "2024-09-05",
+      "latitude": 14.04,
+      "longitude": -89.77,
+      "region": "Ahuachapán",
+      "observed": 44,
+      "expected": 19.6,
+      "score": 62.2
+    },
+    {
+      "id": "anm-0202",
+      "date": "2024-09-03",
+      "latitude": 13.61,
+      "longitude": -88.27,
+      "region": "San Miguel",
+      "observed": 25,
+      "expected": 10.6,
+      "score": 65.8
+    },
+    {
+      "id": "anm-0306",
+      "date": "2024-09-03",
+      "latitude": 13.66,
+      "longitude": -88.22,
+      "region": "Morazán",
+      "observed": 14,
+      "expected": 14.9,
+      "score": 3.7
+    },
+    {
+      "id": "anm-0238",
+      "date": "2024-09-02",
+      "latitude": 13.69,
+      "longitude": -88.17,
+      "region": "Morazán",
+      "observed": 8,
+      "expected": 5.6,
+      "score": 18
+    },
+    {
+      "id": "anm-0335",
+      "date": "2024-08-30",
+      "latitude": 14.05,
+      "longitude": -89.92,
+      "region": "Ahuachapán",
+      "observed": 30,
+      "expected": 14.3,
+      "score": 54.6
+    },
+    {
+      "id": "anm-0229",
+      "date": "2024-08-29",
+      "latitude": 13.54,
+      "longitude": -88.82,
+      "region": null,
+      "observed": 18,
+      "expected": 13.1,
+      "score": 19.9
+    },
+    {
+      "id": "anm-0380",
+      "date": "2024-08-25",
+      "latitude": 13.81,
+      "longitude": -89.76,
+      "region": "Sonsonate",
+      "observed": 14,
+      "expected": 13.1,
+      "score": 4.4
+    },
+    {
+      "id": "anm-0076",
+      "date": "2024-08-24",
+      "latitude": 13.98,
+      "longitude": -89.72,
+      "region": "Ahuachapán",
+      "observed": 1,
+      "expected": 3.3,
+      "score": 72.8
+    },
+    {
+      "id": "anm-0385",
+      "date": "2024-08-24",
+      "latitude": 13.53,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 4,
+      "expected": 20.5,
+      "score": 87.9
+    },
+    {
+      "id": "anm-0330",
+      "date": "2024-08-23",
+      "latitude": 13.79,
+      "longitude": -89.75,
+      "region": "Ahuachapán",
+      "observed": 5,
+      "expected": 4.3,
+      "score": 6.5
+    },
+    {
+      "id": "anm-0150",
+      "date": "2024-08-22",
+      "latitude": 13.37,
+      "longitude": -87.75,
+      "region": "La Unión",
+      "observed": 10,
+      "expected": 20.1,
+      "score": 55.1
+    },
+    {
+      "id": "anm-0232",
+      "date": "2024-08-21",
+      "latitude": 13.86,
+      "longitude": -88.24,
+      "region": "Morazán",
+      "observed": 44,
+      "expected": 14.8,
+      "score": 98.1
+    },
+    {
+      "id": "anm-0191",
+      "date": "2024-08-20",
+      "latitude": 13.24,
+      "longitude": -87.9,
+      "region": "La Unión",
+      "observed": 18,
+      "expected": 11.1,
+      "score": 32.7
+    },
+    {
+      "id": "anm-0249",
+      "date": "2024-08-20",
+      "latitude": 13.26,
+      "longitude": -87.75,
+      "region": "La Unión",
+      "observed": 35,
+      "expected": 15.3,
+      "score": 65.5
+    },
+    {
+      "id": "anm-0068",
+      "date": "2024-08-19",
+      "latitude": 13.51,
+      "longitude": -88.15,
+      "region": "San Miguel",
+      "observed": 28,
+      "expected": 14.8,
+      "score": 45.9
+    },
+    {
+      "id": "anm-0258",
+      "date": "2024-08-19",
+      "latitude": 13.67,
+      "longitude": -88.26,
+      "region": "Morazán",
+      "observed": 8,
+      "expected": 3.1,
+      "score": 86.4
+    },
+    {
+      "id": "anm-0353",
+      "date": "2024-08-18",
+      "latitude": 13.48,
+      "longitude": -88.22,
+      "region": "San Miguel",
+      "observed": 23,
+      "expected": 12.5,
+      "score": 41.2
+    },
+    {
+      "id": "anm-0139",
+      "date": "2024-08-14",
+      "latitude": 13.68,
+      "longitude": -88.94,
+      "region": null,
+      "observed": 31,
+      "expected": 13.7,
+      "score": 63.8
+    },
+    {
+      "id": "anm-0386",
+      "date": "2024-08-14",
+      "latitude": 13.8,
+      "longitude": -89.79,
+      "region": "Sonsonate",
+      "observed": 2,
+      "expected": 2.2,
+      "score": 11.8
+    },
+    {
+      "id": "anm-0171",
+      "date": "2024-08-10",
+      "latitude": 13.66,
+      "longitude": -88.18,
+      "region": "Morazán",
+      "observed": 5,
+      "expected": 7.9,
+      "score": 43.9
+    },
+    {
+      "id": "anm-0165",
+      "date": "2024-08-08",
+      "latitude": 13.95,
+      "longitude": -89.9,
+      "region": "Ahuachapán",
+      "observed": 25,
+      "expected": 12.5,
+      "score": 50.8
+    },
+    {
+      "id": "anm-0323",
+      "date": "2024-08-08",
+      "latitude": 14.06,
+      "longitude": -89.83,
+      "region": "Ahuachapán",
+      "observed": 35,
+      "expected": 15.1,
+      "score": 65.3
+    },
+    {
+      "id": "anm-0070",
+      "date": "2024-08-07",
+      "latitude": 13.56,
+      "longitude": -88.1,
+      "region": "San Miguel",
+      "observed": 20,
+      "expected": 7.7,
+      "score": 77.5
+    },
+    {
+      "id": "anm-0133",
+      "date": "2024-08-06",
+      "latitude": 13.37,
+      "longitude": -87.87,
+      "region": "La Unión",
+      "observed": 4,
+      "expected": 19.7,
+      "score": 86.8
+    },
+    {
+      "id": "anm-0287",
+      "date": "2024-08-06",
+      "latitude": 13.3,
+      "longitude": -87.75,
+      "region": "La Unión",
+      "observed": 7,
+      "expected": 9,
+      "score": 19.7
+    },
+    {
+      "id": "anm-0373",
+      "date": "2024-08-06",
+      "latitude": 13.25,
+      "longitude": -87.77,
+      "region": "La Unión",
+      "observed": 47,
+      "expected": 20.6,
+      "score": 64.5
+    },
+    {
+      "id": "anm-0286",
+      "date": "2024-08-05",
+      "latitude": 13.5,
+      "longitude": -88.84,
+      "region": null,
+      "observed": 9,
+      "expected": 3.6,
+      "score": 80.1
+    },
+    {
+      "id": "anm-0356",
+      "date": "2024-08-05",
+      "latitude": 13.75,
+      "longitude": -89.74,
+      "region": "Sonsonate",
+      "observed": 20,
+      "expected": 11.3,
+      "score": 38.2
+    },
+    {
+      "id": "anm-0032",
+      "date": "2024-08-03",
+      "latitude": 13.98,
+      "longitude": -89.69,
+      "region": "Santa Ana",
+      "observed": 4,
+      "expected": 11.3,
+      "score": 69.8
+    },
+    {
+      "id": "anm-0309",
+      "date": "2024-08-03",
+      "latitude": 13.2,
+      "longitude": -87.71,
+      "region": "La Unión",
+      "observed": 17,
+      "expected": 9.3,
+      "score": 43.5
+    },
+    {
+      "id": "anm-0006",
+      "date": "2024-08-02",
+      "latitude": 13.84,
+      "longitude": -89.21,
+      "region": "San Salvador",
+      "observed": 36,
+      "expected": 14.9,
+      "score": 71.1
+    },
+    {
+      "id": "anm-0047",
+      "date": "2024-08-01",
+      "latitude": 13.39,
+      "longitude": -87.8,
+      "region": "La Unión",
+      "observed": 18,
+      "expected": 6.4,
+      "score": 92.9
+    },
+    {
+      "id": "anm-0109",
+      "date": "2024-07-31",
+      "latitude": 13.78,
+      "longitude": -89.83,
+      "region": "Sonsonate",
+      "observed": 8,
+      "expected": 3.8,
+      "score": 58.5
+    },
+    {
+      "id": "anm-0172",
+      "date": "2024-07-31",
+      "latitude": 13.48,
+      "longitude": -87.98,
+      "region": "La Unión",
+      "observed": 11,
+      "expected": 5.1,
+      "score": 61.7
+    },
+    {
+      "id": "anm-0192",
+      "date": "2024-07-31",
+      "latitude": 13.42,
+      "longitude": -87.76,
+      "region": "La Unión",
+      "observed": 58,
+      "expected": 19.9,
+      "score": 96
+    },
+    {
+      "id": "anm-0362",
+      "date": "2024-07-30",
+      "latitude": 13.34,
+      "longitude": -87.75,
+      "region": "La Unión",
+      "observed": 43,
+      "expected": 16.3,
+      "score": 83.2
+    },
+    {
+      "id": "anm-0378",
+      "date": "2024-07-30",
+      "latitude": 13.77,
+      "longitude": -88.08,
+      "region": "Morazán",
+      "observed": 45,
+      "expected": 18.8,
+      "score": 69.3
+    },
+    {
+      "id": "anm-0231",
+      "date": "2024-07-29",
+      "latitude": 13.49,
+      "longitude": -89.03,
+      "region": null,
+      "observed": 21,
+      "expected": 14.6,
+      "score": 20.9
+    },
+    {
+      "id": "anm-0034",
+      "date": "2024-07-28",
+      "latitude": 13.44,
+      "longitude": -88.3,
+      "region": "Usulután",
+      "observed": 17,
+      "expected": 19.6,
+      "score": 14.5
+    },
+    {
+      "id": "anm-0095",
+      "date": "2024-07-27",
+      "latitude": 13.85,
+      "longitude": -89.67,
+      "region": "Sonsonate",
+      "observed": 7,
+      "expected": 4.3,
+      "score": 29.7
+    },
+    {
+      "id": "anm-0319",
+      "date": "2024-07-25",
+      "latitude": 13.99,
+      "longitude": -89.93,
+      "region": "Ahuachapán",
+      "observed": 12,
+      "expected": 4.8,
+      "score": 79.8
+    },
+    {
+      "id": "anm-0066",
+      "date": "2024-07-23",
+      "latitude": 14.03,
+      "longitude": -89.98,
+      "region": "Ahuachapán",
+      "observed": 9,
+      "expected": 12.4,
+      "score": 34.2
+    },
+    {
+      "id": "anm-0246",
+      "date": "2024-07-23",
+      "latitude": 13.96,
+      "longitude": -89.96,
+      "region": "Ahuachapán",
+      "observed": 10,
+      "expected": 14.1,
+      "score": 33.5
+    },
+    {
+      "id": "anm-0338",
+      "date": "2024-07-22",
+      "latitude": 13.56,
+      "longitude": -89.06,
+      "region": "San Salvador",
+      "observed": 10,
+      "expected": 7.1,
+      "score": 22.7
+    },
+    {
+      "id": "anm-0004",
+      "date": "2024-07-20",
+      "latitude": 13.9,
+      "longitude": -89.46,
+      "region": "Santa Ana",
+      "observed": 18,
+      "expected": 6.2,
+      "score": 94.3
+    },
+    {
+      "id": "anm-0255",
+      "date": "2024-07-17",
+      "latitude": 13.8,
+      "longitude": -87.98,
+      "region": "Morazán",
+      "observed": 2,
+      "expected": 5.9,
+      "score": 67
+    },
+    {
+      "id": "anm-0363",
+      "date": "2024-07-16",
+      "latitude": 13.91,
+      "longitude": -89.81,
+      "region": "Ahuachapán",
+      "observed": 25,
+      "expected": 12.4,
+      "score": 52.6
+    },
+    {
+      "id": "anm-0085",
+      "date": "2024-07-14",
+      "latitude": 13.24,
+      "longitude": -88.45,
+      "region": "Usulután",
+      "observed": 22,
+      "expected": 17.8,
+      "score": 12.1
+    },
+    {
+      "id": "anm-0016",
+      "date": "2024-07-12",
+      "latitude": 13.76,
+      "longitude": -89.76,
+      "region": "Sonsonate",
+      "observed": 4,
+      "expected": 6.3,
+      "score": 40.4
+    },
+    {
+      "id": "anm-0190",
+      "date": "2024-07-11",
+      "latitude": 13.44,
+      "longitude": -88.42,
+      "region": "Usulután",
+      "observed": 8,
+      "expected": 11.1,
+      "score": 35.1
+    },
+    {
+      "id": "anm-0218",
+      "date": "2024-07-10",
+      "latitude": 13.84,
+      "longitude": -88.2,
+      "region": "Morazán",
+      "observed": 4,
+      "expected": 9,
+      "score": 67.7
+    },
+    {
+      "id": "anm-0274",
+      "date": "2024-07-10",
+      "latitude": 13.76,
+      "longitude": -88.18,
+      "region": "Morazán",
+      "observed": 55,
+      "expected": 19.6,
+      "score": 90.2
+    },
+    {
+      "id": "anm-0321",
+      "date": "2024-07-10",
+      "latitude": 13.51,
+      "longitude": -88.91,
+      "region": null,
+      "observed": 8,
+      "expected": 3.2,
+      "score": 70
+    },
+    {
+      "id": "anm-0381",
+      "date": "2024-07-08",
+      "latitude": 13.85,
+      "longitude": -89.77,
+      "region": "Ahuachapán",
+      "observed": 30,
+      "expected": 12.2,
+      "score": 72.5
+    },
+    {
+      "id": "anm-0194",
+      "date": "2024-07-07",
+      "latitude": 13.56,
+      "longitude": -88.9,
+      "region": null,
+      "observed": 10,
+      "expected": 4.1,
+      "score": 71.5
+    },
+    {
+      "id": "anm-0011",
+      "date": "2024-07-05",
+      "latitude": 14.06,
+      "longitude": -89.56,
+      "region": "Santa Ana",
+      "observed": 5,
+      "expected": 3.3,
+      "score": 24.4
+    },
+    {
+      "id": "anm-0123",
+      "date": "2024-07-03",
+      "latitude": 13.84,
+      "longitude": -89.85,
+      "region": "Sonsonate",
+      "observed": 28,
+      "expected": 9.6,
+      "score": 94.4
+    },
+    {
+      "id": "anm-0225",
+      "date": "2024-07-03",
+      "latitude": 13.77,
+      "longitude": -89.29,
+      "region": "San Salvador",
+      "observed": 4,
+      "expected": 13.8,
+      "score": 81.5
+    },
+    {
+      "id": "anm-0086",
+      "date": "2024-07-02",
+      "latitude": 13.46,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 31,
+      "expected": 15.8,
+      "score": 48.8
+    },
+    {
+      "id": "anm-0400",
+      "date": "2024-07-01",
+      "latitude": 13.37,
+      "longitude": -88.32,
+      "region": "San Miguel",
+      "observed": 24,
+      "expected": 18.1,
+      "score": 15.6
+    },
+    {
+      "id": "anm-0138",
+      "date": "2024-06-29",
+      "latitude": 13.7,
+      "longitude": -89.25,
+      "region": "San Salvador",
+      "observed": 7,
+      "expected": 4.7,
+      "score": 29.4
+    },
+    {
+      "id": "anm-0388",
+      "date": "2024-06-29",
+      "latitude": 14.02,
+      "longitude": -89.52,
+      "region": "Santa Ana",
+      "observed": 8,
+      "expected": 9.8,
+      "score": 20.4
+    },
+    {
+      "id": "anm-0114",
+      "date": "2024-06-28",
+      "latitude": 13.69,
+      "longitude": -88.97,
+      "region": null,
+      "observed": 17,
+      "expected": 13.8,
+      "score": 10.2
+    },
+    {
+      "id": "anm-0154",
+      "date": "2024-06-28",
+      "latitude": 13.55,
+      "longitude": -88.03,
+      "region": "San Miguel",
+      "observed": 27,
+      "expected": 14.1,
+      "score": 46.3
+    },
+    {
+      "id": "anm-0119",
+      "date": "2024-06-27",
+      "latitude": 13.66,
+      "longitude": -89.27,
+      "region": "San Salvador",
+      "observed": 5,
+      "expected": 10.7,
+      "score": 59.8
+    },
+    {
+      "id": "anm-0135",
+      "date": "2024-06-27",
+      "latitude": 13.73,
+      "longitude": -88.17,
+      "region": "Morazán",
+      "observed": 6,
+      "expected": 6.1,
+      "score": 0.7
+    },
+    {
+      "id": "anm-0097",
+      "date": "2024-06-26",
+      "latitude": 13.39,
+      "longitude": -88.31,
+      "region": "San Miguel",
+      "observed": 10,
+      "expected": 15.4,
+      "score": 39
+    },
+    {
+      "id": "anm-0204",
+      "date": "2024-06-26",
+      "latitude": 13.51,
+      "longitude": -88.27,
+      "region": "San Miguel",
+      "observed": 31,
+      "expected": 12.8,
+      "score": 70.9
+    },
+    {
+      "id": "anm-0322",
+      "date": "2024-06-26",
+      "latitude": 13.7,
+      "longitude": -88.84,
+      "region": null,
+      "observed": 11,
+      "expected": 5.2,
+      "score": 57.9
+    },
+    {
+      "id": "anm-0384",
+      "date": "2024-06-26",
+      "latitude": 13.99,
+      "longitude": -89.57,
+      "region": "Santa Ana",
+      "observed": 33,
+      "expected": 17,
+      "score": 46.1
+    },
+    {
+      "id": "anm-0261",
+      "date": "2024-06-25",
+      "latitude": 13.45,
+      "longitude": -88.94,
+      "region": null,
+      "observed": 9,
+      "expected": 3.8,
+      "score": 67.5
+    },
+    {
+      "id": "anm-0302",
+      "date": "2024-06-25",
+      "latitude": 13.49,
+      "longitude": -88.31,
+      "region": "San Miguel",
+      "observed": 48,
+      "expected": 20.4,
+      "score": 68.6
+    },
+    {
+      "id": "anm-0215",
+      "date": "2024-06-24",
+      "latitude": 13.34,
+      "longitude": -87.96,
+      "region": "La Unión",
+      "observed": 38,
+      "expected": 20.8,
+      "score": 42.3
+    },
+    {
+      "id": "anm-0348",
+      "date": "2024-06-23",
+      "latitude": 13.26,
+      "longitude": -88.47,
+      "region": "Usulután",
+      "observed": 8,
+      "expected": 5,
+      "score": 25.2
+    },
+    {
+      "id": "anm-0137",
+      "date": "2024-06-22",
+      "latitude": 13.5,
+      "longitude": -88.3,
+      "region": "Usulután",
+      "observed": 1,
+      "expected": 2.8,
+      "score": 76.9
+    },
+    {
+      "id": "anm-0387",
+      "date": "2024-06-22",
+      "latitude": 13.7,
+      "longitude": -89.28,
+      "region": "San Salvador",
+      "observed": 33,
+      "expected": 12.4,
+      "score": 84.5
+    },
+    {
+      "id": "anm-0284",
+      "date": "2024-06-21",
+      "latitude": 13.56,
+      "longitude": -88.04,
+      "region": "San Miguel",
+      "observed": 12,
+      "expected": 5.2,
+      "score": 68.9
+    },
+    {
+      "id": "anm-0022",
+      "date": "2024-06-20",
+      "latitude": 13.63,
+      "longitude": -88.02,
+      "region": "Morazán",
+      "observed": 15,
+      "expected": 6.1,
+      "score": 72.1
+    },
+    {
+      "id": "anm-0142",
+      "date": "2024-06-20",
+      "latitude": 14.02,
+      "longitude": -89.46,
+      "region": "Santa Ana",
+      "observed": 46,
+      "expected": 16.5,
+      "score": 89.9
+    },
+    {
+      "id": "anm-0198",
+      "date": "2024-06-18",
+      "latitude": 13.48,
+      "longitude": -87.96,
+      "region": "La Unión",
+      "observed": 3,
+      "expected": 5.9,
+      "score": 45.9
+    },
+    {
+      "id": "anm-0307",
+      "date": "2024-06-18",
+      "latitude": 13.89,
+      "longitude": -89.95,
+      "region": "Ahuachapán",
+      "observed": 1,
+      "expected": 6.2,
+      "score": 98.2
+    },
+    {
+      "id": "anm-0062",
+      "date": "2024-06-16",
+      "latitude": 13.24,
+      "longitude": -88.46,
+      "region": "Usulután",
+      "observed": 34,
+      "expected": 19.1,
+      "score": 39.3
+    },
+    {
+      "id": "anm-0082",
+      "date": "2024-06-16",
+      "latitude": 13.47,
+      "longitude": -87.74,
+      "region": "La Unión",
+      "observed": 24,
+      "expected": 11.6,
+      "score": 54.6
+    },
+    {
+      "id": "anm-0313",
+      "date": "2024-06-15",
+      "latitude": 13.88,
+      "longitude": -87.98,
+      "region": "Morazán",
+      "observed": 18,
+      "expected": 10.1,
+      "score": 38.9
+    },
+    {
+      "id": "anm-0071",
+      "date": "2024-06-14",
+      "latitude": 13.59,
+      "longitude": -89.08,
+      "region": "San Salvador",
+      "observed": 26,
+      "expected": 15,
+      "score": 37.8
+    },
+    {
+      "id": "anm-0078",
+      "date": "2024-06-14",
+      "latitude": 13.3,
+      "longitude": -88.37,
+      "region": "Usulután",
+      "observed": 0,
+      "expected": 3.9,
+      "score": 97
+    },
+    {
+      "id": "anm-0161",
+      "date": "2024-06-14",
+      "latitude": 13.72,
+      "longitude": -88.84,
+      "region": null,
+      "observed": 16,
+      "expected": 14.3,
+      "score": 4.7
+    },
+    {
+      "id": "anm-0091",
+      "date": "2024-06-13",
+      "latitude": 13.38,
+      "longitude": -87.89,
+      "region": "La Unión",
+      "observed": 43,
+      "expected": 17.8,
+      "score": 70.1
+    },
+    {
+      "id": "anm-0189",
+      "date": "2024-06-13",
+      "latitude": 13.24,
+      "longitude": -88.48,
+      "region": "Usulután",
+      "observed": 3,
+      "expected": 20.7,
+      "score": 97.3
+    },
+    {
+      "id": "anm-0025",
+      "date": "2024-06-12",
+      "latitude": 13.46,
+      "longitude": -88.93,
+      "region": null,
+      "observed": 17,
+      "expected": 8.1,
+      "score": 57.5
+    },
+    {
+      "id": "anm-0037",
+      "date": "2024-06-12",
+      "latitude": 13.8,
+      "longitude": -88.2,
+      "region": "Morazán",
+      "observed": 25,
+      "expected": 16.7,
+      "score": 23.8
+    },
+    {
+      "id": "anm-0100",
+      "date": "2024-06-12",
+      "latitude": 13.29,
+      "longitude": -88.53,
+      "region": "Usulután",
+      "observed": 11,
+      "expected": 6.7,
+      "score": 33.7
+    },
+    {
+      "id": "anm-0166",
+      "date": "2024-06-10",
+      "latitude": 13.19,
+      "longitude": -87.77,
+      "region": "La Unión",
+      "observed": 7,
+      "expected": 9.4,
+      "score": 33.5
+    },
+    {
+      "id": "anm-0350",
+      "date": "2024-06-10",
+      "latitude": 13.38,
+      "longitude": -87.7,
+      "region": "La Unión",
+      "observed": 37,
+      "expected": 15.1,
+      "score": 71.4
+    },
+    {
+      "id": "anm-0267",
+      "date": "2024-06-09",
+      "latitude": 13.78,
+      "longitude": -89.78,
+      "region": "Sonsonate",
+      "observed": 35,
+      "expected": 12.5,
+      "score": 88.6
+    },
+    {
+      "id": "anm-0157",
+      "date": "2024-06-08",
+      "latitude": 13.82,
+      "longitude": -89.07,
+      "region": "San Salvador",
+      "observed": 25,
+      "expected": 12.7,
+      "score": 49.1
+    },
+    {
+      "id": "anm-0174",
+      "date": "2024-06-08",
+      "latitude": 13.85,
+      "longitude": -89.79,
+      "region": "Sonsonate",
+      "observed": 32,
+      "expected": 16.1,
+      "score": 50.2
+    },
+    {
+      "id": "anm-0220",
+      "date": "2024-06-08",
+      "latitude": 13.8,
+      "longitude": -88.24,
+      "region": "Morazán",
+      "observed": 3,
+      "expected": 1.4,
+      "score": 70.1
+    },
+    {
+      "id": "anm-0277",
+      "date": "2024-06-08",
+      "latitude": 13.35,
+      "longitude": -87.95,
+      "region": "La Unión",
+      "observed": 3,
+      "expected": 1.8,
+      "score": 21.8
+    },
+    {
+      "id": "anm-0014",
+      "date": "2024-06-06",
+      "latitude": 13.91,
+      "longitude": -88.03,
+      "region": "Morazán",
+      "observed": 2,
+      "expected": 1.9,
+      "score": 7.7
+    },
+    {
+      "id": "anm-0038",
+      "date": "2024-06-04",
+      "latitude": 13.92,
+      "longitude": -89.64,
+      "region": "Santa Ana",
+      "observed": 10,
+      "expected": 3.8,
+      "score": 79.4
+    },
+    {
+      "id": "anm-0018",
+      "date": "2024-06-02",
+      "latitude": 13.82,
+      "longitude": -89.17,
+      "region": "San Salvador",
+      "observed": 29,
+      "expected": 19.7,
+      "score": 23.5
+    },
+    {
+      "id": "anm-0080",
+      "date": "2024-06-02",
+      "latitude": 13.53,
+      "longitude": -88.8,
+      "region": null,
+      "observed": 14,
+      "expected": 11.8,
+      "score": 11
+    },
+    {
+      "id": "anm-0131",
+      "date": "2024-06-02",
+      "latitude": 13.22,
+      "longitude": -88.54,
+      "region": "Usulután",
+      "observed": 21,
+      "expected": 13.5,
+      "score": 29.2
+    },
+    {
+      "id": "anm-0132",
+      "date": "2024-06-01",
+      "latitude": 13.69,
+      "longitude": -89.79,
+      "region": "Sonsonate",
+      "observed": 21,
+      "expected": 19.7,
+      "score": 2.5
+    },
+    {
+      "id": "anm-0181",
+      "date": "2024-06-01",
+      "latitude": 13.38,
+      "longitude": -87.78,
+      "region": "La Unión",
+      "observed": 12,
+      "expected": 9.5,
+      "score": 11.5
+    },
+    {
+      "id": "anm-0343",
+      "date": "2024-06-01",
+      "latitude": 13.46,
+      "longitude": -88.28,
+      "region": "San Miguel",
+      "observed": 6,
+      "expected": 3.9,
+      "score": 23.9
+    },
+    {
+      "id": "anm-0075",
+      "date": "2024-05-27",
+      "latitude": 13.5,
+      "longitude": -88.06,
+      "region": "San Miguel",
+      "observed": 33,
+      "expected": 16,
+      "score": 53.9
+    },
+    {
+      "id": "anm-0308",
+      "date": "2024-05-26",
+      "latitude": 13.37,
+      "longitude": -88.29,
+      "region": "San Miguel",
+      "observed": 16,
+      "expected": 13.5,
+      "score": 9
+    },
+    {
+      "id": "anm-0359",
+      "date": "2024-05-25",
+      "latitude": 13.69,
+      "longitude": -88.2,
+      "region": "Morazán",
+      "observed": 10,
+      "expected": 7,
+      "score": 24.9
+    },
+    {
+      "id": "anm-0293",
+      "date": "2024-05-24",
+      "latitude": 13.45,
+      "longitude": -88.22,
+      "region": "San Miguel",
+      "observed": 22,
+      "expected": 8.8,
+      "score": 77.5
+    },
+    {
+      "id": "anm-0054",
+      "date": "2024-05-23",
+      "latitude": 13.73,
+      "longitude": -89.78,
+      "region": "Sonsonate",
+      "observed": 41,
+      "expected": 18.9,
+      "score": 58.7
+    },
+    {
+      "id": "anm-0290",
+      "date": "2024-05-23",
+      "latitude": 14.04,
+      "longitude": -89.64,
+      "region": "Santa Ana",
+      "observed": 11,
+      "expected": 6.1,
+      "score": 39
+    },
+    {
+      "id": "anm-0045",
+      "date": "2024-05-22",
+      "latitude": 14,
+      "longitude": -89.5,
+      "region": "Santa Ana",
+      "observed": 52,
+      "expected": 20.6,
+      "score": 76
+    },
+    {
+      "id": "anm-0382",
+      "date": "2024-05-22",
+      "latitude": 13.8,
+      "longitude": -89.72,
+      "region": "Sonsonate",
+      "observed": 39,
+      "expected": 20.5,
+      "score": 45.9
+    },
+    {
+      "id": "anm-0015",
+      "date": "2024-05-21",
+      "latitude": 14.12,
+      "longitude": -89.65,
+      "region": "Santa Ana",
+      "observed": 13,
+      "expected": 6.7,
+      "score": 49
+    },
+    {
+      "id": "anm-0129",
+      "date": "2024-05-20",
+      "latitude": 13.84,
+      "longitude": -89.69,
+      "region": "Sonsonate",
+      "observed": 22,
+      "expected": 11.7,
+      "score": 46.1
+    },
+    {
+      "id": "anm-0300",
+      "date": "2024-05-20",
+      "latitude": 13.34,
+      "longitude": -88.45,
+      "region": "Usulután",
+      "observed": 27,
+      "expected": 10.3,
+      "score": 82.3
+    },
+    {
+      "id": "anm-0208",
+      "date": "2024-05-18",
+      "latitude": 13.38,
+      "longitude": -88.53,
+      "region": "Usulután",
+      "observed": 18,
+      "expected": 6.8,
+      "score": 83.4
+    },
+    {
+      "id": "anm-0050",
+      "date": "2024-05-17",
+      "latitude": 13.86,
+      "longitude": -89.7,
+      "region": "Santa Ana",
+      "observed": 17,
+      "expected": 11.2,
+      "score": 27.3
+    },
+    {
+      "id": "anm-0391",
+      "date": "2024-05-16",
+      "latitude": 14.05,
+      "longitude": -89.97,
+      "region": "Ahuachapán",
+      "observed": 53,
+      "expected": 18.4,
+      "score": 93.5
+    },
+    {
+      "id": "anm-0184",
+      "date": "2024-05-15",
+      "latitude": 13.68,
+      "longitude": -89.17,
+      "region": "San Salvador",
+      "observed": 4,
+      "expected": 1.6,
+      "score": 63.3
+    },
+    {
+      "id": "anm-0217",
+      "date": "2024-05-15",
+      "latitude": 13.56,
+      "longitude": -89.31,
+      "region": "San Salvador",
+      "observed": 6,
+      "expected": 4.5,
+      "score": 15.5
+    },
+    {
+      "id": "anm-0247",
+      "date": "2024-05-15",
+      "latitude": 13.43,
+      "longitude": -88.19,
+      "region": "San Miguel",
+      "observed": 14,
+      "expected": 9,
+      "score": 25.5
+    },
+    {
+      "id": "anm-0112",
+      "date": "2024-05-14",
+      "latitude": 13.66,
+      "longitude": -89.61,
+      "region": "Sonsonate",
+      "observed": 13,
+      "expected": 13.3,
+      "score": 0.2
+    },
+    {
+      "id": "anm-0389",
+      "date": "2024-05-14",
+      "latitude": 13.23,
+      "longitude": -88.34,
+      "region": "Usulután",
+      "observed": 5,
+      "expected": 2.4,
+      "score": 54.4
+    },
+    {
+      "id": "anm-0136",
+      "date": "2024-05-13",
+      "latitude": 13.87,
+      "longitude": -88.08,
+      "region": "Morazán",
+      "observed": 18,
+      "expected": 6.3,
+      "score": 96
+    },
+    {
+      "id": "anm-0241",
+      "date": "2024-05-13",
+      "latitude": 13.6,
+      "longitude": -89.68,
+      "region": "Sonsonate",
+      "observed": 18,
+      "expected": 9,
+      "score": 47.4
+    },
+    {
+      "id": "anm-0196",
+      "date": "2024-05-11",
+      "latitude": 13.91,
+      "longitude": -89.8,
+      "region": "Ahuachapán",
+      "observed": 19,
+      "expected": 10.6,
+      "score": 37.4
+    },
+    {
+      "id": "anm-0051",
+      "date": "2024-05-10",
+      "latitude": 13.74,
+      "longitude": -88.11,
+      "region": "Morazán",
+      "observed": 20,
+      "expected": 10.4,
+      "score": 44.3
+    },
+    {
+      "id": "anm-0224",
+      "date": "2024-05-10",
+      "latitude": 13.74,
+      "longitude": -89.15,
+      "region": "San Salvador",
+      "observed": 18,
+      "expected": 6.1,
+      "score": 97.3
+    },
+    {
+      "id": "anm-0372",
+      "date": "2024-05-08",
+      "latitude": 13.62,
+      "longitude": -88.1,
+      "region": "Morazán",
+      "observed": 7,
+      "expected": 16.4,
+      "score": 65
+    },
+    {
+      "id": "anm-0048",
+      "date": "2024-05-06",
+      "latitude": 13.48,
+      "longitude": -89.03,
+      "region": null,
+      "observed": 13,
+      "expected": 5.1,
+      "score": 76.9
+    },
+    {
+      "id": "anm-0126",
+      "date": "2024-05-06",
+      "latitude": 13.54,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 24,
+      "expected": 12.6,
+      "score": 45.5
+    },
+    {
+      "id": "anm-0055",
+      "date": "2024-05-05",
+      "latitude": 13.75,
+      "longitude": -88.88,
+      "region": null,
+      "observed": 8,
+      "expected": 3.5,
+      "score": 70.7
+    },
+    {
+      "id": "anm-0072",
+      "date": "2024-05-05",
+      "latitude": 13.49,
+      "longitude": -88.48,
+      "region": "Usulután",
+      "observed": 15,
+      "expected": 9,
+      "score": 35
+    },
+    {
+      "id": "anm-0087",
+      "date": "2024-05-03",
+      "latitude": 13.8,
+      "longitude": -88.14,
+      "region": "Morazán",
+      "observed": 30,
+      "expected": 15.7,
+      "score": 44.5
+    },
+    {
+      "id": "anm-0195",
+      "date": "2024-05-02",
+      "latitude": 13.86,
+      "longitude": -89.91,
+      "region": "Ahuachapán",
+      "observed": 25,
+      "expected": 13.5,
+      "score": 44.2
+    },
+    {
+      "id": "anm-0377",
+      "date": "2024-05-01",
+      "latitude": 13.27,
+      "longitude": -88.47,
+      "region": "Usulután",
+      "observed": 12,
+      "expected": 11.4,
+      "score": 1.4
+    },
+    {
+      "id": "anm-0187",
+      "date": "2024-04-29",
+      "latitude": 13.49,
+      "longitude": -88.29,
+      "region": "Usulután",
+      "observed": 7,
+      "expected": 2.5,
+      "score": 93.9
+    },
+    {
+      "id": "anm-0144",
+      "date": "2024-04-28",
+      "latitude": 13.57,
+      "longitude": -89.23,
+      "region": "San Salvador",
+      "observed": 14,
+      "expected": 10.6,
+      "score": 16
+    },
+    {
+      "id": "anm-0092",
+      "date": "2024-04-27",
+      "latitude": 13.25,
+      "longitude": -88.48,
+      "region": "Usulután",
+      "observed": 20,
+      "expected": 11.3,
+      "score": 38.6
+    },
+    {
+      "id": "anm-0122",
+      "date": "2024-04-27",
+      "latitude": 13.37,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 17,
+      "expected": 20.2,
+      "score": 20.2
+    },
+    {
+      "id": "anm-0156",
+      "date": "2024-04-27",
+      "latitude": 14.05,
+      "longitude": -89.47,
+      "region": "Santa Ana",
+      "observed": 14,
+      "expected": 9.8,
+      "score": 20.8
+    },
+    {
+      "id": "anm-0209",
+      "date": "2024-04-27",
+      "latitude": 13.87,
+      "longitude": -89.78,
+      "region": "Ahuachapán",
+      "observed": 18,
+      "expected": 17,
+      "score": 2.9
+    },
+    {
+      "id": "anm-0240",
+      "date": "2024-04-27",
+      "latitude": 13.47,
+      "longitude": -88.38,
+      "region": "Usulután",
+      "observed": 10,
+      "expected": 18.1,
+      "score": 48.3
+    },
+    {
+      "id": "anm-0093",
+      "date": "2024-04-26",
+      "latitude": 13.81,
+      "longitude": -88.09,
+      "region": "Morazán",
+      "observed": 29,
+      "expected": 10.1,
+      "score": 94.6
+    },
+    {
+      "id": "anm-0163",
+      "date": "2024-04-22",
+      "latitude": 13.29,
+      "longitude": -87.89,
+      "region": "La Unión",
+      "observed": 3,
+      "expected": 1.4,
+      "score": 55.5
+    },
+    {
+      "id": "anm-0281",
+      "date": "2024-04-22",
+      "latitude": 13.74,
+      "longitude": -88.14,
+      "region": "Morazán",
+      "observed": 14,
+      "expected": 7.7,
+      "score": 43
+    },
+    {
+      "id": "anm-0395",
+      "date": "2024-04-21",
+      "latitude": 13.63,
+      "longitude": -89.71,
+      "region": "Sonsonate",
+      "observed": 2,
+      "expected": 7.1,
+      "score": 76.2
+    },
+    {
+      "id": "anm-0197",
+      "date": "2024-04-19",
+      "latitude": 13.51,
+      "longitude": -88.92,
+      "region": null,
+      "observed": 6,
+      "expected": 2.4,
+      "score": 70.6
+    },
+    {
+      "id": "anm-0310",
+      "date": "2024-04-19",
+      "latitude": 13.39,
+      "longitude": -88.58,
+      "region": "Usulután",
+      "observed": 6,
+      "expected": 2.1,
+      "score": 88.1
+    },
+    {
+      "id": "anm-0061",
+      "date": "2024-04-18",
+      "latitude": 13.2,
+      "longitude": -87.73,
+      "region": "La Unión",
+      "observed": 9,
+      "expected": 14.2,
+      "score": 37.1
+    },
+    {
+      "id": "anm-0057",
+      "date": "2024-04-17",
+      "latitude": 13.64,
+      "longitude": -88.05,
+      "region": "Morazán",
+      "observed": 11,
+      "expected": 13.2,
+      "score": 15.4
+    },
+    {
+      "id": "anm-0073",
+      "date": "2024-04-17",
+      "latitude": 13.24,
+      "longitude": -88.52,
+      "region": "Usulután",
+      "observed": 24,
+      "expected": 13.5,
+      "score": 39.3
+    },
+    {
+      "id": "anm-0256",
+      "date": "2024-04-17",
+      "latitude": 13.84,
+      "longitude": -89.76,
+      "region": "Sonsonate",
+      "observed": 22,
+      "expected": 9.9,
+      "score": 60.9
+    },
+    {
+      "id": "anm-0315",
+      "date": "2024-04-17",
+      "latitude": 13.79,
+      "longitude": -89.08,
+      "region": "San Salvador",
+      "observed": 32,
+      "expected": 16.3,
+      "score": 46.8
+    },
+    {
+      "id": "anm-0371",
+      "date": "2024-04-17",
+      "latitude": 13.57,
+      "longitude": -89.3,
+      "region": "San Salvador",
+      "observed": 2,
+      "expected": 12,
+      "score": 89.6
+    },
+    {
+      "id": "anm-0030",
+      "date": "2024-04-16",
+      "latitude": 13.41,
+      "longitude": -87.83,
+      "region": "La Unión",
+      "observed": 28,
+      "expected": 14.9,
+      "score": 42.6
+    },
+    {
+      "id": "anm-0089",
+      "date": "2024-04-14",
+      "latitude": 13.69,
+      "longitude": -89.77,
+      "region": "Sonsonate",
+      "observed": 3,
+      "expected": 4.8,
+      "score": 31.6
+    },
+    {
+      "id": "anm-0339",
+      "date": "2024-04-13",
+      "latitude": 13.83,
+      "longitude": -89.97,
+      "region": "Ahuachapán",
+      "observed": 21,
+      "expected": 11.3,
+      "score": 40.9
+    },
+    {
+      "id": "anm-0128",
+      "date": "2024-04-11",
+      "latitude": 13.71,
+      "longitude": -89.21,
+      "region": "San Salvador",
+      "observed": 16,
+      "expected": 13.2,
+      "score": 12.3
+    },
+    {
+      "id": "anm-0227",
+      "date": "2024-04-10",
+      "latitude": 13.97,
+      "longitude": -89.75,
+      "region": "Ahuachapán",
+      "observed": 25,
+      "expected": 12.5,
+      "score": 51.5
+    },
+    {
+      "id": "anm-0230",
+      "date": "2024-04-10",
+      "latitude": 13.67,
+      "longitude": -89.04,
+      "region": null,
+      "observed": 35,
+      "expected": 16.3,
+      "score": 58.3
+    },
+    {
+      "id": "anm-0303",
+      "date": "2024-04-10",
+      "latitude": 13.61,
+      "longitude": -89.69,
+      "region": "Sonsonate",
+      "observed": 18,
+      "expected": 11.7,
+      "score": 27.5
+    },
+    {
+      "id": "anm-0358",
+      "date": "2024-04-10",
+      "latitude": 13.22,
+      "longitude": -87.93,
+      "region": "La Unión",
+      "observed": 11,
+      "expected": 5.9,
+      "score": 39.6
+    },
+    {
+      "id": "anm-0193",
+      "date": "2024-04-08",
+      "latitude": 13.83,
+      "longitude": -89.65,
+      "region": "Sonsonate",
+      "observed": 19,
+      "expected": 7,
+      "score": 86.1
+    },
+    {
+      "id": "anm-0289",
+      "date": "2024-04-08",
+      "latitude": 13.37,
+      "longitude": -88.08,
+      "region": "San Miguel",
+      "observed": 19,
+      "expected": 7.1,
+      "score": 81.3
+    },
+    {
+      "id": "anm-0125",
+      "date": "2024-04-07",
+      "latitude": 13.47,
+      "longitude": -87.83,
+      "region": "La Unión",
+      "observed": 12,
+      "expected": 13.6,
+      "score": 14.3
+    },
+    {
+      "id": "anm-0084",
+      "date": "2024-04-06",
+      "latitude": 13.27,
+      "longitude": -87.8,
+      "region": "La Unión",
+      "observed": 0,
+      "expected": 4.4,
+      "score": 99.1
+    },
+    {
+      "id": "anm-0297",
+      "date": "2024-04-06",
+      "latitude": 13.21,
+      "longitude": -88.47,
+      "region": "Usulután",
+      "observed": 17,
+      "expected": 9.4,
+      "score": 42
+    },
+    {
+      "id": "anm-0052",
+      "date": "2024-04-05",
+      "latitude": 13.25,
+      "longitude": -87.85,
+      "region": "La Unión",
+      "observed": 17,
+      "expected": 13,
+      "score": 15.8
+    },
+    {
+      "id": "anm-0221",
+      "date": "2024-04-05",
+      "latitude": 13.99,
+      "longitude": -89.94,
+      "region": "Ahuachapán",
+      "observed": 17,
+      "expected": 16.3,
+      "score": 2.2
+    },
+    {
+      "id": "anm-0361",
+      "date": "2024-04-05",
+      "latitude": 13.48,
+      "longitude": -88.79,
+      "region": null,
+      "observed": 14,
+      "expected": 10.3,
+      "score": 16.7
+    },
+    {
+      "id": "anm-0040",
+      "date": "2024-04-04",
+      "latitude": 13.41,
+      "longitude": -87.9,
+      "region": "La Unión",
+      "observed": 22,
+      "expected": 10,
+      "score": 59.3
+    },
+    {
+      "id": "anm-0228",
+      "date": "2024-04-04",
+      "latitude": 13.86,
+      "longitude": -89.64,
+      "region": "Sonsonate",
+      "observed": 2,
+      "expected": 2.1,
+      "score": 3.1
+    },
+    {
+      "id": "anm-0017",
+      "date": "2024-04-03",
+      "latitude": 13.38,
+      "longitude": -88.52,
+      "region": "Usulután",
+      "observed": 31,
+      "expected": 12.9,
+      "score": 70.1
+    },
+    {
+      "id": "anm-0105",
+      "date": "2024-04-02",
+      "latitude": 13.45,
+      "longitude": -88.3,
+      "region": "San Miguel",
+      "observed": 23,
+      "expected": 16.7,
+      "score": 20.2
+    },
+    {
+      "id": "anm-0312",
+      "date": "2024-03-31",
+      "latitude": 14.09,
+      "longitude": -89.5,
+      "region": "Santa Ana",
+      "observed": 2,
+      "expected": 3.6,
+      "score": 63.2
+    },
+    {
+      "id": "anm-0065",
+      "date": "2024-03-29",
+      "latitude": 13.67,
+      "longitude": -89.29,
+      "region": "San Salvador",
+      "observed": 3,
+      "expected": 2.1,
+      "score": 32.9
+    },
+    {
+      "id": "anm-0111",
+      "date": "2024-03-28",
+      "latitude": 13.47,
+      "longitude": -89.05,
+      "region": null,
+      "observed": 14,
+      "expected": 11,
+      "score": 13.9
+    },
+    {
+      "id": "anm-0029",
+      "date": "2024-03-26",
+      "latitude": 14.08,
+      "longitude": -89.52,
+      "region": "Santa Ana",
+      "observed": 5,
+      "expected": 3.1,
+      "score": 34.2
+    },
+    {
+      "id": "anm-0012",
+      "date": "2024-03-24",
+      "latitude": 14.06,
+      "longitude": -89.46,
+      "region": "Santa Ana",
+      "observed": 41,
+      "expected": 14.9,
+      "score": 88.2
+    },
+    {
+      "id": "anm-0033",
+      "date": "2024-03-24",
+      "latitude": 13.37,
+      "longitude": -87.95,
+      "region": "La Unión",
+      "observed": 26,
+      "expected": 8.7,
+      "score": 97.4
+    },
+    {
+      "id": "anm-0269",
+      "date": "2024-03-22",
+      "latitude": 13.23,
+      "longitude": -88.43,
+      "region": "Usulután",
+      "observed": 40,
+      "expected": 18.8,
+      "score": 57
+    },
+    {
+      "id": "anm-0283",
+      "date": "2024-03-21",
+      "latitude": 14.03,
+      "longitude": -89.65,
+      "region": "Santa Ana",
+      "observed": 32,
+      "expected": 17.7,
+      "score": 41.2
+    },
+    {
+      "id": "anm-0223",
+      "date": "2024-03-20",
+      "latitude": 13.73,
+      "longitude": -88.11,
+      "region": "Morazán",
+      "observed": 6,
+      "expected": 5.6,
+      "score": 0.7
+    },
+    {
+      "id": "anm-0008",
+      "date": "2024-03-19",
+      "latitude": 13.64,
+      "longitude": -89.08,
+      "region": "San Salvador",
+      "observed": 7,
+      "expected": 6.4,
+      "score": 1.9
+    },
+    {
+      "id": "anm-0094",
+      "date": "2024-03-19",
+      "latitude": 13.86,
+      "longitude": -89.66,
+      "region": "Sonsonate",
+      "observed": 34,
+      "expected": 12.2,
+      "score": 91.1
+    },
+    {
+      "id": "anm-0117",
+      "date": "2024-03-19",
+      "latitude": 13.48,
+      "longitude": -88.09,
+      "region": "San Miguel",
+      "observed": 4,
+      "expected": 11.2,
+      "score": 73.3
+    },
+    {
+      "id": "anm-0178",
+      "date": "2024-03-19",
+      "latitude": 13.91,
+      "longitude": -88.17,
+      "region": "Morazán",
+      "observed": 37,
+      "expected": 14,
+      "score": 83.5
+    },
+    {
+      "id": "anm-0060",
+      "date": "2024-03-18",
+      "latitude": 13.28,
+      "longitude": -87.73,
+      "region": "La Unión",
+      "observed": 31,
+      "expected": 19.5,
+      "score": 30.1
+    },
+    {
+      "id": "anm-0146",
+      "date": "2024-03-16",
+      "latitude": 13.83,
+      "longitude": -89.21,
+      "region": "San Salvador",
+      "observed": 5,
+      "expected": 2.6,
+      "score": 50.5
+    },
+    {
+      "id": "anm-0183",
+      "date": "2024-03-12",
+      "latitude": 13.88,
+      "longitude": -88.09,
+      "region": "Morazán",
+      "observed": 42,
+      "expected": 17.8,
+      "score": 67
+    },
+    {
+      "id": "anm-0007",
+      "date": "2024-03-11",
+      "latitude": 13.95,
+      "longitude": -89.76,
+      "region": "Ahuachapán",
+      "observed": 12,
+      "expected": 9.9,
+      "score": 12.7
+    },
+    {
+      "id": "anm-0009",
+      "date": "2024-03-11",
+      "latitude": 13.54,
+      "longitude": -89.01,
+      "region": null,
+      "observed": 40,
+      "expected": 18.4,
+      "score": 58.2
+    },
+    {
+      "id": "anm-0334",
+      "date": "2024-03-11",
+      "latitude": 13.55,
+      "longitude": -88.78,
+      "region": null,
+      "observed": 8,
+      "expected": 13.6,
+      "score": 44.3
+    },
+    {
+      "id": "anm-0063",
+      "date": "2024-03-10",
+      "latitude": 13.3,
+      "longitude": -88.41,
+      "region": "Usulután",
+      "observed": 30,
+      "expected": 19,
+      "score": 30.1
+    },
+    {
+      "id": "anm-0340",
+      "date": "2024-03-10",
+      "latitude": 13.48,
+      "longitude": -88.56,
+      "region": "Usulután",
+      "observed": 32,
+      "expected": 18.1,
+      "score": 37.8
+    },
+    {
+      "id": "anm-0170",
+      "date": "2024-03-08",
+      "latitude": 13.27,
+      "longitude": -88.35,
+      "region": "Usulután",
+      "observed": 38,
+      "expected": 20.4,
+      "score": 43.1
+    },
+    {
+      "id": "anm-0251",
+      "date": "2024-03-07",
+      "latitude": 13.98,
+      "longitude": -89.67,
+      "region": "Santa Ana",
+      "observed": 4,
+      "expected": 1.6,
+      "score": 85.2
+    },
+    {
+      "id": "anm-0212",
+      "date": "2024-03-06",
+      "latitude": 13.82,
+      "longitude": -89.8,
+      "region": "Sonsonate",
+      "observed": 33,
+      "expected": 15.1,
+      "score": 58.1
+    },
+    {
+      "id": "anm-0295",
+      "date": "2024-03-06",
+      "latitude": 13.38,
+      "longitude": -87.76,
+      "region": "La Unión",
+      "observed": 24,
+      "expected": 10.8,
+      "score": 61.6
+    },
+    {
+      "id": "anm-0342",
+      "date": "2024-03-06",
+      "latitude": 13.9,
+      "longitude": -88.02,
+      "region": "Morazán",
+      "observed": 15,
+      "expected": 8.8,
+      "score": 35.8
+    },
+    {
+      "id": "anm-0056",
+      "date": "2024-03-05",
+      "latitude": 13.6,
+      "longitude": -88.08,
+      "region": "San Miguel",
+      "observed": 31,
+      "expected": 17.2,
+      "score": 40.2
+    },
+    {
+      "id": "anm-0354",
+      "date": "2024-03-05",
+      "latitude": 13.87,
+      "longitude": -89.8,
+      "region": "Ahuachapán",
+      "observed": 6,
+      "expected": 5.1,
+      "score": 9.5
+    },
+    {
+      "id": "anm-0169",
+      "date": "2024-03-03",
+      "latitude": 13.43,
+      "longitude": -88.42,
+      "region": "Usulután",
+      "observed": 17,
+      "expected": 19,
+      "score": 8.9
+    },
+    {
+      "id": "anm-0260",
+      "date": "2024-03-03",
+      "latitude": 13.63,
+      "longitude": -88.03,
+      "region": "Morazán",
+      "observed": 4,
+      "expected": 2,
+      "score": 49
+    },
+    {
+      "id": "anm-0186",
+      "date": "2024-03-02",
+      "latitude": 13.6,
+      "longitude": -88.99,
+      "region": null,
+      "observed": 16,
+      "expected": 10.6,
+      "score": 23.4
+    },
+    {
+      "id": "anm-0207",
+      "date": "2024-03-02",
+      "latitude": 13.33,
+      "longitude": -87.71,
+      "region": "La Unión",
+      "observed": 7,
+      "expected": 6,
+      "score": 10.2
+    },
+    {
+      "id": "anm-0311",
+      "date": "2024-02-29",
+      "latitude": 13.92,
+      "longitude": -87.98,
+      "region": "Morazán",
+      "observed": 39,
+      "expected": 13.7,
+      "score": 93.4
+    },
+    {
+      "id": "anm-0294",
+      "date": "2024-02-27",
+      "latitude": 13.63,
+      "longitude": -88.21,
+      "region": "San Miguel",
+      "observed": 40,
+      "expected": 15.7,
+      "score": 76.2
+    },
+    {
+      "id": "anm-0314",
+      "date": "2024-02-27",
+      "latitude": 13.51,
+      "longitude": -88.8,
+      "region": null,
+      "observed": 38,
+      "expected": 13.6,
+      "score": 87.9
+    },
+    {
+      "id": "anm-0013",
+      "date": "2024-02-26",
+      "latitude": 13.84,
+      "longitude": -89.21,
+      "region": "San Salvador",
+      "observed": 7,
+      "expected": 3.5,
+      "score": 54
+    },
+    {
+      "id": "anm-0104",
+      "date": "2024-02-24",
+      "latitude": 13.66,
+      "longitude": -88.82,
+      "region": null,
+      "observed": 14,
+      "expected": 5.7,
+      "score": 76.6
+    },
+    {
+      "id": "anm-0253",
+      "date": "2024-02-22",
+      "latitude": 13.9,
+      "longitude": -89.94,
+      "region": "Ahuachapán",
+      "observed": 7,
+      "expected": 3.4,
+      "score": 52.7
+    },
+    {
+      "id": "anm-0318",
+      "date": "2024-02-22",
+      "latitude": 13.86,
+      "longitude": -89.73,
+      "region": "Ahuachapán",
+      "observed": 34,
+      "expected": 19.7,
+      "score": 36.2
+    },
+    {
+      "id": "anm-0379",
+      "date": "2024-02-22",
+      "latitude": 13.47,
+      "longitude": -87.77,
+      "region": "La Unión",
+      "observed": 4,
+      "expected": 1.5,
+      "score": 82.2
+    },
+    {
+      "id": "anm-0101",
+      "date": "2024-02-21",
+      "latitude": 13.54,
+      "longitude": -88.87,
+      "region": null,
+      "observed": 16,
+      "expected": 15.7,
+      "score": 0.4
+    },
+    {
+      "id": "anm-0357",
+      "date": "2024-02-21",
+      "latitude": 13.61,
+      "longitude": -89.58,
+      "region": "Sonsonate",
+      "observed": 21,
+      "expected": 15.4,
+      "score": 18.5
+    },
+    {
+      "id": "anm-0147",
+      "date": "2024-02-20",
+      "latitude": 13.85,
+      "longitude": -89.51,
+      "region": "Santa Ana",
+      "observed": 7,
+      "expected": 20.5,
+      "score": 74.5
+    },
+    {
+      "id": "anm-0179",
+      "date": "2024-02-20",
+      "latitude": 13.81,
+      "longitude": -88.07,
+      "region": "Morazán",
+      "observed": 9,
+      "expected": 3.5,
+      "score": 77
+    },
+    {
+      "id": "anm-0201",
+      "date": "2024-02-20",
+      "latitude": 13.67,
+      "longitude": -89.21,
+      "region": "San Salvador",
+      "observed": 7,
+      "expected": 2.7,
+      "score": 86.1
+    },
+    {
+      "id": "anm-0216",
+      "date": "2024-02-20",
+      "latitude": 13.92,
+      "longitude": -89.47,
+      "region": "Santa Ana",
+      "observed": 15,
+      "expected": 15,
+      "score": 0
+    },
+    {
+      "id": "anm-0268",
+      "date": "2024-02-20",
+      "latitude": 14.07,
+      "longitude": -89.7,
+      "region": "Santa Ana",
+      "observed": 18,
+      "expected": 14.5,
+      "score": 12.3
+    },
+    {
+      "id": "anm-0392",
+      "date": "2024-02-19",
+      "latitude": 13.65,
+      "longitude": -89.22,
+      "region": "San Salvador",
+      "observed": 60,
+      "expected": 20.9,
+      "score": 92.7
+    },
+    {
+      "id": "anm-0143",
+      "date": "2024-02-18",
+      "latitude": 13.44,
+      "longitude": -87.69,
+      "region": "La Unión",
+      "observed": 33,
+      "expected": 11.7,
+      "score": 89.1
+    },
+    {
+      "id": "anm-0398",
+      "date": "2024-02-17",
+      "latitude": 13.58,
+      "longitude": -89.1,
+      "region": "San Salvador",
+      "observed": 7,
+      "expected": 9.5,
+      "score": 30.5
+    },
+    {
+      "id": "anm-0369",
+      "date": "2024-02-16",
+      "latitude": 13.73,
+      "longitude": -88.97,
+      "region": null,
+      "observed": 7,
+      "expected": 7.7,
+      "score": 14.9
+    },
+    {
+      "id": "anm-0370",
+      "date": "2024-02-16",
+      "latitude": 13.94,
+      "longitude": -89.83,
+      "region": "Ahuachapán",
+      "observed": 1,
+      "expected": 1.9,
+      "score": 64.5
+    },
+    {
+      "id": "anm-0367",
+      "date": "2024-02-15",
+      "latitude": 13.78,
+      "longitude": -89.81,
+      "region": "Ahuachapán",
+      "observed": 29,
+      "expected": 13.4,
+      "score": 57.1
+    },
+    {
+      "id": "anm-0270",
+      "date": "2024-02-14",
+      "latitude": 13.99,
+      "longitude": -89.96,
+      "region": "Ahuachapán",
+      "observed": 39,
+      "expected": 14.7,
+      "score": 83.2
+    },
+    {
+      "id": "anm-0035",
+      "date": "2024-02-13",
+      "latitude": 13.88,
+      "longitude": -88.01,
+      "region": "Morazán",
+      "observed": 14,
+      "expected": 5.5,
+      "score": 78.6
+    },
+    {
+      "id": "anm-0113",
+      "date": "2024-02-13",
+      "latitude": 13.61,
+      "longitude": -88.28,
+      "region": "San Miguel",
+      "observed": 6,
+      "expected": 6.9,
+      "score": 12.4
+    },
+    {
+      "id": "anm-0180",
+      "date": "2024-02-13",
+      "latitude": 13.61,
+      "longitude": -89.09,
+      "region": "San Salvador",
+      "observed": 5,
+      "expected": 4.1,
+      "score": 13
+    },
+    {
+      "id": "anm-0108",
+      "date": "2024-02-11",
+      "latitude": 13.72,
+      "longitude": -89.14,
+      "region": "San Salvador",
+      "observed": 18,
+      "expected": 14.1,
+      "score": 14.4
+    },
+    {
+      "id": "anm-0145",
+      "date": "2024-02-11",
+      "latitude": 13.48,
+      "longitude": -88.24,
+      "region": "San Miguel",
+      "observed": 30,
+      "expected": 14.9,
+      "score": 51.7
+    },
+    {
+      "id": "anm-0164",
+      "date": "2024-02-10",
+      "latitude": 13.49,
+      "longitude": -88.57,
+      "region": "Usulután",
+      "observed": 9,
+      "expected": 6.9,
+      "score": 18.7
+    },
+    {
+      "id": "anm-0250",
+      "date": "2024-02-10",
+      "latitude": 13.74,
+      "longitude": -88.1,
+      "region": "Morazán",
+      "observed": 31,
+      "expected": 10.4,
+      "score": 96.8
+    },
+    {
+      "id": "anm-0327",
+      "date": "2024-02-10",
+      "latitude": 13.43,
+      "longitude": -87.99,
+      "region": "La Unión",
+      "observed": 12,
+      "expected": 6.9,
+      "score": 35.5
+    },
+    {
+      "id": "anm-0399",
+      "date": "2024-02-10",
+      "latitude": 13.83,
+      "longitude": -89.64,
+      "region": "Sonsonate",
+      "observed": 7,
+      "expected": 5.8,
+      "score": 12.9
+    },
+    {
+      "id": "anm-0103",
+      "date": "2024-02-09",
+      "latitude": 13.66,
+      "longitude": -88.23,
+      "region": "Morazán",
+      "observed": 23,
+      "expected": 15.2,
+      "score": 24.4
+    },
+    {
+      "id": "anm-0010",
+      "date": "2024-02-07",
+      "latitude": 13.66,
+      "longitude": -88.96,
+      "region": null,
+      "observed": 51,
+      "expected": 19.4,
+      "score": 80.6
+    },
+    {
+      "id": "anm-0151",
+      "date": "2024-02-07",
+      "latitude": 13.75,
+      "longitude": -88.94,
+      "region": null,
+      "observed": 27,
+      "expected": 10.1,
+      "score": 83.8
+    },
+    {
+      "id": "anm-0243",
+      "date": "2024-02-07",
+      "latitude": 13.78,
+      "longitude": -88.08,
+      "region": "Morazán",
+      "observed": 49,
+      "expected": 19.8,
+      "score": 73.3
+    },
+    {
+      "id": "anm-0301",
+      "date": "2024-02-07",
+      "latitude": 13.75,
+      "longitude": -89.12,
+      "region": "San Salvador",
+      "observed": 13,
+      "expected": 18.8,
+      "score": 36.8
+    },
+    {
+      "id": "anm-0288",
+      "date": "2024-02-06",
+      "latitude": 13.38,
+      "longitude": -88.28,
+      "region": "San Miguel",
+      "observed": 60,
+      "expected": 20.5,
+      "score": 96.8
+    },
+    {
+      "id": "anm-0219",
+      "date": "2024-02-04",
+      "latitude": 13.86,
+      "longitude": -88.21,
+      "region": "Morazán",
+      "observed": 5,
+      "expected": 4.9,
+      "score": 7.3
+    },
+    {
+      "id": "anm-0003",
+      "date": "2024-02-03",
+      "latitude": 13.6,
+      "longitude": -88.16,
+      "region": "San Miguel",
+      "observed": 11,
+      "expected": 3.8,
+      "score": 95
+    },
+    {
+      "id": "anm-0235",
+      "date": "2024-02-03",
+      "latitude": 13.52,
+      "longitude": -88.82,
+      "region": null,
+      "observed": 8,
+      "expected": 5,
+      "score": 25.4
+    },
+    {
+      "id": "anm-0001",
+      "date": "2024-02-02",
+      "latitude": 13.58,
+      "longitude": -89.74,
+      "region": "Sonsonate",
+      "observed": 18,
+      "expected": 12.5,
+      "score": 22.3
+    },
+    {
+      "id": "anm-0162",
+      "date": "2024-02-01",
+      "latitude": 13.54,
+      "longitude": -88.09,
+      "region": "San Miguel",
+      "observed": 11,
+      "expected": 16.3,
+      "score": 34.2
+    },
+    {
+      "id": "anm-0026",
+      "date": "2024-01-26",
+      "latitude": 13.41,
+      "longitude": -88.16,
+      "region": "San Miguel",
+      "observed": 5,
+      "expected": 3.8,
+      "score": 10.8
+    },
+    {
+      "id": "anm-0064",
+      "date": "2024-01-25",
+      "latitude": 13.99,
+      "longitude": -89.81,
+      "region": "Ahuachapán",
+      "observed": 21,
+      "expected": 16.9,
+      "score": 12.8
+    },
+    {
+      "id": "anm-0152",
+      "date": "2024-01-24",
+      "latitude": 13.35,
+      "longitude": -87.76,
+      "region": "La Unión",
+      "observed": 9,
+      "expected": 20.5,
+      "score": 63.8
+    },
+    {
+      "id": "anm-0234",
+      "date": "2024-01-24",
+      "latitude": 13.74,
+      "longitude": -88.87,
+      "region": null,
+      "observed": 4,
+      "expected": 20.6,
+      "score": 89.2
+    },
+    {
+      "id": "anm-0005",
+      "date": "2024-01-23",
+      "latitude": 13.45,
+      "longitude": -88.39,
+      "region": "Usulután",
+      "observed": 3,
+      "expected": 1.4,
+      "score": 53.7
+    },
+    {
+      "id": "anm-0046",
+      "date": "2024-01-23",
+      "latitude": 13.92,
+      "longitude": -89.59,
+      "region": "Santa Ana",
+      "observed": 26,
+      "expected": 11.2,
+      "score": 66.1
+    },
+    {
+      "id": "anm-0280",
+      "date": "2024-01-21",
+      "latitude": 13.9,
+      "longitude": -88.06,
+      "region": "Morazán",
+      "observed": 13,
+      "expected": 4.4,
+      "score": 92.9
+    },
+    {
+      "id": "anm-0024",
+      "date": "2024-01-20",
+      "latitude": 13.41,
+      "longitude": -87.98,
+      "region": "La Unión",
+      "observed": 27,
+      "expected": 11.9,
+      "score": 61.6
+    },
+    {
+      "id": "anm-0110",
+      "date": "2024-01-20",
+      "latitude": 13.28,
+      "longitude": -87.96,
+      "region": "La Unión",
+      "observed": 26,
+      "expected": 15.1,
+      "score": 34.7
+    },
+    {
+      "id": "anm-0177",
+      "date": "2024-01-20",
+      "latitude": 13.85,
+      "longitude": -89.92,
+      "region": "Ahuachapán",
+      "observed": 11,
+      "expected": 8.7,
+      "score": 13.1
+    },
+    {
+      "id": "anm-0365",
+      "date": "2024-01-19",
+      "latitude": 13.4,
+      "longitude": -87.71,
+      "region": "La Unión",
+      "observed": 11,
+      "expected": 17.8,
+      "score": 41.3
+    },
+    {
+      "id": "anm-0043",
+      "date": "2024-01-15",
+      "latitude": 13.53,
+      "longitude": -88.97,
+      "region": null,
+      "observed": 18,
+      "expected": 14.9,
+      "score": 9.1
+    },
+    {
+      "id": "anm-0244",
+      "date": "2024-01-15",
+      "latitude": 13.32,
+      "longitude": -88.35,
+      "region": "Usulután",
+      "observed": 12,
+      "expected": 5.5,
+      "score": 55.7
+    },
+    {
+      "id": "anm-0134",
+      "date": "2024-01-14",
+      "latitude": 13.51,
+      "longitude": -88.98,
+      "region": null,
+      "observed": 7,
+      "expected": 6,
+      "score": 5.9
+    },
+    {
+      "id": "anm-0328",
+      "date": "2024-01-14",
+      "latitude": 14.03,
+      "longitude": -89.43,
+      "region": "Santa Ana",
+      "observed": 32,
+      "expected": 13.1,
+      "score": 70.8
+    },
+    {
+      "id": "anm-0390",
+      "date": "2024-01-13",
+      "latitude": 13.48,
+      "longitude": -88.3,
+      "region": "San Miguel",
+      "observed": 11,
+      "expected": 9.6,
+      "score": 8.4
+    },
+    {
+      "id": "anm-0242",
+      "date": "2024-01-12",
+      "latitude": 13.45,
+      "longitude": -87.92,
+      "region": "La Unión",
+      "observed": 6,
+      "expected": 7.4,
+      "score": 16.5
+    },
+    {
+      "id": "anm-0254",
+      "date": "2024-01-12",
+      "latitude": 13.58,
+      "longitude": -89.66,
+      "region": "Sonsonate",
+      "observed": 17,
+      "expected": 12.5,
+      "score": 19.8
+    },
+    {
+      "id": "anm-0019",
+      "date": "2024-01-10",
+      "latitude": 13.74,
+      "longitude": -88.76,
+      "region": null,
+      "observed": 13,
+      "expected": 6.1,
+      "score": 54.1
+    },
+    {
+      "id": "anm-0121",
+      "date": "2024-01-10",
+      "latitude": 13.76,
+      "longitude": -88.11,
+      "region": "Morazán",
+      "observed": 24,
+      "expected": 9.5,
+      "score": 75.2
+    },
+    {
+      "id": "anm-0210",
+      "date": "2024-01-10",
+      "latitude": 13.72,
+      "longitude": -88.05,
+      "region": "Morazán",
+      "observed": 38,
+      "expected": 15.9,
+      "score": 68.4
+    },
+    {
+      "id": "anm-0185",
+      "date": "2024-01-09",
+      "latitude": 13.56,
+      "longitude": -89.01,
+      "region": null,
+      "observed": 41,
+      "expected": 16.8,
+      "score": 72.2
+    },
+    {
+      "id": "anm-0275",
+      "date": "2024-01-09",
+      "latitude": 13.53,
+      "longitude": -88.76,
+      "region": null,
+      "observed": 2,
+      "expected": 4.1,
+      "score": 45.3
+    },
+    {
+      "id": "anm-0159",
+      "date": "2024-01-07",
+      "latitude": 13.71,
+      "longitude": -88.78,
+      "region": null,
+      "observed": 21,
+      "expected": 18.2,
+      "score": 7.8
+    },
+    {
+      "id": "anm-0304",
+      "date": "2024-01-06",
+      "latitude": 13.93,
+      "longitude": -89.78,
+      "region": "Ahuachapán",
+      "observed": 34,
+      "expected": 13.2,
+      "score": 79.2
+    },
+    {
+      "id": "anm-0214",
+      "date": "2024-01-04",
+      "latitude": 13.65,
+      "longitude": -88.86,
+      "region": null,
+      "observed": 4,
+      "expected": 1.4,
+      "score": 86.8
+    },
+    {
+      "id": "anm-0383",
+      "date": "2024-01-04",
+      "latitude": 13.47,
+      "longitude": -88.11,
+      "region": "San Miguel",
+      "observed": 43,
+      "expected": 17.8,
+      "score": 69.9
+    }
+  ]
+}

@@ -534,6 +534,51 @@ paths:
               schema: { $ref: '#/components/schemas/Error' }
         '501': { $ref: '#/components/responses/NoSpatial' }
 
+  /stats/anomalies:
+    get:
+      tags: [Stats]
+      operationId: listAnomalies
+      summary: Listar anomalías diarias por celda (paginado y ordenable)
+      description: |
+        BORRADOR: contrato provisional, sujeto a cambios cuando el backend lo implemente.
+        Una fila por día y celda cuya actividad se desvía del valor esperado. El cálculo del
+        valor esperado y del puntaje (`score`, 0..100) lo define el backend.
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/From'
+        - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/Metric'
+        - $ref: '#/components/parameters/CellDeg'
+        - name: min_score
+          in: query
+          description: Puntaje mínimo de anomalía (inclusivo)
+          schema: { type: number, minimum: 0, maximum: 100 }
+        - name: sort
+          in: query
+          schema: { type: string, enum: [date, score, observed, expected], default: date }
+        - name: order
+          in: query
+          schema: { type: string, enum: [asc, desc], default: desc }
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Página de anomalías
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AnomalyPage' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
   /stats/summary:
     get:
       tags: [Stats]
@@ -1098,6 +1143,31 @@ components:
             history:
               type: array
               items: { $ref: '#/components/schemas/YearValue' }
+    AnomalyItem:
+      type: object
+      description: BORRADOR. Anomalía de un día en una celda.
+      required: [id, date, latitude, longitude, region, observed, expected, score]
+      properties:
+        id: { type: string }
+        date: { type: string, format: date }
+        latitude: { type: number, description: Centro de la celda }
+        longitude: { type: number, description: Centro de la celda }
+        region: { type: [string, 'null'], description: Nombre de la región, si se conoce }
+        observed: { type: integer, description: Conteo observado }
+        expected: { type: number, description: Conteo esperado (línea base) }
+        score: { type: number, minimum: 0, maximum: 100, description: Puntaje de anomalía }
+    AnomalyPage:
+      allOf:
+        - $ref: '#/components/schemas/MetricInfo'
+        - type: object
+          required: [total, limit, offset, items]
+          properties:
+            total: { type: integer, description: Total que cumple el filtro (sin paginar) }
+            limit: { type: integer }
+            offset: { type: integer }
+            items:
+              type: array
+              items: { $ref: '#/components/schemas/AnomalyItem' }
     SummaryResponse:
       allOf:
         - $ref: '#/components/schemas/MetricInfo'

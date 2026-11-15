@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "explore": "Explorar",
+    "historicalTrends": "Tendencias históricas",
+    "anomalies": "Anomalías",
+    "methodology": "Metodología",
+    "demoBadge": "Demo. Sin conexión a datos en vivo",
+    "language": "Idioma"
+  },
+  "filters": {
+    "dateRange": "Rango de fechas",
+    "latitude": "Latitud",
+    "longitude": "Longitud",
+    "instruments": "Instrumentos",
+    "instrumentsPlaceholder": "Selecciona instrumentos",
+    "area": "Área",
+    "noArea": "Todo el conjunto de datos",
+    "clearArea": "Quitar área",
+    "radius": "Radio (km)",
+    "radiusHint": "Se aplica cuando hay latitud y longitud"
+  },
+  "areaMap": {
+    "title": "Área de interés",
+    "description": "Dibuja un rectángulo para limitar los resultados a un área. Haz clic en una esquina y luego en la esquina opuesta.",
+    "draw": "Dibujar área",
+    "cancel": "Cancelar",
+    "clear": "Quitar área",
+    "drawingHint": "Haz clic en la primera esquina",
+    "drawingHintSecond": "Haz clic en la esquina opuesta"
+  },
+  "severity": {
+    "low": "Baja",
+    "medium": "Media",
+    "high": "Alta"
+  },
+  "anomalies": {
+    "title": "Anomalías",
+    "description": "Días y celdas donde la actividad de quema se aparta de la línea base esperada.",
+    "minScore": "Puntaje mínimo de anomalía",
+    "minScoreHelp": "0 a 100",
+    "results": "Sin resultados | 1 anomalía | {count} anomalías",
+    "pageSize": "Filas por página",
+    "columns": {
+      "date": "Fecha",
+      "location": "Ubicación",
+      "score": "Puntaje de anomalía",
+      "observed": "Observado",
+      "expected": "Esperado",
+      "severity": "Severidad"
+    },
+    "unknownRegion": "Región sin nombre",
+    "sortBy": "Ordenar por {column}",
+    "empty": {
+      "title": "No se encontraron anomalías",
+      "description": "Amplía el rango de fechas o el área, o reduce el puntaje mínimo."
+    },
+    "error": {
+      "title": "No se pudieron cargar las anomalías",
+      "retry": "Reintentar"
+    }
+  }
+}
