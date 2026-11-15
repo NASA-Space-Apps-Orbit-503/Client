@@ -2,6 +2,10 @@
 const { t } = useI18n()
 const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList, init, searchActive, clearFilters, applyFilters, applying, hasPendingChanges, validationMessage } = useFilters()
 
+defineProps<{
+  classes?: string
+}>()
+
 /**
  * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
  * locale `13.6929` would be parsed as `136929`. Six decimals keep the precision of the circle
@@ -18,6 +22,7 @@ onMounted(() => {
 
 <template>
   <form
+    :class="classes"
     class="col-span-12 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:flex lg:flex-wrap"
     @submit.prevent="applyFilters"
   >
@@ -31,6 +36,7 @@ onMounted(() => {
         v-model="dateRange"
         range
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -47,6 +53,7 @@ onMounted(() => {
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -63,6 +70,7 @@ onMounted(() => {
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -79,6 +87,7 @@ onMounted(() => {
         :format-options="radiusFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -94,6 +103,7 @@ onMounted(() => {
         value-key="id"
         multiple
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -108,7 +118,7 @@ onMounted(() => {
         :placeholder="t('filters.satellites.placeholder')"
         value-key="id"
         multiple
-        class="min-w-48"
+        variant="subtle"
       />
     </UFormField>
     <UButton

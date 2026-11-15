@@ -58,7 +58,7 @@ const hasComparison = computed(() => comparedYears.value.length > 0 && (!isMonth
     />
     <UPageBody>
       <UPageGrid>
-        <Filters />
+        <Filters class="col-span-12 grid grid-cols-1 items-end gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap"/>
 
         <!-- Period controls -->
         <div class="col-span-12 flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:items-end">
