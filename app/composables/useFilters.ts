@@ -1,17 +1,13 @@
 import InstrumentsService from '~/services/instruments.service'
+import SatellitesService from '~/services/satellites.service'
 import { FilterQueryKeyEnum } from '~/enums/filter-query-key.enum'
-import { SatelliteEnum } from '~/enums/satellite.enum'
 import type { Instrument } from '~/types/api/instruments'
+import type { Satellite } from '~/types/api/satellites'
 import type { CircleArea } from '~/types/area'
 import type { SelectMenuItem } from '@nuxt/ui'
 import { parseDate, type DateValue } from '@internationalized/date'
 
 const filterQueryKeys = Object.values(FilterQueryKeyEnum)
-const satelliteValues = Object.values(SatelliteEnum) as string[]
-
-function isSatellite(value: string): value is SatelliteEnum {
-  return satelliteValues.includes(value)
-}
 
 function getQueryValue(value: string | null | Array<string | null> | undefined) {
   const queryValue = Array.isArray(value) ? value[0] : value
@@ -49,6 +45,7 @@ export default function useFilters() {
   const urlSyncInitialized = useState<boolean>('filters-url-sync-initialized', () => false)
 
   const instrumentsList = useState<SelectMenuItem[]>('instruments', () => [])
+  const satellitesList = useState<SelectMenuItem[]>('satellites', () => [])
 
   const dateRange = computed({
     get: () => filters.value.dateRange,
@@ -106,7 +103,7 @@ export default function useFilters() {
 
   const satellites = computed({
     get: () => filters.value.satellites,
-    set: (value: SatelliteEnum[]) => {
+    set: (value: string[]) => {
       filters.value.satellites = value
     }
   })
@@ -115,6 +112,14 @@ export default function useFilters() {
   const satelliteQuery = computed(() => filters.value.satellites.length ? filters.value.satellites.join(',') : undefined)
 
   const getInstrumentsList = computed(() => instrumentsList.value)
+  const getSatellitesList = computed(() => satellitesList.value)
+
+  /** Drops satellite codes missing from the loaded catalog (kept as-is until it loads). */
+  const onlyKnownSatellites = (codes: string[]) => {
+    if (!satellitesList.value.length) return codes
+    const known = new Set(satellitesList.value.map(item => item.id))
+    return codes.filter(code => known.has(code))
+  }
 
   const hasFilterQuery = (query: typeof route.query) =>
     filterQueryKeys.some(key => query[key] !== undefined)
@@ -148,7 +153,7 @@ export default function useFilters() {
         ? radiusValueAsNumber
         : null,
       instruments: instrumentsValue ? instrumentsValue.split(',').filter(Boolean) : [],
-      satellites: satellitesValue ? [...new Set(satellitesValue.split(',').filter(isSatellite))] : []
+      satellites: satellitesValue ? onlyKnownSatellites([...new Set(satellitesValue.split(',').filter(Boolean))]) : []
     }
   }
 
@@ -233,8 +238,26 @@ export default function useFilters() {
     }
   }
 
+  /**
+   * Fetches the list of satellites and updates the satellites state.
+   * If the request fails, it logs the error to the console.
+   */
+  const fetchSatellites = async () => {
+    try {
+      const data = await SatellitesService.listSatellites()
+      satellitesList.value = data.map((satellite: Satellite) => ({
+        id: satellite.code,
+        label: `${satellite.name} (${satellite.instrument})`
+      }))
+      const selected = onlyKnownSatellites(filters.value.satellites)
+      if (selected.length !== filters.value.satellites.length) filters.value.satellites = selected
+    } catch (error) {
+      console.error('Error fetching satellites:', error)
+    }
+  }
+
   const init = async () => {
-    await fetchInstruments()
+    await Promise.all([fetchInstruments(), fetchSatellites()])
   }
 
   return {
@@ -249,8 +272,10 @@ export default function useFilters() {
     satellites,
     satelliteQuery,
     getInstrumentsList,
+    getSatellitesList,
     // Methods
     init,
-    fetchInstruments
+    fetchInstruments,
+    fetchSatellites
   }
 }

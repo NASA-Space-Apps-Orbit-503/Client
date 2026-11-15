@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { SATELLITE_OPTIONS } from '~/constants/satellites'
-
 const { t } = useI18n()
-const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList } = useFilters()
+const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList } = useFilters()
 
 /**
  * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
@@ -85,7 +83,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
     <UFormField :label="t('filters.satellites.label')">
       <USelectMenu
         v-model="satellites"
-        :items="SATELLITE_OPTIONS"
+        :items="getSatellitesList"
         :placeholder="t('filters.satellites.placeholder')"
         value-key="id"
         multiple
