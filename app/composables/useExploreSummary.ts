@@ -3,13 +3,15 @@ import type { InfoCard } from '~/types/info-card'
 import { epochMonth, epochYear, formatEpochDate } from '~/utils/epoch'
 
 export default async function useExploreSummary() {
+  const { statsQuery, searchActive } = useFilters()
   const { data: summary, error: summaryError } = await useAsyncData(
     'explore-summary',
-    () => StatsService.getSummary()
+    () => searchActive.value ? StatsService.getSummary(statsQuery.value) : Promise.resolve(null),
+    { watch: [statsQuery, searchActive], server: false }
   )
 
   const cards = computed<InfoCard[]>(() => {
-    if (!summary.value) return []
+    if (!searchActive.value || !summary.value) return []
 
     const { detections, total, first_date, last_date, by_instrument, top_months, metric } = summary.value
     const peakMonth = top_months[0]

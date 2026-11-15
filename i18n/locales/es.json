@@ -8,6 +8,16 @@
     }
   },
   "filters": {
+    "optional": "Opcional",
+    "pointOnly": "Sin radio, Aplicar busca solo en la celda de 0,01° que contiene este punto (aproximadamente 1 km por lado).",
+    "clear": "Limpiar filtros",
+    "cleared": "Búsqueda borrada. Selecciona filtros o un punto y pulsa Aplicar.",
+    "apply": "Aplicar",
+    "errors": {
+      "dateRange": "Selecciona ambas fechas; la fecha final debe ser igual o posterior a la inicial.",
+      "coordinates": "Ingresa latitud y longitud dentro de sus rangos válidos, o vacía ambos campos.",
+      "radius": "Si ingresas un radio, completa latitud y longitud y usa un valor mayor que 0 y hasta 300 km."
+    },
     "dateRange": {
       "label": "Rango de fechas",
       "startDate": "Fecha de inicio",
@@ -50,14 +60,36 @@
     "area": {
       "title": "Área de interés",
       "none": "No hay un área seleccionada. Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros.",
-      "point": "Punto {lat}, {lon} · dibuja un círculo o ingresa un radio",
+      "point": "Punto {lat}, {lon} · celda local de 0,01°",
       "circle": "Círculo · centro {lat}, {lon} · radio {radius} km",
       "clear": "Quitar área",
       "outsideTitle": "Área fuera de El Salvador",
       "outsideDescription": "El círculo debe quedar completamente dentro de El Salvador. Dibújalo de nuevo dentro del país.",
       "pointOutsideTitle": "Coordenadas fuera de El Salvador",
       "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
-      "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país."
+      "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país.",
+      "selectPoint": "Seleccionar un punto",
+      "cancelPoint": "Cancelar selección",
+      "clickPoint": "Haz clic o toca el mapa para llenar latitud y longitud. Después aplica los filtros."
+    },
+    "detections": {
+      "inspect": "Ver información",
+      "clickHint": "Haz clic o toca un punto de color para ver su información.",
+      "time": "Hora de adquisición",
+      "frp": "Potencia radiativa del fuego",
+      "confidence": "Confianza",
+      "confidenceLevels": {
+        "low": "Baja",
+        "nominal": "Nominal",
+        "high": "Alta"
+      },
+      "loading": "Cargando detecciones de incendios…",
+      "count": "Mostrando {shown} de {total} detecciones de incendios",
+      "more": "Cargar más puntos",
+      "error": "No se pudieron cargar las detecciones de incendios",
+      "retry": "Reintentar",
+      "date": "Fecha de adquisición",
+      "partial": "Solo se dibujan los puntos mostrados (hasta 5.000). Acota los filtros o carga más puntos para explorar otras detecciones."
     }
   }
 }

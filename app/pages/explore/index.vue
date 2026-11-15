@@ -4,20 +4,17 @@ import StatsService from '~/services/stats.service'
 import { StatsGranularityEnum } from '~/enums/stats-granularity.enum'
 
 const { t } = useI18n()
-const { init } = useFilters()
+const { statsQuery, searchActive } = useFilters()
 const { cards } = await useExploreSummary()
 const { data: calendar, error: calendarError } = await useAsyncData(
   'explore-calendar',
-  () => StatsService.getCalendar({ granularity: StatsGranularityEnum.Month })
+  () => searchActive.value ? StatsService.getCalendar({ ...statsQuery.value, granularity: StatsGranularityEnum.Month }) : Promise.resolve(null),
+  { watch: [statsQuery, searchActive], server: false }
 )
 
 if (calendarError.value) {
   console.error('Error fetching explore calendar:', calendarError.value)
 }
-
-onMounted(() => {
-  init()
-})
 </script>
 
 <template>
@@ -42,6 +39,7 @@ onMounted(() => {
           <MapAreaSelector />
         </UCard>
         <UCard
+          v-if="searchActive"
           :title="t('explore.calendar.title')"
           class="col-span-12"
         >

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
-const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList } = useFilters()
+const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList, init, searchActive, clearFilters, applyFilters, applying, hasPendingChanges, validationMessage } = useFilters()
 
 /**
  * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
@@ -10,14 +10,21 @@ const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getIn
 const COORDINATE_LOCALE = 'en-US'
 const coordinateFormat = { maximumFractionDigits: 6, useGrouping: false }
 const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
+
+onMounted(() => {
+  void init()
+})
 </script>
 
 <template>
-  <div class="col-span-12 grid grid-cols-1 items-end gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap">
+  <form
+    class="col-span-12 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:flex lg:flex-wrap"
+    @submit.prevent="applyFilters"
+  >
     <UFormField
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
-      class="min-w-0 sm:col-span-2 lg:flex-1"
+      class="min-w-0 sm:col-span-2 lg:w-80 lg:flex-none"
       size="sm"
     >
       <UInputDate
@@ -29,7 +36,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
     <UFormField
       :label="t('filters.latitude.label')"
       :placeholder="t('filters.latitude.placeholder')"
-      class="min-w-0"
+      class="min-w-0 lg:w-40 lg:flex-none"
       size="sm"
     >
       <UInputNumber
@@ -45,7 +52,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
     <UFormField
       :label="t('filters.longitude.label')"
       :placeholder="t('filters.longitude.placeholder')"
-      class="min-w-0"
+      class="min-w-0 lg:w-40 lg:flex-none"
       size="sm"
     >
       <UInputNumber
@@ -60,6 +67,8 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
     </UFormField>
     <UFormField
       :label="t('filters.radiusKm.label')"
+      :hint="t('filters.optional')"
+      class="min-w-0 lg:w-40 lg:flex-none"
       size="sm"
     >
       <UInputNumber
@@ -75,8 +84,8 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
     <UFormField
       :label="t('filters.instruments.label')"
       :placeholder="t('filters.instruments.placeholder')"
+      class="min-w-0 lg:min-w-40 lg:flex-1"
       size="sm"
-      class="min-w-0 sm:col-span-2 lg:min-w-48 lg:flex-1"
     >
       <USelectMenu
         v-model="instruments"
@@ -87,14 +96,57 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         class="w-full"
       />
     </UFormField>
-    <UFormField :label="t('filters.satellites.label')">
+    <UFormField
+      :label="t('filters.satellites.label')"
+      class="min-w-0 lg:min-w-44 lg:flex-1"
+      size="sm"
+    >
       <USelectMenu
         v-model="satellites"
         :items="getSatellitesList"
+        class="w-full"
         :placeholder="t('filters.satellites.placeholder')"
         value-key="id"
         multiple
       />
     </UFormField>
-  </div>
+    <UButton
+      type="submit"
+      :label="t('filters.apply')"
+      icon="i-lucide-check"
+      :loading="applying"
+      :disabled="!hasPendingChanges || Boolean(validationMessage)"
+      class="justify-center lg:shrink-0"
+    />
+    <UButton
+      type="button"
+      :label="t('filters.clear')"
+      icon="i-lucide-rotate-ccw"
+      color="neutral"
+      variant="outline"
+      class="justify-center lg:shrink-0"
+      @click="clearFilters"
+    />
+    <p
+      v-if="!searchActive"
+      role="status"
+      class="w-full text-sm text-muted sm:col-span-2"
+    >
+      {{ t('filters.cleared') }}
+    </p>
+    <p
+      v-if="latitude !== null && longitude !== null && radiusKm === null && !validationMessage"
+      role="status"
+      class="w-full text-sm text-muted sm:col-span-2"
+    >
+      {{ t('filters.pointOnly') }}
+    </p>
+    <p
+      v-if="validationMessage"
+      role="status"
+      class="w-full text-sm text-error sm:col-span-2"
+    >
+      {{ validationMessage }}
+    </p>
+  </form>
 </template>
