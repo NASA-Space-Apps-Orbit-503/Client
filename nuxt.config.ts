@@ -13,6 +13,13 @@ export default defineNuxtConfig({
     enabled: true
   },
 
+  // Apache ECharts (`<VChart>`): only the charts/components registered here are bundled.
+  echarts: {
+    renderer: 'canvas',
+    charts: ['LineChart', 'BarChart', 'ScatterChart'],
+    components: ['GridComponent', 'TooltipComponent', 'LegendComponent', 'DataZoomComponent', 'MarkLineComponent']
+  },
+
   css: ['~/assets/css/main.css', 'leaflet-draw/dist/leaflet.draw.css'],
 
   runtimeConfig: {

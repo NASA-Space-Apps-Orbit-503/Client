@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
 import type { TableColumn } from '@nuxt/ui'
-import { AnomalySortEnum } from '~/enums/anomaly-sort.enum'
+import { ANOMALY_COORDINATE_FORMAT } from '~/constants/anomaly-map'
 import { SeverityEnum } from '~/enums/severity.enum'
 import type { AnomalyItem } from '~/types/api/stats'
-import { ANOMALIES_PAGE_SIZES, type AnomaliesSorting } from '~/composables/useAnomalies'
+import { ANOMALIES_PAGE_SIZES, SORTABLE_ANOMALY_COLUMNS, type AnomaliesSorting } from '~/composables/useAnomalies'
 
 defineProps<{
   items: AnomalyItem[]
   total: number
   loading: boolean
   error: unknown
+  /** False until the filters are applied for the first time (Filter button or URL). */
+  applied: boolean
 }>()
 
 const emit = defineEmits<{
@@ -27,17 +29,23 @@ const UBadge = resolveComponent('UBadge')
 const { t } = useI18n()
 const { formatDate, formatNumber } = useLocaleFormat()
 
-const severityColors: Record<SeverityEnum, 'info' | 'warning' | 'error'> = {
-  [SeverityEnum.Low]: 'info',
-  [SeverityEnum.Medium]: 'warning',
-  [SeverityEnum.High]: 'error'
+type BadgeProps = { color: 'neutral' | 'info' | 'warning' | 'error', variant: 'subtle' | 'solid' }
+
+const severityBadge: Record<SeverityEnum, BadgeProps> = {
+  [SeverityEnum.Normal]: { color: 'neutral', variant: 'subtle' },
+  [SeverityEnum.Low]: { color: 'info', variant: 'subtle' },
+  [SeverityEnum.Moderate]: { color: 'warning', variant: 'subtle' },
+  [SeverityEnum.High]: { color: 'error', variant: 'subtle' },
+  [SeverityEnum.Extreme]: { color: 'error', variant: 'solid' }
 }
 
 const pageSizeItems = ANOMALIES_PAGE_SIZES.map(size => ({ label: String(size), value: size }))
 
+type SortableColumn = { getIsSorted: () => false | 'asc' | 'desc', toggleSorting: (desc?: boolean) => void }
+
 /** Header button that toggles server-side sorting for its column. */
 function sortableHeader(label: string) {
-  return ({ column }: { column: { getIsSorted: () => false | 'asc' | 'desc', toggleSorting: (desc?: boolean) => void } }) => {
+  return ({ column }: { column: SortableColumn }) => {
     const sorted = column.getIsSorted()
     const icon = sorted === 'asc'
       ? 'i-lucide-arrow-up-narrow-wide'
@@ -56,50 +64,64 @@ function sortableHeader(label: string) {
   }
 }
 
+const header = (id: string, label: string) => SORTABLE_ANOMALY_COLUMNS.includes(id) ? sortableHeader(label) : label
+
+const decimals = (digits: number) => ({ minimumFractionDigits: digits, maximumFractionDigits: digits })
+
 const columns = computed<TableColumn<AnomalyItem>[]>(() => [
   {
-    id: AnomalySortEnum.Date,
+    id: 'date',
     accessorKey: 'date',
-    header: sortableHeader(t('anomalies.columns.date')),
-    cell: ({ row }) => formatDate(row.original.date)
+    header: header('date', t('anomalies.columns.date')),
+    cell: ({ row }) => formatDate(formatEpochDate(row.original.date))
   },
   {
     id: 'location',
     header: t('anomalies.columns.location'),
     enableSorting: false,
-    cell: ({ row }) => h('div', { class: 'flex flex-col' }, [
-      h('span', { class: 'text-highlighted' }, row.original.region ?? t('anomalies.unknownRegion')),
-      h('span', { class: 'text-xs text-muted' }, `${formatNumber(row.original.latitude, { maximumFractionDigits: 2 })}, ${formatNumber(row.original.longitude, { maximumFractionDigits: 2 })}`)
-    ])
+    cell: ({ row }) => {
+      const { latitude, longitude, cell_deg } = row.original.location
+      return h('div', { class: 'flex flex-col' }, [
+        h('span', { class: 'text-highlighted' }, `${formatNumber(latitude, ANOMALY_COORDINATE_FORMAT)}, ${formatNumber(longitude, ANOMALY_COORDINATE_FORMAT)}`),
+        h('span', { class: 'text-xs text-muted' }, t('anomalies.cellSize', { size: formatNumber(cell_deg) }))
+      ])
+    }
   },
   {
-    id: AnomalySortEnum.Score,
+    id: 'score',
     accessorKey: 'score',
-    header: sortableHeader(t('anomalies.columns.score')),
-    cell: ({ row }) => formatNumber(row.original.score, { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+    header: header('score', t('anomalies.columns.score')),
+    cell: ({ row }) => formatNumber(row.original.score, decimals(2))
   },
   {
-    id: AnomalySortEnum.Observed,
+    id: 'observed',
     accessorKey: 'observed',
-    header: sortableHeader(t('anomalies.columns.observed')),
+    header: header('observed', t('anomalies.columns.observed')),
     cell: ({ row }) => formatNumber(row.original.observed)
   },
   {
-    id: AnomalySortEnum.Expected,
-    accessorKey: 'expected',
-    header: sortableHeader(t('anomalies.columns.expected')),
-    cell: ({ row }) => formatNumber(row.original.expected, { maximumFractionDigits: 1 })
+    id: 'expected',
+    header: t('anomalies.columns.expected'),
+    enableSorting: false,
+    cell: ({ row }) => {
+      const { expected, ratio } = row.original
+      return h('div', { class: 'flex flex-col' }, [
+        h('span', formatNumber(expected, { maximumFractionDigits: 2 })),
+        ratio === null
+          ? null
+          : h('span', { class: 'text-xs text-muted' }, t('anomalies.ratio', { ratio: formatNumber(ratio, { maximumFractionDigits: 1 }) }))
+      ])
+    }
   },
   {
     id: 'severity',
     header: t('anomalies.columns.severity'),
     enableSorting: false,
     cell: ({ row }) => {
-      const severity = getSeverity(row.original.score)
+      const severity = row.original.severity as SeverityEnum
       return h(UBadge, {
         label: t(`severity.${severity}`),
-        color: severityColors[severity],
-        variant: 'subtle'
+        ...severityBadge[severity]
       })
     }
   }
@@ -125,11 +147,18 @@ const columns = computed<TableColumn<AnomalyItem>[]>(() => [
         :loading="loading"
         :sorting-options="{ manualSorting: true, enableSortingRemoval: false }"
         sticky
-        class="max-h-[32rem]"
+        class="max-h-128"
       >
         <template #empty>
           <UEmpty
-            v-if="!loading"
+            v-if="!applied"
+            icon="i-lucide-filter"
+            :title="t('anomalies.apply.promptTitle')"
+            :description="t('anomalies.apply.promptDescription')"
+            variant="naked"
+          />
+          <UEmpty
+            v-else-if="!loading"
             icon="i-lucide-search-x"
             :title="t('anomalies.empty.title')"
             :description="t('anomalies.empty.description')"

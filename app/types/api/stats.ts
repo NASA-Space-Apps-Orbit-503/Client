@@ -5,8 +5,6 @@ import type { ConfidenceEnum } from '~/enums/confidence.enum'
 import type { DayNightEnum } from '~/enums/day-night.enum'
 import type { MetricEnum } from '~/enums/metric.enum'
 import type { StatsGranularityEnum } from '~/enums/stats-granularity.enum'
-import type { AnomalySortEnum } from '~/enums/anomaly-sort.enum'
-import type { SortOrderEnum } from '~/enums/sort-order.enum'
 
 export type CalendarResponse = components['schemas']['CalendarResponse']
 export type ClimatologyResponse = components['schemas']['ClimatologyResponse']
