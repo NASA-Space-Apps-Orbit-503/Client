@@ -25,6 +25,29 @@ onMounted(() => {
     :class="classes"
     @submit.prevent="applyFilters"
   >
+    <div class="col-span-12 w-full flex flex-col gap-2">
+      <p
+        v-if="!searchActive"
+        role="status"
+        class="w-full text-xs text-muted sm:col-span-2"
+      >
+        {{ t('filters.cleared') }}
+      </p>
+      <p
+        v-if="latitude !== null && longitude !== null && radiusKm === null && !validationMessage"
+        role="status"
+        class="w-full text-xs text-muted sm:col-span-2"
+      >
+        {{ t('filters.pointOnly') }}
+      </p>
+      <p
+        v-if="validationMessage"
+        role="status"
+        class="w-full text-xs text-error sm:col-span-2"
+      >
+        {{ validationMessage }}
+      </p>
+    </div>
     <UFormField
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
@@ -120,43 +143,22 @@ onMounted(() => {
         variant="subtle"
       />
     </UFormField>
-    <UButton
-      type="submit"
-      :label="t('filters.apply')"
-      icon="i-lucide-check"
-      :loading="applying"
-      :disabled="!hasPendingChanges || Boolean(validationMessage)"
-      class="justify-center lg:shrink-0"
-    />
-    <UButton
-      type="button"
-      :label="t('filters.clear')"
-      icon="i-lucide-rotate-ccw"
-      color="neutral"
-      variant="outline"
-      class="justify-center lg:shrink-0"
-      @click="clearFilters"
-    />
-    <p
-      v-if="!searchActive"
-      role="status"
-      class="w-full text-sm text-muted sm:col-span-2"
-    >
-      {{ t('filters.cleared') }}
-    </p>
-    <p
-      v-if="latitude !== null && longitude !== null && radiusKm === null && !validationMessage"
-      role="status"
-      class="w-full text-sm text-muted sm:col-span-2"
-    >
-      {{ t('filters.pointOnly') }}
-    </p>
-    <p
-      v-if="validationMessage"
-      role="status"
-      class="w-full text-sm text-error sm:col-span-2"
-    >
-      {{ validationMessage }}
-    </p>
+    <div class="w-full flex flex-wrap gap-2 self-end">
+      <UButton
+        type="submit"
+        icon="i-lucide-funnel"
+        :loading="applying"
+        :disabled="!hasPendingChanges || Boolean(validationMessage)"
+        class="justify-center w-fit"
+      />
+      <UButton
+        type="button"
+        icon="i-lucide-funnel-x"
+        color="neutral"
+        variant="outline"
+        class="justify-center w-fit"
+        @click="clearFilters"
+      />
+    </div>
   </form>
 </template>
