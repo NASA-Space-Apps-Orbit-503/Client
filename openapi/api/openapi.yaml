@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: api-nasa
-  version: 4.0.0
+  version: 4.1.0
   description: |
     API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
 
@@ -39,6 +39,13 @@ info:
     La confianza se normaliza a `low` / `nominal` / `high` para ambos sensores
     (VIIRS `l/n/h`; MODIS 0-29 / 30-79 / 80-100).
 
+    **Serie armonizada mensual** (`/stats/harmonized`, `/stats/harmonization`)
+    Cada importación con filas nuevas (`/detections/import`, `/firms/sync`) recalcula sobre todo
+    el histórico: MODIS Aqua antes del traslape y VIIRS × factor mensual (equivalente MODIS)
+    desde el inicio del traslape, con validación por año y anomalía robusta
+    `(valor − mediana) / (p75 − p25)`. Los parámetros (área, celda, años de referencia...)
+    son del servidor (`HARMONIZE_*`) y vienen en `HarmonizationRun.params`.
+
 servers:
   - url: https://api-nasa.fopinet.com
     description: Producción
@@ -55,6 +62,8 @@ tags:
     description: Serie diaria guardada de actividad de quema
   - name: Stats
     description: Calendario, climatología, anomalías por celda y resumen, calculados en el momento para cualquier área
+  - name: Harmonization
+    description: Serie mensual MODIS → VIIRS armonizada, factores, validación y anomalía
   - name: FIRMS
     description: Descarga de datos desde NASA FIRMS
   - name: Explorer
@@ -239,6 +248,12 @@ paths:
         El cuerpo es el contenido del CSV tal como lo descarga FIRMS. Columnas en cualquier orden;
         las desconocidas se ignoran. MODIS `brightness` → `bright_ti4` y `bright_t31` → `bright_ti5`.
         Las detecciones que ya existen se cuentan en `duplicates` y no se duplican.
+        Se lee también la columna `type` del archivo SP (0 vegetación, 1 volcán, 2 fuente estática, 3 mar).
+
+        Si una detección ya existía sin `type` (vino de un CSV NRT), se completa y se cuenta en `updated`.
+
+        Si hubo filas nuevas o completadas, se recalcula la armonización y su resumen viene en
+        `harmonization` (o el motivo del fallo en `harmonization_error`; las filas igual quedan guardadas).
 
         Sin `skip_invalid=true`, si alguna fila es inválida no se guarda nada y la respuesta es 422 con los errores.
       parameters:
@@ -250,6 +265,10 @@ paths:
           in: query
           description: Guardar las filas válidas aunque haya inválidas
           schema: { type: boolean, default: false }
+        - name: harmonize
+          in: query
+          description: Recalcular la armonización si hubo cambios. Con false, recalcula después con `POST /harmonization/rebuild`
+          schema: { type: boolean, default: true }
       requestBody:
         required: true
         content:
@@ -617,6 +636,60 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '501': { $ref: '#/components/responses/NoSpatial' }
 
+  # ================================================================ Harmonization
+  /stats/harmonized:
+    get:
+      tags: [Harmonization]
+      operationId: getHarmonizedSeries
+      summary: Serie mensual armonizada con anomalía
+      description: |
+        Una fila por mes, en celdas-día (celdas de `cell_deg` con fuego por día, sumadas en el mes).
+        `harmonized` está en equivalente MODIS. `anomaly` y `level` son null en meses incompletos.
+      parameters:
+        - $ref: '#/components/parameters/From'
+        - $ref: '#/components/parameters/To'
+        - $ref: '#/components/parameters/Year'
+        - $ref: '#/components/parameters/Month'
+        - name: complete
+          in: query
+          description: Solo meses completos
+          schema: { type: boolean, default: false }
+      responses:
+        '200':
+          description: Serie armonizada (vacía si todavía no se calculó)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HarmonizedSeries' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /stats/harmonization:
+    get:
+      tags: [Harmonization]
+      operationId: getHarmonizationReport
+      summary: Última corrida, factores por mes y validación por año
+      responses:
+        '200':
+          description: Reporte de la armonización
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HarmonizationReport' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /harmonization/rebuild:
+    post:
+      tags: [Harmonization]
+      operationId: rebuildHarmonization
+      summary: Recalcular la armonización
+      description: Se hace sola al importar; esta ruta sirve tras cargar datos por otra vía o cambiar `HARMONIZE_*`.
+      responses:
+        '200':
+          description: Corrida realizada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HarmonizationRun' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
   # ================================================================ FIRMS
   /firms/sync:
     post:
@@ -977,10 +1050,14 @@ components:
         bright_ti5: { type: [number, 'null'], minimum: 0, description: 'Temperatura de brillo canal I-5 (K). En MODIS, `bright_t31`.' }
         frp: { type: [number, 'null'], minimum: 0, description: Fire Radiative Power (MW) }
         daynight: { type: [string, 'null'], enum: ['D', 'N', null] }
+        type:
+          type: [integer, 'null']
+          enum: [0, 1, 2, 3, null]
+          description: 'Tipo de punto (archivo SP): 0 vegetación, 1 volcán, 2 otra fuente estática, 3 mar'
     Detection:
       type: object
       required: [id, latitude, longitude, bright_ti4, scan, track, acq_date, acq_time, satellite,
-                 instrument, confidence, version, bright_ti5, frp, daynight]
+                 instrument, confidence, version, bright_ti5, frp, daynight, type]
       properties:
         id: { type: integer, format: int64 }
         latitude: { type: number }
@@ -997,6 +1074,7 @@ components:
         bright_ti5: { type: [number, 'null'] }
         frp: { type: [number, 'null'] }
         daynight: { type: [string, 'null'], enum: ['D', 'N', null] }
+        type: { type: [integer, 'null'], enum: [0, 1, 2, 3, null] }
     DetectionBulkCreated:
       type: object
       required: [count, items]
@@ -1023,17 +1101,153 @@ components:
         error: { type: string }
     ImportResult:
       type: object
-      required: [received, valid, inserted, duplicates, invalid, errors]
+      required: [received, valid, inserted, duplicates, updated, invalid, errors]
       properties:
         received: { type: integer, description: Filas de datos leídas }
         valid: { type: integer }
         inserted: { type: integer, description: Filas nuevas guardadas }
         duplicates: { type: integer, description: Filas válidas que ya existían }
+        updated: { type: integer, description: Filas que ya existían sin `type` y se completaron (archivo SP) }
         invalid: { type: integer }
         errors:
           type: array
           maxItems: 50
           items: { $ref: '#/components/schemas/RowError' }
+        harmonization:
+          $ref: '#/components/schemas/HarmonizationRun'
+          description: Solo si hubo filas nuevas o completadas, se pidió armonizar y el recálculo funcionó
+        harmonization_error:
+          type: string
+          description: Solo si el recálculo falló
+
+    # ---------- Harmonization
+    HarmonizationStatus:
+      type: string
+      enum: [ok, no_overlap, insufficient_data]
+      description: |
+        `ok`; `no_overlap`: no hay meses completos con ambos sensores, la serie es solo MODIS;
+        `insufficient_data`: no hay datos de Aqua MODIS, no hay serie.
+    HarmonizationRun:
+      type: object
+      required: [computed_at, status, detections, after_confidence, after_type, static_cells,
+                 after_static, used, first_month, last_month, overlap_start, overlap_end,
+                 overlap_months, mean_raw_diff_pct, mean_abs_harmonized_diff_pct, correlation, params]
+      properties:
+        computed_at: { type: string, format: date-time }
+        status: { $ref: '#/components/schemas/HarmonizationStatus' }
+        detections: { type: integer, description: Tras quitar duplicados y aplicar el área }
+        after_confidence: { type: integer }
+        after_type: { type: integer }
+        static_cells: { type: integer, description: Celdas descartadas como fuentes estáticas }
+        after_static: { type: integer }
+        used: { type: integer, description: Detecciones de Aqua y del VIIRS de referencia }
+        first_month: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
+        last_month: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
+        overlap_start: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
+        overlap_end: { type: [string, 'null'], pattern: '^\d{4}-\d{2}$' }
+        overlap_months: { type: integer }
+        mean_raw_diff_pct: { type: [number, 'null'], description: Diferencia anual promedio VIIRS crudo vs MODIS (%) }
+        mean_abs_harmonized_diff_pct:
+          type: [number, 'null']
+          description: Diferencia anual absoluta promedio VIIRS armonizado (validación cruzada) vs MODIS (%)
+        correlation: { type: [number, 'null'], description: Correlación mensual MODIS vs VIIRS armonizado (descriptiva) }
+        params: { $ref: '#/components/schemas/HarmonizationParams' }
+    HarmonizationParams:
+      type: object
+      required: [bbox, cell_deg, min_confidence, static_threshold, static_min_months, snpp_end,
+                 viirs_priority, overlap_end, min_cells_month, dry_months, reference_years, utc_offset_hours]
+      properties:
+        bbox:
+          type: [array, 'null']
+          items: { type: number }
+          minItems: 4
+          maxItems: 4
+          description: oeste, sur, este, norte
+        cell_deg: { type: number }
+        min_confidence: { type: string, enum: [nominal, high] }
+        static_threshold: { type: number }
+        static_min_months: { type: integer }
+        snpp_end: { type: string, format: date }
+        viirs_priority: { type: array, items: { type: string } }
+        overlap_end: { type: string, format: date }
+        min_cells_month: { type: number }
+        dry_months: { type: array, items: { type: integer, minimum: 1, maximum: 12 } }
+        reference_years:
+          type: array
+          items: { type: integer }
+          minItems: 2
+          maxItems: 2
+        utc_offset_hours: { type: integer }
+    HarmonizationFactor:
+      type: object
+      required: [month, season, modis, viirs, f_month, f_season, factor, source]
+      properties:
+        month: { type: integer, minimum: 1, maximum: 12 }
+        season: { type: string, enum: [dry, wet] }
+        modis: { type: number, description: Celdas-día MODIS en el traslape }
+        viirs: { type: number, description: Celdas-día VIIRS en el traslape }
+        f_month: { type: [number, 'null'] }
+        f_season: { type: [number, 'null'] }
+        factor: { type: [number, 'null'], description: Celdas MODIS por cada celda VIIRS }
+        source: { type: string, enum: [month, season] }
+    HarmonizationValidationYear:
+      type: object
+      required: [year, months, modis, viirs_raw, viirs_harmonized, raw_diff_pct, harmonized_diff_pct]
+      properties:
+        year: { type: integer }
+        months: { type: integer }
+        modis: { type: number }
+        viirs_raw: { type: number }
+        viirs_harmonized: { type: [number, 'null'], description: VIIRS × factor calculado sin ese año }
+        raw_diff_pct: { type: [number, 'null'] }
+        harmonized_diff_pct: { type: [number, 'null'] }
+    HarmonizationReport:
+      type: object
+      required: [run, factors, validation]
+      properties:
+        run:
+          oneOf:
+            - $ref: '#/components/schemas/HarmonizationRun'
+            - type: 'null'
+        factors:
+          type: array
+          items: { $ref: '#/components/schemas/HarmonizationFactor' }
+        validation:
+          type: array
+          items: { $ref: '#/components/schemas/HarmonizationValidationYear' }
+    AnomalyLevel:
+      type: string
+      enum: [very_low, low, normal, high, very_high]
+      description: '≤ −1 very_low · ≤ −0.5 low · ≤ 0.5 normal · ≤ 1 high · > 1 very_high'
+    HarmonizedMonth:
+      type: object
+      required: [month, modis, viirs, harmonized, source, complete, median, p25, p75, anomaly, level]
+      properties:
+        month: { type: string, pattern: '^\d{4}-\d{2}$' }
+        modis: { type: [number, 'null'], description: Celdas-día MODIS Aqua }
+        viirs: { type: [number, 'null'], description: Celdas-día del VIIRS de referencia }
+        harmonized: { type: [number, 'null'], description: Equivalente MODIS }
+        source: { type: string, enum: [modis, viirs_factor] }
+        complete: { type: boolean }
+        median: { type: [number, 'null'], description: Mediana del mes en los años de referencia }
+        p25: { type: [number, 'null'] }
+        p75: { type: [number, 'null'] }
+        anomaly: { type: [number, 'null'] }
+        level:
+          oneOf:
+            - $ref: '#/components/schemas/AnomalyLevel'
+            - type: 'null'
+    HarmonizedSeries:
+      type: object
+      required: [run, items]
+      properties:
+        run:
+          oneOf:
+            - $ref: '#/components/schemas/HarmonizationRun'
+            - type: 'null'
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/HarmonizedMonth' }
 
     # ---------- Burning Activity Stats
     NewBurningActivityStat:

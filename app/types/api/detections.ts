@@ -33,4 +33,6 @@ export interface DetectionQuery {
 export interface ImportDetectionsCsvQuery {
   instrument?: string
   skip_invalid?: boolean
+  /** Recompute the harmonized series when rows change (default true). */
+  harmonize?: boolean
 }
