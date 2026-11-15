@@ -1,15 +1,26 @@
+/** Anomaly severity returned by the API (`Severity` schema), by score: low ≥ 2, moderate ≥ 3, high ≥ 5, extreme ≥ 8. */
 export enum SeverityEnum {
+  Normal = 'normal',
   Low = 'low',
-  Medium = 'medium',
-  High = 'high'
+  Moderate = 'moderate',
+  High = 'high',
+  Extreme = 'extreme'
 }
 
-/**
- * Inclusive upper bound of the anomaly score (0..100) for each severity level.
- * low: 0-35 · medium: >35-70 · high: >70-100
- */
-export const SEVERITY_SCORE_MAX: Record<SeverityEnum, number> = {
-  [SeverityEnum.Low]: 35,
-  [SeverityEnum.Medium]: 70,
-  [SeverityEnum.High]: 100
+/** Severities accepted by the `severity` filter of `/stats/anomalies` (`normal` is not accepted). */
+export const FILTERABLE_SEVERITIES = [
+  SeverityEnum.Low,
+  SeverityEnum.Moderate,
+  SeverityEnum.High,
+  SeverityEnum.Extreme
+] as const
+
+export type FilterableSeverity = typeof FILTERABLE_SEVERITIES[number]
+
+/** Minimum score of each listed severity, as defined by the API contract (`Severity` schema). */
+export const SEVERITY_MIN_SCORE: Record<FilterableSeverity, number> = {
+  [SeverityEnum.Low]: 2,
+  [SeverityEnum.Moderate]: 3,
+  [SeverityEnum.High]: 5,
+  [SeverityEnum.Extreme]: 8
 }

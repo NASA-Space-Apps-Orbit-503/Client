@@ -59,5 +59,131 @@
       "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
       "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país."
     }
+  },
+  "severity": {
+    "normal": "Normal",
+    "low": "Baja",
+    "moderate": "Moderada",
+    "high": "Alta",
+    "extreme": "Extrema"
+  },
+  "anomalies": {
+    "title": "Anomalías",
+    "description": "Días y celdas donde la actividad de quema detectada se aparta de la línea base histórica del mismo mes.",
+    "map": {
+      "title": "Área de interés",
+      "description": "Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros. Sin radio, se usan {radius} km.",
+      "markerSize": "Tamaño del marcador: {size} px",
+      "markerSizeAria": "Tamaño de los marcadores de anomalías",
+      "legend": "Leyenda de severidad",
+      "pageNote": "No hay anomalías en esta página de la tabla | Se muestra la anomalía de la página actual de la tabla. Haz clic en un marcador para ver el detalle. | Se muestran las {count} anomalías de la página actual de la tabla. Haz clic en un marcador para ver el detalle."
+    },
+    "minScore": {
+      "label": "Puntaje mínimo",
+      "hint": "Por defecto 2"
+    },
+    "severity": {
+      "label": "Severidad",
+      "placeholder": "Todas las severidades"
+    },
+    "results": "Sin anomalías | 1 anomalía | {count} anomalías",
+    "pageSize": "Filas por página",
+    "sortBy": "Ordenar por {column}",
+    "cellSize": "Celda {size}°",
+    "ratio": "×{ratio} lo esperado",
+    "columns": {
+      "date": "Fecha",
+      "location": "Ubicación",
+      "score": "Puntaje",
+      "observed": "Observado",
+      "expected": "Esperado",
+      "severity": "Severidad"
+    },
+    "empty": {
+      "title": "No se encontraron anomalías",
+      "description": "Amplía el rango de fechas o el área, reduce el puntaje mínimo o quita el filtro de severidad."
+    },
+    "error": {
+      "title": "No se pudieron cargar las anomalías",
+      "retry": "Reintentar"
+    },
+    "csv": {
+      "download": "Descargar CSV",
+      "disabledEmpty": "No hay anomalías para exportar",
+      "progress": "Exportando {done} de {total} filas…",
+      "cancel": "Cancelar",
+      "confirmTitle": "Exportación grande",
+      "confirmDescription": "Los filtros actuales coinciden con {count} anomalías, más de {limit}. La descarga puede tardar. ¿Continuar?",
+      "confirm": "Descargar de todos modos",
+      "successTitle": "CSV descargado",
+      "successDescription": "Sin filas | 1 fila exportada | {count} filas exportadas",
+      "emptyTitle": "No hay anomalías para exportar",
+      "cancelledTitle": "Exportación cancelada",
+      "errorTitle": "La exportación falló. Inténtalo de nuevo.",
+      "columns": {
+        "id": "ID",
+        "date": "Fecha",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "cellDeg": "Tamaño de celda (grados)",
+        "observed": "Detecciones observadas",
+        "expected": "Detecciones esperadas",
+        "ratio": "Razón observado/esperado",
+        "score": "Puntaje de anomalía",
+        "severity": "Severidad",
+        "maxFrp": "FRP máximo (MW)",
+        "baselineYears": "Años de referencia"
+      }
+    },
+    "apply": {
+      "button": "Filtrar",
+      "pending": "Los filtros cambiaron. Presiona Filtrar para actualizar los resultados.",
+      "coordinatesError": "Ingresa latitud y longitud, o deja ambas vacías.",
+      "promptTitle": "Define tus filtros y presiona Filtrar",
+      "promptDescription": "Los resultados, los marcadores del mapa y la exportación CSV usan los filtros aplicados con el botón Filtrar."
+    },
+    "charts": {
+      "none": "Ninguno",
+      "yearSelect": "Año",
+      "allYears": "Todos los años",
+      "month": "Mes",
+      "year": "Año",
+      "anomalies": "Anomalías",
+      "count": "Sin anomalías | 1 anomalía | {count} anomalías",
+      "yearTotal": "Total del año: sin anomalías | Total del año: 1 anomalía | Total del año: {count} anomalías",
+      "quarter": "T{quarter} ({from}–{to})",
+      "loading": "Cargando datos de los gráficos: {done} de {total} anomalías…",
+      "confirmTitle": "Resultado grande",
+      "confirmDescription": "Los filtros aplicados coinciden con {count} anomalías, más de {limit}. Cargarlas todas para los gráficos puede tardar.",
+      "confirm": "Cargar gráficos de todos modos",
+      "error": "No se pudieron cargar los datos de los gráficos",
+      "emptyTitle": "No hay anomalías para graficar",
+      "basis": "Gráficos sin anomalías | Gráficos basados en 1 anomalía que coincide con los filtros aplicados. | Gráficos basados en {count} anomalías que coinciden con los filtros aplicados.",
+      "line": {
+        "title": "Anomalías por mes",
+        "descriptionAll": "Todos los años combinados. Selecciona un año para ver solo sus meses.",
+        "descriptionYear": "Meses de {year}.",
+        "ariaLabel": "Gráfico de líneas de anomalías por mes"
+      },
+      "bar": {
+        "title": "Anomalías por año, por mes",
+        "description": "Cada barra es un año; los segmentos son meses, enero en la base. Los colores agrupan los meses por trimestre.",
+        "legend": "Colores por trimestre",
+        "ariaLabel": "Gráfico de barras apiladas de anomalías por año, apiladas por mes"
+      },
+      "scatter": {
+        "title": "Puntaje de anomalía en el tiempo",
+        "description": "Cada punto es una anomalía, con color y tamaño según su severidad. Las líneas punteadas marcan dónde empieza cada severidad. Desplázate o arrastra el control para hacer zoom.",
+        "legend": "Severidad (color y tamaño)",
+        "ariaLabel": "Gráfico de dispersión del puntaje de anomalía por fecha"
+      },
+      "heatmap": {
+        "title": "Anomalías por año y mes",
+        "description": "Cada celda es un mes de un año; las celdas más oscuras tienen más anomalías. Pasa el cursor sobre una celda para ver su conteo exacto.",
+        "legend": "Anomalías por mes",
+        "range": "{from}–{to}",
+        "ariaLabel": "Mapa de calor de anomalías por año y mes"
+      }
+    }
   }
 }
