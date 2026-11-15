@@ -18,6 +18,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
       class="min-w-0 sm:col-span-2 lg:flex-1"
+      size="sm"
     >
       <UInputDate
         v-model="dateRange"
@@ -29,6 +30,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
       :label="t('filters.latitude.label')"
       :placeholder="t('filters.latitude.placeholder')"
       class="min-w-0"
+      size="sm"
     >
       <UInputNumber
         v-model="latitude"
@@ -44,6 +46,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
       :label="t('filters.longitude.label')"
       :placeholder="t('filters.longitude.placeholder')"
       class="min-w-0"
+      size="sm"
     >
       <UInputNumber
         v-model="longitude"
@@ -55,7 +58,10 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         class="w-full"
       />
     </UFormField>
-    <UFormField :label="t('filters.radiusKm.label')">
+    <UFormField
+      :label="t('filters.radiusKm.label')"
+      size="sm"
+    >
       <UInputNumber
         v-model="radiusKm"
         :min="0.001"
@@ -69,6 +75,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
     <UFormField
       :label="t('filters.instruments.label')"
       :placeholder="t('filters.instruments.placeholder')"
+      size="sm"
       class="min-w-0 sm:col-span-2 lg:min-w-48 lg:flex-1"
     >
       <USelectMenu

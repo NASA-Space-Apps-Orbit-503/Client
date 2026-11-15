@@ -42,9 +42,6 @@ const items = ref<NavigationMenuItem[]>([
           :locales="[en, es]"
           @update:model-value="$i18n.setLocale($event as Parameters<typeof $i18n.setLocale>[0])"
         />
-        <UBadge class="hidden sm:inline-flex">
-          Demo. Not connected to a live feed
-        </UBadge>
       </template>
       <template #body>
         <UNavigationMenu
