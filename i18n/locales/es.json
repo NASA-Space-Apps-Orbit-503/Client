@@ -11,7 +11,7 @@
     "optional": "Opcional",
     "pointOnly": "Sin radio, Aplicar busca solo en la celda de 0,01° que contiene este punto (aproximadamente 1 km por lado).",
     "clear": "Limpiar filtros",
-    "cleared": "Búsqueda borrada. Selecciona filtros o un punto y pulsa Aplicar.",
+    "cleared": "Búsqueda borrada. Selecciona filtros o un punto y pulsa filtrar.",
     "apply": "Aplicar",
     "errors": {
       "dateRange": "Selecciona ambas fechas; la fecha final debe ser igual o posterior a la inicial.",

@@ -11,7 +11,7 @@
     "optional": "Optional",
     "pointOnly": "Without a radius, Apply searches only the 0.01° cell containing this point (approximately 1 km per side).",
     "clear": "Clear filters",
-    "cleared": "Search cleared. Select filters or a point, then Apply.",
+    "cleared": "Search cleared. Select filters or a point and apply.",
     "apply": "Apply",
     "errors": {
       "dateRange": "Select both dates, with the end date on or after the start date.",
