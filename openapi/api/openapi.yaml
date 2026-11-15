@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: api-nasa
-  version: 4.3.0
+  version: 5.0.0
   description: |
     API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
 
@@ -21,17 +21,17 @@ info:
     - `polygon` = geometría GeoJSON (`Polygon` o `MultiPolygon`) codificada en la URL.
       Requiere la extensión spatial en el servidor; si no está, responde 501.
 
-    **Filtros de tiempo** (búsqueda, CSV, rebuild de estadísticas y `/stats/*`). Se combinan con AND:
-    - `from` / `to`: rango inclusivo. `date`: un día exacto.
-    - `year`, `month`, `day`: uno o varios valores separados por coma (`month=3,4`).
-    - `/stats/harmonized` es mensual: acepta `from`, `to`, `year` y `month`.
-    - `/stats/anomalies/{id}` los ignora: la fecha va en el id.
+    **Rango de fechas** (búsqueda, CSV, rebuild y lista de estadísticas, `/stats/*`):
+    - `startDate` y `endDate` (YYYY-MM-DD), rango inclusivo. **Se envían las dos juntas o ninguna**:
+      con una sola, o con `startDate` posterior a `endDate`, responde 400. Sin fechas, todo el histórico.
+    - En `/stats/harmonized` (mensual) se toma el mes de cada fecha.
+    - `/stats/anomalies/{id}` no las acepta: la fecha va en el id.
+    - Los filtros viejos `from`, `to`, `date`, `year`, `month` y `day` responden 400.
 
     **Sintaxis `filter[...]`** (estilo spatie/laravel-query-builder): cada filtro también se
-    acepta como `filter[nombre]=valor`, por ejemplo `filter[month]=3&filter[severity]=high`.
+    acepta como `filter[nombre]=valor`, por ejemplo `filter[startDate]=2024-03-01&filter[severity]=high`.
     Un `filter[...]` que no existe responde 400 con la lista de filtros permitidos:
-    `bbox`, `lat`, `lon`, `radius_km`, `polygon`, `from`, `to`, `date`, `year`, `month`, `day`,
-    `instrument`, `satellite`, `min_confidence`, `daynight`, `min_score`, `severity`.
+    `bbox`, `lat`, `lon`, `radius_km`, `polygon`, `startDate`, `endDate`, `instrument`, `satellite`, `min_confidence`, `daynight`, `min_score`, `severity`.
 
     **Armonización por celdas** (`metric`, en `/stats/calendar`, `/stats/climatology`, `/stats/summary` y rebuild)
     - `cells` (por defecto): cuenta celdas de una cuadrícula común (`cell_deg`, 0.01° ≈ 1.1 km)
@@ -165,12 +165,8 @@ paths:
         - $ref: '#/components/parameters/Lon'
         - $ref: '#/components/parameters/RadiusKm'
         - $ref: '#/components/parameters/Polygon'
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -324,9 +320,8 @@ paths:
       operationId: listBurningActivityStats
       summary: Listar las estadísticas diarias guardadas
       parameters:
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/Limit'
         - $ref: '#/components/parameters/Offset'
       responses:
@@ -335,6 +330,7 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/BurningActivityStatPage' }
+        '400': { $ref: '#/components/responses/BadRequest' }
         '401': { $ref: '#/components/responses/Unauthorized' }
     post:
       tags: [Burning Activity Stats]
@@ -392,12 +388,8 @@ paths:
         - $ref: '#/components/parameters/Lon'
         - $ref: '#/components/parameters/RadiusKm'
         - $ref: '#/components/parameters/Polygon'
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -438,7 +430,7 @@ paths:
       operationId: getCalendar
       summary: Calendario de actividad (serie por mes o por día, con ceros)
       description: |
-        Una fila por mes (o por día) entre `from` (o el primer dato) y `to` (o el último dato),
+        Una fila por mes (o por día) entre `startDate` y `endDate` (o entre el primer y el último dato),
         incluidos los periodos sin actividad con `count = 0`. Base de la matriz años × meses.
       parameters:
         - $ref: '#/components/parameters/Bbox'
@@ -446,12 +438,8 @@ paths:
         - $ref: '#/components/parameters/Lon'
         - $ref: '#/components/parameters/RadiusKm'
         - $ref: '#/components/parameters/Polygon'
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -483,12 +471,8 @@ paths:
         - $ref: '#/components/parameters/Lon'
         - $ref: '#/components/parameters/RadiusKm'
         - $ref: '#/components/parameters/Polygon'
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -519,7 +503,7 @@ paths:
         transformación de Anscombe; se lee como un z-score). `severity`: `low` ≥ 2,
         `moderate` ≥ 3, `high` ≥ 5, `extreme` ≥ 8; por debajo de 2, `normal`.
 
-        Los filtros de tiempo eligen qué días se reportan; la referencia histórica siempre
+        `startDate` y `endDate` eligen qué días se reportan; la referencia histórica siempre
         usa todos los años anteriores.
       parameters:
         - $ref: '#/components/parameters/Bbox'
@@ -527,12 +511,8 @@ paths:
         - $ref: '#/components/parameters/Lon'
         - $ref: '#/components/parameters/RadiusKm'
         - $ref: '#/components/parameters/Polygon'
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -569,8 +549,8 @@ paths:
       summary: Obtener una anomalía por id
       description: |
         Recalcula la anomalía de esa celda y día. Se aplican los filtros de área y atributos de
-        la query (deben ser los mismos que en el listado para obtener el mismo valor); los
-        filtros de tiempo se ignoran porque la fecha va en el id.
+        la query (deben ser los mismos que en el listado para obtener el mismo valor). No acepta
+        `startDate` ni `endDate`: la fecha va en el id.
       parameters:
         - name: id
           in: path
@@ -609,12 +589,8 @@ paths:
         - $ref: '#/components/parameters/Lon'
         - $ref: '#/components/parameters/RadiusKm'
         - $ref: '#/components/parameters/Polygon'
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Date'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
-        - $ref: '#/components/parameters/Day'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - $ref: '#/components/parameters/InstrumentFilter'
         - $ref: '#/components/parameters/SatelliteFilter'
         - $ref: '#/components/parameters/MinConfidence'
@@ -645,10 +621,8 @@ paths:
         Una fila por mes, en celdas-día (celdas de `cell_deg` con fuego por día, sumadas en el mes).
         `harmonized` está en equivalente MODIS. `anomaly` y `level` son null en meses incompletos.
       parameters:
-        - $ref: '#/components/parameters/From'
-        - $ref: '#/components/parameters/To'
-        - $ref: '#/components/parameters/Year'
-        - $ref: '#/components/parameters/Month'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
         - name: complete
           in: query
           description: Solo meses completos
@@ -864,36 +838,16 @@ components:
       description: Geometría GeoJSON (Polygon o MultiPolygon) codificada en la URL. Requiere spatial en el servidor.
       schema: { type: string }
       example: '{"type":"Polygon","coordinates":[[[-89.4,13.5],[-89.0,13.5],[-89.0,13.9],[-89.4,13.9],[-89.4,13.5]]]}'
-    From:
-      name: from
+    StartDate:
+      name: startDate
       in: query
-      description: Fecha inicial inclusiva
+      description: Fecha inicial inclusiva (YYYY-MM-DD). Obligatoria si se envía `endDate` (también `filter[startDate]`)
       schema: { type: string, format: date }
-    To:
-      name: to
+    EndDate:
+      name: endDate
       in: query
-      description: Fecha final inclusiva
+      description: Fecha final inclusiva (YYYY-MM-DD). Obligatoria si se envía `startDate` (también `filter[endDate]`)
       schema: { type: string, format: date }
-    Date:
-      name: date
-      in: query
-      description: Un día exacto (también `filter[date]`)
-      schema: { type: string, format: date }
-    Year:
-      name: year
-      in: query
-      description: 'Uno o varios años (1900..2100) separados por coma (también `filter[year]`). Ej.: 2023,2024'
-      schema: { type: string, pattern: '^\s*\d{4}(\s*,\s*\d{4})*\s*$' }
-    Month:
-      name: month
-      in: query
-      description: 'Uno o varios meses (1..12) separados por coma (también `filter[month]`). Ej.: 3,4'
-      schema: { type: string, pattern: '^\s*\d{1,2}(\s*,\s*\d{1,2})*\s*$' }
-    Day:
-      name: day
-      in: query
-      description: 'Uno o varios días del mes (1..31) separados por coma (también `filter[day]`). Ej.: 1,15'
-      schema: { type: string, pattern: '^\s*\d{1,2}(\s*,\s*\d{1,2})*\s*$' }
     InstrumentFilter:
       name: instrument
       in: query
@@ -1324,8 +1278,8 @@ components:
           required: [granularity, from, to, items]
           properties:
             granularity: { type: string, enum: [month, day] }
-            from: { type: [string, 'null'], format: date }
-            to: { type: [string, 'null'], format: date }
+            from: { type: [string, 'null'], format: date, description: '`startDate` aplicado (null sin rango)' }
+            to: { type: [string, 'null'], format: date, description: '`endDate` aplicado (null sin rango)' }
             items:
               type: array
               items: { $ref: '#/components/schemas/CalendarPoint' }
@@ -1349,8 +1303,8 @@ components:
         - type: object
           required: [from, to, months]
           properties:
-            from: { type: [string, 'null'], format: date }
-            to: { type: [string, 'null'], format: date }
+            from: { type: [string, 'null'], format: date, description: '`startDate` aplicado (null sin rango)' }
+            to: { type: [string, 'null'], format: date, description: '`endDate` aplicado (null sin rango)' }
             months:
               type: array
               items: { $ref: '#/components/schemas/MonthClimatology' }

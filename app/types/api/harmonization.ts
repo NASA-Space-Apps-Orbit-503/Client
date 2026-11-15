@@ -1,4 +1,5 @@
 import type { components } from '#open-fetch-schemas/api'
+import type { DateRangeQuery } from '~/types/api/date-range'
 
 export type HarmonizationRun = components['schemas']['HarmonizationRun']
 export type HarmonizationParams = components['schemas']['HarmonizationParams']
@@ -10,13 +11,8 @@ export type HarmonizedMonth = components['schemas']['HarmonizedMonth']
 export type HarmonizedSeries = components['schemas']['HarmonizedSeries']
 export type HarmonizedAnomalyLevel = components['schemas']['HarmonizedAnomalyLevel']
 
-export interface HarmonizedSeriesQuery {
-  from?: string
-  to?: string
-  /** One or more comma-separated years, e.g. "2023,2024". */
-  year?: string
-  /** One or more comma-separated months (1-12), e.g. "3,4". */
-  month?: string
+/** Dates select whole months: the month of `startDate` through the month of `endDate`. */
+export type HarmonizedSeriesQuery = DateRangeQuery & {
   /** Only complete months. */
   complete?: boolean
 }
