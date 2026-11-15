@@ -69,5 +69,83 @@
       "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
       "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país."
     }
+  },
+  "historicalTrends": {
+    "title": "Tendencias históricas",
+    "description": "Compara la actividad regional de MODIS, VIIRS y Armonizado a lo largo del tiempo con las fechas seleccionadas. La tabla y las barras usan todos los filtros aplicados.",
+    "granularity": {
+      "label": "Periodo",
+      "year": "Año",
+      "month": "Mes"
+    },
+    "compare": {
+      "years": "Años a comparar",
+      "yearsHint": "Hasta {max}",
+      "yearsPlaceholder": "Selecciona años",
+      "months": "Meses a comparar",
+      "monthsPlaceholder": "Selecciona meses",
+      "empty": "Selecciona al menos un año (y un mes) para comparar."
+    },
+    "metric": {
+      "cells": "Celdas activas",
+      "detections": "Detecciones"
+    },
+    "table": {
+      "title": "Actividad agregada por periodo",
+      "description": "Total por periodo y cambio respecto al periodo anterior. Haz clic en el encabezado de una columna para ordenar.",
+      "period": "Periodo",
+      "change": "Cambio",
+      "changePct": "Cambio %",
+      "sortBy": "Ordenar por {column}",
+      "firstPeriod": "Primer periodo: no hay un periodo anterior con el cual comparar",
+      "fromZero": "Nueva actividad",
+      "fromZeroHint": "El periodo anterior tuvo 0, así que el cambio % no está definido"
+    },
+    "charts": {
+      "line": {
+        "title": "Actividad regional a lo largo del tiempo",
+        "description": "Compara MODIS, VIIRS y Armonizado para los años y meses seleccionados.",
+        "ariaLabel": "Gráfico de líneas de {metric} en {periods} periodos",
+        "cellDays": "Celdas-día",
+        "harmonized": "Armonizado",
+        "harmonizedScope": "Comparación regional en celdas-día: MODIS Aqua, VIIRS de referencia y actividad armonizada equivalente a MODIS. Solo el rango de fechas aplicado afecta esta gráfica; los filtros de punto, radio, instrumentos y satélites se aplican a la tabla y las barras.",
+        "unsupportedFilters": "La API armonizada no admite filtros de área, satélite o de un solo instrumento. Se muestran los conteos filtrados por sensor sin curva armonizada.",
+        "harmonizedUnavailable": "La comparación regional no está disponible. No se pudieron cargar las tres series."
+      },
+      "bar": {
+        "titleMonthly": "El mismo mes en distintos años",
+        "titleYearly": "Totales año contra año",
+        "descriptionMonthly": "Cada barra es un año; los meses fuera del rango de datos no tienen barra.",
+        "descriptionYearly": "Total de cada año comparado.",
+        "ariaLabelMonthly": "Gráfico de barras de {metric} por mes para los años {years}",
+        "ariaLabelYearly": "Gráfico de barras de {metric} para los años {years}"
+      },
+      "axis": {
+        "year": "Año",
+        "month": "Mes"
+      },
+      "noData": "Sin datos"
+    },
+    "csv": {
+      "filters": "Filtros aplicados",
+      "bounds": "Límites de la celda local",
+      "all": "Todos",
+      "sensorScope": "Los conteos por sensor usan todos los filtros aplicados. Los valores vacíos indican un sensor excluido por el filtro de instrumentos. Las celdas de los sensores pueden coincidir y sus conteos no deben sumarse para reproducir la tabla combinada.",
+      "download": "Descargar CSV",
+      "error": "No se pudo exportar el CSV. Inténtalo de nuevo.",
+      "regionalModis": "MODIS regional",
+      "regionalViirs": "VIIRS regional",
+      "regionalHarmonized": "Armonizado regional",
+      "regionalScope": "Alcance de los datos regionales"
+    },
+    "empty": {
+      "title": "No hay datos de actividad",
+      "description": "No hay periodos para los filtros actuales. Prueba con un rango de fechas más amplio u otra área."
+    },
+    "error": {
+      "title": "No se pudieron cargar las tendencias históricas",
+      "description": "No se pudieron cargar los datos de actividad de quema. Revisa tu conexión e inténtalo de nuevo.",
+      "retry": "Reintentar"
+    }
   }
 }
