@@ -1,8 +1,8 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'green',
-      neutral: 'slate'
+      primary: 'papaya-whip',
+      neutral: 'stone'
     },
 
     pageGrid: {
