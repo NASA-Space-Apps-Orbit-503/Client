@@ -1,62 +1,63 @@
 {
-  "nav": {
-    "explore": "Explorar",
-    "historicalTrends": "Tendencias históricas",
-    "anomalies": "Anomalías",
-    "methodology": "Metodología",
-    "demoBadge": "Demo. Sin conexión a datos en vivo",
-    "language": "Idioma"
+  "header": {
+    "nav": {
+      "explore": "Explorar",
+      "historicalTrends": "Tendencias Históricas",
+      "anomalies": "Anomalías",
+      "methodology": "Metodología"
+    }
   },
   "filters": {
-    "dateRange": "Rango de fechas",
-    "latitude": "Latitud",
-    "longitude": "Longitud",
-    "instruments": "Instrumentos",
-    "instrumentsPlaceholder": "Selecciona instrumentos",
-    "area": "Área",
-    "noArea": "Todo el conjunto de datos",
-    "clearArea": "Quitar área",
-    "radius": "Radio (km)",
-    "radiusHint": "Se aplica cuando hay latitud y longitud"
-  },
-  "areaMap": {
-    "title": "Área de interés",
-    "description": "Dibuja un rectángulo para limitar los resultados a un área. Haz clic en una esquina y luego en la esquina opuesta.",
-    "draw": "Dibujar área",
-    "cancel": "Cancelar",
-    "clear": "Quitar área",
-    "drawingHint": "Haz clic en la primera esquina",
-    "drawingHintSecond": "Haz clic en la esquina opuesta"
-  },
-  "severity": {
-    "low": "Baja",
-    "medium": "Media",
-    "high": "Alta"
-  },
-  "anomalies": {
-    "title": "Anomalías",
-    "description": "Días y celdas donde la actividad de quema se aparta de la línea base esperada.",
-    "minScore": "Puntaje mínimo de anomalía",
-    "minScoreHelp": "0 a 100",
-    "results": "Sin resultados | 1 anomalía | {count} anomalías",
-    "pageSize": "Filas por página",
-    "columns": {
-      "date": "Fecha",
-      "location": "Ubicación",
-      "score": "Puntaje de anomalía",
-      "observed": "Observado",
-      "expected": "Esperado",
-      "severity": "Severidad"
+    "dateRange": {
+      "label": "Rango de fechas",
+      "startDate": "Fecha de inicio",
+      "endDate": "Fecha de fin"
     },
-    "unknownRegion": "Región sin nombre",
-    "sortBy": "Ordenar por {column}",
-    "empty": {
-      "title": "No se encontraron anomalías",
-      "description": "Amplía el rango de fechas o el área, o reduce el puntaje mínimo."
+    "latitude": {
+      "label": "Latitud",
+      "placeholder": "Ingresa la latitud"
     },
-    "error": {
-      "title": "No se pudieron cargar las anomalías",
-      "retry": "Reintentar"
+    "longitude": {
+      "label": "Longitud",
+      "placeholder": "Ingresa la longitud"
+    },
+    "instruments": {
+      "label": "Instrumentos",
+      "placeholder": "Selecciona instrumentos"
+    },
+    "radiusKm": {
+      "label": "Radio (km)"
+    },
+    "satellites": {
+      "label": "Satélites",
+      "placeholder": "Selecciona satélites"
+    }
+  },
+  "explore": {
+    "calendar": {
+      "title": "Calendario de actividad de quema",
+      "error": "No se puede cargar el calendario de actividad de quema"
+    },
+    "map": {
+      "title": "Mapa de actividad de quema",
+      "description": "Explora la actividad de quema a través del mundo. El mapa muestra las ubicaciones de los eventos de quema basados en datos de satélite.",
+      "error": "No se puede cargar el mapa de actividad de quema"
+    }
+  },
+  "map": {
+    "ariaLabel": "Mapa de El Salvador",
+    "loading": "Cargando mapa…",
+    "area": {
+      "title": "Área de interés",
+      "none": "No hay un área seleccionada. Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros.",
+      "point": "Punto {lat}, {lon} · dibuja un círculo o ingresa un radio",
+      "circle": "Círculo · centro {lat}, {lon} · radio {radius} km",
+      "clear": "Quitar área",
+      "outsideTitle": "Área fuera de El Salvador",
+      "outsideDescription": "El círculo debe quedar completamente dentro de El Salvador. Dibújalo de nuevo dentro del país.",
+      "pointOutsideTitle": "Coordenadas fuera de El Salvador",
+      "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
+      "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país."
     }
   }
 }

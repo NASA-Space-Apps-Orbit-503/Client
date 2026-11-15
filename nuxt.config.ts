@@ -13,11 +13,14 @@ export default defineNuxtConfig({
     enabled: true
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', 'leaflet-draw/dist/leaflet.draw.css'],
 
   runtimeConfig: {
     public: {
-      useMocks: process.env.USE_MOCKS === 'true' || process.env.NUXT_PUBLIC_USE_MOCKS === 'true'
+      useMocks: process.env.USE_MOCKS === 'true' || process.env.NUXT_PUBLIC_USE_MOCKS === 'true',
+      // Base map tiles. Set with NUXT_PUBLIC_MAP_TILE_URL and NUXT_PUBLIC_MAP_ATTRIBUTION.
+      mapTileUrl: '',
+      mapAttribution: ''
     }
   },
 
@@ -41,16 +44,10 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: 'en',
-    strategy: 'no_prefix',
     locales: [
-      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
-      { code: 'es', language: 'es-ES', name: 'Español', file: 'es.json' }
-    ],
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_locale',
-      redirectOn: 'root'
-    }
+      { code: 'en', name: 'English', file: 'en.json' },
+      { code: 'es', name: 'Spanish', file: 'es.json' }
+    ]
   },
 
   openFetch: {

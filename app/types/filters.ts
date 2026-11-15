@@ -11,8 +11,9 @@ export type Bbox = [number, number, number, number]
 export interface Filters {
   dateRange: DateRangeInput
   instruments: string[]
+  satellites: string[]
   latitude: number | null
   longitude: number | null
-  radiusKm: number
-  bbox: Bbox | null
+  /** Radius of the circle drawn on the map. Only applied together with `latitude`/`longitude`. */
+  radiusKm: number | null
 }

@@ -1,6 +1,8 @@
 export enum AnomalySortEnum {
-  Date = 'date',
-  Score = 'score',
-  Observed = 'observed',
-  Expected = 'expected'
+  ScoreAsc = 'score',
+  ScoreDesc = '-score',
+  DateAsc = 'date',
+  DateDesc = '-date',
+  ObservedAsc = 'observed',
+  ObservedDesc = '-observed'
 }

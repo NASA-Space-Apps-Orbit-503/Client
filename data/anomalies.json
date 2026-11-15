@@ -1,0 +1,56 @@
+{
+  "cell_deg": 0.1,
+  "total": 3,
+  "limit": 100,
+  "offset": 0,
+  "items": [
+    {
+      "id": "2024-03-14_0.1_136_-893",
+      "date": 1710374400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 37,
+      "expected": 1.8,
+      "ratio": 20.56,
+      "score": 9.28,
+      "severity": "extreme",
+      "max_frp": 88.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-21_0.1_138_-886",
+      "date": 1710979200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 0.9,
+      "ratio": 13.33,
+      "score": 4.78,
+      "severity": "moderate",
+      "max_frp": 41.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-02_0.1_133_-878",
+      "date": 1709337600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 0,
+      "ratio": null,
+      "score": 2.45,
+      "severity": "low",
+      "max_frp": null,
+      "baseline_years": 5
+    }
+  ]
+}

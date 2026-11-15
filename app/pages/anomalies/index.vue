@@ -23,11 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <UPage class="px-4 sm:px-8">
-    <UPageHeader
-      :title="t('anomalies.title')"
-      :description="t('anomalies.description')"
-    />
+  <UPage class="px-4 sm:px-6 lg:px-8">
     <UPageBody>
       <UPageGrid>
         <!-- Global filters -->

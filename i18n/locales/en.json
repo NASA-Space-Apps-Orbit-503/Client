@@ -1,62 +1,62 @@
 {
-  "nav": {
-    "explore": "Explore",
-    "historicalTrends": "Historical Trends",
-    "anomalies": "Anomalies",
-    "methodology": "Methodology",
-    "demoBadge": "Demo. Not connected to a live feed",
-    "language": "Language"
+  "header": {
+    "nav": {
+      "explore": "Explore",
+      "historicalTrends": "Historical Trends",
+      "anomalies": "Anomalies",
+      "methodology": "Methodology"
+    }
   },
   "filters": {
-    "dateRange": "Date range",
-    "latitude": "Latitude",
-    "longitude": "Longitude",
-    "instruments": "Instruments",
-    "instrumentsPlaceholder": "Select instruments",
-    "area": "Area",
-    "noArea": "Whole dataset",
-    "clearArea": "Clear area",
-    "radius": "Radius (km)",
-    "radiusHint": "Applies when latitude and longitude are set"
-  },
-  "areaMap": {
-    "title": "Area of interest",
-    "description": "Draw a rectangle to limit results to an area. Click one corner, then the opposite corner.",
-    "draw": "Draw area",
-    "cancel": "Cancel",
-    "clear": "Clear area",
-    "drawingHint": "Click the first corner",
-    "drawingHintSecond": "Click the opposite corner"
-  },
-  "severity": {
-    "low": "Low",
-    "medium": "Medium",
-    "high": "High"
-  },
-  "anomalies": {
-    "title": "Anomalies",
-    "description": "Days and cells where burning activity departs from the expected baseline.",
-    "minScore": "Minimum anomaly score",
-    "minScoreHelp": "0 to 100",
-    "results": "No results | 1 anomaly | {count} anomalies",
-    "pageSize": "Rows per page",
-    "columns": {
-      "date": "Date",
-      "location": "Location",
-      "score": "Anomaly score",
-      "observed": "Observed",
-      "expected": "Expected",
-      "severity": "Severity"
+    "dateRange": {
+      "label": "Date range",
+      "placeholder": "Select date range"
     },
-    "unknownRegion": "Unnamed region",
-    "sortBy": "Sort by {column}",
-    "empty": {
-      "title": "No anomalies found",
-      "description": "Try widening the date range, the area or lowering the minimum score."
+    "latitude": {
+      "label": "Latitude",
+      "placeholder": "Enter latitude"
     },
-    "error": {
-      "title": "Unable to load anomalies",
-      "retry": "Retry"
+    "longitude": {
+      "label": "Longitude",
+      "placeholder": "Enter longitude"
+    },
+    "instruments": {
+      "label": "Instruments",
+      "placeholder": "Select instruments"
+    },
+    "radiusKm": {
+      "label": "Radius (km)"
+    },
+    "satellites": {
+      "label": "Satellites",
+      "placeholder": "Select satellites"
+    }
+  },
+  "explore": {
+    "calendar": {
+      "title": "Burning activity calendar",
+      "error": "Unable to load burning activity calendar"
+    },
+    "map": {
+      "title": "Burning activity map",
+      "description": "Explore the burning activity across the globe. The map shows the locations of burning events based on satellite data.",
+      "error": "Unable to load burning activity map"
+    }
+  },
+  "map": {
+    "ariaLabel": "Map of El Salvador",
+    "loading": "Loading map…",
+    "area": {
+      "title": "Area of interest",
+      "none": "No area selected. Draw a circle on the map or enter latitude and longitude in the filters.",
+      "point": "Point {lat}, {lon} · draw a circle or enter a radius",
+      "circle": "Circle · center {lat}, {lon} · radius {radius} km",
+      "clear": "Clear area",
+      "outsideTitle": "Area outside El Salvador",
+      "outsideDescription": "The circle must be completely inside El Salvador. Draw it again within the country.",
+      "pointOutsideTitle": "Coordinates outside El Salvador",
+      "pointOutsideDescription": "Latitude must be between {south} and {north}, and longitude between {west} and {east}.",
+      "radiusOutsideDescription": "The circle extends beyond El Salvador. Reduce the radius so it stays inside the country."
     }
   }
 }
