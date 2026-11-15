@@ -1,5 +1,5 @@
-import { EL_SALVADOR_BBOX } from '~/constants/el-salvador'
-import type { AreaQuery, CircleArea } from '~/types/area'
+import { EL_SALVADOR_BBOX } from '../constants/el-salvador'
+import type { AreaQuery, CircleArea } from '../types/area'
 
 export const COORDINATE_PRECISION = 6
 export const RADIUS_PRECISION = 3
@@ -40,4 +40,17 @@ export function circleToQuery(circle: CircleArea | null): AreaQuery {
     lon: roundCoordinate(circle.lon),
     radius_km: roundCoordinate(circle.radiusKm, RADIUS_PRECISION)
   }
+}
+
+/** Match the API's default 0.01° grid, using the cell containing the selected point. */
+export function pointCellBounds(lat: number, lon: number) {
+  // Round the scaled value first so decimal boundaries do not fall into the preceding cell.
+  const south = Math.floor(roundCoordinate(lat * 100)) / 100
+  const west = Math.floor(roundCoordinate(lon * 100)) / 100
+  return { west, south, east: roundCoordinate(west + 0.01), north: roundCoordinate(south + 0.01) }
+}
+
+export function pointToQuery(lat: number, lon: number): AreaQuery {
+  const { west, south, east, north } = pointCellBounds(lat, lon)
+  return { bbox: `${west},${south},${east},${north}` }
 }
