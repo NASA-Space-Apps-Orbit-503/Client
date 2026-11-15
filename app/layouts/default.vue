@@ -30,6 +30,11 @@ const items = ref<NavigationMenuItem[]>([
 <template>
   <UApp>
     <UHeader>
+      <template #top>
+        <FireTriangleTexture
+          :opacity="0.4"
+        />
+      </template>
       <template #left>
         <UNavigationMenu
           :items="items"
