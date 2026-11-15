@@ -111,6 +111,11 @@ defineExpose({ map })
         v-if="map"
         name="draw-controls"
       />
+      <!-- Detecction Layer -->
+      <slot
+        v-if="map"
+        name="detection-layer"
+      />
       <!-- Filters -->
       <div
         v-if="map && hasFilters"

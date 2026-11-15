@@ -73,13 +73,10 @@ function scrollToVisibleSection() {
         :aria-label="isSecondSectionVisible
           ? t('explore.navigation.toMap')
           : t('explore.navigation.toSecondSection')"
-        color="secondary"
+        color="neutral"
         variant="solid"
         size="xs"
-        class="fixed z-1100 h-10 w-10 md:h-12 md:w-12 -translate-x-1/2 justify-center cursor-pointer rounded-full"
-        :class="isSecondSectionVisible
-          ? 'left-1/2 top-22 bg-secondary/80'
-          : 'bottom-36 md:bottom-6 left-8.5 md:left-1/2'"
+        class="fixed left-4 top-1/2 z-1100 h-11 w-11 -translate-y-1/2 justify-center rounded-full shadow-lg ring-1 ring-default/50 cursor-pointer"
         @click="scrollToVisibleSection"
       />
       <!-- <InfoCard

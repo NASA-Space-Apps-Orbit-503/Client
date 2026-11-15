@@ -77,6 +77,8 @@
       "pointOutsideTitle": "Coordenadas fuera de El Salvador",
       "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
       "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país.",
+      "hide": "Ocultar información del área",
+      "show": "Mostrar información del área",
       "selectPoint": "Seleccionar un punto",
       "cancelPoint": "Cancelar selección",
       "clickPoint": "Haz clic o toca el mapa para llenar latitud y longitud. Después aplica los filtros."
