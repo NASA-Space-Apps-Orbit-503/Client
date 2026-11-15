@@ -13,14 +13,14 @@ export default defineNuxtConfig({
     enabled: true
   },
 
+  css: ['~/assets/css/main.css', 'leaflet-draw/dist/leaflet.draw.css'],
+  
   // Apache ECharts (`<VChart>`): only the charts/components registered here are bundled.
   echarts: {
     renderer: 'canvas',
     charts: ['LineChart', 'BarChart', 'ScatterChart'],
     components: ['GridComponent', 'TooltipComponent', 'LegendComponent', 'DataZoomComponent', 'MarkLineComponent']
   },
-
-  css: ['~/assets/css/main.css', 'leaflet-draw/dist/leaflet.draw.css'],
 
   runtimeConfig: {
     // Server-only: used by the `/api/**` proxy. Set with NUXT_API_BASE_URL and NUXT_API_KEY.
