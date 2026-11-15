@@ -64,7 +64,7 @@ function scrollToVisibleSection() {
       </section>
       <section
         ref="secondSection"
-        class="h-[calc(100dvh-4rem)] scroll-mt-16"
+        class="h-[calc(100dvh-4rem)] scroll-mt-12"
         :aria-label="t('explore.navigation.secondSection')"
       />
       <UButton
