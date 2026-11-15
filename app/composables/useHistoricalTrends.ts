@@ -145,7 +145,6 @@ export default function useHistoricalTrends() {
       rows: sortedRows.value.map(row => ({ ...row })),
       periods: rows.value.map(row => ({ ...row })),
       lineSeries: lineSeries.value.map(series => ({ ...series, points: series.points.map(point => ({ ...point })) })),
-      scope: `${lineNotice.value}${lineUnavailable.value ? ' ' + t('historicalTrends.charts.line.harmonizedUnavailable') : ''}`,
       filename: trendsCsvFilename(granularity.value, rows.value),
       headers: [
         t('historicalTrends.table.period'), countLabel.value,
@@ -153,20 +152,8 @@ export default function useHistoricalTrends() {
         `MODIS (${countLabel.value})`, `VIIRS (${countLabel.value})`,
         `${t('historicalTrends.csv.regionalModis')} (${lineCountLabel.value})`,
         `${t('historicalTrends.csv.regionalViirs')} (${lineCountLabel.value})`,
-        `${t('historicalTrends.csv.regionalHarmonized')} (${lineCountLabel.value})`,
-        t('historicalTrends.csv.filters'), t('historicalTrends.csv.regionalScope')
-      ],
-      filters: [
-        `${t('filters.dateRange.label')}: ${statsQuery.value.startDate ?? '—'} / ${statsQuery.value.endDate ?? '—'}`,
-        `${t('filters.latitude.label')}: ${statsQuery.value.lat ?? '—'}`,
-        `${t('filters.longitude.label')}: ${statsQuery.value.lon ?? '—'}`,
-        `${t('filters.radiusKm.label')}: ${statsQuery.value.radius_km ?? '—'}`,
-        ...(statsQuery.value.bbox ? [`${t('historicalTrends.csv.bounds')}: ${statsQuery.value.bbox}`] : []),
-        `${t('filters.instruments.label')}: ${statsQuery.value.instrument ?? t('historicalTrends.csv.all')}`,
-        `${t('filters.satellites.label')}: ${statsQuery.value.satellite ?? t('historicalTrends.csv.all')}`,
-        t('historicalTrends.csv.sensorScope'),
-        t('historicalTrends.table.fromZeroHint')
-      ].join(' · ')
+        `${t('historicalTrends.csv.regionalHarmonized')} (${lineCountLabel.value})`
+      ]
     }
     try {
       const selected = snapshot.query.instrument?.split(',') ?? []

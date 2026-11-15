@@ -124,11 +124,12 @@ no production database changes were performed from this client workspace.
 Download CSV / Descargar CSV produces a single UTF-8 BOM CSV with one header and a
 consistent number of columns. CSV has no sheets. Each visible table period includes
 its existing total and changes, independently filtered MODIS/VIIRS counts, and
-explicitly regional MODIS/VIIRS/Harmonized columns with cell-day units. Applied filters
-and the regional date-only scope are included in separate columns.
+explicitly regional MODIS/VIIRS/Harmonized columns with cell-day units. The CSV has nine
+data columns; Applied filters and Regional data scope are excluded. The page still
+explains the regional date-only scope.
 
 Rows keep the table's sorting and the selected month/year granularity. Excluded sensors
 and unavailable regional values stay blank; measured zero stays zero. Harmonization
 fractions retain full precision. All source queries use the applied-filter snapshot.
-Headers and scope text follow EN/ES. Loading and errors are translated. The Excel
+Headers follow EN/ES. Loading and errors are translated. The Excel
 button and dependency have been removed following the CSV-only requirement.

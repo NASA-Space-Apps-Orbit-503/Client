@@ -6,8 +6,6 @@ export interface TrendsCsvInput {
   sensorRows: Array<{ key: string, modis: number | null, viirs: number | null }>
   rows: TrendRow[]
   lineSeries: TrendLineSeries[]
-  filters: string
-  scope: string
   headers: string[]
 }
 
@@ -22,8 +20,6 @@ export function buildTrendsCsv(input: TrendsCsvInput) {
     sensors.get(row.key)?.viirs ?? null,
     regional.get(TrendSeriesEnum.Modis)?.get(row.key) ?? null,
     regional.get(TrendSeriesEnum.Viirs)?.get(row.key) ?? null,
-    regional.get(TrendSeriesEnum.Harmonized)?.get(row.key) ?? null,
-    input.filters,
-    input.scope
+    regional.get(TrendSeriesEnum.Harmonized)?.get(row.key) ?? null
   ]))
 }
