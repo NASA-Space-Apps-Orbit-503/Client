@@ -1,0 +1,6408 @@
+{
+  "cell_deg": 0.1,
+  "total": 400,
+  "limit": 400,
+  "offset": 0,
+  "items": [
+    {
+      "id": "2024-12-07_0.1_135_-891",
+      "date": 1733529600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 46,
+      "expected": 0.26,
+      "ratio": 176.92,
+      "score": 12.03,
+      "severity": "extreme",
+      "max_frp": 63.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-04-30_0.1_136_-881",
+      "date": 1651276800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 46,
+      "expected": 0.58,
+      "ratio": 79.31,
+      "score": 11.67,
+      "severity": "extreme",
+      "max_frp": 14.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-25_0.1_135_-891",
+      "date": 1700870400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 44,
+      "expected": 0.33,
+      "ratio": 133.33,
+      "score": 11.64,
+      "severity": "extreme",
+      "max_frp": 109.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-26_0.1_138_-898",
+      "date": 1693008000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 45,
+      "expected": 0.6,
+      "ratio": 75,
+      "score": 11.5,
+      "severity": "extreme",
+      "max_frp": 48.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-06_0.1_134_-890",
+      "date": 1628208000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 0.23,
+      "ratio": 182.61,
+      "score": 11.46,
+      "severity": "extreme",
+      "max_frp": 10.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-28_0.1_137_-888",
+      "date": 1664323200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 43,
+      "expected": 0.36,
+      "ratio": 119.44,
+      "score": 11.46,
+      "severity": "extreme",
+      "max_frp": 44.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-24_0.1_132_-883",
+      "date": 1682294400000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 41,
+      "expected": 0.28,
+      "ratio": 146.43,
+      "score": 11.25,
+      "severity": "extreme",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-13_0.1_134_-883",
+      "date": 1655078400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 0.42,
+      "ratio": 100,
+      "score": 11.24,
+      "severity": "extreme",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-22_0.1_141_-897",
+      "date": 1695340800000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 0.61,
+      "ratio": 68.85,
+      "score": 11.03,
+      "severity": "extreme",
+      "max_frp": 87.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-07_0.1_137_-881",
+      "date": 1628294400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 43,
+      "expected": 0.84,
+      "ratio": 51.19,
+      "score": 10.97,
+      "severity": "extreme",
+      "max_frp": 75,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-03-10_0.1_136_-891",
+      "date": 1678406400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 46,
+      "expected": 1.43,
+      "ratio": 32.17,
+      "score": 10.93,
+      "severity": "extreme",
+      "max_frp": 20.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-09_0.1_132_-879",
+      "date": 1641686400000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 47,
+      "expected": 1.76,
+      "ratio": 26.7,
+      "score": 10.84,
+      "severity": "extreme",
+      "max_frp": 32.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-03-23_0.1_138_-881",
+      "date": 1616457600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 0.89,
+      "ratio": 47.19,
+      "score": 10.77,
+      "severity": "extreme",
+      "max_frp": 115.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-29_0.1_135_-891",
+      "date": 1638144000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 46,
+      "expected": 1.75,
+      "ratio": 26.29,
+      "score": 10.7,
+      "severity": "extreme",
+      "max_frp": 77.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-23_0.1_134_-883",
+      "date": 1645574400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 45,
+      "expected": 1.55,
+      "ratio": 29.03,
+      "score": 10.7,
+      "severity": "extreme",
+      "max_frp": 30.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-30_0.1_136_-882",
+      "date": 1627603200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 40,
+      "expected": 0.69,
+      "ratio": 57.97,
+      "score": 10.64,
+      "severity": "extreme",
+      "max_frp": 33.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-17_0.1_139_-881",
+      "date": 1613520000000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 40,
+      "expected": 0.78,
+      "ratio": 51.28,
+      "score": 10.56,
+      "severity": "extreme",
+      "max_frp": 18.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-29_0.1_135_-884",
+      "date": 1685318400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 1.19,
+      "ratio": 35.29,
+      "score": 10.52,
+      "severity": "extreme",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-27_0.1_136_-881",
+      "date": 1727395200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 49,
+      "expected": 2.77,
+      "ratio": 17.69,
+      "score": 10.51,
+      "severity": "extreme",
+      "max_frp": 25.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-17_0.1_138_-898",
+      "date": 1689552000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 45,
+      "expected": 1.84,
+      "ratio": 24.46,
+      "score": 10.5,
+      "severity": "extreme",
+      "max_frp": 90.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-04-11_0.1_137_-898",
+      "date": 1618099200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 37,
+      "expected": 0.38,
+      "ratio": 97.37,
+      "score": 10.49,
+      "severity": "extreme",
+      "max_frp": 59.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-10-02_0.1_137_-891",
+      "date": 1664668800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 49,
+      "expected": 2.85,
+      "ratio": 17.19,
+      "score": 10.46,
+      "severity": "extreme",
+      "max_frp": 111.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-29_0.1_136_-898",
+      "date": 1727568000000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 41,
+      "expected": 1.14,
+      "ratio": 35.96,
+      "score": 10.4,
+      "severity": "extreme",
+      "max_frp": 73.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-16_0.1_140_-896",
+      "date": 1626393600000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 48,
+      "expected": 2.71,
+      "ratio": 17.71,
+      "score": 10.4,
+      "severity": "extreme",
+      "max_frp": 83.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-28_0.1_132_-881",
+      "date": 1703721600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 47,
+      "expected": 2.68,
+      "ratio": 17.54,
+      "score": 10.27,
+      "severity": "extreme",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-03-02_0.1_134_-890",
+      "date": 1677715200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 45,
+      "expected": 2.21,
+      "ratio": 20.36,
+      "score": 10.26,
+      "severity": "extreme",
+      "max_frp": 89.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-06_0.1_139_-899",
+      "date": 1633478400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 44,
+      "expected": 2.12,
+      "ratio": 20.75,
+      "score": 10.16,
+      "severity": "extreme",
+      "max_frp": 30.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-26_0.1_137_-892",
+      "date": 1693008000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 34,
+      "expected": 0.24,
+      "ratio": 141.67,
+      "score": 10.16,
+      "severity": "extreme",
+      "max_frp": 47.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-19_0.1_137_-898",
+      "date": 1626652800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 0.54,
+      "ratio": 66.67,
+      "score": 10.15,
+      "severity": "extreme",
+      "max_frp": 57.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-07_0.1_137_-899",
+      "date": 1722988800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 0.61,
+      "ratio": 59.02,
+      "score": 10.08,
+      "severity": "extreme",
+      "max_frp": 74.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-22_0.1_139_-897",
+      "date": 1677024000000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 40,
+      "expected": 1.43,
+      "ratio": 27.97,
+      "score": 10.02,
+      "severity": "extreme",
+      "max_frp": 80.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-10-29_0.1_134_-883",
+      "date": 1667001600000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 45,
+      "expected": 2.62,
+      "ratio": 17.18,
+      "score": 10.01,
+      "severity": "extreme",
+      "max_frp": 20.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-17_0.1_132_-884",
+      "date": 1689552000000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 47,
+      "expected": 3.23,
+      "ratio": 14.55,
+      "score": 9.97,
+      "severity": "extreme",
+      "max_frp": 90.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-02-18_0.1_136_-888",
+      "date": 1708214400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 34,
+      "expected": 0.4,
+      "ratio": 85,
+      "score": 9.97,
+      "severity": "extreme",
+      "max_frp": 11.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-11_0.1_137_-883",
+      "date": 1718064000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 44,
+      "expected": 2.59,
+      "ratio": 16.99,
+      "score": 9.88,
+      "severity": "extreme",
+      "max_frp": 7.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-13_0.1_133_-883",
+      "date": 1718236800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 49,
+      "expected": 4.02,
+      "ratio": 12.19,
+      "score": 9.86,
+      "severity": "extreme",
+      "max_frp": 80.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-18_0.1_138_-898",
+      "date": 1687046400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 48,
+      "expected": 3.75,
+      "ratio": 12.8,
+      "score": 9.85,
+      "severity": "extreme",
+      "max_frp": 69.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-23_0.1_133_-881",
+      "date": 1671753600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 1.27,
+      "ratio": 29.92,
+      "score": 9.82,
+      "severity": "extreme",
+      "max_frp": 122.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-02-12_0.1_133_-882",
+      "date": 1707696000000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 44,
+      "expected": 2.73,
+      "ratio": 16.12,
+      "score": 9.8,
+      "severity": "extreme",
+      "max_frp": 67.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-29_0.1_131_-884",
+      "date": 1627516800000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 49,
+      "expected": 4.17,
+      "ratio": 11.75,
+      "score": 9.79,
+      "severity": "extreme",
+      "max_frp": 64.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-21_0.1_137_-882",
+      "date": 1684627200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 40,
+      "expected": 1.89,
+      "ratio": 21.16,
+      "score": 9.7,
+      "severity": "extreme",
+      "max_frp": 80.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-30_0.1_133_-884",
+      "date": 1701302400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 33,
+      "expected": 0.48,
+      "ratio": 68.75,
+      "score": 9.7,
+      "severity": "extreme",
+      "max_frp": 110.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-12_0.1_135_-891",
+      "date": 1639267200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 46,
+      "expected": 3.69,
+      "ratio": 12.47,
+      "score": 9.59,
+      "severity": "extreme",
+      "max_frp": 53.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-05_0.1_136_-894",
+      "date": 1625443200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 37,
+      "expected": 1.36,
+      "ratio": 27.21,
+      "score": 9.59,
+      "severity": "extreme",
+      "max_frp": 29.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-07-06_0.1_136_-881",
+      "date": 1657065600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 41,
+      "expected": 2.35,
+      "ratio": 17.45,
+      "score": 9.56,
+      "severity": "extreme",
+      "max_frp": 124.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-21_0.1_139_-897",
+      "date": 1689897600000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 39,
+      "expected": 1.91,
+      "ratio": 20.42,
+      "score": 9.53,
+      "severity": "extreme",
+      "max_frp": 23.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-03-27_0.1_134_-884",
+      "date": 1616803200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 1.69,
+      "ratio": 22.49,
+      "score": 9.52,
+      "severity": "extreme",
+      "max_frp": 77.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-25_0.1_136_-883",
+      "date": 1719273600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 2.69,
+      "ratio": 15.61,
+      "score": 9.52,
+      "severity": "extreme",
+      "max_frp": 72,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-19_0.1_132_-881",
+      "date": 1718755200000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 43,
+      "expected": 2.99,
+      "ratio": 14.38,
+      "score": 9.5,
+      "severity": "extreme",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-09_0.1_134_-883",
+      "date": 1639008000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 1.74,
+      "ratio": 21.84,
+      "score": 9.48,
+      "severity": "extreme",
+      "max_frp": 37.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-03_0.1_134_-880",
+      "date": 1638489600000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 32,
+      "expected": 0.57,
+      "ratio": 56.14,
+      "score": 9.44,
+      "severity": "extreme",
+      "max_frp": 53,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-18_0.1_137_-884",
+      "date": 1715990400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 3.13,
+      "ratio": 13.42,
+      "score": 9.27,
+      "severity": "extreme",
+      "max_frp": 69.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-11_0.1_132_-883",
+      "date": 1620691200000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 0.26,
+      "ratio": 111.54,
+      "score": 9.25,
+      "severity": "extreme",
+      "max_frp": 63.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-10_0.1_136_-898",
+      "date": 1686355200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 43,
+      "expected": 3.53,
+      "ratio": 12.18,
+      "score": 9.22,
+      "severity": "extreme",
+      "max_frp": 109.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-15_0.1_134_-890",
+      "date": 1626307200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 45,
+      "expected": 4.17,
+      "ratio": 10.79,
+      "score": 9.21,
+      "severity": "extreme",
+      "max_frp": 48.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-07_0.1_139_-900",
+      "date": 1715040000000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 30,
+      "expected": 0.46,
+      "ratio": 65.22,
+      "score": 9.2,
+      "severity": "extreme",
+      "max_frp": 16.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-23_0.1_136_-883",
+      "date": 1614038400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 43,
+      "expected": 3.56,
+      "ratio": 12.08,
+      "score": 9.2,
+      "severity": "extreme",
+      "max_frp": 62.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-11-18_0.1_133_-884",
+      "date": 1668729600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 42,
+      "expected": 3.3,
+      "ratio": 12.73,
+      "score": 9.19,
+      "severity": "extreme",
+      "max_frp": 72.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-04_0.1_140_-898",
+      "date": 1633305600000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 37,
+      "expected": 1.95,
+      "ratio": 18.97,
+      "score": 9.18,
+      "severity": "extreme",
+      "max_frp": 34.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-05_0.1_137_-880",
+      "date": 1622851200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 33,
+      "expected": 1.03,
+      "ratio": 32.04,
+      "score": 9.18,
+      "severity": "extreme",
+      "max_frp": 73.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-11_0.1_136_-898",
+      "date": 1718064000000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 37,
+      "expected": 1.96,
+      "ratio": 18.88,
+      "score": 9.17,
+      "severity": "extreme",
+      "max_frp": 116.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-03-24_0.1_132_-880",
+      "date": 1616544000000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 0.32,
+      "ratio": 90.63,
+      "score": 9.17,
+      "severity": "extreme",
+      "max_frp": 97.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-06_0.1_137_-890",
+      "date": 1620259200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 37,
+      "expected": 2.12,
+      "ratio": 17.45,
+      "score": 9.07,
+      "severity": "extreme",
+      "max_frp": 79.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-30_0.1_135_-897",
+      "date": 1682812800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 1.93,
+      "ratio": 18.65,
+      "score": 9.03,
+      "severity": "extreme",
+      "max_frp": 59.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-13_0.1_136_-884",
+      "date": 1691884800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 39,
+      "expected": 2.8,
+      "ratio": 13.93,
+      "score": 8.99,
+      "severity": "extreme",
+      "max_frp": 72.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-25_0.1_138_-899",
+      "date": 1643068800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 35,
+      "expected": 1.88,
+      "ratio": 18.62,
+      "score": 8.89,
+      "severity": "extreme",
+      "max_frp": 61.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-30_0.1_138_-896",
+      "date": 1643500800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 33,
+      "expected": 1.42,
+      "ratio": 23.24,
+      "score": 8.87,
+      "severity": "extreme",
+      "max_frp": 20,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-01-01_0.1_135_-877",
+      "date": 1672531200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.65,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 2.77,
+      "ratio": 13.72,
+      "score": 8.84,
+      "severity": "extreme",
+      "max_frp": 15.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-11-21_0.1_140_-900",
+      "date": 1668988800000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 35,
+      "expected": 1.97,
+      "ratio": 17.77,
+      "score": 8.83,
+      "severity": "extreme",
+      "max_frp": 70.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-26_0.1_132_-879",
+      "date": 1627257600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 33,
+      "expected": 1.5,
+      "ratio": 22,
+      "score": 8.82,
+      "severity": "extreme",
+      "max_frp": 15.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-23_0.1_137_-899",
+      "date": 1624406400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 0.64,
+      "ratio": 45.31,
+      "score": 8.82,
+      "severity": "extreme",
+      "max_frp": 50.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-03_0.1_135_-887",
+      "date": 1620000000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 0.71,
+      "ratio": 40.85,
+      "score": 8.76,
+      "severity": "extreme",
+      "max_frp": 97.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-25_0.1_141_-896",
+      "date": 1637798400000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 1.17,
+      "ratio": 26.5,
+      "score": 8.72,
+      "severity": "extreme",
+      "max_frp": 78,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-21_0.1_135_-880",
+      "date": 1726876800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 2.99,
+      "ratio": 12.71,
+      "score": 8.72,
+      "severity": "extreme",
+      "max_frp": 6.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-02-23_0.1_136_-883",
+      "date": 1708646400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 40,
+      "expected": 3.68,
+      "ratio": 10.87,
+      "score": 8.68,
+      "severity": "extreme",
+      "max_frp": 16,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-03_0.1_137_-883",
+      "date": 1730592000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 2.49,
+      "ratio": 14.46,
+      "score": 8.68,
+      "severity": "extreme",
+      "max_frp": 58.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-29_0.1_136_-880",
+      "date": 1627516800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 27,
+      "expected": 0.47,
+      "ratio": 57.45,
+      "score": 8.63,
+      "severity": "extreme",
+      "max_frp": 88,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-11-14_0.1_133_-885",
+      "date": 1668384000000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 39,
+      "expected": 3.49,
+      "ratio": 11.17,
+      "score": 8.62,
+      "severity": "extreme",
+      "max_frp": 59.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-24_0.1_137_-889",
+      "date": 1637712000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 2.59,
+      "ratio": 13.9,
+      "score": 8.62,
+      "severity": "extreme",
+      "max_frp": 36.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-25_0.1_140_-900",
+      "date": 1695600000000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 2.68,
+      "ratio": 13.43,
+      "score": 8.57,
+      "severity": "extreme",
+      "max_frp": 123.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-29_0.1_138_-882",
+      "date": 1735430400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 33,
+      "expected": 1.85,
+      "ratio": 17.84,
+      "score": 8.57,
+      "severity": "extreme",
+      "max_frp": 63.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-27_0.1_137_-890",
+      "date": 1637971200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 1.39,
+      "ratio": 22.3,
+      "score": 8.55,
+      "severity": "extreme",
+      "max_frp": 62.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-25_0.1_135_-888",
+      "date": 1735084800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 35,
+      "expected": 2.45,
+      "ratio": 14.29,
+      "score": 8.53,
+      "severity": "extreme",
+      "max_frp": 52,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-02-12_0.1_138_-899",
+      "date": 1707696000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 36,
+      "expected": 2.78,
+      "ratio": 12.95,
+      "score": 8.51,
+      "severity": "extreme",
+      "max_frp": 88.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-14_0.1_140_-897",
+      "date": 1647216000000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 30,
+      "expected": 1.2,
+      "ratio": 25,
+      "score": 8.51,
+      "severity": "extreme",
+      "max_frp": 34.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-28_0.1_137_-883",
+      "date": 1695859200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 3.43,
+      "ratio": 11.08,
+      "score": 8.49,
+      "severity": "extreme",
+      "max_frp": 7.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-27_0.1_139_-883",
+      "date": 1729987200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 39,
+      "expected": 3.77,
+      "ratio": 10.34,
+      "score": 8.48,
+      "severity": "extreme",
+      "max_frp": 88.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-03_0.1_141_-897",
+      "date": 1733184000000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 32,
+      "expected": 1.79,
+      "ratio": 17.88,
+      "score": 8.44,
+      "severity": "extreme",
+      "max_frp": 39.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-20_0.1_135_-880",
+      "date": 1632096000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 1.15,
+      "ratio": 24.35,
+      "score": 8.18,
+      "severity": "extreme",
+      "max_frp": 51.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-04-17_0.1_137_-891",
+      "date": 1650153600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 38,
+      "expected": 4.13,
+      "ratio": 9.2,
+      "score": 8.14,
+      "severity": "extreme",
+      "max_frp": 80.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-11_0.1_139_-900",
+      "date": 1710115200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 27,
+      "expected": 1.03,
+      "ratio": 26.21,
+      "score": 8.09,
+      "severity": "extreme",
+      "max_frp": 116.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-20_0.1_132_-878",
+      "date": 1726790400000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 0.64,
+      "ratio": 39.06,
+      "score": 8.06,
+      "severity": "extreme",
+      "max_frp": 37.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-01_0.1_135_-885",
+      "date": 1643673600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 30,
+      "expected": 1.94,
+      "ratio": 15.46,
+      "score": 7.98,
+      "severity": "high",
+      "max_frp": 96.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-06_0.1_132_-883",
+      "date": 1625529600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 1.52,
+      "ratio": 18.42,
+      "score": 7.9,
+      "severity": "high",
+      "max_frp": 124.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-22_0.1_135_-891",
+      "date": 1655856000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 0.62,
+      "ratio": 38.71,
+      "score": 7.88,
+      "severity": "high",
+      "max_frp": 84.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-01-10_0.1_136_-882",
+      "date": 1610236800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 0.69,
+      "ratio": 34.78,
+      "score": 7.81,
+      "severity": "high",
+      "max_frp": 112.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-31_0.1_136_-888",
+      "date": 1622419200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 2.04,
+      "ratio": 14.22,
+      "score": 7.73,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-03_0.1_131_-880",
+      "date": 1654214400000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 34,
+      "expected": 3.95,
+      "ratio": 8.61,
+      "score": 7.57,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-25_0.1_133_-885",
+      "date": 1687651200000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 1.24,
+      "ratio": 20.16,
+      "score": 7.53,
+      "severity": "high",
+      "max_frp": 75.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-23_0.1_138_-880",
+      "date": 1640217600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 32,
+      "expected": 3.35,
+      "ratio": 9.55,
+      "score": 7.52,
+      "severity": "high",
+      "max_frp": 61.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-12_0.1_131_-877",
+      "date": 1699747200000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.65,
+        "cell_deg": 0.1
+      },
+      "observed": 33,
+      "expected": 3.74,
+      "ratio": 8.82,
+      "score": 7.5,
+      "severity": "high",
+      "max_frp": 73.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-31_0.1_131_-883",
+      "date": 1622419200000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 30,
+      "expected": 2.73,
+      "ratio": 10.99,
+      "score": 7.5,
+      "severity": "high",
+      "max_frp": 54.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-23_0.1_134_-888",
+      "date": 1711152000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 27,
+      "expected": 1.93,
+      "ratio": 13.99,
+      "score": 7.43,
+      "severity": "high",
+      "max_frp": 19.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-25_0.1_138_-892",
+      "date": 1684972800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 26,
+      "expected": 1.65,
+      "ratio": 15.76,
+      "score": 7.43,
+      "severity": "high",
+      "max_frp": 114.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-11-10_0.1_134_-884",
+      "date": 1668038400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 0.3,
+      "ratio": 66.67,
+      "score": 7.38,
+      "severity": "high",
+      "max_frp": 12.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-12_0.1_134_-880",
+      "date": 1613088000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 2.32,
+      "ratio": 12.07,
+      "score": 7.37,
+      "severity": "high",
+      "max_frp": 27,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-28_0.1_134_-881",
+      "date": 1711584000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 3.31,
+      "ratio": 9.37,
+      "score": 7.36,
+      "severity": "high",
+      "max_frp": 59.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-14_0.1_134_-881",
+      "date": 1718323200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 3.33,
+      "ratio": 9.31,
+      "score": 7.35,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-22_0.1_139_-881",
+      "date": 1682121600000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 32,
+      "expected": 3.76,
+      "ratio": 8.51,
+      "score": 7.31,
+      "severity": "high",
+      "max_frp": 58.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-01_0.1_138_-898",
+      "date": 1612137600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 3.45,
+      "ratio": 8.99,
+      "score": 7.29,
+      "severity": "high",
+      "max_frp": 55.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-20_0.1_137_-881",
+      "date": 1681948800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 23,
+      "expected": 1.05,
+      "ratio": 21.9,
+      "score": 7.28,
+      "severity": "high",
+      "max_frp": 60.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-03_0.1_138_-882",
+      "date": 1651536000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 26,
+      "expected": 1.92,
+      "ratio": 13.54,
+      "score": 7.24,
+      "severity": "high",
+      "max_frp": 55.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-10_0.1_133_-877",
+      "date": 1696896000000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.65,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 3.55,
+      "ratio": 8.73,
+      "score": 7.24,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-19_0.1_137_-890",
+      "date": 1718755200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 30,
+      "expected": 3.22,
+      "ratio": 9.32,
+      "score": 7.23,
+      "severity": "high",
+      "max_frp": 63.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-16_0.1_135_-893",
+      "date": 1700092800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 1.49,
+      "ratio": 16.11,
+      "score": 7.14,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-04_0.1_132_-886",
+      "date": 1651622400000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 1.83,
+      "ratio": 13.66,
+      "score": 7.1,
+      "severity": "high",
+      "max_frp": 16.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-10_0.1_138_-895",
+      "date": 1641772800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 31,
+      "expected": 3.92,
+      "ratio": 7.91,
+      "score": 7.06,
+      "severity": "high",
+      "max_frp": 82.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-08_0.1_134_-882",
+      "date": 1641600000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 27,
+      "expected": 2.57,
+      "ratio": 10.51,
+      "score": 7.03,
+      "severity": "high",
+      "max_frp": 77.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-09_0.1_137_-889",
+      "date": 1723161600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 2.91,
+      "ratio": 9.62,
+      "score": 7.03,
+      "severity": "high",
+      "max_frp": 91,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-01_0.1_136_-893",
+      "date": 1675209600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 0.25,
+      "ratio": 72,
+      "score": 6.99,
+      "severity": "high",
+      "max_frp": 51.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-25_0.1_136_-897",
+      "date": 1724544000000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 0.97,
+      "ratio": 21.65,
+      "score": 6.93,
+      "severity": "high",
+      "max_frp": 27.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-03_0.1_137_-898",
+      "date": 1675382400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 1.8,
+      "ratio": 13.33,
+      "score": 6.92,
+      "severity": "high",
+      "max_frp": 93.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-11_0.1_136_-899",
+      "date": 1712793600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 1.83,
+      "ratio": 13.11,
+      "score": 6.9,
+      "severity": "high",
+      "max_frp": 77.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-11_0.1_136_-881",
+      "date": 1696982400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 0.64,
+      "ratio": 29.69,
+      "score": 6.79,
+      "severity": "high",
+      "max_frp": 83.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-24_0.1_134_-880",
+      "date": 1677196800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 3.76,
+      "ratio": 7.71,
+      "score": 6.77,
+      "severity": "high",
+      "max_frp": 124.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-15_0.1_135_-897",
+      "date": 1621036800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 3.43,
+      "ratio": 8.16,
+      "score": 6.75,
+      "severity": "high",
+      "max_frp": 59.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-13_0.1_136_-882",
+      "date": 1728777600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 1.21,
+      "ratio": 17.36,
+      "score": 6.73,
+      "severity": "high",
+      "max_frp": 44.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-27_0.1_136_-893",
+      "date": 1648339200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 2.1,
+      "ratio": 11.43,
+      "score": 6.73,
+      "severity": "high",
+      "max_frp": 40.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-27_0.1_136_-891",
+      "date": 1624752000000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 3.56,
+      "ratio": 7.87,
+      "score": 6.69,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-10-20_0.1_136_-888",
+      "date": 1666224000000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 3.57,
+      "ratio": 7.84,
+      "score": 6.68,
+      "severity": "high",
+      "max_frp": 81.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-10_0.1_139_-898",
+      "date": 1641772800000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 29,
+      "expected": 4.01,
+      "ratio": 7.23,
+      "score": 6.65,
+      "severity": "high",
+      "max_frp": 30.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-21_0.1_139_-897",
+      "date": 1716249600000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 3.74,
+      "ratio": 7.49,
+      "score": 6.6,
+      "severity": "high",
+      "max_frp": 49.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-03_0.1_139_-881",
+      "date": 1714694400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 0.39,
+      "ratio": 43.59,
+      "score": 6.59,
+      "severity": "high",
+      "max_frp": 49.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-17_0.1_134_-887",
+      "date": 1726531200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 3.81,
+      "ratio": 7.35,
+      "score": 6.56,
+      "severity": "high",
+      "max_frp": 15.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-20_0.1_134_-889",
+      "date": 1647734400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 2.78,
+      "ratio": 8.99,
+      "score": 6.52,
+      "severity": "high",
+      "max_frp": 35.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-13_0.1_140_-900",
+      "date": 1710288000000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 23,
+      "expected": 2.11,
+      "ratio": 10.9,
+      "score": 6.52,
+      "severity": "high",
+      "max_frp": 19.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-04_0.1_136_-891",
+      "date": 1675468800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 26,
+      "expected": 3.21,
+      "ratio": 8.1,
+      "score": 6.48,
+      "severity": "high",
+      "max_frp": 101.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-21_0.1_140_-900",
+      "date": 1724198400000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 23,
+      "expected": 2.17,
+      "ratio": 10.6,
+      "score": 6.48,
+      "severity": "high",
+      "max_frp": 109.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-05_0.1_137_-899",
+      "date": 1683244800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 27,
+      "expected": 3.62,
+      "ratio": 7.46,
+      "score": 6.47,
+      "severity": "high",
+      "max_frp": 101.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-01_0.1_138_-896",
+      "date": 1698796800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 1.27,
+      "ratio": 15.75,
+      "score": 6.46,
+      "severity": "high",
+      "max_frp": 103.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-19_0.1_140_-894",
+      "date": 1700352000000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 4.05,
+      "ratio": 6.91,
+      "score": 6.45,
+      "severity": "high",
+      "max_frp": 73.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-12_0.1_138_-897",
+      "date": 1728691200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 4.04,
+      "ratio": 6.93,
+      "score": 6.45,
+      "severity": "high",
+      "max_frp": 96.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-12_0.1_135_-880",
+      "date": 1620777600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 2.93,
+      "ratio": 8.53,
+      "score": 6.44,
+      "severity": "high",
+      "max_frp": 92.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-24_0.1_138_-901",
+      "date": 1700784000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -90.05,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 2.96,
+      "ratio": 8.45,
+      "score": 6.42,
+      "severity": "high",
+      "max_frp": 9.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-27_0.1_138_-894",
+      "date": 1693094400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 1.64,
+      "ratio": 12.8,
+      "score": 6.41,
+      "severity": "high",
+      "max_frp": 33.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-25_0.1_138_-891",
+      "date": 1695600000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 1.37,
+      "ratio": 14.6,
+      "score": 6.39,
+      "severity": "high",
+      "max_frp": 23,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-04-03_0.1_138_-896",
+      "date": 1617408000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 28,
+      "expected": 4.16,
+      "ratio": 6.73,
+      "score": 6.39,
+      "severity": "high",
+      "max_frp": 39.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-05_0.1_137_-893",
+      "date": 1670198400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 23,
+      "expected": 2.39,
+      "ratio": 9.62,
+      "score": 6.34,
+      "severity": "high",
+      "max_frp": 120.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-02-21_0.1_137_-889",
+      "date": 1708473600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 0.42,
+      "ratio": 38.1,
+      "score": 6.31,
+      "severity": "high",
+      "max_frp": 34.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-10-24_0.1_135_-880",
+      "date": 1666569600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 26,
+      "expected": 3.55,
+      "ratio": 7.32,
+      "score": 6.31,
+      "severity": "high",
+      "max_frp": 47.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-13_0.1_141_-895",
+      "date": 1634083200000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 26,
+      "expected": 3.55,
+      "ratio": 7.32,
+      "score": 6.31,
+      "severity": "high",
+      "max_frp": 110.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-11_0.1_138_-894",
+      "date": 1710115200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 3.21,
+      "ratio": 7.79,
+      "score": 6.29,
+      "severity": "high",
+      "max_frp": 54.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-27_0.1_138_-896",
+      "date": 1732665600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 25,
+      "expected": 3.32,
+      "ratio": 7.53,
+      "score": 6.23,
+      "severity": "high",
+      "max_frp": 82.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-12_0.1_136_-884",
+      "date": 1718150400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 0.51,
+      "ratio": 31.37,
+      "score": 6.21,
+      "severity": "high",
+      "max_frp": 111.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-21_0.1_137_-884",
+      "date": 1697846400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 1.5,
+      "ratio": 12.67,
+      "score": 6.06,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-27_0.1_136_-891",
+      "date": 1719446400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 1.5,
+      "ratio": 12.67,
+      "score": 6.06,
+      "severity": "high",
+      "max_frp": 29.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-21_0.1_131_-877",
+      "date": 1689897600000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.65,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 0.46,
+      "ratio": 32.61,
+      "score": 6.01,
+      "severity": "high",
+      "max_frp": 5.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-10-17_0.1_135_-880",
+      "date": 1665964800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 1.61,
+      "ratio": 11.8,
+      "score": 5.99,
+      "severity": "high",
+      "max_frp": 8.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-08-26_0.1_138_-895",
+      "date": 1661472000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 1.6,
+      "ratio": 11.88,
+      "score": 5.99,
+      "severity": "high",
+      "max_frp": 79.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-19_0.1_133_-878",
+      "date": 1724025600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 1.99,
+      "ratio": 10.05,
+      "score": 5.95,
+      "severity": "high",
+      "max_frp": 27.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-17_0.1_140_-898",
+      "date": 1631836800000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 0.31,
+      "ratio": 45.16,
+      "score": 5.93,
+      "severity": "high",
+      "max_frp": 52.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-22_0.1_134_-884",
+      "date": 1695340800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 1.72,
+      "ratio": 11.05,
+      "score": 5.91,
+      "severity": "high",
+      "max_frp": 90.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-27_0.1_134_-885",
+      "date": 1614384000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 1.1,
+      "ratio": 15.45,
+      "score": 5.91,
+      "severity": "high",
+      "max_frp": 54.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-02_0.1_131_-887",
+      "date": 1698883200000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 24,
+      "expected": 3.68,
+      "ratio": 6.52,
+      "score": 5.85,
+      "severity": "high",
+      "max_frp": 59,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-22_0.1_135_-887",
+      "date": 1713744000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 2.18,
+      "ratio": 9.17,
+      "score": 5.83,
+      "severity": "high",
+      "max_frp": 44.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-02_0.1_141_-895",
+      "date": 1727827200000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 22,
+      "expected": 2.93,
+      "ratio": 7.51,
+      "score": 5.82,
+      "severity": "high",
+      "max_frp": 38.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-28_0.1_131_-884",
+      "date": 1664323200000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 22,
+      "expected": 3.03,
+      "ratio": 7.26,
+      "score": 5.77,
+      "severity": "high",
+      "max_frp": 106.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-18_0.1_138_-892",
+      "date": 1639785600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 23,
+      "expected": 3.45,
+      "ratio": 6.67,
+      "score": 5.76,
+      "severity": "high",
+      "max_frp": 48.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-07-16_0.1_137_-891",
+      "date": 1657929600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 1.95,
+      "ratio": 9.74,
+      "score": 5.75,
+      "severity": "high",
+      "max_frp": 48.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-29_0.1_136_-892",
+      "date": 1624924800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 1.84,
+      "ratio": 9.78,
+      "score": 5.6,
+      "severity": "high",
+      "max_frp": 41.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-22_0.1_135_-891",
+      "date": 1697932800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 22,
+      "expected": 3.35,
+      "ratio": 6.57,
+      "score": 5.6,
+      "severity": "high",
+      "max_frp": 12.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-17_0.1_138_-891",
+      "date": 1634428800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 2.98,
+      "ratio": 7.05,
+      "score": 5.58,
+      "severity": "high",
+      "max_frp": 43.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-11_0.1_136_-897",
+      "date": 1613001600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 0.94,
+      "ratio": 15.96,
+      "score": 5.55,
+      "severity": "high",
+      "max_frp": 108.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-28_0.1_137_-900",
+      "date": 1732752000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 1.26,
+      "ratio": 12.7,
+      "score": 5.54,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-07_0.1_136_-889",
+      "date": 1701907200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 23,
+      "expected": 4,
+      "ratio": 5.75,
+      "score": 5.49,
+      "severity": "high",
+      "max_frp": 81.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-28_0.1_132_-884",
+      "date": 1682640000000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 22,
+      "expected": 3.58,
+      "ratio": 6.15,
+      "score": 5.48,
+      "severity": "high",
+      "max_frp": 82.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-24_0.1_135_-884",
+      "date": 1645660800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 2.83,
+      "ratio": 7.07,
+      "score": 5.45,
+      "severity": "high",
+      "max_frp": 66.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-18_0.1_136_-899",
+      "date": 1692316800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 0.77,
+      "ratio": 18.18,
+      "score": 5.44,
+      "severity": "high",
+      "max_frp": 86.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-03-08_0.1_139_-897",
+      "date": 1615161600000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.07,
+      "ratio": 14.02,
+      "score": 5.44,
+      "severity": "high",
+      "max_frp": 35.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-28_0.1_134_-880",
+      "date": 1695859200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 3.38,
+      "ratio": 6.21,
+      "score": 5.37,
+      "severity": "high",
+      "max_frp": 28.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-04-12_0.1_135_-881",
+      "date": 1618185600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 2.61,
+      "ratio": 7.28,
+      "score": 5.35,
+      "severity": "high",
+      "max_frp": 110.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-07-23_0.1_132_-879",
+      "date": 1721692800000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 0.39,
+      "ratio": 30.77,
+      "score": 5.29,
+      "severity": "high",
+      "max_frp": 31,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-08-19_0.1_138_-898",
+      "date": 1660867200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.29,
+      "ratio": 11.63,
+      "score": 5.26,
+      "severity": "high",
+      "max_frp": 118.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-04_0.1_136_-882",
+      "date": 1712188800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 2.03,
+      "ratio": 8.37,
+      "score": 5.24,
+      "severity": "high",
+      "max_frp": 32.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-19_0.1_138_-896",
+      "date": 1621382400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 2.46,
+      "ratio": 7.32,
+      "score": 5.21,
+      "severity": "high",
+      "max_frp": 40.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-14_0.1_137_-893",
+      "date": 1681430400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 3.81,
+      "ratio": 5.51,
+      "score": 5.16,
+      "severity": "high",
+      "max_frp": 105.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-27_0.1_132_-886",
+      "date": 1630022400000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 21,
+      "expected": 3.81,
+      "ratio": 5.51,
+      "score": 5.16,
+      "severity": "high",
+      "max_frp": 103.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-16_0.1_137_-898",
+      "date": 1637020800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 2.63,
+      "ratio": 6.84,
+      "score": 5.11,
+      "severity": "high",
+      "max_frp": 80.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-03_0.1_141_-894",
+      "date": 1722643200000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 3.63,
+      "ratio": 5.51,
+      "score": 5.03,
+      "severity": "high",
+      "max_frp": 56,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-02_0.1_132_-884",
+      "date": 1662076800000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.62,
+      "ratio": 9.26,
+      "score": 5.02,
+      "severity": "high",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-22_0.1_136_-880",
+      "date": 1632268800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 2.04,
+      "ratio": 7.84,
+      "score": 4.99,
+      "severity": "moderate",
+      "max_frp": 63.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-25_0.1_138_-894",
+      "date": 1692921600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 2.87,
+      "ratio": 6.27,
+      "score": 4.97,
+      "severity": "moderate",
+      "max_frp": 116.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-06_0.1_138_-895",
+      "date": 1717632000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 3.34,
+      "ratio": 5.69,
+      "score": 4.95,
+      "severity": "moderate",
+      "max_frp": 32.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-01-26_0.1_137_-898",
+      "date": 1674691200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.74,
+      "ratio": 8.62,
+      "score": 4.93,
+      "severity": "moderate",
+      "max_frp": 50,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-21_0.1_138_-884",
+      "date": 1703116800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 2.94,
+      "ratio": 6.12,
+      "score": 4.93,
+      "severity": "moderate",
+      "max_frp": 93.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-25_0.1_137_-888",
+      "date": 1629849600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 2.55,
+      "ratio": 6.67,
+      "score": 4.92,
+      "severity": "moderate",
+      "max_frp": 6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-23_0.1_137_-890",
+      "date": 1640217600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.78,
+      "ratio": 8.43,
+      "score": 4.91,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-08_0.1_136_-889",
+      "date": 1691452800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.79,
+      "ratio": 8.38,
+      "score": 4.9,
+      "severity": "moderate",
+      "max_frp": 102.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-06_0.1_138_-898",
+      "date": 1641427200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 0.23,
+      "ratio": 43.48,
+      "score": 4.89,
+      "severity": "moderate",
+      "max_frp": 45.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-09_0.1_135_-888",
+      "date": 1625788800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 1.89,
+      "ratio": 7.94,
+      "score": 4.83,
+      "severity": "moderate",
+      "max_frp": 112.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-25_0.1_138_-895",
+      "date": 1690243200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 20,
+      "expected": 4.02,
+      "ratio": 4.98,
+      "score": 4.83,
+      "severity": "moderate",
+      "max_frp": 75.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-13_0.1_137_-900",
+      "date": 1676246400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 2.3,
+      "ratio": 6.96,
+      "score": 4.82,
+      "severity": "moderate",
+      "max_frp": 21.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-24_0.1_131_-877",
+      "date": 1729728000000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.65,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 2.73,
+      "ratio": 6.23,
+      "score": 4.81,
+      "severity": "moderate",
+      "max_frp": 95,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-08-11_0.1_134_-882",
+      "date": 1660176000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 18,
+      "expected": 3.2,
+      "ratio": 5.63,
+      "score": 4.79,
+      "severity": "moderate",
+      "max_frp": 74.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-27_0.1_139_-895",
+      "date": 1727395200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 2.86,
+      "ratio": 5.94,
+      "score": 4.74,
+      "severity": "moderate",
+      "max_frp": 26.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-24_0.1_139_-882",
+      "date": 1621814400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 0.97,
+      "ratio": 12.37,
+      "score": 4.72,
+      "severity": "moderate",
+      "max_frp": 97.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-04_0.1_140_-898",
+      "date": 1643932800000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 2.5,
+      "ratio": 6.4,
+      "score": 4.7,
+      "severity": "moderate",
+      "max_frp": 87,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-29_0.1_140_-900",
+      "date": 1735430400000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 3.09,
+      "ratio": 5.5,
+      "score": 4.61,
+      "severity": "moderate",
+      "max_frp": 17.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-07-03_0.1_137_-901",
+      "date": 1656806400000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -90.05,
+        "cell_deg": 0.1
+      },
+      "observed": 19,
+      "expected": 4.08,
+      "ratio": 4.66,
+      "score": 4.58,
+      "severity": "moderate",
+      "max_frp": 71.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-27_0.1_140_-898",
+      "date": 1672099200000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 1.88,
+      "ratio": 7.45,
+      "score": 4.58,
+      "severity": "moderate",
+      "max_frp": 89.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-04-09_0.1_135_-894",
+      "date": 1680998400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 2.75,
+      "ratio": 5.82,
+      "score": 4.56,
+      "severity": "moderate",
+      "max_frp": 13.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-11_0.1_135_-887",
+      "date": 1718064000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 1.53,
+      "ratio": 8.5,
+      "score": 4.55,
+      "severity": "moderate",
+      "max_frp": 14.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-01_0.1_141_-896",
+      "date": 1661990400000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 1.94,
+      "ratio": 7.22,
+      "score": 4.54,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-13_0.1_135_-894",
+      "date": 1715558400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 1.23,
+      "ratio": 9.76,
+      "score": 4.5,
+      "severity": "moderate",
+      "max_frp": 48.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-02-10_0.1_134_-881",
+      "date": 1707523200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.01,
+      "ratio": 6.97,
+      "score": 4.49,
+      "severity": "moderate",
+      "max_frp": 57.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-28_0.1_135_-894",
+      "date": 1635379200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 0.58,
+      "ratio": 17.24,
+      "score": 4.49,
+      "severity": "moderate",
+      "max_frp": 86.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-19_0.1_131_-878",
+      "date": 1645228800000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 2.52,
+      "ratio": 5.95,
+      "score": 4.44,
+      "severity": "moderate",
+      "max_frp": 51.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-08_0.1_137_-883",
+      "date": 1662595200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.11,
+      "ratio": 6.64,
+      "score": 4.43,
+      "severity": "moderate",
+      "max_frp": 84.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-02_0.1_131_-886",
+      "date": 1685664000000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 2.99,
+      "ratio": 5.35,
+      "score": 4.42,
+      "severity": "moderate",
+      "max_frp": 32.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-10_0.1_138_-880",
+      "date": 1696896000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 16,
+      "expected": 3.01,
+      "ratio": 5.32,
+      "score": 4.41,
+      "severity": "moderate",
+      "max_frp": 107.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-08-31_0.1_141_-896",
+      "date": 1661904000000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 3.53,
+      "ratio": 4.82,
+      "score": 4.38,
+      "severity": "moderate",
+      "max_frp": 39.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-19_0.1_137_-882",
+      "date": 1632009600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 3.63,
+      "ratio": 4.68,
+      "score": 4.33,
+      "severity": "moderate",
+      "max_frp": 53,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-05_0.1_138_-900",
+      "date": 1633392000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 3.74,
+      "ratio": 4.55,
+      "score": 4.28,
+      "severity": "moderate",
+      "max_frp": 89.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-11_0.1_139_-897",
+      "date": 1689033600000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.4,
+      "ratio": 5.83,
+      "score": 4.25,
+      "severity": "moderate",
+      "max_frp": 121.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-21_0.1_139_-881",
+      "date": 1663718400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 0.22,
+      "ratio": 36.36,
+      "score": 4.25,
+      "severity": "moderate",
+      "max_frp": 120.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-14_0.1_140_-897",
+      "date": 1710374400000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 0.87,
+      "ratio": 11.49,
+      "score": 4.21,
+      "severity": "moderate",
+      "max_frp": 63.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-09_0.1_140_-898",
+      "date": 1723161600000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 0.25,
+      "ratio": 32,
+      "score": 4.21,
+      "severity": "moderate",
+      "max_frp": 9.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-19_0.1_136_-889",
+      "date": 1652918400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.51,
+      "ratio": 5.58,
+      "score": 4.19,
+      "severity": "moderate",
+      "max_frp": 89.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-11_0.1_137_-897",
+      "date": 1644537600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 2.06,
+      "ratio": 6.31,
+      "score": 4.19,
+      "severity": "moderate",
+      "max_frp": 111.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-24_0.1_131_-886",
+      "date": 1677196800000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 1.26,
+      "ratio": 8.73,
+      "score": 4.19,
+      "severity": "moderate",
+      "max_frp": 66.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-21_0.1_138_-883",
+      "date": 1726876800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.51,
+      "ratio": 5.58,
+      "score": 4.19,
+      "severity": "moderate",
+      "max_frp": 116.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-22_0.1_132_-887",
+      "date": 1711065600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 17,
+      "expected": 4.03,
+      "ratio": 4.22,
+      "score": 4.14,
+      "severity": "moderate",
+      "max_frp": 86,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-03_0.1_137_-899",
+      "date": 1630627200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 1.45,
+      "ratio": 7.59,
+      "score": 4.04,
+      "severity": "moderate",
+      "max_frp": 8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-29_0.1_132_-879",
+      "date": 1695945600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 0.4,
+      "ratio": 20,
+      "score": 4.03,
+      "severity": "moderate",
+      "max_frp": 97,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-10_0.1_138_-897",
+      "date": 1699574400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 1.1,
+      "ratio": 9.09,
+      "score": 4.01,
+      "severity": "moderate",
+      "max_frp": 123.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-04_0.1_137_-892",
+      "date": 1670112000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.83,
+      "ratio": 4.95,
+      "score": 4,
+      "severity": "moderate",
+      "max_frp": 27.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-11_0.1_134_-886",
+      "date": 1670716800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 3.4,
+      "ratio": 4.41,
+      "score": 3.96,
+      "severity": "moderate",
+      "max_frp": 60.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-30_0.1_134_-881",
+      "date": 1711756800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 2.93,
+      "ratio": 4.78,
+      "score": 3.95,
+      "severity": "moderate",
+      "max_frp": 28.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-04_0.1_134_-883",
+      "date": 1733270400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 2.54,
+      "ratio": 5.12,
+      "score": 3.9,
+      "severity": "moderate",
+      "max_frp": 21.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-01_0.1_135_-891",
+      "date": 1682899200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 0.9,
+      "ratio": 10,
+      "score": 3.87,
+      "severity": "moderate",
+      "max_frp": 109,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-09-15_0.1_134_-883",
+      "date": 1663200000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 3.19,
+      "ratio": 4.39,
+      "score": 3.81,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-01-05_0.1_136_-883",
+      "date": 1704412800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 1.36,
+      "ratio": 7.35,
+      "score": 3.81,
+      "severity": "moderate",
+      "max_frp": 60.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-07-17_0.1_138_-883",
+      "date": 1658016000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 15,
+      "expected": 3.74,
+      "ratio": 4.01,
+      "score": 3.79,
+      "severity": "moderate",
+      "max_frp": 92.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-19_0.1_134_-884",
+      "date": 1687132800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 3.26,
+      "ratio": 4.29,
+      "score": 3.77,
+      "severity": "moderate",
+      "max_frp": 119.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-04_0.1_139_-898",
+      "date": 1717459200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 1.54,
+      "ratio": 6.49,
+      "score": 3.67,
+      "severity": "moderate",
+      "max_frp": 39.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-11_0.1_134_-885",
+      "date": 1676073600000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 2,
+      "ratio": 5.5,
+      "score": 3.66,
+      "severity": "moderate",
+      "max_frp": 45.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-04-07_0.1_132_-884",
+      "date": 1649289600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 3.48,
+      "ratio": 4.02,
+      "score": 3.66,
+      "severity": "moderate",
+      "max_frp": 90.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-09_0.1_136_-889",
+      "date": 1688860800000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 2.49,
+      "ratio": 4.82,
+      "score": 3.65,
+      "severity": "moderate",
+      "max_frp": 63.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-13_0.1_137_-900",
+      "date": 1634083200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 3.01,
+      "ratio": 4.32,
+      "score": 3.63,
+      "severity": "moderate",
+      "max_frp": 113.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-01-07_0.1_133_-882",
+      "date": 1609977600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 14,
+      "expected": 3.66,
+      "ratio": 3.83,
+      "score": 3.57,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-09_0.1_138_-882",
+      "date": 1717891200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 0.89,
+      "ratio": 8.99,
+      "score": 3.54,
+      "severity": "moderate",
+      "max_frp": 108.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-01-29_0.1_133_-878",
+      "date": 1674950400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 0.92,
+      "ratio": 8.7,
+      "score": 3.51,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-03-27_0.1_135_-881",
+      "date": 1679875200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 3.27,
+      "ratio": 3.98,
+      "score": 3.5,
+      "severity": "moderate",
+      "max_frp": 18,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-29_0.1_136_-891",
+      "date": 1693267200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 1.83,
+      "ratio": 5.46,
+      "score": 3.47,
+      "severity": "moderate",
+      "max_frp": 24,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-30_0.1_134_-878",
+      "date": 1672358400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 1.93,
+      "ratio": 5.18,
+      "score": 3.41,
+      "severity": "moderate",
+      "max_frp": 81.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-20_0.1_136_-883",
+      "date": 1700438400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 0.3,
+      "ratio": 20,
+      "score": 3.41,
+      "severity": "moderate",
+      "max_frp": 88.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-31_0.1_135_-888",
+      "date": 1648684800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 0.66,
+      "ratio": 10.61,
+      "score": 3.4,
+      "severity": "moderate",
+      "max_frp": 30,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-16_0.1_135_-900",
+      "date": 1726444800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 2.43,
+      "ratio": 4.53,
+      "score": 3.4,
+      "severity": "moderate",
+      "max_frp": 60.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-01-07_0.1_137_-892",
+      "date": 1609977600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 2.95,
+      "ratio": 4.07,
+      "score": 3.39,
+      "severity": "moderate",
+      "max_frp": 70,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-26_0.1_131_-886",
+      "date": 1687737600000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 2.49,
+      "ratio": 4.42,
+      "score": 3.36,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-16_0.1_139_-880",
+      "date": 1697414400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 3.56,
+      "ratio": 3.65,
+      "score": 3.35,
+      "severity": "moderate",
+      "max_frp": 20.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-25_0.1_141_-897",
+      "date": 1714003200000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 13,
+      "expected": 3.66,
+      "ratio": 3.55,
+      "score": 3.3,
+      "severity": "moderate",
+      "max_frp": 18.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-22_0.1_136_-889",
+      "date": 1729555200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 0.79,
+      "ratio": 8.86,
+      "score": 3.27,
+      "severity": "moderate",
+      "max_frp": 43.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-30_0.1_136_-897",
+      "date": 1656547200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 2.75,
+      "ratio": 4,
+      "score": 3.21,
+      "severity": "moderate",
+      "max_frp": 28.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-23_0.1_135_-896",
+      "date": 1655942400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 2.3,
+      "ratio": 4.35,
+      "score": 3.17,
+      "severity": "moderate",
+      "max_frp": 35.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-10-08_0.1_134_-881",
+      "date": 1665187200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 1.88,
+      "ratio": 4.79,
+      "score": 3.12,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-12_0.1_131_-879",
+      "date": 1652313600000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 2.96,
+      "ratio": 3.72,
+      "score": 3.09,
+      "severity": "moderate",
+      "max_frp": 88.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-04-30_0.1_132_-883",
+      "date": 1619740800000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 0.24,
+      "ratio": 20.83,
+      "score": 3.07,
+      "severity": "moderate",
+      "max_frp": 78.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-03-26_0.1_135_-894",
+      "date": 1679788800000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 2.48,
+      "ratio": 4.03,
+      "score": 3.06,
+      "severity": "moderate",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-25_0.1_137_-894",
+      "date": 1627171200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 0.63,
+      "ratio": 9.52,
+      "score": 3.04,
+      "severity": "moderate",
+      "max_frp": 72.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-26_0.1_135_-880",
+      "date": 1719360000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 2.53,
+      "ratio": 3.95,
+      "score": 3.03,
+      "severity": "moderate",
+      "max_frp": 20.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-03_0.1_135_-881",
+      "date": 1683072000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 3.71,
+      "ratio": 3.23,
+      "score": 2.99,
+      "severity": "low",
+      "max_frp": 59.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-28_0.1_135_-882",
+      "date": 1677542400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 3.16,
+      "ratio": 3.48,
+      "score": 2.99,
+      "severity": "low",
+      "max_frp": 11.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-11-22_0.1_134_-888",
+      "date": 1700611200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 3.81,
+      "ratio": 3.15,
+      "score": 2.94,
+      "severity": "low",
+      "max_frp": 118.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-13_0.1_131_-886",
+      "date": 1702425600000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.21,
+      "ratio": 5.79,
+      "score": 2.91,
+      "severity": "low",
+      "max_frp": 42.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-19_0.1_133_-878",
+      "date": 1689724800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 2.23,
+      "ratio": 4.04,
+      "score": 2.9,
+      "severity": "low",
+      "max_frp": 25,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-07_0.1_141_-896",
+      "date": 1688688000000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 2.89,
+      "ratio": 3.46,
+      "score": 2.83,
+      "severity": "low",
+      "max_frp": 23.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-08_0.1_134_-883",
+      "date": 1641600000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 2.96,
+      "ratio": 3.38,
+      "score": 2.79,
+      "severity": "low",
+      "max_frp": 25.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-02_0.1_137_-893",
+      "date": 1701475200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.39,
+      "ratio": 5.04,
+      "score": 2.77,
+      "severity": "low",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-05_0.1_137_-889",
+      "date": 1691193600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 12,
+      "expected": 4.2,
+      "ratio": 2.86,
+      "score": 2.76,
+      "severity": "low",
+      "max_frp": 97.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-28_0.1_133_-880",
+      "date": 1714262400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 1.92,
+      "ratio": 4.17,
+      "score": 2.76,
+      "severity": "low",
+      "max_frp": 61.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-16_0.1_132_-877",
+      "date": 1647388800000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.65,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.47,
+      "ratio": 4.76,
+      "score": 2.71,
+      "severity": "low",
+      "max_frp": 99.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-11_0.1_135_-883",
+      "date": 1683763200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.01,
+      "ratio": 3.98,
+      "score": 2.7,
+      "severity": "low",
+      "max_frp": 7.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-18_0.1_138_-895",
+      "date": 1642464000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 0.64,
+      "ratio": 7.81,
+      "score": 2.62,
+      "severity": "low",
+      "max_frp": 78.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-03-07_0.1_135_-892",
+      "date": 1615075200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 3.91,
+      "ratio": 2.81,
+      "score": 2.61,
+      "severity": "low",
+      "max_frp": 60.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-03_0.1_140_-896",
+      "date": 1651536000000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.18,
+      "ratio": 3.67,
+      "score": 2.59,
+      "severity": "low",
+      "max_frp": 29.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-06_0.1_138_-891",
+      "date": 1712361600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.65,
+      "ratio": 4.24,
+      "score": 2.59,
+      "severity": "low",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-27_0.1_138_-898",
+      "date": 1727395200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.65,
+      "ratio": 4.24,
+      "score": 2.59,
+      "severity": "low",
+      "max_frp": 114.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-07-05_0.1_136_-883",
+      "date": 1656979200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.25,
+      "ratio": 3.56,
+      "score": 2.55,
+      "severity": "low",
+      "max_frp": 9.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-17_0.1_137_-891",
+      "date": 1655424000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.25,
+      "ratio": 3.56,
+      "score": 2.55,
+      "severity": "low",
+      "max_frp": 52.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-08_0.1_140_-895",
+      "date": 1651968000000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 4.02,
+      "ratio": 2.74,
+      "score": 2.55,
+      "severity": "low",
+      "max_frp": 21.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-05_0.1_135_-888",
+      "date": 1670198400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.71,
+      "ratio": 4.09,
+      "score": 2.54,
+      "severity": "low",
+      "max_frp": 85.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-04-12_0.1_141_-895",
+      "date": 1618185600000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 11,
+      "expected": 4.13,
+      "ratio": 2.66,
+      "score": 2.5,
+      "severity": "low",
+      "max_frp": 71.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-03-24_0.1_135_-890",
+      "date": 1616544000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 3.73,
+      "ratio": 2.68,
+      "score": 2.39,
+      "severity": "low",
+      "max_frp": 7.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-07-15_0.1_137_-880",
+      "date": 1721001600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 1.96,
+      "ratio": 3.57,
+      "score": 2.38,
+      "severity": "low",
+      "max_frp": 58.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-14_0.1_134_-889",
+      "date": 1620950400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 3.14,
+      "ratio": 2.87,
+      "score": 2.37,
+      "severity": "low",
+      "max_frp": 108.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-30_0.1_133_-878",
+      "date": 1703894400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.56,
+      "ratio": 3.13,
+      "score": 2.36,
+      "severity": "low",
+      "max_frp": 33,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-06_0.1_137_-900",
+      "date": 1620259200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 2.05,
+      "ratio": 3.41,
+      "score": 2.32,
+      "severity": "low",
+      "max_frp": 17.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-30_0.1_134_-884",
+      "date": 1727654400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 3.26,
+      "ratio": 2.76,
+      "score": 2.31,
+      "severity": "low",
+      "max_frp": 92.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-10_0.1_134_-886",
+      "date": 1712707200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 3.27,
+      "ratio": 2.75,
+      "score": 2.31,
+      "severity": "low",
+      "max_frp": 7.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-12_0.1_134_-883",
+      "date": 1613088000000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.73,
+      "ratio": 2.93,
+      "score": 2.26,
+      "severity": "low",
+      "max_frp": 74.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-11_0.1_137_-899",
+      "date": 1625961600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.78,
+      "ratio": 2.88,
+      "score": 2.24,
+      "severity": "low",
+      "max_frp": 92.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-10-20_0.1_141_-896",
+      "date": 1729382400000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 0.57,
+      "ratio": 7.02,
+      "score": 2.24,
+      "severity": "low",
+      "max_frp": 63.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-18_0.1_136_-889",
+      "date": 1634515200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 4.06,
+      "ratio": 2.46,
+      "score": 2.23,
+      "severity": "low",
+      "max_frp": 114.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-21_0.1_138_-883",
+      "date": 1632182400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 2.19,
+      "ratio": 3.2,
+      "score": 2.23,
+      "severity": "low",
+      "max_frp": 69.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-01-24_0.1_139_-881",
+      "date": 1706054400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.86,
+      "ratio": 2.8,
+      "score": 2.19,
+      "severity": "low",
+      "max_frp": 29.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-25_0.1_134_-881",
+      "date": 1703462400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 10,
+      "expected": 4.17,
+      "ratio": 2.4,
+      "score": 2.18,
+      "severity": "low",
+      "max_frp": 42.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-08_0.1_136_-892",
+      "date": 1646697600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.13,
+      "ratio": 4.42,
+      "score": 2.18,
+      "severity": "low",
+      "max_frp": 121.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-01-06_0.1_134_-889",
+      "date": 1609891200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 9,
+      "expected": 3.54,
+      "ratio": 2.54,
+      "score": 2.17,
+      "severity": "low",
+      "max_frp": 10.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-04-07_0.1_135_-880",
+      "date": 1649289600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 2.32,
+      "ratio": 3.02,
+      "score": 2.15,
+      "severity": "low",
+      "max_frp": 6.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-11_0.1_133_-880",
+      "date": 1723334400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 2.97,
+      "ratio": 2.69,
+      "score": 2.13,
+      "severity": "low",
+      "max_frp": 52.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-12_0.1_137_-892",
+      "date": 1623456000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 0.69,
+      "ratio": 5.8,
+      "score": 2.12,
+      "severity": "low",
+      "max_frp": 5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-01-18_0.1_137_-890",
+      "date": 1705536000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 3,
+      "ratio": 2.67,
+      "score": 2.11,
+      "severity": "low",
+      "max_frp": 32.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-03-31_0.1_137_-890",
+      "date": 1680220800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 0.7,
+      "ratio": 5.71,
+      "score": 2.11,
+      "severity": "low",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-12_0.1_133_-885",
+      "date": 1633996800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 1.84,
+      "ratio": 3.26,
+      "score": 2.07,
+      "severity": "low",
+      "max_frp": 93.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-19_0.1_139_-896",
+      "date": 1726704000000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 0.78,
+      "ratio": 5.13,
+      "score": 2.03,
+      "severity": "low",
+      "max_frp": 121.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-01_0.1_139_-898",
+      "date": 1733011200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 1.98,
+      "ratio": 3.03,
+      "score": 1.98,
+      "severity": "normal",
+      "max_frp": 122.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-30_0.1_133_-884",
+      "date": 1711756800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 2.63,
+      "ratio": 2.66,
+      "score": 1.96,
+      "severity": "normal",
+      "max_frp": 112.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-03_0.1_140_-896",
+      "date": 1696291200000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.04,
+      "ratio": 2.94,
+      "score": 1.94,
+      "severity": "normal",
+      "max_frp": 75.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-30_0.1_134_-890",
+      "date": 1627603200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 3.38,
+      "ratio": 2.37,
+      "score": 1.91,
+      "severity": "normal",
+      "max_frp": 67.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-24_0.1_139_-899",
+      "date": 1614124800000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 2.74,
+      "ratio": 2.55,
+      "score": 1.9,
+      "severity": "normal",
+      "max_frp": 16.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-01-26_0.1_141_-895",
+      "date": 1611619200000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.13,
+      "ratio": 2.82,
+      "score": 1.88,
+      "severity": "normal",
+      "max_frp": 73.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-26_0.1_133_-884",
+      "date": 1624665600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.54,
+      "ratio": 3.25,
+      "score": 1.87,
+      "severity": "normal",
+      "max_frp": 73.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-12_0.1_131_-879",
+      "date": 1691798400000,
+      "location": {
+        "latitude": 13.15,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.54,
+      "ratio": 3.25,
+      "score": 1.87,
+      "severity": "normal",
+      "max_frp": 19.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-27_0.1_137_-889",
+      "date": 1732665600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 2.79,
+      "ratio": 2.51,
+      "score": 1.87,
+      "severity": "normal",
+      "max_frp": 98.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-01_0.1_139_-897",
+      "date": 1730419200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.22,
+      "ratio": 2.7,
+      "score": 1.83,
+      "severity": "normal",
+      "max_frp": 44.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-10_0.1_138_-899",
+      "date": 1633824000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 0.49,
+      "ratio": 6.12,
+      "score": 1.81,
+      "severity": "normal",
+      "max_frp": 28.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-26_0.1_133_-884",
+      "date": 1690329600000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.27,
+      "ratio": 2.64,
+      "score": 1.8,
+      "severity": "normal",
+      "max_frp": 64.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-20_0.1_132_-879",
+      "date": 1629417600000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.28,
+      "ratio": 2.63,
+      "score": 1.79,
+      "severity": "normal",
+      "max_frp": 37,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-06-19_0.1_133_-881",
+      "date": 1655596800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.68,
+      "ratio": 2.98,
+      "score": 1.77,
+      "severity": "normal",
+      "max_frp": 121.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-06_0.1_138_-899",
+      "date": 1730851200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.68,
+      "ratio": 2.98,
+      "score": 1.77,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-19_0.1_138_-899",
+      "date": 1724025600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.11,
+      "ratio": 3.6,
+      "score": 1.75,
+      "severity": "normal",
+      "max_frp": 60.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-07-23_0.1_141_-894",
+      "date": 1721692800000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.35,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.4,
+      "ratio": 2.5,
+      "score": 1.72,
+      "severity": "normal",
+      "max_frp": 36.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-01-21_0.1_137_-890",
+      "date": 1674259200000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.95,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.06,
+      "ratio": 2.29,
+      "score": 1.72,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-21_0.1_132_-879",
+      "date": 1684627200000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.16,
+      "ratio": 3.45,
+      "score": 1.71,
+      "severity": "normal",
+      "max_frp": 21.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-22_0.1_141_-897",
+      "date": 1697932800000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.15,
+      "ratio": 3.48,
+      "score": 1.71,
+      "severity": "normal",
+      "max_frp": 111.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-25_0.1_139_-898",
+      "date": 1684972800000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 0.61,
+      "ratio": 4.92,
+      "score": 1.69,
+      "severity": "normal",
+      "max_frp": 20.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-25_0.1_139_-895",
+      "date": 1635120000000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.8,
+      "ratio": 2.78,
+      "score": 1.69,
+      "severity": "normal",
+      "max_frp": 77.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-12-21_0.1_140_-900",
+      "date": 1703116800000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.21,
+      "ratio": 3.31,
+      "score": 1.67,
+      "severity": "normal",
+      "max_frp": 30.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-16_0.1_135_-893",
+      "date": 1613433600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.5,
+      "ratio": 2.4,
+      "score": 1.66,
+      "severity": "normal",
+      "max_frp": 8.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-08_0.1_138_-896",
+      "date": 1683504000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.86,
+      "ratio": 2.69,
+      "score": 1.65,
+      "severity": "normal",
+      "max_frp": 85.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-16_0.1_134_-882",
+      "date": 1621123200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 1.93,
+      "ratio": 2.59,
+      "score": 1.6,
+      "severity": "normal",
+      "max_frp": 41.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-28_0.1_138_-892",
+      "date": 1685232000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.32,
+      "ratio": 2.11,
+      "score": 1.59,
+      "severity": "normal",
+      "max_frp": 35.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-01-03_0.1_137_-898",
+      "date": 1704240000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 4.09,
+      "ratio": 1.96,
+      "score": 1.56,
+      "severity": "normal",
+      "max_frp": 12.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-11-09_0.1_141_-898",
+      "date": 1667952000000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.37,
+      "ratio": 2.08,
+      "score": 1.56,
+      "severity": "normal",
+      "max_frp": 98.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-22_0.1_136_-892",
+      "date": 1629590400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.36,
+      "ratio": 2.94,
+      "score": 1.55,
+      "severity": "normal",
+      "max_frp": 81.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-01-26_0.1_135_-884",
+      "date": 1643155200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.72,
+      "ratio": 2.21,
+      "score": 1.53,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-25_0.1_140_-900",
+      "date": 1735084800000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.4,
+      "ratio": 2.86,
+      "score": 1.52,
+      "severity": "normal",
+      "max_frp": 33.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-02_0.1_140_-900",
+      "date": 1730505600000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 8,
+      "expected": 4.17,
+      "ratio": 1.92,
+      "score": 1.52,
+      "severity": "normal",
+      "max_frp": 88.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-05-05_0.1_138_-897",
+      "date": 1620172800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 0.78,
+      "ratio": 3.85,
+      "score": 1.52,
+      "severity": "normal",
+      "max_frp": 36.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-24_0.1_136_-881",
+      "date": 1698105600000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.43,
+      "ratio": 2.8,
+      "score": 1.5,
+      "severity": "normal",
+      "max_frp": 85.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-20_0.1_135_-898",
+      "date": 1724112000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.45,
+      "ratio": 2.76,
+      "score": 1.48,
+      "severity": "normal",
+      "max_frp": 14,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-08-20_0.1_135_-878",
+      "date": 1724112000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.54,
+      "ratio": 1.98,
+      "score": 1.47,
+      "severity": "normal",
+      "max_frp": 17.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-03-24_0.1_138_-880",
+      "date": 1679616000000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.86,
+      "ratio": 2.1,
+      "score": 1.45,
+      "severity": "normal",
+      "max_frp": 53.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-07-14_0.1_137_-893",
+      "date": 1657756800000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.87,
+      "ratio": 2.09,
+      "score": 1.45,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-08_0.1_138_-900",
+      "date": 1633651200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 2.87,
+      "ratio": 2.09,
+      "score": 1.45,
+      "severity": "normal",
+      "max_frp": 16.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-12-30_0.1_134_-879",
+      "date": 1672358400000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.85,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.61,
+      "ratio": 1.94,
+      "score": 1.44,
+      "severity": "normal",
+      "max_frp": 22.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-12-01_0.1_138_-895",
+      "date": 1733011200000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.45,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.22,
+      "ratio": 2.25,
+      "score": 1.42,
+      "severity": "normal",
+      "max_frp": 53.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-09-02_0.1_135_-899",
+      "date": 1725235200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.21,
+      "ratio": 2.26,
+      "score": 1.42,
+      "severity": "normal",
+      "max_frp": 88.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-05-18_0.1_132_-886",
+      "date": 1652832000000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.23,
+      "ratio": 2.24,
+      "score": 1.41,
+      "severity": "normal",
+      "max_frp": 27.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-02-21_0.1_135_-883",
+      "date": 1645401600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.71,
+      "ratio": 1.89,
+      "score": 1.39,
+      "severity": "normal",
+      "max_frp": 45.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-18_0.1_141_-898",
+      "date": 1715990400000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3,
+      "ratio": 2,
+      "score": 1.38,
+      "severity": "normal",
+      "max_frp": 115.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-08-02_0.1_135_-884",
+      "date": 1690934400000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.3,
+      "ratio": 2.17,
+      "score": 1.37,
+      "severity": "normal",
+      "max_frp": 37.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-10_0.1_132_-880",
+      "date": 1710028800000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.6,
+      "ratio": 2.5,
+      "score": 1.37,
+      "severity": "normal",
+      "max_frp": 72.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-10-06_0.1_139_-896",
+      "date": 1696550400000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.04,
+      "ratio": 1.97,
+      "score": 1.35,
+      "severity": "normal",
+      "max_frp": 48,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-06-15_0.1_134_-889",
+      "date": 1623715200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.85,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.11,
+      "ratio": 1.93,
+      "score": 1.32,
+      "severity": "normal",
+      "max_frp": 115.7,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-01-15_0.1_133_-880",
+      "date": 1673740800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.13,
+      "ratio": 1.92,
+      "score": 1.31,
+      "severity": "normal",
+      "max_frp": 100.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-21_0.1_138_-882",
+      "date": 1626825600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 3.87,
+      "ratio": 1.81,
+      "score": 1.31,
+      "severity": "normal",
+      "max_frp": 73.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-22_0.1_135_-897",
+      "date": 1637539200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 1.7,
+      "ratio": 2.35,
+      "score": 1.3,
+      "severity": "normal",
+      "max_frp": 19.2,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-05-25_0.1_134_-880",
+      "date": 1684972800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 2,
+      "expected": 0.42,
+      "ratio": 4.76,
+      "score": 1.3,
+      "severity": "normal",
+      "max_frp": 101.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-27_0.1_137_-898",
+      "date": 1677456000000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.75,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 1.05,
+      "ratio": 2.86,
+      "score": 1.29,
+      "severity": "normal",
+      "max_frp": 27.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-27_0.1_141_-900",
+      "date": 1719446400000,
+      "location": {
+        "latitude": 14.15,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.48,
+      "ratio": 2.02,
+      "score": 1.26,
+      "severity": "normal",
+      "max_frp": 19.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-08-23_0.1_134_-878",
+      "date": 1661212800000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -87.75,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 1.17,
+      "ratio": 2.56,
+      "score": 1.19,
+      "severity": "normal",
+      "max_frp": 98.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-07-05_0.1_132_-884",
+      "date": 1625443200000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.6,
+      "ratio": 1.92,
+      "score": 1.19,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-13_0.1_137_-888",
+      "date": 1647129600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -88.75,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 4.14,
+      "ratio": 1.69,
+      "score": 1.18,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-24_0.1_138_-901",
+      "date": 1677196800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -90.05,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 4.14,
+      "ratio": 1.69,
+      "score": 1.18,
+      "severity": "normal",
+      "max_frp": 64.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-09-04_0.1_138_-893",
+      "date": 1630713600000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.25,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 4.16,
+      "ratio": 1.68,
+      "score": 1.17,
+      "severity": "normal",
+      "max_frp": 79.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-07-13_0.1_132_-886",
+      "date": 1689206400000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 7,
+      "expected": 4.18,
+      "ratio": 1.67,
+      "score": 1.16,
+      "severity": "normal",
+      "max_frp": 111.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-02-25_0.1_134_-881",
+      "date": 1614211200000,
+      "location": {
+        "latitude": 13.45,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 1.21,
+      "ratio": 2.48,
+      "score": 1.16,
+      "severity": "normal",
+      "max_frp": 29.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-08-10_0.1_135_-892",
+      "date": 1660089600000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -89.15,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.69,
+      "ratio": 1.86,
+      "score": 1.14,
+      "severity": "normal",
+      "max_frp": 19.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-27_0.1_138_-891",
+      "date": 1695772800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 1.26,
+      "ratio": 2.38,
+      "score": 1.12,
+      "severity": "normal",
+      "max_frp": 27.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-06-28_0.1_133_-887",
+      "date": 1687910400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.51,
+      "ratio": 1.71,
+      "score": 1.11,
+      "severity": "normal",
+      "max_frp": 24.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-06-01_0.1_135_-887",
+      "date": 1717200000000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.65,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.53,
+      "ratio": 1.7,
+      "score": 1.1,
+      "severity": "normal",
+      "max_frp": 88.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-11-12_0.1_136_-883",
+      "date": 1636675200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 3,
+      "expected": 1.29,
+      "ratio": 2.33,
+      "score": 1.09,
+      "severity": "normal",
+      "max_frp": 45.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-19_0.1_140_-900",
+      "date": 1695081600000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.54,
+      "ratio": 1.69,
+      "score": 1.09,
+      "severity": "normal",
+      "max_frp": 80.9,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-03-21_0.1_136_-896",
+      "date": 1710979200000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -89.55,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 2.05,
+      "ratio": 1.95,
+      "score": 1.07,
+      "severity": "normal",
+      "max_frp": 57.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-25_0.1_135_-886",
+      "date": 1716595200000,
+      "location": {
+        "latitude": 13.55,
+        "longitude": -88.55,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.81,
+      "ratio": 1.78,
+      "score": 1.07,
+      "severity": "normal",
+      "max_frp": 15,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-04-26_0.1_137_-891",
+      "date": 1714089600000,
+      "location": {
+        "latitude": 13.75,
+        "longitude": -89.05,
+        "cell_deg": 0.1
+      },
+      "observed": 4,
+      "expected": 2.07,
+      "ratio": 1.93,
+      "score": 1.06,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-08-19_0.1_139_-899",
+      "date": 1629331200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.85,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.61,
+      "ratio": 1.66,
+      "score": 1.06,
+      "severity": "normal",
+      "max_frp": null,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-12-26_0.1_138_-882",
+      "date": 1640476800000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -88.15,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 2.88,
+      "ratio": 1.74,
+      "score": 1.03,
+      "severity": "normal",
+      "max_frp": 119.5,
+      "baseline_years": 23
+    },
+    {
+      "id": "2021-10-03_0.1_139_-900",
+      "date": 1633219200000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -89.95,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.67,
+      "ratio": 1.63,
+      "score": 1.03,
+      "severity": "normal",
+      "max_frp": 51.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-25_0.1_133_-884",
+      "date": 1732492800000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.71,
+      "ratio": 1.62,
+      "score": 1.01,
+      "severity": "normal",
+      "max_frp": 53.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-05-22_0.1_133_-885",
+      "date": 1716336000000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.86,
+      "ratio": 1.55,
+      "score": 0.93,
+      "severity": "normal",
+      "max_frp": 112,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-02-22_0.1_136_-881",
+      "date": 1677024000000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.05,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 3.9,
+      "ratio": 1.54,
+      "score": 0.91,
+      "severity": "normal",
+      "max_frp": 21.8,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-29_0.1_138_-897",
+      "date": 1732838400000,
+      "location": {
+        "latitude": 13.85,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 3.13,
+      "ratio": 1.6,
+      "score": 0.89,
+      "severity": "normal",
+      "max_frp": 74.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-09-11_0.1_140_-897",
+      "date": 1694390400000,
+      "location": {
+        "latitude": 14.05,
+        "longitude": -89.65,
+        "cell_deg": 0.1
+      },
+      "observed": 6,
+      "expected": 4.06,
+      "ratio": 1.48,
+      "score": 0.84,
+      "severity": "normal",
+      "max_frp": 29.3,
+      "baseline_years": 23
+    },
+    {
+      "id": "2024-11-04_0.1_136_-883",
+      "date": 1730678400000,
+      "location": {
+        "latitude": 13.65,
+        "longitude": -88.25,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 3.25,
+      "ratio": 1.54,
+      "score": 0.83,
+      "severity": "normal",
+      "max_frp": 27.1,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-04-14_0.1_133_-884",
+      "date": 1649894400000,
+      "location": {
+        "latitude": 13.35,
+        "longitude": -88.35,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 3.4,
+      "ratio": 1.47,
+      "score": 0.75,
+      "severity": "normal",
+      "max_frp": 43.4,
+      "baseline_years": 23
+    },
+    {
+      "id": "2023-01-08_0.1_139_-880",
+      "date": 1673136000000,
+      "location": {
+        "latitude": 13.95,
+        "longitude": -87.95,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 3.42,
+      "ratio": 1.46,
+      "score": 0.74,
+      "severity": "normal",
+      "max_frp": 73.6,
+      "baseline_years": 23
+    },
+    {
+      "id": "2022-03-24_0.1_132_-885",
+      "date": 1648080000000,
+      "location": {
+        "latitude": 13.25,
+        "longitude": -88.45,
+        "cell_deg": 0.1
+      },
+      "observed": 5,
+      "expected": 3.43,
+      "ratio": 1.46,
+      "score": 0.74,
+      "severity": "normal",
+      "max_frp": 57.3,
+      "baseline_years": 23
+    }
+  ]
+}

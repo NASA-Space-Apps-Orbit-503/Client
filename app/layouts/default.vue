@@ -28,7 +28,7 @@ const items = ref<NavigationMenuItem[]>([
 </script>
 
 <template>
-  <UApp>
+  <UApp :locale="uiLocale">
     <UHeader>
       <template #left>
         <UNavigationMenu

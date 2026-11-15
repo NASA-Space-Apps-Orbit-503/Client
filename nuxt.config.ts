@@ -36,10 +36,11 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2026-06-30',
 
+  // Apache ECharts (`<VChart>`): only the charts/components registered here are bundled.
   echarts: {
     renderer: 'canvas',
-    charts: ['LineChart', 'BarChart'],
-    components: ['GridComponent', 'TooltipComponent', 'LegendComponent']
+    charts: ['LineChart', 'BarChart', 'ScatterChart'],
+    components: ['GridComponent', 'TooltipComponent', 'LegendComponent', 'DataZoomComponent', 'MarkLineComponent']
   },
 
   eslint: {

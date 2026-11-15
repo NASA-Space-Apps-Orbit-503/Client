@@ -168,5 +168,131 @@
       "description": "The burning activity data could not be loaded. Check your connection and try again.",
       "retry": "Retry"
     }
+  },
+  "severity": {
+    "normal": "Normal",
+    "low": "Low",
+    "moderate": "Moderate",
+    "high": "High",
+    "extreme": "Extreme"
+  },
+  "anomalies": {
+    "title": "Anomalies",
+    "description": "Days and cells where detected burning activity departs from the historical baseline for the same month.",
+    "map": {
+      "title": "Area of interest",
+      "description": "Draw a circle on the map or enter latitude and longitude in the filters. Without a radius, {radius} km is used.",
+      "markerSize": "Marker size: {size} px",
+      "markerSizeAria": "Anomaly marker size",
+      "legend": "Severity legend",
+      "pageNote": "No anomalies on this table page | Showing the anomaly on the current table page. Click a marker for details. | Showing the {count} anomalies on the current table page. Click a marker for details."
+    },
+    "minScore": {
+      "label": "Minimum score",
+      "hint": "Default 2"
+    },
+    "severity": {
+      "label": "Severity",
+      "placeholder": "All severities"
+    },
+    "results": "No anomalies | 1 anomaly | {count} anomalies",
+    "pageSize": "Rows per page",
+    "sortBy": "Sort by {column}",
+    "cellSize": "Cell {size}°",
+    "ratio": "×{ratio} expected",
+    "columns": {
+      "date": "Date",
+      "location": "Location",
+      "score": "Score",
+      "observed": "Observed",
+      "expected": "Expected",
+      "severity": "Severity"
+    },
+    "empty": {
+      "title": "No anomalies found",
+      "description": "Try widening the date range or the area, lowering the minimum score, or clearing the severity filter."
+    },
+    "error": {
+      "title": "Unable to load anomalies",
+      "retry": "Retry"
+    },
+    "csv": {
+      "download": "Download CSV",
+      "disabledEmpty": "No anomalies to export",
+      "progress": "Exporting {done} of {total} rows…",
+      "cancel": "Cancel",
+      "confirmTitle": "Large export",
+      "confirmDescription": "The current filters match {count} anomalies, more than {limit}. Downloading them may take a while. Continue?",
+      "confirm": "Download anyway",
+      "successTitle": "CSV downloaded",
+      "successDescription": "No rows | 1 row exported | {count} rows exported",
+      "emptyTitle": "No anomalies to export",
+      "cancelledTitle": "Export cancelled",
+      "errorTitle": "The export failed. Try again.",
+      "columns": {
+        "id": "ID",
+        "date": "Date",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "cellDeg": "Cell size (degrees)",
+        "observed": "Observed detections",
+        "expected": "Expected detections",
+        "ratio": "Observed/expected ratio",
+        "score": "Anomaly score",
+        "severity": "Severity",
+        "maxFrp": "Max FRP (MW)",
+        "baselineYears": "Baseline years"
+      }
+    },
+    "apply": {
+      "button": "Filter",
+      "pending": "Filters changed. Press Filter to update the results.",
+      "coordinatesError": "Enter both latitude and longitude, or leave both empty.",
+      "promptTitle": "Set your filters and press Filter",
+      "promptDescription": "Results, map markers and the CSV export use the filters applied with the Filter button."
+    },
+    "charts": {
+      "none": "None",
+      "yearSelect": "Year",
+      "allYears": "All years",
+      "month": "Month",
+      "year": "Year",
+      "anomalies": "Anomalies",
+      "count": "No anomalies | 1 anomaly | {count} anomalies",
+      "yearTotal": "Year total: no anomalies | Year total: 1 anomaly | Year total: {count} anomalies",
+      "quarter": "Q{quarter} ({from}–{to})",
+      "loading": "Loading chart data: {done} of {total} anomalies…",
+      "confirmTitle": "Large result",
+      "confirmDescription": "The applied filters match {count} anomalies, more than {limit}. Loading all of them for the charts may take a while.",
+      "confirm": "Load charts anyway",
+      "error": "Unable to load the chart data",
+      "emptyTitle": "No anomalies to chart",
+      "basis": "Charts based on no anomalies | Charts based on 1 anomaly matching the applied filters. | Charts based on {count} anomalies matching the applied filters.",
+      "line": {
+        "title": "Anomalies per month",
+        "descriptionAll": "All years combined. Select a year to see only its months.",
+        "descriptionYear": "Months of {year}.",
+        "ariaLabel": "Line chart of anomalies per month"
+      },
+      "bar": {
+        "title": "Anomalies per year, by month",
+        "description": "Each bar is a year; segments are months, January at the base. Colors group months by quarter.",
+        "legend": "Quarter colors",
+        "ariaLabel": "Stacked bar chart of anomalies per year, stacked by month"
+      },
+      "scatter": {
+        "title": "Anomaly score over time",
+        "description": "Each point is an anomaly, colored and sized by severity. Dashed lines mark where each severity starts. Scroll or drag the slider to zoom.",
+        "legend": "Severity (color and size)",
+        "ariaLabel": "Scatter plot of anomaly score by date"
+      },
+      "heatmap": {
+        "title": "Anomalies by year and month",
+        "description": "Each cell is one month of one year; darker cells have more anomalies. Hover a cell for its exact count.",
+        "legend": "Anomalies per month",
+        "range": "{from}–{to}",
+        "ariaLabel": "Heatmap of anomalies by year and month"
+      }
+    }
   }
 }

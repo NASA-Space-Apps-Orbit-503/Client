@@ -108,6 +108,7 @@ onMounted(() => {
         :placeholder="t('filters.satellites.placeholder')"
         value-key="id"
         multiple
+        class="min-w-48"
       />
     </UFormField>
     <UButton
