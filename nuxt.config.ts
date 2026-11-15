@@ -17,7 +17,10 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      useMocks: process.env.USE_MOCKS === 'true' || process.env.NUXT_PUBLIC_USE_MOCKS === 'true'
+      useMocks: process.env.USE_MOCKS === 'true' || process.env.NUXT_PUBLIC_USE_MOCKS === 'true',
+      // Base map tiles. Set with NUXT_PUBLIC_MAP_TILE_URL and NUXT_PUBLIC_MAP_ATTRIBUTION.
+      mapTileUrl: '',
+      mapAttribution: ''
     }
   },
 

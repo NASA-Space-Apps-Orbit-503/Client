@@ -6,7 +6,7 @@ import {
   EL_SALVADOR_DEFAULT_ZOOM,
   EL_SALVADOR_MIN_ZOOM
 } from '~/constants/el-salvador'
-import { BASE_MAP_KEY, OSM_ATTRIBUTION, OSM_TILE_URL } from '~/constants/map'
+import { BASE_MAP_KEY } from '~/constants/map'
 
 const props = withDefaults(defineProps<{
   center?: [number, number]
@@ -15,7 +15,9 @@ const props = withDefaults(defineProps<{
   maxZoom?: number
   /** Area the user cannot pan out of. Pass `null` to disable. */
   maxBounds?: LatLngBoundsExpression | null
+  /** Defaults to `NUXT_PUBLIC_MAP_TILE_URL`. */
   tileUrl?: string
+  /** Defaults to `NUXT_PUBLIC_MAP_ATTRIBUTION`. */
   attribution?: string
   /** Height utilities for the map container. */
   heightClass?: string
@@ -25,8 +27,6 @@ const props = withDefaults(defineProps<{
   minZoom: EL_SALVADOR_MIN_ZOOM,
   maxZoom: 18,
   maxBounds: () => EL_SALVADOR_BOUNDS,
-  tileUrl: OSM_TILE_URL,
-  attribution: OSM_ATTRIBUTION,
   heightClass: 'h-[55vh] min-h-80 max-h-160'
 })
 
@@ -35,6 +35,9 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const { mapTileUrl, mapAttribution } = useRuntimeConfig().public
+const tileUrl = computed(() => props.tileUrl ?? mapTileUrl)
+const attribution = computed(() => props.attribution ?? mapAttribution)
 
 const container = useTemplateRef<HTMLDivElement>('container')
 const leafletLoaded = ref(false)
@@ -94,8 +97,8 @@ defineExpose({ map })
       @ready="onReady"
     >
       <LTileLayer
-        :url="props.tileUrl"
-        :attribution="props.attribution"
+        :url="tileUrl"
+        :attribution="attribution"
         layer-type="base"
         name="OpenStreetMap"
       />
