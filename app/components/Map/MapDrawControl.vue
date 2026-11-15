@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Circle, CircleMarker, Control, DrawEvents, FeatureGroup, LeafletEvent, Map as LeafletMap } from 'leaflet'
+import type { Circle, CircleMarker, Rectangle, Control, DrawEvents, FeatureGroup, LeafletEvent, Map as LeafletMap, LeafletMouseEvent } from 'leaflet'
 import { EL_SALVADOR_BBOX } from '~/constants/el-salvador'
 import { AREA_SHAPE_OPTIONS } from '~/constants/map'
 import { LEAFLET_DRAW_LOCALES } from '~/constants/leaflet-draw-locale'
@@ -16,9 +16,16 @@ const circle = defineModel<CircleArea | null>({ default: null })
 const props = withDefaults(defineProps<{
   /** Center typed in the filters. Shown as a marker while there is no circle. */
   point?: { lat: number, lon: number } | null
+  selectingPoint?: boolean
 }>(), {
-  point: null
+  point: null,
+  selectingPoint: false
 })
+
+const emit = defineEmits<{
+  pointSelected: [point: { lat: number, lon: number }]
+  drawingStart: []
+}>()
 
 const POINT_ZOOM = 12
 const FLY_DEBOUNCE_MS = 300
@@ -71,6 +78,7 @@ function setup(instance: LeafletMap) {
   const drawnItems: FeatureGroup = L.featureGroup().addTo(instance)
   let control: Control.Draw | undefined
   let pointMarker: CircleMarker | undefined
+  let pointCell: Rectangle | undefined
   let flyTimer: ReturnType<typeof setTimeout> | undefined
   /** Circle currently drawn, to tell map edits apart from changes typed in the filters. */
   let drawnCircle: CircleArea | null = null
@@ -85,6 +93,11 @@ function setup(instance: LeafletMap) {
 
   const renderPoint = (value: { lat: number, lon: number } | null) => {
     pointMarker?.remove()
+    pointCell?.remove()
+    if (value) {
+      const { west, south, east, north } = pointCellBounds(value.lat, value.lon)
+      pointCell = L.rectangle([[south, west], [north, east]], { ...AREA_SHAPE_OPTIONS, interactive: false }).addTo(instance)
+    }
     pointMarker = value
       ? L.circleMarker([value.lat, value.lon], { ...AREA_SHAPE_OPTIONS, radius: 7, fillOpacity: 0.8 }).addTo(instance)
       : undefined
@@ -157,6 +170,27 @@ function setup(instance: LeafletMap) {
     circle.value = null
   }
 
+  let drawing = false
+  const onDrawingStart = () => {
+    drawing = true
+    emit('drawingStart')
+  }
+  const onDrawingStop = () => {
+    drawing = false
+  }
+  const onMapClick = (event: LeafletMouseEvent) => {
+    if (!props.selectingPoint || drawing) return
+    const { lat, lng: lon } = event.latlng
+    if (!isPointInsideElSalvador(lat, lon)) {
+      notifyPointOutside()
+      return
+    }
+    emit('pointSelected', { lat: roundCoordinate(lat), lon: roundCoordinate(lon) })
+  }
+  instance.on('click', onMapClick)
+  instance.on('draw:drawstart draw:editstart draw:deletestart', onDrawingStart)
+  instance.on('draw:drawstop draw:editstop draw:deletestop', onDrawingStop)
+
   const disableTouchBridge = enableDrawTouchBridge(instance)
   instance.on(L.Draw.Event.CREATED, onCreated)
   instance.on(L.Draw.Event.EDITED, onEdited)
@@ -187,19 +221,33 @@ function setup(instance: LeafletMap) {
     if (value && (value.lat !== previous?.lat || value.lon !== previous?.lon)) flyTo(value)
   })
 
+  const stopAreaWatch = watch(() => Boolean(circle.value || props.point), (hasArea) => {
+    if (hasArea) return
+    if (flyTimer) clearTimeout(flyTimer)
+    instance.stop()
+    instance.closePopup()
+    const { south, west, north, east } = EL_SALVADOR_BBOX
+    instance.fitBounds([[south, west], [north, east]], { padding: [16, 16], animate: false })
+  })
+
   const stopLocaleWatch = watch(locale, mountControl)
 
   return () => {
     if (flyTimer) clearTimeout(flyTimer)
+    instance.off('click', onMapClick)
+    instance.off('draw:drawstart draw:editstart draw:deletestart', onDrawingStart)
+    instance.off('draw:drawstop draw:editstop draw:deletestop', onDrawingStop)
     stopCircleWatch()
     stopPointWatch()
     stopLocaleWatch()
+    stopAreaWatch()
     instance.off(L.Draw.Event.CREATED, onCreated)
     instance.off(L.Draw.Event.EDITED, onEdited)
     instance.off(L.Draw.Event.DELETED, onDeleted)
     disableTouchBridge()
     if (control) instance.removeControl(control)
     pointMarker?.remove()
+    pointCell?.remove()
     drawnItems.clearLayers()
     instance.removeLayer(drawnItems)
   }

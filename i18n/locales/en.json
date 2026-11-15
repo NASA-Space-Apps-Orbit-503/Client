@@ -59,14 +59,17 @@
     "area": {
       "title": "Area of interest",
       "none": "No area selected. Draw a circle on the map or enter latitude and longitude in the filters.",
-      "point": "Point {lat}, {lon} · draw a circle or enter a radius",
+      "point": "Point {lat}, {lon} · local 0.01° cell",
       "circle": "Circle · center {lat}, {lon} · radius {radius} km",
       "clear": "Clear area",
       "outsideTitle": "Area outside El Salvador",
       "outsideDescription": "The circle must be completely inside El Salvador. Draw it again within the country.",
       "pointOutsideTitle": "Coordinates outside El Salvador",
       "pointOutsideDescription": "Latitude must be between {south} and {north}, and longitude between {west} and {east}.",
-      "radiusOutsideDescription": "The circle extends beyond El Salvador. Reduce the radius so it stays inside the country."
+      "radiusOutsideDescription": "The circle extends beyond El Salvador. Reduce the radius so it stays inside the country.",
+      "selectPoint": "Select a point",
+      "cancelPoint": "Cancel point selection",
+      "clickPoint": "Click or tap the map to fill latitude and longitude. Then apply the filters."
     },
     "detections": {
       "inspect": "View information",
