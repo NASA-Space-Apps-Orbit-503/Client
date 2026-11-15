@@ -7,7 +7,7 @@ defineProps<{
 
 <template>
   <LMap
-    style="height: 500px"
+    style="height: min(500px, 70vh); min-height: 300px; width: 100%"
     :zoom="zoom || 6"
     :center="center || [47.21322, -1.559482]"
     :use-global-leaflet="false"
