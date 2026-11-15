@@ -68,6 +68,25 @@
       "pointOutsideTitle": "Coordenadas fuera de El Salvador",
       "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
       "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país."
+    },
+    "detections": {
+      "inspect": "Ver información",
+      "clickHint": "Haz clic o toca un punto de color para ver su información.",
+      "time": "Hora de adquisición",
+      "frp": "Potencia radiativa del fuego",
+      "confidence": "Confianza",
+      "confidenceLevels": {
+        "low": "Baja",
+        "nominal": "Nominal",
+        "high": "Alta"
+      },
+      "loading": "Cargando detecciones de incendios…",
+      "count": "Mostrando {shown} de {total} detecciones de incendios",
+      "more": "Cargar más puntos",
+      "error": "No se pudieron cargar las detecciones de incendios",
+      "retry": "Reintentar",
+      "date": "Fecha de adquisición",
+      "partial": "Solo se dibujan los puntos mostrados (hasta 5.000). Acota los filtros o carga más puntos para explorar otras detecciones."
     }
   }
 }

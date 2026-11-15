@@ -67,6 +67,25 @@
       "pointOutsideTitle": "Coordinates outside El Salvador",
       "pointOutsideDescription": "Latitude must be between {south} and {north}, and longitude between {west} and {east}.",
       "radiusOutsideDescription": "The circle extends beyond El Salvador. Reduce the radius so it stays inside the country."
+    },
+    "detections": {
+      "inspect": "View information",
+      "clickHint": "Click or tap a colored point to view its information.",
+      "time": "Acquisition time",
+      "frp": "Fire radiative power",
+      "confidence": "Confidence",
+      "confidenceLevels": {
+        "low": "Low",
+        "nominal": "Nominal",
+        "high": "High"
+      },
+      "loading": "Loading fire detections…",
+      "count": "Showing {shown} of {total} fire detections",
+      "more": "Load more points",
+      "error": "Unable to load fire detections",
+      "retry": "Retry",
+      "date": "Acquisition date",
+      "partial": "Only the displayed points are drawn (up to 5,000). Narrow the filters or load more points to explore other detections."
     }
   }
 }
