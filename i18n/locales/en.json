@@ -1,0 +1,39 @@
+{
+  "header": {
+    "nav": {
+      "explore": "Explore",
+      "historicalTrends": "Historical Trends",
+      "anomalies": "Anomalies",
+      "methodology": "Methodology"
+    }
+  },
+  "filters": {
+    "dateRange": {
+      "label": "Date range",
+      "placeholder": "Select date range"
+    },
+    "latitude": {
+      "label": "Latitude",
+      "placeholder": "Enter latitude"
+    },
+    "longitude": {
+      "label": "Longitude",
+      "placeholder": "Enter longitude"
+    },
+    "instruments": {
+      "label": "Instruments",
+      "placeholder": "Select instruments"
+    }
+  },
+  "explore": {
+    "calendar": {
+      "title": "Burning activity calendar",
+      "error": "Unable to load burning activity calendar"
+    },
+    "map": {
+      "title": "Burning activity map",
+      "description": "Explore the burning activity across the globe. The map shows the locations of burning events based on satellite data.",
+      "error": "Unable to load burning activity map"
+    }
+  }
+}

@@ -3,6 +3,7 @@ import Filters from '~/components/Filters/Filters.vue'
 import StatsService from '~/services/stats.service'
 import { StatsGranularityEnum } from '~/enums/stats-granularity.enum'
 
+const { t } = useI18n()
 const { init } = useFilters()
 const { cards } = await useExploreSummary()
 const { data: calendar, error: calendarError } = await useAsyncData(
@@ -20,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <UPage class="px-8">
+  <UPage class="px-4 sm:px-6 lg:px-8">
     <UPageBody>
       <!-- Cards -->
       <UPageGrid>
@@ -34,8 +35,8 @@ onMounted(() => {
         />
         <!-- Map -->
         <UCard
-          title="Activity grid. April 2024"
-          description="Layer: Activity grid (broad zoom). Detections appear when zoomed in"
+          :title="t('explore.map.title')"
+          :description="t('explore.map.description')"
           class="col-span-12"
         >
           <template #default>
@@ -51,7 +52,7 @@ onMounted(() => {
           </template>
         </UCard>
         <UCard
-          title="Burning activity calendar"
+          :title="t('explore.calendar.title')"
           class="col-span-12"
         >
           <HeatmapCalendar
@@ -62,7 +63,7 @@ onMounted(() => {
             v-else
             color="error"
             variant="subtle"
-            title="Unable to load burning activity calendar"
+            :title="t('explore.calendar.error')"
           />
         </UCard>
       </UPageGrid>
