@@ -8,6 +8,16 @@
     }
   },
   "filters": {
+    "optional": "Opcional",
+    "pointOnly": "Sin radio, Aplicar busca solo en la celda de 0,01° que contiene este punto (aproximadamente 1 km por lado).",
+    "clear": "Limpiar filtros",
+    "cleared": "Búsqueda borrada. Selecciona filtros o un punto y pulsa Aplicar.",
+    "apply": "Aplicar",
+    "errors": {
+      "dateRange": "Selecciona ambas fechas; la fecha final debe ser igual o posterior a la inicial.",
+      "coordinates": "Ingresa latitud y longitud dentro de sus rangos válidos, o vacía ambos campos.",
+      "radius": "Si ingresas un radio, completa latitud y longitud y usa un valor mayor que 0 y hasta 300 km."
+    },
     "dateRange": {
       "label": "Rango de fechas",
       "startDate": "Fecha de inicio",
