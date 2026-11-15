@@ -49,7 +49,7 @@ onMounted(async () => {
     <UPageBody>
       <UPageGrid>
         <!-- Global filters (applied with the Filter button below) -->
-        <Filters />
+        <Filters class="col-span-12 grid grid-cols-1 md:grid-cols-6 gap-2" />
         <!-- Anomaly filters + Filter button -->
         <UCard class="col-span-12">
           <form

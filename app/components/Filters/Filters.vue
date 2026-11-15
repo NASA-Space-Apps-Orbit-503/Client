@@ -2,6 +2,10 @@
 const { t } = useI18n()
 const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList, init, searchActive, clearFilters, applyFilters, applying, hasPendingChanges, validationMessage } = useFilters()
 
+defineProps<{
+  classes?: string
+}>()
+
 /**
  * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
  * locale `13.6929` would be parsed as `136929`. Six decimals keep the precision of the circle
@@ -18,25 +22,49 @@ onMounted(() => {
 
 <template>
   <form
-    class="col-span-12 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:flex lg:flex-wrap"
+    :class="classes"
     @submit.prevent="applyFilters"
   >
+    <div class="col-span-12 w-full flex flex-col gap-2">
+      <p
+        v-if="!searchActive"
+        role="status"
+        class="w-full text-xs text-muted sm:col-span-2"
+      >
+        {{ t('filters.cleared') }}
+      </p>
+      <p
+        v-if="latitude !== null && longitude !== null && radiusKm === null && !validationMessage"
+        role="status"
+        class="w-full text-xs text-muted sm:col-span-2"
+      >
+        {{ t('filters.pointOnly') }}
+      </p>
+      <p
+        v-if="validationMessage"
+        role="status"
+        class="w-full text-xs text-error sm:col-span-2"
+      >
+        {{ validationMessage }}
+      </p>
+    </div>
     <UFormField
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
-      class="min-w-0 sm:col-span-2 lg:w-80 lg:flex-none"
+      class="w-full"
       size="sm"
     >
       <UInputDate
         v-model="dateRange"
         range
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
       :label="t('filters.latitude.label')"
       :placeholder="t('filters.latitude.placeholder')"
-      class="min-w-0 lg:w-40 lg:flex-none"
+      class="w-full"
       size="sm"
     >
       <UInputNumber
@@ -47,12 +75,13 @@ onMounted(() => {
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
       :label="t('filters.longitude.label')"
       :placeholder="t('filters.longitude.placeholder')"
-      class="min-w-0 lg:w-40 lg:flex-none"
+      class="w-full"
       size="sm"
     >
       <UInputNumber
@@ -63,12 +92,13 @@ onMounted(() => {
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
       :label="t('filters.radiusKm.label')"
       :hint="t('filters.optional')"
-      class="min-w-0 lg:w-40 lg:flex-none"
+      class="w-full"
       size="sm"
     >
       <UInputNumber
@@ -79,12 +109,13 @@ onMounted(() => {
         :format-options="radiusFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
       :label="t('filters.instruments.label')"
       :placeholder="t('filters.instruments.placeholder')"
-      class="min-w-0 lg:min-w-40 lg:flex-1"
+      class="w-full"
       size="sm"
     >
       <USelectMenu
@@ -94,11 +125,12 @@ onMounted(() => {
         value-key="id"
         multiple
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
       :label="t('filters.satellites.label')"
-      class="min-w-0 lg:min-w-44 lg:flex-1"
+      class="w-full"
       size="sm"
     >
       <USelectMenu
@@ -108,46 +140,25 @@ onMounted(() => {
         :placeholder="t('filters.satellites.placeholder')"
         value-key="id"
         multiple
-        class="min-w-48"
+        variant="subtle"
       />
     </UFormField>
-    <UButton
-      type="submit"
-      :label="t('filters.apply')"
-      icon="i-lucide-check"
-      :loading="applying"
-      :disabled="!hasPendingChanges || Boolean(validationMessage)"
-      class="justify-center lg:shrink-0"
-    />
-    <UButton
-      type="button"
-      :label="t('filters.clear')"
-      icon="i-lucide-rotate-ccw"
-      color="neutral"
-      variant="outline"
-      class="justify-center lg:shrink-0"
-      @click="clearFilters"
-    />
-    <p
-      v-if="!searchActive"
-      role="status"
-      class="w-full text-sm text-muted sm:col-span-2"
-    >
-      {{ t('filters.cleared') }}
-    </p>
-    <p
-      v-if="latitude !== null && longitude !== null && radiusKm === null && !validationMessage"
-      role="status"
-      class="w-full text-sm text-muted sm:col-span-2"
-    >
-      {{ t('filters.pointOnly') }}
-    </p>
-    <p
-      v-if="validationMessage"
-      role="status"
-      class="w-full text-sm text-error sm:col-span-2"
-    >
-      {{ validationMessage }}
-    </p>
+    <div class="w-full flex flex-wrap gap-2 self-end">
+      <UButton
+        type="submit"
+        icon="i-lucide-funnel"
+        :loading="applying"
+        :disabled="!hasPendingChanges || Boolean(validationMessage)"
+        class="justify-center w-fit"
+      />
+      <UButton
+        type="button"
+        icon="i-lucide-funnel-x"
+        color="neutral"
+        variant="outline"
+        class="justify-center w-fit"
+        @click="clearFilters"
+      />
+    </div>
   </form>
 </template>

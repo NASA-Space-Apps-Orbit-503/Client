@@ -13,8 +13,8 @@ useHead({
   }
 })
 
-const title = 'Nuxt Starter Template'
-const description = 'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.'
+const title = 'Ignis SV'
+const description = 'A geospatial intelligence platform for visualizing fire activity, and analyzing historical trends, designed specifically for El Salvador.'
 
 useSeoMeta({
   title,

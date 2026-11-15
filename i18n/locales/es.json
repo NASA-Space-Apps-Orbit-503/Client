@@ -11,7 +11,7 @@
     "optional": "Opcional",
     "pointOnly": "Sin radio, Aplicar busca solo en la celda de 0,01° que contiene este punto (aproximadamente 1 km por lado).",
     "clear": "Limpiar filtros",
-    "cleared": "Búsqueda borrada. Selecciona filtros o un punto y pulsa Aplicar.",
+    "cleared": "Búsqueda borrada. Selecciona filtros o un punto y pulsa filtrar.",
     "apply": "Aplicar",
     "errors": {
       "dateRange": "Selecciona ambas fechas; la fecha final debe ser igual o posterior a la inicial.",
@@ -52,11 +52,20 @@
       "title": "Mapa de actividad de quema",
       "description": "Explora la actividad de quema a través del mundo. El mapa muestra las ubicaciones de los eventos de quema basados en datos de satélite.",
       "error": "No se puede cargar el mapa de actividad de quema"
+    },
+    "navigation": {
+      "secondSection": "Detalles de exploración",
+      "toMap": "Ir al mapa",
+      "toSecondSection": "Ir a la siguiente sección"
     }
   },
   "map": {
     "ariaLabel": "Mapa de El Salvador",
     "loading": "Cargando mapa…",
+    "filters": {
+      "show": "Mostrar filtros",
+      "hide": "Ocultar filtros"
+    },
     "area": {
       "title": "Área de interés",
       "none": "No hay un área seleccionada. Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros.",
@@ -68,6 +77,8 @@
       "pointOutsideTitle": "Coordenadas fuera de El Salvador",
       "pointOutsideDescription": "La latitud debe estar entre {south} y {north}, y la longitud entre {west} y {east}.",
       "radiusOutsideDescription": "El círculo se sale de El Salvador. Reduce el radio para que quede dentro del país.",
+      "hide": "Ocultar información del área",
+      "show": "Mostrar información del área",
       "selectPoint": "Seleccionar un punto",
       "cancelPoint": "Cancelar selección",
       "clickPoint": "Haz clic o toca el mapa para llenar latitud y longitud. Después aplica los filtros."

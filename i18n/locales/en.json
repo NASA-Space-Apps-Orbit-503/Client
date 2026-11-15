@@ -11,7 +11,7 @@
     "optional": "Optional",
     "pointOnly": "Without a radius, Apply searches only the 0.01° cell containing this point (approximately 1 km per side).",
     "clear": "Clear filters",
-    "cleared": "Search cleared. Select filters or a point, then Apply.",
+    "cleared": "Search cleared. Select filters or a point and apply.",
     "apply": "Apply",
     "errors": {
       "dateRange": "Select both dates, with the end date on or after the start date.",
@@ -51,11 +51,20 @@
       "title": "Burning activity map",
       "description": "Explore the burning activity across the globe. The map shows the locations of burning events based on satellite data.",
       "error": "Unable to load burning activity map"
+    },
+    "navigation": {
+      "secondSection": "Explore details",
+      "toMap": "Go to map",
+      "toSecondSection": "Go to next section"
     }
   },
   "map": {
     "ariaLabel": "Map of El Salvador",
     "loading": "Loading map…",
+    "filters": {
+      "show": "Show filters",
+      "hide": "Hide filters"
+    },
     "area": {
       "title": "Area of interest",
       "none": "No area selected. Draw a circle on the map or enter latitude and longitude in the filters.",
@@ -67,6 +76,8 @@
       "pointOutsideTitle": "Coordinates outside El Salvador",
       "pointOutsideDescription": "Latitude must be between {south} and {north}, and longitude between {west} and {east}.",
       "radiusOutsideDescription": "The circle extends beyond El Salvador. Reduce the radius so it stays inside the country.",
+      "hide": "Hide area information",
+      "show": "Show area information",
       "selectPoint": "Select a point",
       "cancelPoint": "Cancel point selection",
       "clickPoint": "Click or tap the map to fill latitude and longitude. Then apply the filters."
