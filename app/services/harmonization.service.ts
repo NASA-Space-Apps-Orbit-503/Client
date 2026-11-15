@@ -29,7 +29,7 @@ const HarmonizationService = {
   async rebuildHarmonization(): Promise<HarmonizationRun> {
     if (useMocksEnabled()) return typedRunMock
     const { $api } = useNuxtApp()
-    return $api('/harmonization/rebuild', { method: 'POST' })
+    return $api('/stats/harmonization/rebuild', { method: 'POST' })
   }
 }
 

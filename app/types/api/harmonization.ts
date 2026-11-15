@@ -8,7 +8,7 @@ export type HarmonizationValidationYear = components['schemas']['HarmonizationVa
 export type HarmonizationReport = components['schemas']['HarmonizationReport']
 export type HarmonizedMonth = components['schemas']['HarmonizedMonth']
 export type HarmonizedSeries = components['schemas']['HarmonizedSeries']
-export type AnomalyLevel = components['schemas']['AnomalyLevel']
+export type HarmonizedAnomalyLevel = components['schemas']['HarmonizedAnomalyLevel']
 
 export interface HarmonizedSeriesQuery {
   from?: string

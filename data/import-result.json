@@ -24,12 +24,7 @@
     "mean_abs_harmonized_diff_pct": 6.3,
     "correlation": 0.962,
     "params": {
-      "bbox": [
-        -90.13,
-        13.15,
-        -87.68,
-        14.45
-      ],
+      "bbox": "-90.13,13.15,-87.68,14.45",
       "cell_deg": 0.01,
       "min_confidence": "nominal",
       "static_threshold": 0.3,
@@ -40,7 +35,7 @@
         "NOAA-20",
         "NOAA-21"
       ],
-      "overlap_end": "2025-12-01",
+      "overlap_end": "2025-12",
       "min_cells_month": 30.0,
       "dry_months": [
         11,

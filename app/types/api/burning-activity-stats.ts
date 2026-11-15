@@ -39,8 +39,4 @@ export interface RebuildQuery {
   cell_deg?: number
 }
 
-export type RebuildResponse = {
-  rows: number
-  metric: `${MetricEnum}`
-  cell_deg: number | null
-}
+export type RebuildResponse = components['schemas']['RebuildResult']
