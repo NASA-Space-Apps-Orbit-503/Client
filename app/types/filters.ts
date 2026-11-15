@@ -5,9 +5,6 @@ export interface DateRangeInput {
   end: DateValue | undefined
 }
 
-/** Area of interest as [west, south, east, north] in decimal degrees. */
-export type Bbox = [number, number, number, number]
-
 export interface Filters {
   dateRange: DateRangeInput
   instruments: string[]

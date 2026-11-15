@@ -97,24 +97,5 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         class="min-w-48"
       />
     </UFormField>
-    <UFormField :label="t('filters.area')">
-      <div class="flex h-8 items-center gap-1">
-        <UBadge
-          :label="bboxLabel"
-          color="neutral"
-          variant="subtle"
-          icon="i-lucide-square-dashed"
-        />
-        <UButton
-          v-if="bbox"
-          icon="i-lucide-x"
-          color="neutral"
-          variant="ghost"
-          size="xs"
-          :aria-label="t('filters.clearArea')"
-          @click="bbox = null"
-        />
-      </div>
-    </UFormField>
   </div>
 </template>

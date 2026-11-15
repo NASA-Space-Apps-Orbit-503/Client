@@ -18,36 +18,6 @@ function serializeDate(value: DateValue | undefined) {
   return value?.toString()
 }
 
-const BBOX_DECIMALS = 4
-
-/** Radius (km) applied around latitude/longitude when the user has not set one. */
-export const DEFAULT_RADIUS_KM = 5
-/** Limits accepted by the API `radius_km` parameter. */
-export const MIN_RADIUS_KM = 0.1
-export const MAX_RADIUS_KM = 2000
-
-function parseQueryRadius(value: string | undefined) {
-  const radius = Number(value)
-  return value !== undefined && Number.isFinite(radius) && radius >= MIN_RADIUS_KM && radius <= MAX_RADIUS_KM
-    ? radius
-    : DEFAULT_RADIUS_KM
-}
-
-function serializeBbox(value: Bbox | null) {
-  return value?.map(coordinate => coordinate.toFixed(BBOX_DECIMALS)).join(',')
-}
-
-function parseQueryBbox(value: string | undefined): Bbox | null {
-  if (!value) return null
-
-  const coordinates = value.split(',').map(Number)
-  if (coordinates.length !== 4 || coordinates.some(coordinate => !Number.isFinite(coordinate))) return null
-
-  const [west, south, east, north] = coordinates as Bbox
-  const valid = west >= -180 && east <= 180 && south >= -90 && north <= 90 && west < east && south < north
-  return valid ? [west, south, east, north] : null
-}
-
 function parseQueryDate(value: string | undefined) {
   if (!value) return undefined
 

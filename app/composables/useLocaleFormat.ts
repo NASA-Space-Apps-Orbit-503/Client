@@ -13,9 +13,16 @@ export default function useLocaleFormat() {
   const formatNumber = (value: number, options?: Intl.NumberFormatOptions) =>
     new Intl.NumberFormat(language.value, options).format(value)
 
+  /** Month names of the active locale, index 0 = January. */
+  const monthNames = (style: 'long' | 'short' = 'short') => {
+    const formatter = new Intl.DateTimeFormat(language.value, { month: style, timeZone: 'UTC' })
+    return Array.from({ length: 12 }, (_, month) => formatter.format(new Date(Date.UTC(2024, month, 1))))
+  }
+
   return {
     language,
     formatDate,
-    formatNumber
+    formatNumber,
+    monthNames
   }
 }
