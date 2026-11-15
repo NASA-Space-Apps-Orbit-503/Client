@@ -16,6 +16,9 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css', 'leaflet-draw/dist/leaflet.draw.css'],
 
   runtimeConfig: {
+    // Server-only: used by the `/api/**` proxy. Set with NUXT_API_BASE_URL and NUXT_API_KEY.
+    apiBaseUrl: '',
+    apiKey: '',
     public: {
       useMocks: process.env.USE_MOCKS === 'true' || process.env.NUXT_PUBLIC_USE_MOCKS === 'true',
       // Base map tiles. Set with NUXT_PUBLIC_MAP_TILE_URL and NUXT_PUBLIC_MAP_ATTRIBUTION.
@@ -53,7 +56,8 @@ export default defineNuxtConfig({
   openFetch: {
     clients: {
       api: {
-        baseURL: process.env.NUXT_PUBLIC_API_BASE_URL
+        // Requests go through the server proxy, which adds `x-api-key`.
+        baseURL: '/api'
       }
     }
   }
