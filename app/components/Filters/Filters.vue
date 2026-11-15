@@ -2,6 +2,10 @@
 const { t } = useI18n()
 const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList } = useFilters()
 
+defineProps<{
+  classes?: string
+}>()
+
 /**
  * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
  * locale `13.6929` would be parsed as `136929`. Six decimals keep the precision of the circle
@@ -13,7 +17,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
 </script>
 
 <template>
-  <div class="col-span-12 grid grid-cols-1 items-end gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap">
+  <div :class="classes">
     <UFormField
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
@@ -24,6 +28,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         v-model="dateRange"
         range
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -40,6 +45,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -56,6 +62,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -70,6 +77,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :format-options="radiusFormat"
         :locale="COORDINATE_LOCALE"
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField
@@ -85,6 +93,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         value-key="id"
         multiple
         class="w-full"
+        variant="subtle"
       />
     </UFormField>
     <UFormField :label="t('filters.satellites.label')">
@@ -94,6 +103,8 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :placeholder="t('filters.satellites.placeholder')"
         value-key="id"
         multiple
+        variant="subtle"
+        class="w-full"
       />
     </UFormField>
   </div>

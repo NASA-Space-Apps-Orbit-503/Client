@@ -46,6 +46,10 @@
   "map": {
     "ariaLabel": "Map of El Salvador",
     "loading": "Loading map…",
+    "filters": {
+      "show": "Show filters",
+      "hide": "Hide filters"
+    },
     "area": {
       "title": "Area of interest",
       "none": "No area selected. Draw a circle on the map or enter latitude and longitude in the filters.",

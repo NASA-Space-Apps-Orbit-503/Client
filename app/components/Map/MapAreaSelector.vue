@@ -25,31 +25,46 @@ function clearArea() {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    <div class="flex flex-wrap items-center justify-between gap-2 text-sm">
-      <p :class="areaLabel ? 'text-highlighted' : 'text-muted'">
-        <UIcon
-          name="i-lucide-circle-dashed"
-          class="mr-1 align-middle"
+  <div class="flex flex-col gap-2">
+    <BaseMap class="h-screen">
+      <!-- Draw Controls -->
+      <template #draw-controls>
+        <MapDrawControl
+          v-model="circle"
+          :point="point"
         />
-        <span class="align-middle">{{ areaLabel ?? t('map.area.none') }}</span>
-      </p>
-      <UButton
-        v-if="circle || point"
-        :label="t('map.area.clear')"
-        icon="i-lucide-x"
-        color="neutral"
-        variant="ghost"
-        size="sm"
-        @click="clearArea"
-      />
-    </div>
-
-    <BaseMap>
-      <MapDrawControl
-        v-model="circle"
-        :point="point"
-      />
+      </template>
+      <!-- Filters -->
+      <template #filters>
+        <Filters class="w-full flex flex-col gap-2" />
+      </template>
+      <!-- Area Description -->
+      <template #area-description>
+        <div class="flex flex-wrap items-center justify-between gap-2 text-sm min-h-1/12">
+          <UCard
+            class="bg-default/80"
+            size="xs"
+          >
+            <p>
+              <UIcon
+                name="i-lucide-circle-dashed"
+                class="mr-1 align-middle"
+              />
+              <span class="align-middle">{{ areaLabel ?? t('map.area.none') }}</span>
+            </p>
+          </UCard>
+          <UButton
+            v-if="circle || point"
+            :label="t('map.area.clear')"
+            icon="i-lucide-x"
+            color="neutral"
+            variant="solid"
+            size="sm"
+            class="cursor-pointer"
+            @click="clearArea"
+          />
+        </div>
+      </template>
     </BaseMap>
   </div>
 </template>
