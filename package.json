@@ -8,7 +8,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.147",
@@ -31,6 +32,7 @@
     "nuxt-echarts": "^1.1.0",
     "nuxt-open-fetch": "^0.13.9",
     "typescript": "^6.0.3",
+    "vitest": "^5.1.0",
     "vue-tsc": "^3.3.13"
   },
   "packageManager": "pnpm@12.15.0"
