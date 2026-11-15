@@ -52,7 +52,7 @@ info:
     de `/stats/anomalies` (`Severity`).
 
 servers:
-  - url: https://api-nasa.fopinet.com
+  - url: https://api-nasa.fopi.cc
     description: Producción
 
 security:
