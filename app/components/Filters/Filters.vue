@@ -15,19 +15,22 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
 </script>
 
 <template>
-  <div class="col-span-12 flex justify-start items-center gap-4">
+  <div class="col-span-12 grid grid-cols-1 items-end gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap">
     <UFormField
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
+      class="min-w-0 sm:col-span-2 lg:flex-1"
     >
       <UInputDate
         v-model="dateRange"
         range
+        class="w-full"
       />
     </UFormField>
     <UFormField
       :label="t('filters.latitude.label')"
       :placeholder="t('filters.latitude.placeholder')"
+      class="min-w-0"
     >
       <UInputNumber
         v-model="latitude"
@@ -36,11 +39,13 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :step="0.000001"
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
+        class="w-full"
       />
     </UFormField>
     <UFormField
       :label="t('filters.longitude.label')"
       :placeholder="t('filters.longitude.placeholder')"
+      class="min-w-0"
     >
       <UInputNumber
         v-model="longitude"
@@ -49,6 +54,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :step="0.000001"
         :format-options="coordinateFormat"
         :locale="COORDINATE_LOCALE"
+        class="w-full"
       />
     </UFormField>
     <UFormField :label="t('filters.radiusKm.label')">
@@ -59,11 +65,13 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :step="0.001"
         :format-options="radiusFormat"
         :locale="COORDINATE_LOCALE"
+        class="w-full"
       />
     </UFormField>
     <UFormField
       :label="t('filters.instruments.label')"
       :placeholder="t('filters.instruments.placeholder')"
+      class="min-w-0 sm:col-span-2 lg:min-w-48 lg:flex-1"
     >
       <USelectMenu
         v-model="instruments"
@@ -71,6 +79,7 @@ const radiusFormat = { maximumFractionDigits: 3, useGrouping: false }
         :placeholder="t('filters.instruments.placeholder')"
         value-key="id"
         multiple
+        class="w-full"
       />
     </UFormField>
     <UFormField :label="t('filters.satellites.label')">

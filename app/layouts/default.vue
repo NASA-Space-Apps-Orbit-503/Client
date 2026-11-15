@@ -31,7 +31,10 @@ const items = ref<NavigationMenuItem[]>([
   <UApp>
     <UHeader>
       <template #left>
-        <UNavigationMenu :items="items" />
+        <UNavigationMenu
+          :items="items"
+          class="hidden lg:flex"
+        />
       </template>
       <template #right>
         <ULocaleSelect
@@ -39,7 +42,15 @@ const items = ref<NavigationMenuItem[]>([
           :locales="[en, es]"
           @update:model-value="$i18n.setLocale($event as Parameters<typeof $i18n.setLocale>[0])"
         />
-        <UBadge>Demo. Not connected to a live feed</UBadge>
+        <UBadge class="hidden sm:inline-flex">
+          Demo. Not connected to a live feed
+        </UBadge>
+      </template>
+      <template #body>
+        <UNavigationMenu
+          :items="items"
+          orientation="vertical"
+        />
       </template>
     </UHeader>
     <UMain>
