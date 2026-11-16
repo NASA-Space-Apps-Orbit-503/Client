@@ -193,7 +193,7 @@
     "description": "Días y celdas donde la actividad de quema detectada se aparta de la línea base histórica del mismo mes.",
     "map": {
       "title": "Área de interés",
-      "description": "Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros. Sin radio, se usan {radius} km.",
+      "description": "Dibuja un círculo en el mapa o ingresa latitud y longitud en los filtros. Sin radio, se usa la celda de 0,01° que contiene el punto.",
       "markerSize": "Tamaño del marcador: {size} px",
       "markerSizeAria": "Tamaño de los marcadores de anomalías",
       "legend": "Leyenda de severidad",
@@ -257,11 +257,8 @@
       }
     },
     "apply": {
-      "button": "Filtrar",
-      "pending": "Los filtros cambiaron. Presiona Filtrar para actualizar los resultados.",
-      "coordinatesError": "Ingresa latitud y longitud, o deja ambas vacías.",
-      "promptTitle": "Define tus filtros y presiona Filtrar",
-      "promptDescription": "Los resultados, los marcadores del mapa y la exportación CSV usan los filtros aplicados con el botón Filtrar."
+      "promptTitle": "Sin búsqueda activa",
+      "promptDescription": "Los filtros se limpiaron. Define tus filtros y presiona el botón de filtrar para ver anomalías, marcadores del mapa, gráficos y la exportación CSV."
     },
     "charts": {
       "none": "Ninguno",

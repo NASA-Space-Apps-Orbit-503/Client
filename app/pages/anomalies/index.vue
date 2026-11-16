@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { FILTERABLE_SEVERITIES } from '~/enums/severity.enum'
-import { ANOMALIES_DEFAULT_RADIUS_KM } from '~/composables/useAnomalies'
 
 const { t } = useI18n()
-const { init } = useFilters()
 const {
   minScore,
   severities,
+  pagePending,
+  applyPageFilters,
+  clearPageFilters,
   appliedQuery,
   applied,
-  hasPendingChanges,
-  coordinatesError,
-  applyFilters,
-  applyInitialFilters,
   sorting,
   page,
   pageSize,
@@ -31,13 +28,6 @@ const severityItems = computed(() => FILTERABLE_SEVERITIES.map(severity => ({
 useSeoMeta({
   title: () => t('anomalies.title')
 })
-
-onMounted(async () => {
-  init()
-  // Global filters are restored from the URL by the layout; apply them (or the defaults) once in place
-  await nextTick()
-  applyInitialFilters()
-})
 </script>
 
 <template>
@@ -48,76 +38,50 @@ onMounted(async () => {
     />
     <UPageBody>
       <UPageGrid>
-        <!-- Global filters (applied with the Filter button below) -->
-        <Filters class="col-span-12 grid grid-cols-1 md:grid-cols-6 gap-2" />
-        <!-- Anomaly filters + Filter button -->
-        <UCard class="col-span-12">
-          <form
-            class="flex flex-col gap-3"
-            novalidate
-            @submit.prevent="applyFilters"
-          >
-            <div class="flex flex-wrap items-end justify-between gap-4">
-              <div class="grid w-full grid-cols-1 items-end gap-4 sm:grid-cols-2 lg:flex lg:w-auto lg:flex-wrap">
-                <UFormField
-                  :label="t('anomalies.minScore.label')"
-                  :hint="t('anomalies.minScore.hint')"
-                  size="sm"
-                >
-                  <UInputNumber
-                    v-model="minScore"
-                    :min="0"
-                    :step="0.5"
-                    :format-options="{ maximumFractionDigits: 2 }"
-                    class="w-full lg:w-40"
-                  />
-                </UFormField>
-                <UFormField
-                  :label="t('anomalies.severity.label')"
-                  size="sm"
-                  class="min-w-0 lg:min-w-56"
-                >
-                  <USelectMenu
-                    v-model="severities"
-                    :items="severityItems"
-                    :placeholder="t('anomalies.severity.placeholder')"
-                    value-key="value"
-                    multiple
-                    class="w-full"
-                  />
-                </UFormField>
-              </div>
-              <div class="flex flex-wrap items-center gap-3">
-                <span
-                  v-if="applied && hasPendingChanges"
-                  class="text-xs text-muted"
-                  role="status"
-                >
-                  {{ t('anomalies.apply.pending') }}
-                </span>
-                <UButton
-                  type="submit"
-                  :label="t('anomalies.apply.button')"
-                  icon="i-lucide-filter"
-                  :variant="!applied || hasPendingChanges ? 'solid' : 'outline'"
-                  :loading="loading"
-                />
-              </div>
-            </div>
-            <UAlert
-              v-if="coordinatesError"
-              color="error"
-              variant="subtle"
-              icon="i-lucide-circle-alert"
-              :title="t('anomalies.apply.coordinatesError')"
-              role="alert"
-            />
-          </form>
-        </UCard>
+        <!-- Shared filter bar + the anomaly filters, applied together by its funnel button -->
+        <Filters
+          class="col-span-12 grid grid-cols-1 md:grid-cols-6 gap-2"
+          :page-pending="pagePending"
+          @apply="applyPageFilters"
+          @clear="clearPageFilters"
+        >
+          <template #page-filters>
+            <UFormField
+              :label="t('anomalies.minScore.label')"
+              :hint="t('anomalies.minScore.hint')"
+              class="w-full"
+              size="sm"
+            >
+              <UInputNumber
+                v-model="minScore"
+                :min="0"
+                :step="0.5"
+                :format-options="{ maximumFractionDigits: 2 }"
+                class="w-full"
+                variant="subtle"
+              />
+            </UFormField>
+            <UFormField
+              :label="t('anomalies.severity.label')"
+              class="w-full"
+              size="sm"
+            >
+              <USelectMenu
+                v-model="severities"
+                :items="severityItems"
+                :placeholder="t('anomalies.severity.placeholder')"
+                value-key="value"
+                multiple
+                class="w-full"
+                variant="subtle"
+              />
+            </UFormField>
+          </template>
+        </Filters>
         <!-- Map: shared area selection + anomalies of the current table page -->
         <UCard
           :title="t('anomalies.map.title')"
-          :description="t('anomalies.map.description', { radius: ANOMALIES_DEFAULT_RADIUS_KM })"
+          :description="t('anomalies.map.description')"
           class="col-span-12"
         >
           <AnomaliesAreaMap :items="items" />

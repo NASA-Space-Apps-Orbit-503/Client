@@ -18,6 +18,9 @@ export interface SeverityPoints {
  * Results above `ANOMALY_CHARTS_WARNING_ROWS` wait for `confirmLoad()`.
  */
 export default function useAnomaliesCharts(appliedQuery: Ref<AnomalyListQuery | null>) {
+  // Captured in setup: loads start from watchers and continue after awaits (outside setup)
+  const nuxtApp = useNuxtApp()
+
   // shallowRef: tens of thousands of rows do not need deep reactivity
   const rows = shallowRef<AnomalyItem[]>([])
   const status = ref<AnomalyChartsStatus>('idle')
@@ -47,6 +50,7 @@ export default function useAnomaliesCharts(appliedQuery: Ref<AnomalyListQuery | 
     try {
       const result = await fetchAllAnomalies(query, {
         maxRows: confirmed ? undefined : ANOMALY_CHARTS_WARNING_ROWS,
+        runInContext: fn => nuxtApp.runWithContext(fn),
         // A newer apply supersedes this load
         shouldStop: () => id !== runId,
         onProgress: (done, total) => {

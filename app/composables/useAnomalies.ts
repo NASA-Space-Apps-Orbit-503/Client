@@ -1,9 +1,7 @@
 import StatsService from '~/services/stats.service'
 import { AnomalySortEnum } from '~/enums/anomaly-sort.enum'
 import type { FilterableSeverity } from '~/enums/severity.enum'
-import type { DateRangeQuery } from '~/types/api/date-range'
 import type { AnomalyListQuery } from '~/types/api/stats'
-import type { AreaQuery } from '~/types/area'
 
 /** Same shape as TanStack's SortingState used by UTable. */
 export type AnomaliesSorting = { id: string, desc: boolean }[]
@@ -11,8 +9,6 @@ export type AnomaliesSorting = { id: string, desc: boolean }[]
 export const ANOMALIES_PAGE_SIZES = [25, 50, 100]
 /** Contract default for `min_score`: below it a day is `normal` and is not listed. */
 export const DEFAULT_MIN_SCORE = 2
-/** Radius used on /anomalies when latitude/longitude are set without a radius. */
-export const ANOMALIES_DEFAULT_RADIUS_KM = 5
 
 const DEFAULT_PAGE_SIZE = 25
 
@@ -25,67 +21,84 @@ const SORT_BY_COLUMN: Record<string, { asc: AnomalySortEnum, desc: AnomalySortEn
 
 export const SORTABLE_ANOMALY_COLUMNS = Object.keys(SORT_BY_COLUMN)
 
+/** Filters that only exist on /anomalies (shown in the `#page-filters` slot of `<Filters>`). */
+interface AnomalyPageFilters {
+  minScore: number | null
+  severities: FilterableSeverity[]
+}
+
+const defaultPageFilters = (): AnomalyPageFilters => ({ minScore: DEFAULT_MIN_SCORE, severities: [] })
+
+const copyPageFilters = (value: AnomalyPageFilters): AnomalyPageFilters => ({ ...value, severities: [...value.severities] })
+
+/** Drops `undefined` entries so equal queries compare (and serialize) equal. */
+const compact = <T extends object>(value: T) =>
+  Object.fromEntries(Object.entries(value).filter(([, entry]) => entry !== undefined)) as T
+
 /**
- * Page state for /anomalies. Filters (global + page) are edited freely but only reach the API
- * when `applyFilters()` runs (the Filter button), as a snapshot (`appliedQuery`). Sorting and
- * pagination act on that snapshot immediately. Shared filter state is never modified here.
+ * Page state for /anomalies. The global filters use the shared draft/applied model of
+ * `useFilters()` (applied with the funnel button of `<Filters>`, validated there); the page's own
+ * filters (minimum score, severity) follow the same model: edited as a draft, applied on the
+ * `<Filters>` `apply` event and reset on `clear`. Requests only use the applied values.
  */
 export default function useAnomalies() {
-  const { dateRange, latitude, longitude, areaQuery, instruments, satelliteQuery } = useFilters()
+  const { statsQuery, searchActive } = useFilters()
 
-  // Page filters
-  const minScore = ref<number | null>(DEFAULT_MIN_SCORE)
-  const severities = ref<FilterableSeverity[]>([])
+  // Page filters: draft (bound to the inputs) and applied snapshot
+  const pageDraft = ref<AnomalyPageFilters>(defaultPageFilters())
+  const pageApplied = ref<AnomalyPageFilters>(defaultPageFilters())
+
+  const minScore = computed({
+    get: () => pageDraft.value.minScore,
+    set: (value: number | null | undefined) => {
+      pageDraft.value.minScore = value ?? null
+    }
+  })
+  const severities = computed({
+    get: () => pageDraft.value.severities,
+    set: (value: FilterableSeverity[]) => {
+      pageDraft.value.severities = value
+    }
+  })
+
+  /** True when the page filters differ from the applied ones (enables the shared apply button). */
+  const pagePending = computed(() => JSON.stringify(pageDraft.value) !== JSON.stringify(pageApplied.value))
+
+  /** `<Filters @apply>`: the global filters were applied; apply the page filters with them. */
+  function applyPageFilters() {
+    pageApplied.value = copyPageFilters(pageDraft.value)
+  }
+
+  /** `<Filters @clear>`: reset the page filters too. */
+  function clearPageFilters() {
+    pageDraft.value = defaultPageFilters()
+    pageApplied.value = defaultPageFilters()
+  }
 
   const sorting = ref<AnomaliesSorting>([{ id: 'date', desc: true }])
   const page = ref(1)
   const pageSize = ref(DEFAULT_PAGE_SIZE)
 
-  /** Shared circle; falls back to a point + default radius when only coordinates are typed. */
-  const anomaliesAreaQuery = computed<AreaQuery>(() => {
-    if (areaQuery.value.lat !== undefined) return areaQuery.value
-    if (latitude.value === null || longitude.value === null) return {}
-    return circleToQuery({ lat: latitude.value, lon: longitude.value, radiusKm: ANOMALIES_DEFAULT_RADIUS_KM })
+  /**
+   * Applied filters (shared + page), without paging or sorting. `null` while the search is
+   * cleared (`searchActive` false). Reused by the table, the map markers, the CSV and the charts.
+   */
+  const appliedQuery = computed<AnomalyListQuery | null>(() => {
+    if (!searchActive.value) return null
+    const { minScore: score, severities: selected } = pageApplied.value
+    return compact({
+      ...statsQuery.value,
+      min_score: score ?? undefined,
+      severity: selected.length ? selected.join(',') : undefined
+    }) as AnomalyListQuery
   })
 
-  /** Filters as currently edited (not yet applied). */
-  const pendingQuery = computed<AnomalyListQuery>(() => {
-    const startDate = dateRange.value.start?.toString()
-    const endDate = dateRange.value.end?.toString()
-
-    // The API requires both dates or neither
-    const dates: DateRangeQuery = startDate && endDate ? { startDate, endDate } : {}
-    const query: AnomalyListQuery = { ...dates, ...anomaliesAreaQuery.value }
-
-    if (instruments.value.length) query.instrument = instruments.value.join(',')
-    if (satelliteQuery.value) query.satellite = satelliteQuery.value
-    if (minScore.value !== null) query.min_score = minScore.value
-    if (severities.value.length) query.severity = severities.value.join(',')
-
-    return query
-  })
-
-  /** Last applied filters, without paging or sorting. `null` until the first apply. Reused by the CSV export. */
-  const appliedQuery = ref<AnomalyListQuery | null>(null)
-
-  /** True when the edited filters differ from the applied ones. */
-  const hasPendingChanges = computed(() =>
-    JSON.stringify(pendingQuery.value) !== JSON.stringify(appliedQuery.value)
-  )
-
-  // Validation: latitude and longitude must be both set or both empty
-  const coordinatesError = ref(false)
-  const coordinatesValid = () => (latitude.value === null) === (longitude.value === null)
-  watch([latitude, longitude], () => {
-    if (coordinatesError.value && coordinatesValid()) coordinatesError.value = false
-  })
-
-  // A new page size starts from the first page
-  watch(pageSize, () => {
+  // New applied filters or page size start from the first page
+  watch([appliedQuery, pageSize], () => {
     page.value = 1
   })
 
-  /** Request for the current page, or null while no filters have been applied. */
+  /** Request for the current page, or null while there is no active search. */
   const query = computed<AnomalyListQuery | null>(() => {
     if (!appliedQuery.value) return null
     const [sort] = sorting.value
@@ -106,34 +119,6 @@ export default function useAnomalies() {
     { watch: [query], server: false }
   )
 
-  /**
-   * Applies the edited filters (Filter button). Returns false when validation fails.
-   * Applying the same filters again refreshes the results.
-   */
-  function applyFilters(): boolean {
-    if (!coordinatesValid()) {
-      coordinatesError.value = true
-      return false
-    }
-    coordinatesError.value = false
-
-    // Always a new object: even with the same filters the request is rebuilt, so results refresh
-    appliedQuery.value = { ...pendingQuery.value }
-    page.value = 1
-    return true
-  }
-
-  /**
-   * Initial state on load, so the table and map are never empty on arrival:
-   * - Filters restored from the URL (shared link, reload, coming from another page) are applied.
-   * - Without URL filters, the defaults are applied (whole dataset, `min_score` 2, newest first).
-   * If the URL filters are invalid (latitude without longitude), the validation error is shown
-   * and the page waits for the Filter button.
-   */
-  function applyInitialFilters() {
-    applyFilters()
-  }
-
   const applied = computed(() => appliedQuery.value !== null)
   const items = computed(() => data.value?.items ?? [])
   const total = computed(() => data.value?.total ?? 0)
@@ -143,13 +128,12 @@ export default function useAnomalies() {
     // Page filters
     minScore,
     severities,
-    // Apply flow
+    pagePending,
+    applyPageFilters,
+    clearPageFilters,
+    // Applied state
     appliedQuery,
     applied,
-    hasPendingChanges,
-    coordinatesError,
-    applyFilters,
-    applyInitialFilters,
     // Table state
     sorting,
     page,

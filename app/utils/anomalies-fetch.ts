@@ -22,6 +22,13 @@ export interface FetchAllAnomaliesOptions {
   shouldStop?: () => boolean
   /** Abort with `AnomaliesTooManyRowsError` when the total exceeds this. */
   maxRows?: number
+  /**
+   * Runs each request inside the Nuxt context. Required when the fetch starts outside `setup()`
+   * (watchers, click handlers) or continues after an `await`: the service calls `useRuntimeConfig()`
+   * and `useNuxtApp()`, which throw NUXT_E1001 without it. Pass `fn => nuxtApp.runWithContext(fn)`
+   * with a `nuxtApp` captured in `setup()`.
+   */
+  runInContext?: <T>(fn: () => T) => T | Promise<Awaited<T>>
 }
 
 /**
@@ -36,12 +43,13 @@ export async function fetchAllAnomalies(query: AnomalyListQuery, options: FetchA
   while (offset < total) {
     if (options.shouldStop?.()) throw new AnomaliesFetchCancelledError()
 
-    const page = await StatsService.listAnomalies({
+    const request = () => StatsService.listAnomalies({
       ...query,
       sort: AnomalySortEnum.DateAsc,
       limit: FETCH_ALL_PAGE_SIZE,
       offset
     })
+    const page = await (options.runInContext ? options.runInContext(request) : request())
 
     total = page.total
     if (options.maxRows !== undefined && total > options.maxRows) throw new AnomaliesTooManyRowsError(total)

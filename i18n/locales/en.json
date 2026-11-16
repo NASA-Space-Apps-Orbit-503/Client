@@ -192,7 +192,7 @@
     "description": "Days and cells where detected burning activity departs from the historical baseline for the same month.",
     "map": {
       "title": "Area of interest",
-      "description": "Draw a circle on the map or enter latitude and longitude in the filters. Without a radius, {radius} km is used.",
+      "description": "Draw a circle on the map or enter latitude and longitude in the filters. Without a radius, the 0.01° cell containing the point is used.",
       "markerSize": "Marker size: {size} px",
       "markerSizeAria": "Anomaly marker size",
       "legend": "Severity legend",
@@ -256,11 +256,8 @@
       }
     },
     "apply": {
-      "button": "Filter",
-      "pending": "Filters changed. Press Filter to update the results.",
-      "coordinatesError": "Enter both latitude and longitude, or leave both empty.",
-      "promptTitle": "Set your filters and press Filter",
-      "promptDescription": "Results, map markers and the CSV export use the filters applied with the Filter button."
+      "promptTitle": "No active search",
+      "promptDescription": "The filters were cleared. Set your filters and press the filter button to see anomalies, map markers, charts and the CSV export."
     },
     "charts": {
       "none": "None",

@@ -33,6 +33,8 @@ const CSV_COLUMNS = [
 export default function useAnomaliesExport(filterQuery: Ref<AnomalyListQuery>, total: Ref<number>) {
   const { t, locale } = useI18n()
   const toast = useToast()
+  // Captured in setup: the export starts from a click handler (outside setup)
+  const nuxtApp = useNuxtApp()
 
   const exporting = ref(false)
   const exportedRows = ref(0)
@@ -46,6 +48,7 @@ export default function useAnomaliesExport(filterQuery: Ref<AnomalyListQuery>, t
   /** Every page of the filters (shared helper), reporting progress and honoring Cancel. */
   function fetchAll(query: AnomalyListQuery): Promise<AnomalyItem[]> {
     return fetchAllAnomalies(query, {
+      runInContext: fn => nuxtApp.runWithContext(fn),
       shouldStop: () => cancelRequested,
       onProgress: (fetched, total) => {
         exportedRows.value = fetched

@@ -2,9 +2,35 @@
 const { t } = useI18n()
 const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getInstrumentsList, getSatellitesList, init, searchActive, clearFilters, applyFilters, applying, hasPendingChanges, validationMessage } = useFilters()
 
-defineProps<{
+const props = defineProps<{
   classes?: string
+  /**
+   * True when the page's own filters (`#page-filters` slot) differ from the ones last applied,
+   * so the apply button is enabled even if the global filters did not change.
+   */
+  pagePending?: boolean
 }>()
+
+const emit = defineEmits<{
+  /** Emitted after a successful apply: pages snapshot their own filters here. */
+  apply: []
+  /** Emitted after clearing: pages reset their own filters here. */
+  clear: []
+}>()
+
+const canApply = computed(() => (hasPendingChanges.value || props.pagePending) && !validationMessage.value)
+
+async function onSubmit() {
+  // Same guard as `applyFilters()`, so submitting behaves as before on pages without page filters
+  if (validationMessage.value || applying.value) return
+  await applyFilters()
+  emit('apply')
+}
+
+async function onClear() {
+  await clearFilters()
+  emit('clear')
+}
 
 /**
  * Coordinates always use `.` as decimal separator, whatever the UI language: with the Spanish
@@ -23,7 +49,7 @@ onMounted(() => {
 <template>
   <form
     :class="classes"
-    @submit.prevent="applyFilters"
+    @submit.prevent="onSubmit"
   >
     <div class="col-span-12 w-full flex flex-col gap-2">
       <p
@@ -143,12 +169,14 @@ onMounted(() => {
         variant="subtle"
       />
     </UFormField>
+    <!-- Page-specific filters: applied together with the global ones by the same button -->
+    <slot name="page-filters" />
     <div class="w-full flex flex-wrap gap-2 self-end">
       <UButton
         type="submit"
         icon="i-lucide-funnel"
         :loading="applying"
-        :disabled="!hasPendingChanges || Boolean(validationMessage)"
+        :disabled="!canApply"
         class="justify-center w-fit"
       />
       <UButton
@@ -157,7 +185,7 @@ onMounted(() => {
         color="neutral"
         variant="outline"
         class="justify-center w-fit"
-        @click="clearFilters"
+        @click="onClear"
       />
     </div>
   </form>
