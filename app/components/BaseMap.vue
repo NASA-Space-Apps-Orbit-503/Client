@@ -110,6 +110,7 @@ defineExpose({ map })
       @ready="onReady"
     >
       <LTileLayer
+        :tile-size="256"
         :url="tileUrl"
         :attribution="attribution"
         layer-type="base"

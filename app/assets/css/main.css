@@ -33,7 +33,12 @@
   background: var(--ui-bg);
   position: relative;
 }
-.leaflet-tile-pane {
+/* Overlap base tiles to hide fractional-zoom seams. Leaflet's plus-lighter blend
+   makes overlapping dark tiles bright, so these tiles must use normal blending. */
+.leaflet-container img.leaflet-tile {
+  mix-blend-mode: normal !important;
+  width: 257px !important;
+  height: 257px !important;
   filter: grayscale(1) contrast(1.05);
 }
 .leaflet-container::after {
@@ -48,6 +53,6 @@
 }
 
 /* dark mode */
-.dark .leaflet-tile-pane {
+.dark .leaflet-container img.leaflet-tile {
   filter: grayscale(1) invert(1) brightness(0.9) contrast(0.9);
 }
