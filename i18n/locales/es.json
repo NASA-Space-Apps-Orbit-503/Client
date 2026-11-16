@@ -315,5 +315,198 @@
         "ariaLabel": "Mapa de calor de anomalías por año y mes"
       }
     }
+  },
+  "methodology": {
+    "title": "Metodología e inteligencia de negocio",
+    "description": "De las detecciones satelitales a información comparable sobre la actividad de quema en El Salvador.",
+    "intro": "Ignis SV integra datos de NASA FIRMS, procesamiento reproducible en Google Colab y análisis espacial y temporal. El objetivo es reconocer patrones históricos y apoyar la priorización del monitoreo.",
+    "nav": {
+      "source": "Origen de los datos",
+      "process": "Procesamiento",
+      "validation": "Validación",
+      "business": "Modelo de inteligencia de negocio"
+    },
+    "source": {
+      "title": "¿De dónde vienen los datos?",
+      "body": "NASA FIRMS (Fire Information for Resource Management System) distribuye detecciones de fuego activo y anomalías térmicas de MODIS y VIIRS. Trabajamos con sus archivos históricos; el procesamiento de referencia se realiza en el notebook de Google Colab «Armonizacion_corregido».",
+      "resolution": "MODIS tiene una resolución nominal de 1 km y VIIRS de 375 m. Una detección representa un píxel con señal térmica, no necesariamente un incendio independiente ni su superficie quemada.",
+      "trace": "Se conservan el sensor, satélite, fecha y hora de adquisición, coordenadas, confianza y potencia radiativa del fuego (FRP), para poder rastrear el origen de cada observación."
+    },
+    "process": {
+      "title": "Cómo procesamos y armonizamos los registros",
+      "description": "Estas etapas describen el método del Colab. La ejecución publicada por la API conserva sus propios parámetros y fecha de cálculo; deben coincidir al comparar resultados.",
+      "steps": {
+        "unification": {
+          "title": "Unificación",
+          "body": "Renombramos las bandas térmicas a una estructura común: bright_mir y bright_tir. Normalizamos la confianza de MODIS: 0–29 baja, 30–79 nominal y 80–100 alta; y VIIRS: l, n y h. Unificamos los códigos de satélite y convertimos la adquisición UTC a la hora local de El Salvador (UTC−6). Eliminamos duplicados por satélite, instante y coordenadas redondeadas a cuatro decimales, y recortamos al rectángulo 13.10–14.50° N y −90.20–−87.60° de longitud. Unificar nombres de bandas no vuelve físicamente idénticas sus mediciones."
+        },
+        "grid": {
+          "title": "Cuadrícula espacial",
+          "body": "Asignamos cada detección a una celda angular de 0.01°. Es aproximadamente 1.1 km por lado, con dimensiones que dependen de la latitud; no es un cuadrado métrico exacto. El rectángulo de estudio incluye áreas fuera de la frontera nacional."
+        },
+        "satellites": {
+          "title": "Selección de satélites",
+          "body": "Para la armonización usamos solo MODIS Aqua, con una hora de paso similar a VIIRS. Elegimos un satélite VIIRS a la vez según cobertura y prioridad: Suomi NPP, luego NOAA-20 y, como respaldo configurado, NOAA-21. El notebook fija el 2 de noviembre de 2026 como primer día sin Suomi NPP; la continuidad real depende de los archivos disponibles. Esta selección es propia de la serie armonizada; Explore permite consultar otros satélites."
+        },
+        "cleaning": {
+          "title": "Limpieza",
+          "body": "Conservamos confianza nominal o alta y tipo 0 (fuego de vegetación presunto); descartamos los tipos 1, 2 y 3: volcanes, otras fuentes terrestres estáticas y detecciones sobre agua. Después excluimos celdas con actividad en más del 30 % de los meses observados. Es una heurística de persistencia: puede retirar actividad real recurrente y no certifica el origen de una fuente."
+        },
+        "measure": {
+          "title": "Unidad de medida",
+          "body": "Por día local y sensor contamos celdas distintas con al menos una detección. Dentro de la cobertura de cada sensor completamos con cero los días sin registros. La suma mensual representa celdas-día: una misma celda activa en tres días aporta tres unidades. No equivale a incendios únicos, hectáreas quemadas ni celdas únicas del mes. Si faltan archivos, un cero puede ocultar falta de observación."
+        },
+        "factor": {
+          "title": "Factor de transferencia VIIRS → MODIS",
+          "body": "En meses completos de traslape, con límite configurado en diciembre de 2025, calculamos por mes calendario la razón de sumas MODIS/VIIRS. Si VIIRS acumula menos de 30 celdas-día para ese mes en el traslape, usamos la razón agregada de su época: seca de noviembre a abril; lluviosa de mayo a octubre. El traslape efectivo depende de la cobertura. Debemos revisar denominadores cero y factores no disponibles.",
+          "formula": "f(m) = Σ MODIS(año, m) / Σ VIIRS(año, m)"
+        },
+        "harmonized": {
+          "title": "Construcción de la serie armonizada",
+          "body": "Antes del inicio del traslape conservamos MODIS Aqua. Desde ese inicio usamos VIIRS multiplicado por el factor del mes, expresado en celdas-día equivalentes MODIS. Puede producir valores decimales. No hacemos una combinación ponderada de sensores ni corregimos retrospectivamente MODIS.",
+          "formula": "H(t) = MODIS(t) antes del traslape; H(t) = VIIRS(t) × f(mes) desde el traslape"
+        },
+        "validation": {
+          "title": "Validación temporal",
+          "body": "Aplicamos validación cruzada leave-one-year-out: excluimos un año del cálculo de factores, corregimos sus meses VIIRS y contrastamos el agregado anual contra MODIS. Repetimos por año de traslape. La correlación mensual calculada con factores de todo el traslape es descriptiva; no constituye una prueba independiente de la calibración."
+        },
+        "anomalies": {
+          "title": "Anomalía mensual robusta",
+          "body": "Comparamos cada mes completo de la serie armonizada con la mediana y los percentiles 25 y 75 de ese mismo mes en la referencia 2003–2025. Los meses incompletos y los casos con rango intercuartílico cero quedan sin anomalía calculable.",
+          "formula": "A = (valor armonizado − mediana del mes) / (p75 − p25)"
+        }
+      },
+      "levelsTitle": "Interpretación de la anomalía mensual del Colab",
+      "levels": "Muy bajo: A ≤ −1 · Bajo: −1 < A ≤ −0.5 · Normal: −0.5 < A ≤ 0.5 · Alto: 0.5 < A ≤ 1 · Muy alto: A > 1.",
+      "distinctionTitle": "Dos análisis de anomalías diferentes",
+      "distinction": "La página Anomalies analiza detecciones por celda y día usando la referencia de años anteriores del mismo mes. Su score usa la transformación de Anscombe: 2 × (√(observado + 3/8) − √(esperado + 3/8)); clasifica baja desde 2, moderada desde 3, alta desde 5 y extrema desde 8. Es distinto de la anomalía mensual robusta de la serie armonizada descrita arriba."
+    },
+    "validation": {
+      "title": "¿Cómo validamos los datos en el Colab?",
+      "description": "Además de la validación temporal de la armonización, el notebook alinea por mes la serie local del Colab y la serie publicada por la API. Sobre los meses comunes calcula estas métricas para verificar la consistencia de la publicación.",
+      "metric": "Métrica",
+      "formula": "Cálculo",
+      "meaning": "Qué permite evaluar",
+      "notation": "L = valor local del Colab; P = valor publicado por la API; n = meses comunes con datos válidos. MAE, RMSE y sesgo se expresan en celdas-día equivalentes MODIS.",
+      "metrics": {
+        "mae": {
+          "name": "MAE",
+          "formula": "Σ abs(P − L) / n",
+          "meaning": "Error absoluto medio entre Local y API. Cero indica coincidencia en los meses comparados."
+        },
+        "rmse": {
+          "name": "RMSE",
+          "formula": "√(Σ (P − L)² / n)",
+          "meaning": "Magnitud del error, dando mayor peso a discrepancias grandes."
+        },
+        "bias": {
+          "name": "Sesgo (Bias)",
+          "formula": "Σ (P − L) / n",
+          "meaning": "Positivo: la API sobreestima respecto al Colab. Negativo: subestima. Los errores opuestos pueden cancelarse."
+        },
+        "relative": {
+          "name": "Error relativo medio",
+          "formula": "100 × media((P − L) / L), L ≠ 0",
+          "meaning": "Diferencia porcentual media con signo; excluye meses con valor local cero. No es error porcentual absoluto y puede haber cancelación."
+        },
+        "correlation": {
+          "name": "Correlación por año",
+          "formula": "r(año) = Pearson(L, P)",
+          "meaning": "Identifica años con menor concordancia mensual. Requiere al menos dos pares y variación en ambas series. Una correlación alta no garantiza ausencia de sesgo."
+        }
+      },
+      "scope": "Estas métricas verifican que Colab y API entreguen resultados consistentes; no demuestran por sí solas que cada detección sea un incendio real. Sus resultados dependen de la misma versión de datos, satélites, zona horaria, limpieza, cuadrícula y meses completos. Aquí documentamos el método, sin presentar como actuales resultados guardados de otra ejecución."
+    },
+    "business": {
+      "title": "Modelo de inteligencia de negocio de Ignis SV",
+      "description": "Modelo analítico conceptual derivado de Explore, Historical Trends y Anomalies. Organiza cómo los datos se convierten en indicadores y decisiones; no implica que exista un almacén dimensional físico implementado.",
+      "flowTitle": "De la observación a la decisión",
+      "flow": {
+        "source": "NASA FIRMS",
+        "process": "Colab: unificar y armonizar",
+        "serve": "API: publicar indicadores",
+        "analyze": "Explore · Trends · Anomalies",
+        "decide": "Priorizar monitoreo y análisis"
+      },
+      "questionsTitle": "Preguntas que responde cada vista",
+      "views": {
+        "explore": {
+          "title": "Explore · ¿Dónde y cuándo hay actividad?",
+          "body": "Mapa de detecciones, resumen y calendario mensual. Segmenta por fechas, punto o radio opcional, sensor y satélite. MODIS se representa en azul y VIIRS en anaranjado. El mapa carga por páginas: los puntos visibles no representan necesariamente el total del resultado."
+        },
+        "trends": {
+          "title": "Historical Trends · ¿Cómo cambia en el tiempo?",
+          "body": "Agregados mensuales o anuales, cambios absolutos y porcentuales, comparación de periodos y CSV. La tabla y las barras siguen los filtros globales; las tres líneas MODIS, VIIRS y Armonizado son regionales y solo siguen fechas. El CSV reúne agregados filtrados y columnas regionales diferenciadas."
+        },
+        "anomalies": {
+          "title": "Anomalies · ¿Qué actividad se aparta de su referencia?",
+          "body": "Mapa, tabla y gráficas de anomalías por celda y día; filtra por área, fechas, sensores, score mínimo y nivel. El mapa muestra la página actual de la tabla; las gráficas y el CSV pueden reunir todas las filas filtradas. El nivel representa desviación estadística, no gravedad del daño."
+        }
+      },
+      "dimensionsTitle": "Dimensiones para analizar",
+      "dimensions": {
+        "time": {
+          "title": "Tiempo",
+          "body": "Fecha UTC, día local, mes, año y época seca o lluviosa. Conservar ambos tiempos evita desplazar detecciones entre días."
+        },
+        "space": {
+          "title": "Espacio",
+          "body": "Latitud, longitud, celda angular y área seleccionada: punto, círculo o rectángulo de estudio."
+        },
+        "sensor": {
+          "title": "Sensor y satélite",
+          "body": "MODIS o VIIRS; Aqua, Terra, Suomi NPP, NOAA-20 y NOAA-21. La armonización aplica su selección de referencia."
+        },
+        "quality": {
+          "title": "Calidad y procedencia",
+          "body": "Confianza, tipo, versión de origen, cobertura, limpieza, mes completo y ejecución de armonización."
+        }
+      },
+      "factsTitle": "Hechos y granularidad del modelo",
+      "fact": "Hecho analítico",
+      "grain": "Qué representa una fila",
+      "measures": "Medidas principales",
+      "facts": {
+        "detection": {
+          "name": "Detección unificada",
+          "grain": "Una observación térmica de un satélite en un instante y coordenadas, después de deduplicar.",
+          "measures": "Conteo de detecciones y FRP; confianza como atributo de calidad."
+        },
+        "daily": {
+          "name": "Actividad diaria por sensor",
+          "grain": "Un día local y sensor, con selección de satélite de referencia para armonización.",
+          "measures": "Celdas distintas activas por día; base aditiva de celdas-día."
+        },
+        "monthly": {
+          "name": "Serie regional armonizada",
+          "grain": "Un mes regional dentro de una ejecución de armonización.",
+          "measures": "MODIS Aqua, VIIRS de referencia, factor, armonizado, completitud y anomalía mensual."
+        },
+        "anomaly": {
+          "name": "Anomalía espacial diaria",
+          "grain": "Una celda y día, para una consulta y referencia histórica determinadas.",
+          "measures": "Observado, esperado, ratio, score, nivel y años de referencia."
+        },
+        "validation": {
+          "name": "Validación y trazabilidad",
+          "grain": "Una ejecución y año excluido; o un conjunto de meses alineados entre Colab y API.",
+          "measures": "Diferencia anual, MAE, RMSE, sesgo, error relativo y correlación."
+        }
+      },
+      "rulesTitle": "Reglas para interpretar los indicadores",
+      "rules": {
+        "units": "No sumar ni comparar como equivalentes detecciones, celdas-día, anomalías y valores armonizados. Los conteos por sensor pueden compartir celda y día; su suma no siempre coincide con el agregado conjunto.",
+        "change": "Cambio = valor actual − anterior; cambio % = 100 × cambio / anterior. Si ambos son cero, el cambio es 0 %; si el anterior es cero y el actual es positivo, el porcentaje no está definido. El primer periodo no tiene comparación.",
+        "missing": "Un cero indica ausencia de registros dentro de la cobertura asumida; un valor ausente indica que no se puede calcular. No sustituir por cero meses incompletos, factores inválidos o anomalías sin referencia suficiente.",
+        "decision": "El modelo apoya identificar temporadas recurrentes, contrastar periodos y priorizar revisión de zonas con actividad inusual. No incluye pronósticos ni mide daños, causalidad, número de incendios confirmados o riesgo futuro."
+      }
+    },
+    "sourcesTitle": "Fuentes y trazabilidad",
+    "sourcesDescription": "Método contrastado con el notebook proporcionado, el contrato de la API y las funciones actuales de la aplicación. La cobertura efectiva y los parámetros de cada ejecución prevalecen sobre los valores de ejemplo.",
+    "links": {
+      "firms": "NASA FIRMS · consulta y descarga de datos",
+      "viirs": "NASA FIRMS · producto VIIRS y atributos",
+      "snpp": "NOAA · fin de entrega de productos Suomi NPP"
+    }
   }
 }

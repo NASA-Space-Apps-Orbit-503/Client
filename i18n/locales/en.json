@@ -314,5 +314,198 @@
         "ariaLabel": "Heatmap of anomalies by year and month"
       }
     }
+  },
+  "methodology": {
+    "title": "Methodology and business intelligence",
+    "description": "From satellite detections to comparable information about burning activity in El Salvador.",
+    "intro": "Ignis SV brings together NASA FIRMS data, reproducible Google Colab processing, and spatial and temporal analysis. Its purpose is to identify historical patterns and support monitoring priorities.",
+    "nav": {
+      "source": "Data sources",
+      "process": "Processing",
+      "validation": "Validation",
+      "business": "Business intelligence model"
+    },
+    "source": {
+      "title": "Where do the data come from?",
+      "body": "NASA FIRMS (Fire Information for Resource Management System) distributes active fire detections and thermal anomalies from MODIS and VIIRS. We work with historical files; reference processing takes place in the Google Colab notebook “Armonizacion_corregido”.",
+      "resolution": "MODIS has a nominal resolution of 1 km and VIIRS of 375 m. A detection represents a pixel with a thermal signal, not necessarily an independent fire or its burned area.",
+      "trace": "Sensor, satellite, acquisition date and time, coordinates, confidence and fire radiative power (FRP) preserve the provenance of each observation."
+    },
+    "process": {
+      "title": "How we process and harmonize the records",
+      "description": "These stages describe the Colab method. Each API run has its own parameters and computation date; these must match when comparing results.",
+      "steps": {
+        "unification": {
+          "title": "Unification",
+          "body": "We rename thermal bands to a common structure: bright_mir and bright_tir. MODIS confidence is normalized as 0–29 low, 30–79 nominal and 80–100 high; VIIRS uses l, n and h. We standardize satellite codes and convert acquisition UTC to El Salvador local time (UTC−6). Duplicates are removed by satellite, timestamp and coordinates rounded to four decimal places, and data are clipped to 13.10–14.50° N and −90.20–−87.60° longitude. Common band names do not make the measurements physically identical."
+        },
+        "grid": {
+          "title": "Spatial grid",
+          "body": "Each detection is assigned to a 0.01° angular cell, approximately 1.1 km per side, with dimensions that depend on latitude. This is not an exact metric square. The study rectangle includes locations outside the national boundary."
+        },
+        "satellites": {
+          "title": "Satellite selection",
+          "body": "Harmonization uses MODIS Aqua only, with an overpass time similar to VIIRS. One VIIRS satellite is chosen at a time according to coverage and priority: Suomi NPP, then NOAA-20, with NOAA-21 as the configured fallback. The notebook sets November 2, 2026 as the first day without Suomi NPP; actual continuity depends on available files. This reference selection belongs to harmonization; Explore can query other satellites."
+        },
+        "cleaning": {
+          "title": "Cleaning",
+          "body": "We retain nominal or high confidence and type 0 (presumed vegetation fire), excluding types 1, 2 and 3: volcanoes, other static land sources and offshore detections. Cells active in more than 30% of observed months are then excluded. This persistence heuristic can remove real recurrent activity and does not verify the source of a hotspot."
+        },
+        "measure": {
+          "title": "Measurement unit",
+          "body": "For each local day and sensor, we count distinct cells with at least one detection. Days without records within each sensor’s coverage are filled with zero. Monthly sums represent cell-days: a cell active on three days contributes three units. They are not unique fires, hectares burned or distinct cells for the entire month. Missing files can make zero conceal a missing observation."
+        },
+        "factor": {
+          "title": "VIIRS → MODIS transfer factor",
+          "body": "For complete overlap months, with a configured upper limit of December 2025, we calculate a ratio of MODIS/VIIRS sums for each calendar month. If VIIRS totals fewer than 30 cell-days for that month across the overlap, we use the aggregate seasonal ratio: dry from November to April; wet from May to October. The effective overlap depends on coverage. Zero denominators and unavailable factors must be checked.",
+          "formula": "f(m) = Σ MODIS(year, m) / Σ VIIRS(year, m)"
+        },
+        "harmonized": {
+          "title": "Building the harmonized series",
+          "body": "Before the overlap begins, we retain MODIS Aqua. From the overlap onward, we use VIIRS multiplied by the calendar-month factor, expressed in MODIS-equivalent cell-days. Values can be fractional. This is neither a weighted sensor combination nor a retrospective correction of MODIS.",
+          "formula": "H(t) = MODIS(t) before overlap; H(t) = VIIRS(t) × f(month) from overlap onward"
+        },
+        "validation": {
+          "title": "Temporal validation",
+          "body": "We use leave-one-year-out cross-validation: exclude a year when estimating factors, adjust its VIIRS months, and compare its annual aggregate with MODIS. Repeat for every overlap year. Monthly correlation computed with factors fitted to the entire overlap is descriptive, not an independent calibration test."
+        },
+        "anomalies": {
+          "title": "Robust monthly anomaly",
+          "body": "Each complete harmonized month is compared with the median and 25th and 75th percentiles for the same calendar month over the 2003–2025 reference. Incomplete months and cases with zero interquartile range have no calculable anomaly.",
+          "formula": "A = (harmonized value − calendar-month median) / (p75 − p25)"
+        }
+      },
+      "levelsTitle": "Interpreting the Colab monthly anomaly",
+      "levels": "Very low: A ≤ −1 · Low: −1 < A ≤ −0.5 · Normal: −0.5 < A ≤ 0.5 · High: 0.5 < A ≤ 1 · Very high: A > 1.",
+      "distinctionTitle": "Two different anomaly analyses",
+      "distinction": "The Anomalies page analyzes detections by cell and day against previous years in the same calendar month. Its score uses the Anscombe transformation: 2 × (√(observed + 3/8) − √(expected + 3/8)); levels are low from 2, moderate from 3, high from 5 and extreme from 8. This differs from the robust monthly anomaly of the harmonized series above."
+    },
+    "validation": {
+      "title": "How do we validate the data in Colab?",
+      "description": "Alongside temporal validation of harmonization, the notebook aligns the local Colab series and the series published by the API by month. The following metrics use common months to verify publication consistency.",
+      "metric": "Metric",
+      "formula": "Calculation",
+      "meaning": "What it evaluates",
+      "notation": "L = local Colab value; P = value published by the API; n = common months with valid data. MAE, RMSE and bias are expressed in MODIS-equivalent cell-days.",
+      "metrics": {
+        "mae": {
+          "name": "MAE",
+          "formula": "Σ abs(P − L) / n",
+          "meaning": "Mean absolute difference between Local and API. Zero means agreement for the months compared."
+        },
+        "rmse": {
+          "name": "RMSE",
+          "formula": "√(Σ (P − L)² / n)",
+          "meaning": "Error magnitude, with greater weight on large discrepancies."
+        },
+        "bias": {
+          "name": "Bias",
+          "formula": "Σ (P − L) / n",
+          "meaning": "Positive: API overestimates Colab. Negative: it underestimates. Opposite errors can cancel."
+        },
+        "relative": {
+          "name": "Mean relative error",
+          "formula": "100 × mean((P − L) / L), L ≠ 0",
+          "meaning": "Signed mean percentage difference; excludes months with a zero local value. This is not absolute percentage error and cancellation is possible."
+        },
+        "correlation": {
+          "name": "Correlation by year",
+          "formula": "r(year) = Pearson(L, P)",
+          "meaning": "Identifies years with weaker monthly agreement. Requires at least two pairs and variation in both series. High correlation does not guarantee absence of bias."
+        }
+      },
+      "scope": "These metrics check that Colab and API publish consistent results; they do not independently establish that every detection is a real fire. Comparisons require matching data versions, satellites, timezone, cleaning, grid and complete months. This page documents the method without presenting saved results from another run as current."
+    },
+    "business": {
+      "title": "Ignis SV business intelligence model",
+      "description": "A conceptual analytical model derived from Explore, Historical Trends and Anomalies. It organizes how data become indicators and decisions; it does not imply that a physical dimensional warehouse has been implemented.",
+      "flowTitle": "From observation to decision",
+      "flow": {
+        "source": "NASA FIRMS",
+        "process": "Colab: unify and harmonize",
+        "serve": "API: publish indicators",
+        "analyze": "Explore · Trends · Anomalies",
+        "decide": "Prioritize monitoring and analysis"
+      },
+      "questionsTitle": "Questions each view answers",
+      "views": {
+        "explore": {
+          "title": "Explore · Where and when is activity occurring?",
+          "body": "Detection map, summary and monthly calendar. Segment by dates, point or optional radius, sensor and satellite. MODIS appears in blue and VIIRS in orange. The map loads pages of points, so visible points do not necessarily represent the full result."
+        },
+        "trends": {
+          "title": "Historical Trends · How does it change over time?",
+          "body": "Monthly or annual aggregates, absolute and percentage changes, period comparisons and CSV. The table and bars follow global filters; the MODIS, VIIRS and Harmonized lines are regional and follow dates only. CSV combines filtered aggregates with separately labeled regional columns."
+        },
+        "anomalies": {
+          "title": "Anomalies · What departs from its historical reference?",
+          "body": "Map, table and charts of anomalies by cell and day; filter by area, dates, sensors, minimum score and level. The map shows the current table page; charts and CSV can gather all matching rows. Levels indicate statistical deviation, not damage severity."
+        }
+      },
+      "dimensionsTitle": "Dimensions for analysis",
+      "dimensions": {
+        "time": {
+          "title": "Time",
+          "body": "UTC acquisition date, local day, month, year and dry or wet season. Keeping both times avoids moving detections between days."
+        },
+        "space": {
+          "title": "Space",
+          "body": "Latitude, longitude, angular cell and selected area: point, circle or study rectangle."
+        },
+        "sensor": {
+          "title": "Sensor and satellite",
+          "body": "MODIS or VIIRS; Aqua, Terra, Suomi NPP, NOAA-20 and NOAA-21. Harmonization uses its reference selection."
+        },
+        "quality": {
+          "title": "Quality and provenance",
+          "body": "Confidence, type, source version, coverage, cleaning, complete-month status and harmonization run."
+        }
+      },
+      "factsTitle": "Facts and model grain",
+      "fact": "Analytical fact",
+      "grain": "What one row represents",
+      "measures": "Main measures",
+      "facts": {
+        "detection": {
+          "name": "Unified detection",
+          "grain": "One satellite thermal observation at a timestamp and coordinates, after deduplication.",
+          "measures": "Detection count and FRP; confidence as a quality attribute."
+        },
+        "daily": {
+          "name": "Daily activity by sensor",
+          "grain": "One local day and sensor, with the reference satellite selection for harmonization.",
+          "measures": "Distinct active cells per day; additive basis for cell-days."
+        },
+        "monthly": {
+          "name": "Regional harmonized series",
+          "grain": "One regional month within a harmonization run.",
+          "measures": "MODIS Aqua, reference VIIRS, factor, harmonized value, completeness and monthly anomaly."
+        },
+        "anomaly": {
+          "name": "Daily spatial anomaly",
+          "grain": "One cell and day, under a defined query and historical reference.",
+          "measures": "Observed, expected, ratio, score, level and baseline years."
+        },
+        "validation": {
+          "name": "Validation and traceability",
+          "grain": "One run and excluded year; or a set of aligned months between Colab and API.",
+          "measures": "Annual difference, MAE, RMSE, bias, relative error and correlation."
+        }
+      },
+      "rulesTitle": "Rules for interpreting indicators",
+      "rules": {
+        "units": "Do not sum or treat detections, cell-days, anomalies and harmonized values as equivalent. Sensor counts may share a cell and day; their sum does not always match the combined aggregate.",
+        "change": "Change = current − previous; percentage change = 100 × change / previous. When both are zero, change is 0%; when previous is zero and current is positive, the percentage is undefined. The first period has no comparison.",
+        "missing": "Zero means no records within assumed coverage; missing means a value cannot be calculated. Do not replace incomplete months, invalid factors or anomalies lacking sufficient reference with zero.",
+        "decision": "The model supports recognizing recurring seasons, comparing periods and prioritizing review of unusual activity. It does not include forecasting or measure damage, causality, confirmed fire events or future risk."
+      }
+    },
+    "sourcesTitle": "Sources and traceability",
+    "sourcesDescription": "The method was checked against the supplied notebook, API contract and current application behavior. Actual coverage and run parameters take precedence over example settings.",
+    "links": {
+      "firms": "NASA FIRMS · explore and download data",
+      "viirs": "NASA FIRMS · VIIRS product and attributes",
+      "snpp": "NOAA · end of Suomi NPP product delivery"
+    }
   }
 }
