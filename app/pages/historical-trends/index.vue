@@ -58,7 +58,15 @@ const hasComparison = computed(() => comparedYears.value.length > 0 && (!isMonth
     />
     <UPageBody>
       <UPageGrid>
-        <Filters class="col-span-12 grid grid-cols-1 md:grid-cols-6 gap-2" />
+        <Filters />
+
+        <UCard
+          :title="t('explore.map.title')"
+          :description="t('explore.map.description')"
+          class="col-span-12"
+        >
+          <MapFireAreaPanel />
+        </UCard>
 
         <!-- Period controls -->
         <div class="col-span-12 flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:items-end">
