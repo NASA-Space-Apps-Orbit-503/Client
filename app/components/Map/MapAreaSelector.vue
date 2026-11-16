@@ -2,7 +2,7 @@
 import { INSTRUMENT_COLORS } from '~/constants/instrument-colors'
 import { InstrumentEnum } from '~/enums/instrument.enum'
 
-const { circle, latitude, longitude, radiusKm, clearArea: clearAppliedArea } = useFilters()
+const { circle, latitude, longitude, radiusKm, searchActive, clearArea: clearAppliedArea } = useFilters()
 const { t } = useI18n()
 const selectingPoint = ref(false)
 const areaDescriptionVisible = ref(true)
@@ -13,6 +13,13 @@ function selectPoint(value: { lat: number, lon: number }) {
   longitude.value = value.lon
   radiusKm.value = null
   selectingPoint.value = false
+  areaDescriptionVisible.value = true
+}
+
+function togglePointSelection(hideFilters: () => void) {
+  selectingPoint.value = !selectingPoint.value
+  areaDescriptionVisible.value = !selectingPoint.value
+  if (selectingPoint.value) hideFilters()
 }
 
 /** Coordinates typed in the filters, shown as a point while no circle has been drawn. */
@@ -32,6 +39,15 @@ const areaLabel = computed(() => {
   return null
 })
 
+watch(searchActive, (active) => {
+  if (!active) selectingPoint.value = false
+})
+
+async function clearArea() {
+  selectingPoint.value = false
+  await clearAppliedArea()
+}
+
 defineEmits<{
   'map:loaded': [value: boolean]
 }>()
@@ -39,7 +55,8 @@ defineEmits<{
 
 <template>
   <BaseMap
-    :class="{ 'h-screen [&_.leaflet-container]:cursor-crosshair': selectingPoint }"
+    height-class="h-full"
+    :class="{ '[&_.leaflet-container]:cursor-crosshair': selectingPoint }"
     @ready="$emit('map:loaded', true)"
   >
     <!-- Draw Controls -->
@@ -52,7 +69,7 @@ defineEmits<{
         @drawing-start="selectingPoint = false"
       />
     </template>
-    <template #detecction-layer>
+    <template #detection-layer>
       <MapDetectionsLayer
         :detections="detections"
         :selecting-point="selectingPoint"
@@ -60,10 +77,10 @@ defineEmits<{
     </template>
     <!-- Filters -->
     <template #filters>
-      <Filters class="w-full flex flex-col gap-2" />
+      <Filters stacked />
     </template>
     <!-- Area Description -->
-    <template #area-description>
+    <template #area-description="{ hideFilters }">
       <div class="flex w-full items-end gap-2">
         <UButton
           :icon="areaDescriptionVisible ? 'i-lucide-minus' : 'i-lucide-plus'"
@@ -76,6 +93,21 @@ defineEmits<{
           :aria-expanded="areaDescriptionVisible"
           @click="areaDescriptionVisible = !areaDescriptionVisible"
         />
+        <div
+          v-if="selectingPoint && !areaDescriptionVisible"
+          class="ml-auto flex items-center gap-2 rounded-md bg-default/95 p-3 text-sm shadow-md"
+        >
+          <p role="status">
+            {{ t('map.area.clickPoint') }}
+          </p>
+          <UButton
+            :label="t('map.area.cancelPoint')"
+            size="sm"
+            color="neutral"
+            variant="outline"
+            @click="togglePointSelection(hideFilters)"
+          />
+        </div>
         <div
           v-show="areaDescriptionVisible"
           id="map-area-description"
@@ -107,7 +139,16 @@ defineEmits<{
                     :variant="selectingPoint ? 'solid' : 'outline'"
                     :aria-pressed="selectingPoint"
                     size="sm"
-                    @click="selectingPoint = !selectingPoint"
+                    @click="togglePointSelection(hideFilters)"
+                  />
+                  <UButton
+                    v-if="circle || point"
+                    :label="t('map.area.clear')"
+                    icon="i-lucide-x"
+                    color="neutral"
+                    variant="ghost"
+                    size="sm"
+                    @click="clearArea"
                   />
                   <UTooltip :text="t('map.detections.clickHint')">
                     <UIcon

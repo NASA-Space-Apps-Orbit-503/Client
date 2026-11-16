@@ -35,12 +35,21 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const slots = useSlots()
+const slots = defineSlots<{
+  'draw-controls'?: () => unknown
+  'detection-layer'?: () => unknown
+  'filters'?: () => unknown
+  'area-description'?: (props: { hideFilters: () => void }) => unknown
+}>()
 const { mapTileUrl, mapAttribution } = useRuntimeConfig().public
 const tileUrl = computed(() => props.tileUrl ?? mapTileUrl)
 const attribution = computed(() => props.attribution ?? mapAttribution)
 const filtersVisible = ref(true)
 const hasFilters = computed(() => Boolean(slots.filters))
+
+function hideFilters() {
+  filtersVisible.value = false
+}
 
 const container = useTemplateRef<HTMLDivElement>('container')
 const leafletLoaded = ref(false)
@@ -83,7 +92,7 @@ defineExpose({ map })
 <template>
   <div
     ref="container"
-    class="relative isolate w-full h-full overflow-hidden"
+    class="relative isolate w-full overflow-hidden"
     :class="heightClass"
     role="region"
     :aria-label="t('map.ariaLabel')"
@@ -111,7 +120,7 @@ defineExpose({ map })
         v-if="map"
         name="draw-controls"
       />
-      <!-- Detecction Layer -->
+      <!-- Detection layer -->
       <slot
         v-if="map"
         name="detection-layer"
@@ -119,7 +128,13 @@ defineExpose({ map })
       <!-- Filters -->
       <div
         v-if="map && hasFilters"
-        class="max-w-1/2 md:max-w-1/4 absolute top-4 right-4 z-1000 flex flex-col"
+        class="pointer-events-none absolute right-3 top-3 z-1000 flex w-[calc(100%-1.5rem)] max-w-sm flex-col sm:right-4 sm:top-4"
+        @click.stop
+        @dblclick.stop
+        @mousedown.stop
+        @touchstart.stop
+        @wheel.stop
+        @keydown.stop
       >
         <UButton
           :icon="filtersVisible ? 'i-lucide-chevron-up' : 'i-lucide-sliders-horizontal'"
@@ -129,29 +144,41 @@ defineExpose({ map })
           size="sm"
           :aria-expanded="filtersVisible"
           aria-controls="map-filters"
-          class="cursor-pointer mr-0 ml-auto"
+          class="pointer-events-auto cursor-pointer mr-0 ml-auto"
           @click="filtersVisible = !filtersVisible"
         />
         <Transition
           enter-active-class="transition duration-200 ease-out"
           enter-from-class="translate-y-[-8px] opacity-0"
           enter-to-class="translate-y-0 opacity-100"
-          leave-active-class="transition duration-150 ease-in"
+          leave-active-class="pointer-events-none! transition duration-150 ease-in"
           leave-from-class="translate-y-0 opacity-100"
           leave-to-class="translate-y-[-8px] opacity-0"
         >
           <UCard
             v-if="filtersVisible"
             id="map-filters"
-            class="pointer-events-auto mt-2 p-4 bg-default/80"
+            class="pointer-events-auto mt-2 max-h-[55vh] overflow-y-auto bg-default/90"
           >
             <slot name="filters" />
           </UCard>
         </Transition>
       </div>
       <!-- Area Description -->
-      <div class="absolute bottom-4 left-0 px-4 z-1000 w-full">
-        <slot name="area-description" />
+      <div
+        v-if="map && slots['area-description']"
+        class="absolute bottom-4 left-0 z-1000 w-full px-4"
+        @click.stop
+        @dblclick.stop
+        @mousedown.stop
+        @touchstart.stop
+        @wheel.stop
+        @keydown.stop
+      >
+        <slot
+          name="area-description"
+          :hide-filters="hideFilters"
+        />
       </div>
     </LMap>
 
