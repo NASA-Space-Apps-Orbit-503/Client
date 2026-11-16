@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@nuxt/ui'
 import { en, es } from '@nuxt/ui/locale'
+import { LocaleEnum } from '~/enums/locale.enum'
 
 useFilters()
 
-const { $i18n } = useNuxtApp()
-const { t, locale } = useI18n()
+const { t, locale, setLocale } = useI18n()
 
-const items = ref<NavigationMenuItem[]>([
+const uiLocale = computed(() => locale.value === LocaleEnum.Es ? es : en)
+
+const items = computed(() => [
   {
     label: t('header.nav.explore'),
     to: '/explore'
@@ -25,6 +26,12 @@ const items = ref<NavigationMenuItem[]>([
     to: '/methodology'
   }
 ])
+
+function changeLocale(value: string) {
+  if (value === LocaleEnum.En || value === LocaleEnum.Es) {
+    void setLocale(value)
+  }
+}
 </script>
 
 <template>
@@ -45,7 +52,7 @@ const items = ref<NavigationMenuItem[]>([
         <ULocaleSelect
           :model-value="locale"
           :locales="[en, es]"
-          @update:model-value="$i18n.setLocale($event as Parameters<typeof $i18n.setLocale>[0])"
+          @update:model-value="changeLocale"
         />
       </template>
       <template #body>
