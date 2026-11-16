@@ -6,7 +6,8 @@ useHead({
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' }
+    { key: 'app-favicon', rel: 'icon', type: 'image/x-icon', sizes: '32x32', href: '/ignis-sv.ico' },
+    { key: 'app-shortcut-icon', rel: 'shortcut icon', href: '/ignis-sv.ico' }
   ],
   htmlAttrs: {
     lang: locale

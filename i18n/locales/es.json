@@ -69,6 +69,14 @@
       "secondSection": "Detalles de exploración",
       "toMap": "Ir al mapa",
       "toSecondSection": "Ir a la siguiente sección"
+    },
+    "description": "Cada punto cuenta una historia. Explora las observaciones de NASA FIRMS y los datos armonizados de MODIS y VIIRS para entender dónde, cuándo y cómo cambia la actividad de quema en El Salvador.",
+    "intro": {
+      "eyebrow": "Inteligencia geoespacial · El Salvador",
+      "headline": "El pulso del fuego, en perspectiva.",
+      "map": "Ubica la actividad de quema",
+      "trends": "Compara datos armonizados en el tiempo",
+      "anomalies": "Descubre lo inusual"
     }
   },
   "map": {

@@ -68,6 +68,14 @@
       "secondSection": "Explore details",
       "toMap": "Go to map",
       "toSecondSection": "Go to next section"
+    },
+    "description": "Every point tells a story. Explore NASA FIRMS observations and harmonized MODIS–VIIRS data to understand where, when and how burning activity changes in El Salvador.",
+    "intro": {
+      "eyebrow": "Geospatial intelligence · El Salvador",
+      "headline": "A clearer view of fire activity.",
+      "map": "Locate burning activity",
+      "trends": "Compare harmonized data over time",
+      "anomalies": "Discover the unusual"
     }
   },
   "map": {

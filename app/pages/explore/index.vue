@@ -17,7 +17,13 @@ const mapSection = ref<HTMLElement | null>(null)
 const secondSection = ref<HTMLElement | null>(null)
 const isSecondSectionVisible = ref(false)
 const isMapLoaded = ref(false)
-let sectionObserver: IntersectionObserver | undefined
+// Use the section's position so navigation also works when its content is taller
+// than the viewport (a percentage visibility threshold may never be reached).
+function updateVisibleSection() {
+  if (secondSection.value) {
+    isSecondSectionVisible.value = secondSection.value.getBoundingClientRect().top <= window.innerHeight / 2
+  }
+}
 
 watch(calendarError, (error) => {
   if (error) console.error('Error fetching explore calendar:', error)
@@ -26,18 +32,14 @@ watch(calendarError, (error) => {
 onMounted(() => {
   init()
 
-  sectionObserver = new IntersectionObserver(
-    ([entry]) => {
-      if (entry) isSecondSectionVisible.value = entry.isIntersecting
-    },
-    { threshold: 0.5 }
-  )
-
-  if (secondSection.value) sectionObserver.observe(secondSection.value)
+  updateVisibleSection()
+  window.addEventListener('scroll', updateVisibleSection, { passive: true })
+  window.addEventListener('resize', updateVisibleSection)
 })
 
 onBeforeUnmount(() => {
-  sectionObserver?.disconnect()
+  window.removeEventListener('scroll', updateVisibleSection)
+  window.removeEventListener('resize', updateVisibleSection)
 })
 
 function scrollToVisibleSection() {
@@ -51,13 +53,15 @@ function scrollToVisibleSection() {
     <UPageBody class="mt-0 p-0">
       <section
         ref="mapSection"
-        class="relative h-[calc(100dvh-4rem)] scroll-mt-16"
+        class="relative flex scroll-mt-16 flex-col"
         :aria-label="t('explore.map.title')"
       >
-        <MapAreaSelector
-          class="h-full"
-          @map:loaded="(value) => isMapLoaded = value"
-        />
+        <ExploreIntro />
+        <div class="h-[calc(100dvh-4rem)] min-h-[36rem] shrink-0">
+          <MapAreaSelector
+            @map:loaded="(value) => isMapLoaded = value"
+          />
+        </div>
       </section>
       <section
         ref="secondSection"
@@ -97,7 +101,7 @@ function scrollToVisibleSection() {
         color="neutral"
         variant="solid"
         size="xs"
-        class="fixed left-4 top-1/2 z-1100 h-11 w-11 -translate-y-1/2 justify-center rounded-full shadow-lg ring-1 ring-default/50 cursor-pointer"
+        class="fixed left-16 top-1/2 z-1100 h-11 w-11 -translate-y-1/2 justify-center rounded-full shadow-lg ring-1 ring-default/50 cursor-pointer"
         @click="scrollToVisibleSection"
       />
     </UPageBody>
