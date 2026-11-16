@@ -90,3 +90,32 @@ and satellite, removed the circle and spatial URL parameters, and preserved date
 instrument and satellite. No extra Apply click was needed. No JavaScript errors;
 Nuxt typechecking and scoped ESLint passed.
 
+
+## Explore / Historical Trends integration after the dev map layout changes
+
+- Corrected Explore's detection-layer slot spelling and typed BaseMap's named slots so
+  mismatches are caught by Nuxt typechecking. Fire markers now mount again.
+- Explore explicitly fills its viewport-sized section. Card maps have a definite-height
+  wrapper; BaseMap no longer forces an extra conflicting root height.
+- Filter and area overlays stop click, double-click, mouse/touch, wheel and keyboard events
+  from reaching Leaflet. Activating point selection hides Explore overlays so mobile taps
+  can reach the map; cancel remains accessible and selecting a point restores area details.
+- Explore restores Clear area and its immediate applied-filter reset. The shared form has
+  labelled Apply/Clear buttons, compact page layout, and a separate stacked overlay layout
+  with room for both date endpoints.
+- Historical Trends now uses the shared card map for fire detections and point/circle area
+  selection, sharing the same applied snapshot with Explore, its table and CSV. Regional
+  MODIS/VIIRS/Harmonized comparison retains its documented date-only scope.
+- The locale provider now receives the active EN/ES UI locale and navigation labels update
+  when the language changes.
+
+Chrome desktop verified 167 detections for the 2024 circle at 13.769985, -89.413614,
+radius 12.247 km, physical VIIRS popup clicks, draft point picking without premature
+requests, bbox requests after Apply, navigation retaining the point, all three historical
+curves, Clear area's new detections, and CSV download. No JavaScript page errors occurred.
+Mobile Chrome touch emulation (390 × 844, Spanish UI) verified point selection without
+artificial delays after hiding filters, Apply, both map heights, no horizontal page
+overflow, historical Clear area, and navigation to the Anomalies map. No JavaScript
+page errors occurred. The historical CSV still has nine columns and excludes the two
+metadata columns previously removed. All 31 unit tests, Nuxt typechecking and scoped
+ESLint pass.
