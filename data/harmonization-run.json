@@ -1,0 +1,46 @@
+{
+  "computed_at": 1794679200000,
+  "status": "ok",
+  "detections": 182450,
+  "after_confidence": 151230,
+  "after_type": 150980,
+  "static_cells": 14,
+  "after_static": 147310,
+  "used": 98640,
+  "first_month": 1041379200000,
+  "last_month": 1790812800000,
+  "overlap_start": 1328054400000,
+  "overlap_end": 1764547200000,
+  "overlap_months": 167,
+  "mean_raw_diff_pct": 142.6,
+  "mean_abs_harmonized_diff_pct": 6.3,
+  "correlation": 0.962,
+  "params": {
+    "bbox": "-90.13,13.15,-87.68,14.45",
+    "cell_deg": 0.01,
+    "min_confidence": "nominal",
+    "static_threshold": 0.3,
+    "static_min_months": 12,
+    "snpp_end": 1793577600000,
+    "viirs_priority": [
+      "Suomi NPP",
+      "NOAA-20",
+      "NOAA-21"
+    ],
+    "overlap_end": 1764547200000,
+    "min_cells_month": 30.0,
+    "dry_months": [
+      11,
+      12,
+      1,
+      2,
+      3,
+      4
+    ],
+    "reference_years": [
+      2003,
+      2025
+    ],
+    "utc_offset_hours": -6
+  }
+}

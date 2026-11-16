@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "code": "MODIS",
+    "name": "Moderate Resolution Imaging Spectroradiometer"
+  },
+  {
+    "id": 2,
+    "code": "VIIRS",
+    "name": "Visible Infrared Imaging Radiometer Suite"
+  }
+]

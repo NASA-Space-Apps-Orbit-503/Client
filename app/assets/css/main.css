@@ -15,4 +15,44 @@
   --color-green-800: #016538;
   --color-green-900: #0A5331;
   --color-green-950: #052E16;
+
+  --color-papaya-whip-50: #fef6e7;
+  --color-papaya-whip-100: #fdedce;
+  --color-papaya-whip-200: #fadb9e;
+  --color-papaya-whip-300: #f8ca6d;
+  --color-papaya-whip-400: #f6b83c;
+  --color-papaya-whip-500: #f4a60b;
+  --color-papaya-whip-600: #c38509;
+  --color-papaya-whip-700: #926407;
+  --color-papaya-whip-800: #614205;
+  --color-papaya-whip-900: #312102;
+  --color-papaya-whip-950: #221702;
+}
+
+.leaflet-container {
+  background: var(--ui-bg);
+  position: relative;
+}
+/* Overlap base tiles to hide fractional-zoom seams. Leaflet's plus-lighter blend
+   makes overlapping dark tiles bright, so these tiles must use normal blending. */
+.leaflet-container img.leaflet-tile {
+  mix-blend-mode: normal !important;
+  width: 257px !important;
+  height: 257px !important;
+  filter: grayscale(1) contrast(1.05);
+}
+.leaflet-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ui-default);
+  mix-blend-mode: color;   /* or 'multiply' / 'soft-light' */
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 450;            /* above tiles, below controls (800+) */
+}
+
+/* dark mode */
+.dark .leaflet-container img.leaflet-tile {
+  filter: grayscale(1) invert(1) brightness(0.9) contrast(0.9);
 }

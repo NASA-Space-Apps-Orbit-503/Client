@@ -1,0 +1,12 @@
+[
+  {
+    "schema": "main",
+    "name": "detections_harmonized",
+    "type": "VIEW"
+  },
+  {
+    "schema": "main",
+    "name": "instruments",
+    "type": "BASE TABLE"
+  }
+]

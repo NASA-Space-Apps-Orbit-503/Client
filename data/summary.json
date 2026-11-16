@@ -1,0 +1,32 @@
+{
+  "metric": "cells",
+  "cell_deg": 0.01,
+  "detections": 287,
+  "total": 140,
+  "first_date": 1578787200000,
+  "last_date": 1735344000000,
+  "max_frp": 89.7,
+  "by_instrument": [
+    {
+      "instrument": "VIIRS",
+      "detections": 205
+    },
+    {
+      "instrument": "MODIS",
+      "detections": 82
+    }
+  ],
+  "top_years": [
+    {
+      "year": 2024,
+      "count": 640
+    }
+  ],
+  "top_months": [
+    {
+      "date": 1709251200000,
+      "count": 140,
+      "max_frp": 52.1
+    }
+  ]
+}

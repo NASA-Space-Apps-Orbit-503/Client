@@ -1,0 +1,1438 @@
+openapi: 3.1.0
+info:
+  title: api-nasa
+  version: 6.0.0
+  description: |
+    API del calendario de actividad de quema (NASA Space Apps · Harmonization of MODIS and VIIRS Hot Spots).
+
+    **Reglas generales**
+    - Todas las rutas, excepto `/health`, requieren el header `x-api-key`.
+      Si el servidor tiene `PUBLIC_READ=true`, las peticiones `GET` no la necesitan.
+    - Todas las respuestas son JSON (salvo `GET /detections?format=csv`). Los errores tienen la forma `Error`.
+    - Los `POST` de cada entidad aceptan **un objeto o un arreglo de objetos** en la misma ruta.
+      Con un arreglo la creación es **todo o nada**: si un elemento falla no se guarda
+      ninguno, y el error indica su posición en `index` (base 0).
+    - Fechas de entrada (parámetros y cuerpos): `YYYY-MM-DD`. Horas: `HHMM` en UTC (formato FIRMS).
+    - **Fechas de salida**: toda fecha de una respuesta JSON es un timestamp `EpochMs`
+      (milisegundos desde 1970-01-01 UTC). Los meses son su primer día a las 00:00 UTC.
+      El CSV de `/detections?format=csv` mantiene `acq_date` como `YYYY-MM-DD` (formato FIRMS),
+      y `/tables` y `/query` devuelven las columnas tal como las entrega DuckDB.
+
+    **Filtros de área** (búsqueda, CSV, rebuild de estadísticas y `/stats/*` salvo la serie
+    armonizada, cuya área es `HARMONIZE_BBOX` del servidor). Usa solo UNA forma:
+    - `bbox=oeste,sur,este,norte`
+    - `lat` + `lon` + `radius_km`
+    - `polygon` = geometría GeoJSON (`Polygon` o `MultiPolygon`) codificada en la URL.
+      Requiere la extensión spatial en el servidor; si no está, responde 501.
+
+    **Rango de fechas** (búsqueda, CSV, rebuild y lista de estadísticas, `/stats/*`):
+    - `startDate` y `endDate` (YYYY-MM-DD), rango inclusivo. **Se envían las dos juntas o ninguna**:
+      con una sola, o con `startDate` posterior a `endDate`, responde 400. Sin fechas, todo el histórico.
+    - En `/stats/harmonized` (mensual) se toma el mes de cada fecha.
+    - `/stats/anomalies/{id}` no las acepta: la fecha va en el id.
+    - Los filtros viejos `from`, `to`, `date`, `year`, `month` y `day` responden 400.
+
+    **Sintaxis `filter[...]`** (estilo spatie/laravel-query-builder): cada filtro también se
+    acepta como `filter[nombre]=valor`, por ejemplo `filter[startDate]=2024-03-01&filter[severity]=high`.
+    Un `filter[...]` que no existe responde 400 con la lista de filtros permitidos:
+    `bbox`, `lat`, `lon`, `radius_km`, `polygon`, `startDate`, `endDate`, `instrument`, `satellite`, `min_confidence`, `daynight`, `min_score`, `severity`.
+
+    **Armonización por celdas** (`metric`, en `/stats/calendar`, `/stats/climatology`, `/stats/summary` y rebuild)
+    - `cells` (por defecto): cuenta celdas de una cuadrícula común (`cell_deg`, 0.01° ≈ 1.1 km)
+      con al menos un hotspot por día. Neutraliza la diferencia de resolución entre sensores
+      (MODIS 1 km, VIIRS 375 m) y las detecciones repetidas de varios satélites.
+    - `detections`: cuenta detecciones crudas.
+
+    **Confianza**: se guarda y se devuelve como `low` / `nominal` / `high` para ambos sensores.
+    Al crear o importar se aceptan también VIIRS `l/n/h` y MODIS 0-100 (0-29 low, 30-79 nominal, 80-100 high).
+
+    **Serie armonizada mensual VIIRS → MODIS** (`/stats/harmonized`, `/stats/harmonization`)
+    Cada importación con filas nuevas o completadas (`/detections/import`, `/firms/sync`; ambos
+    aceptan `harmonize=false`) recalcula sobre todo el histórico: MODIS Aqua antes del traslape
+    y VIIRS × factor mensual (equivalente MODIS) desde el inicio del traslape, con validación
+    por año y anomalía robusta `(valor − mediana) / (p75 − p25)`. Los parámetros (área, celda,
+    años de referencia...) son del servidor (`HARMONIZE_*`) y vienen en `HarmonizationRun.params`.
+    Esta anomalía mensual (`HarmonizedAnomalyLevel`) es distinta de la anomalía por celda y día
+    de `/stats/anomalies` (`Severity`).
+
+servers:
+  - url: https://api-nasa.fopi.cc
+    description: Producción
+
+security:
+  - ApiKey: []
+
+tags:
+  - name: Instruments
+    description: Sensores que generan las detecciones (MODIS, VIIRS, ...)
+  - name: Detections
+    description: Hotspots detectados por satélite
+  - name: Burning Activity Stats
+    description: Serie diaria guardada de actividad de quema
+  - name: Stats
+    description: Calendario, climatología, anomalías por celda y resumen, calculados en el momento para cualquier área
+  - name: Harmonization
+    description: Serie mensual armonizada VIIRS → MODIS, factores, validación y anomalía mensual
+  - name: FIRMS
+    description: Descarga de datos desde NASA FIRMS
+  - name: Explorer
+    description: Salud del servicio y consultas genéricas
+
+paths:
+  # ================================================================ Instruments
+  /instruments:
+    get:
+      tags: [Instruments]
+      operationId: listInstruments
+      summary: Listar todos los instrumentos
+      responses:
+        '200':
+          description: Instrumentos ordenados por código
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Instrument' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Instruments]
+      operationId: createInstrument
+      summary: Crear uno o varios instrumentos
+      description: |
+        El cuerpo puede ser **un objeto** o **un arreglo de objetos**:
+        - Objeto → responde `201` con el registro creado.
+        - Arreglo → responde `201` con `{count, items}`. Es **todo o nada**: si un elemento
+          falla no se guarda ninguno, y el error indica su posición en `index` (base 0).
+          Máximo `MAX_BULK` elementos (10000 por defecto).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/NewInstrument'
+                - type: array
+                  minItems: 1
+                  maxItems: 10000
+                  items: { $ref: '#/components/schemas/NewInstrument' }
+            examples:
+              uno:
+                summary: Un registro
+                value: { code: VIIRS, name: Visible Infrared Imaging Radiometer Suite }
+              varios:
+                summary: Varios registros
+                value: [{ code: AVHRR, name: Advanced Very High Resolution Radiometer }, { code: SLSTR, name: Sea and Land Surface Temperature Radiometer }]
+      responses:
+        '201':
+          description: Creado. Un objeto si se mandó un objeto; `{count, items}` si se mandó un arreglo.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Instrument'
+                  - $ref: '#/components/schemas/InstrumentBulkCreated'
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413': { $ref: '#/components/responses/TooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /instruments/{id}:
+    get:
+      tags: [Instruments]
+      operationId: getInstrument
+      summary: Obtener un instrumento por id
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Instrumento
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Instrument' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ================================================================ Detections
+  /detections:
+    get:
+      tags: [Detections]
+      operationId: searchDetections
+      summary: Buscar detecciones por área, fechas y otros filtros (JSON paginado o CSV)
+      description: |
+        Ordenadas por fecha y hora. Con `format=csv` devuelve un archivo descargable
+        (máximo `MAX_EXPORT_ROWS` filas; usa `offset` para las siguientes).
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+        - name: format
+          in: query
+          schema: { type: string, enum: [json, csv], default: json }
+      responses:
+        '200':
+          description: Página de detecciones, o archivo CSV si `format=csv`
+          headers:
+            Content-Disposition:
+              description: Solo con `format=csv`. Ej. `attachment; filename="hotspots_2024-01-01_2024-12-31.csv"`
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DetectionPage' }
+            text/csv:
+              schema:
+                type: string
+                description: Columnas id, latitude, longitude, bright_ti4, scan, track, acq_date, acq_time, satellite, instrument, confidence, version, bright_ti5, frp, daynight, type
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+    post:
+      tags: [Detections]
+      operationId: createDetection
+      summary: Crear una o varias detecciones
+      description: |
+        El cuerpo puede ser **un objeto** o **un arreglo de objetos**:
+        - Objeto → responde `201` con el registro creado.
+        - Arreglo → responde `201` con `{count, items}`. Es **todo o nada**: si un elemento
+          falla no se guarda ninguno, y el error indica su posición en `index` (base 0).
+          Máximo `MAX_BULK` elementos (10000 por defecto).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/NewDetection'
+                - type: array
+                  minItems: 1
+                  maxItems: 10000
+                  items: { $ref: '#/components/schemas/NewDetection' }
+            examples:
+              uno:
+                summary: Un registro
+                value: { latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: nominal, version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }
+              varios:
+                summary: Varios registros
+                value: [{ latitude: 13.6929, longitude: -89.2182, bright_ti4: 330.5, scan: 0.39, track: 0.36, acq_date: "2024-03-14", acq_time: "0748", satellite: "N", instrument: VIIRS, confidence: nominal, version: 2.0NRT, bright_ti5: 295.1, frp: 4.2, daynight: "N" }, { latitude: 13.70, longitude: -89.20, acq_date: "2024-03-14", acq_time: "1630", satellite: Aqua, instrument: MODIS, confidence: high, frp: 12.3, daynight: D, type: 0 }]
+      responses:
+        '201':
+          description: Creado. Un objeto si se mandó un objeto; `{count, items}` si se mandó un arreglo.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Detection'
+                  - $ref: '#/components/schemas/DetectionBulkCreated'
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '409':
+          description: Ya existe (mismo lugar, fecha, hora, satélite e instrumento) o el `instrument` no existe
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '413': { $ref: '#/components/responses/TooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /detections/import:
+    post:
+      tags: [Detections]
+      operationId: importDetectionsCsv
+      summary: Importar un CSV de FIRMS (MODIS o VIIRS)
+      description: |
+        El cuerpo es el contenido del CSV tal como lo descarga FIRMS. Columnas en cualquier orden;
+        las desconocidas se ignoran. MODIS `brightness` → `bright_ti4` y `bright_t31` → `bright_ti5`.
+        Las detecciones que ya existen se cuentan en `duplicates` y no se duplican.
+        Se lee también la columna `type` del archivo SP (0 vegetación, 1 volcán, 2 fuente estática, 3 mar).
+
+        Si una detección ya existía sin `type` (vino de un CSV NRT), se completa y se cuenta en `updated`.
+
+        Si hubo filas nuevas o completadas, se recalcula la armonización y su resumen viene en
+        `harmonization` (o el motivo del fallo en `harmonization_error`; las filas igual quedan guardadas).
+
+        Sin `skip_invalid=true`, si alguna fila es inválida no se guarda nada y la respuesta es 422 con los errores.
+      parameters:
+        - name: instrument
+          in: query
+          description: Instrumento a usar si el CSV no trae la columna `instrument` (si no, se deduce de las columnas)
+          schema: { type: string, examples: [MODIS] }
+        - name: skip_invalid
+          in: query
+          description: Guardar las filas válidas aunque haya inválidas
+          schema: { type: boolean, default: false }
+        - name: harmonize
+          in: query
+          description: Recalcular la armonización si hubo cambios. Con false, recalcula después con `POST /stats/harmonization/rebuild`
+          schema: { type: boolean, default: true }
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema: { type: string }
+            example: |
+              latitude,longitude,bright_ti4,scan,track,acq_date,acq_time,satellite,instrument,confidence,version,bright_ti5,frp,daynight
+              13.69,-89.21,330.5,0.39,0.36,2024-03-14,0748,N,VIIRS,n,2.0NRT,295.1,4.2,N
+      responses:
+        '200':
+          description: Importación realizada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ImportResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '413': { $ref: '#/components/responses/TooLarge' }
+        '422':
+          description: CSV ilegible o con filas inválidas (no se guardó nada)
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ImportResult'
+                  - $ref: '#/components/schemas/Error'
+
+  /detections/{id}:
+    get:
+      tags: [Detections]
+      operationId: getDetection
+      summary: Obtener una detección por id
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Detección
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Detection' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ================================================================ Burning Activity Stats
+  /burning-activity-stats:
+    get:
+      tags: [Burning Activity Stats]
+      operationId: listBurningActivityStats
+      summary: Listar las estadísticas diarias guardadas
+      parameters:
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Página de estadísticas ordenadas por fecha
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BurningActivityStatPage' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Burning Activity Stats]
+      operationId: createBurningActivityStat
+      summary: Crear una o varias estadísticas diarias
+      description: |
+        El cuerpo puede ser **un objeto** o **un arreglo de objetos**:
+        - Objeto → responde `201` con el registro creado.
+        - Arreglo → responde `201` con `{count, items}`. Es **todo o nada**: si un elemento
+          falla no se guarda ninguno, y el error indica su posición en `index` (base 0).
+          Máximo `MAX_BULK` elementos (10000 por defecto).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/NewBurningActivityStat'
+                - type: array
+                  minItems: 1
+                  maxItems: 10000
+                  items: { $ref: '#/components/schemas/NewBurningActivityStat' }
+            examples:
+              uno:
+                summary: Un registro
+                value: { day: 14, month: 3, year: 2024, count: 57, max_frp: 38.4 }
+              varios:
+                summary: Varios registros
+                value: [{ day: 14, month: 3, year: 2024, count: 57, max_frp: 38.4 }, { day: 15, month: 3, year: 2024, count: 12 }]
+      responses:
+        '201':
+          description: Creado. Un objeto si se mandó un objeto; `{count, items}` si se mandó un arreglo.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/BurningActivityStat'
+                  - $ref: '#/components/schemas/BurningActivityStatBulkCreated'
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '413': { $ref: '#/components/responses/TooLarge' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /burning-activity-stats/rebuild:
+    post:
+      tags: [Burning Activity Stats]
+      operationId: rebuildBurningActivityStats
+      summary: Recalcular la tabla desde las detecciones
+      description: |
+        Borra `burning_activity_stats` y la vuelve a llenar con un registro por día con actividad,
+        calculado desde las detecciones que cumplen los filtros. La tabla guarda una sola área a la vez.
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/Metric'
+        - $ref: '#/components/parameters/CellDeg'
+      responses:
+        '200':
+          description: Tabla recalculada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RebuildResult' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  /burning-activity-stats/{id}:
+    get:
+      tags: [Burning Activity Stats]
+      operationId: getBurningActivityStat
+      summary: Obtener una estadística por id
+      parameters:
+        - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: Estadística
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BurningActivityStat' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  # ================================================================ Stats
+  /stats/calendar:
+    get:
+      tags: [Stats]
+      operationId: getCalendar
+      summary: Calendario de actividad (serie por mes o por día, con ceros)
+      description: |
+        Una fila por mes (o por día) entre `startDate` y `endDate` (o entre el primer y el último dato),
+        incluidos los periodos sin actividad con `count = 0`. Base de la matriz años × meses.
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/Metric'
+        - $ref: '#/components/parameters/CellDeg'
+        - name: granularity
+          in: query
+          schema: { type: string, enum: [month, day], default: month }
+      responses:
+        '200':
+          description: Serie del calendario
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CalendarResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  /stats/climatology:
+    get:
+      tags: [Stats]
+      operationId: getClimatology
+      summary: Comportamiento histórico de cada mes del año
+      description: Para cada mes (1-12), mediana, promedio, desviación, mínimo, máximo y percentiles entre años.
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/Metric'
+        - $ref: '#/components/parameters/CellDeg'
+      responses:
+        '200':
+          description: Climatología mensual
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ClimatologyResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  /stats/anomalies:
+    get:
+      tags: [Stats]
+      operationId: listAnomalies
+      summary: Listar anomalías por celda y día
+      description: |
+        Divide el área en celdas de `cell_deg` grados y, para cada celda y día con actividad,
+        compara las detecciones observadas con las esperadas: el promedio diario de esa celda en
+        el mismo mes de los años anteriores (desde el primer año con datos del área).
+
+        `score = 2 · (√(observed + 3/8) − √(expected + 3/8))` (desviación de Poisson con la
+        transformación de Anscombe; se lee como un z-score). `severity`: `low` ≥ 2,
+        `moderate` ≥ 3, `high` ≥ 5, `extreme` ≥ 8; por debajo de 2, `normal`.
+
+        `startDate` y `endDate` eligen qué días se reportan; la referencia histórica siempre
+        usa todos los años anteriores.
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/AnomalyCellDeg'
+        - $ref: '#/components/parameters/MinBaselineYears'
+        - name: min_score
+          in: query
+          description: Score mínimo (también `filter[min_score]`)
+          schema: { type: number, default: 2 }
+        - name: severity
+          in: query
+          description: 'Una o varias de low, moderate, high, extreme separadas por coma (también `filter[severity]`). `normal` no se acepta: queda por debajo de `min_score`. Ej.: high,extreme'
+          schema: { type: string }
+        - name: sort
+          in: query
+          schema: { type: string, enum: [score, -score, date, -date, observed, -observed], default: -score }
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Página de anomalías
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AnomalyPage' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  /stats/anomalies/{id}:
+    get:
+      tags: [Stats]
+      operationId: getAnomaly
+      summary: Obtener una anomalía por id
+      description: |
+        Recalcula la anomalía de esa celda y día. Se aplican los filtros de área y atributos de
+        la query (deben ser los mismos que en el listado para obtener el mismo valor). No acepta
+        `startDate` ni `endDate`: la fecha va en el id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: '`{fecha}_{cell_deg}_{fila}_{columna}`, tal como lo devuelve el listado. Ej.: 2024-03-14_0.1_136_-893'
+          schema: { type: string, pattern: '^\d{4}-\d{2}-\d{2}_[0-9.]+_-?\d+_-?\d+$' }
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/MinBaselineYears'
+      responses:
+        '200':
+          description: Anomalía
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AnomalyItem' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  /stats/summary:
+    get:
+      tags: [Stats]
+      operationId: getSummary
+      summary: Totales y periodos con más actividad
+      parameters:
+        - $ref: '#/components/parameters/Bbox'
+        - $ref: '#/components/parameters/Lat'
+        - $ref: '#/components/parameters/Lon'
+        - $ref: '#/components/parameters/RadiusKm'
+        - $ref: '#/components/parameters/Polygon'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - $ref: '#/components/parameters/InstrumentFilter'
+        - $ref: '#/components/parameters/SatelliteFilter'
+        - $ref: '#/components/parameters/MinConfidence'
+        - $ref: '#/components/parameters/DayNight'
+        - $ref: '#/components/parameters/Metric'
+        - $ref: '#/components/parameters/CellDeg'
+        - name: top
+          in: query
+          description: Cuántos años y meses devolver en los rankings
+          schema: { type: integer, minimum: 1, maximum: 50, default: 5 }
+      responses:
+        '200':
+          description: Resumen
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SummaryResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '501': { $ref: '#/components/responses/NoSpatial' }
+
+  # ================================================================ Harmonization
+  /stats/harmonized:
+    get:
+      tags: [Harmonization]
+      operationId: getHarmonizedSeries
+      summary: Serie mensual armonizada con anomalía
+      description: |
+        Una fila por mes, en celdas-día (celdas de `cell_deg` con fuego por día, sumadas en el mes).
+        `harmonized` está en equivalente MODIS. `anomaly` y `level` son null en meses incompletos.
+      parameters:
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - name: complete
+          in: query
+          description: Solo meses completos
+          schema: { type: boolean, default: false }
+      responses:
+        '200':
+          description: Serie armonizada (vacía si todavía no se calculó)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HarmonizedSeries' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /stats/harmonization:
+    get:
+      tags: [Harmonization]
+      operationId: getHarmonizationReport
+      summary: Última corrida, factores por mes y validación por año
+      responses:
+        '200':
+          description: Reporte de la armonización
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HarmonizationReport' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /stats/harmonization/rebuild:
+    post:
+      tags: [Harmonization]
+      operationId: rebuildHarmonization
+      summary: Recalcular la armonización
+      description: |
+        Se hace sola al importar. Esta ruta sirve tras crear detecciones con `POST /detections`,
+        importar con `harmonize=false`, cargar con el CLI de DuckDB o cambiar `HARMONIZE_*`.
+      responses:
+        '200':
+          description: Corrida realizada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/HarmonizationRun' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  # ================================================================ FIRMS
+  /firms/sync:
+    post:
+      tags: [FIRMS]
+      operationId: syncFirms
+      summary: Descargar de FIRMS e importar
+      description: |
+        Requiere `FIRMS_MAP_KEY` en el servidor. Las detecciones repetidas no se duplican.
+        Igual que `/detections/import`, si hubo cambios recalcula la armonización (salvo `harmonize: false`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SyncRequest' }
+            example: { source: VIIRS_SNPP_NRT, days: 2 }
+      responses:
+        '200':
+          description: Descarga e importación realizadas
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SyncResult' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+        '502':
+          description: FIRMS respondió con un error (MAP_KEY inválida, límite de uso, etc.)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '503':
+          description: El servidor no tiene FIRMS_MAP_KEY configurada
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  # ================================================================ Explorer
+  /health:
+    get:
+      tags: [Explorer]
+      operationId: health
+      summary: Estado del servicio
+      security: []
+      responses:
+        '200':
+          description: La API y la base responden
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [ok]
+                properties:
+                  ok: { type: boolean, const: true }
+        '503':
+          description: La base no responde
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /tables:
+    get:
+      tags: [Explorer]
+      operationId: listTables
+      summary: Listar las tablas y vistas de la base
+      responses:
+        '200':
+          description: Tablas
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/TableInfo' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /tables/{name}:
+    get:
+      tags: [Explorer]
+      operationId: previewTable
+      summary: Primeras filas de una tabla
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema: { type: string, pattern: '^[A-Za-z_][A-Za-z0-9_]*$' }
+        - name: limit
+          in: query
+          required: false
+          schema: { type: integer, minimum: 1, default: 100 }
+      responses:
+        '200':
+          description: Filas como objetos (columnas variables según la tabla)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Rows' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /query:
+    post:
+      tags: [Explorer]
+      operationId: runQuery
+      summary: Consulta SQL de solo lectura
+      description: |
+        Una sola sentencia que empiece con `SELECT`, `WITH` o `FROM`. Devuelve como máximo `MAX_ROWS` filas.
+        Siempre requiere API key (aunque `PUBLIC_READ=true`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sql]
+              additionalProperties: false
+              properties:
+                sql: { type: string }
+            example:
+              sql: SELECT instrument, count(*) AS n FROM detections_harmonized GROUP BY ALL
+      responses:
+        '200':
+          description: Filas como objetos
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Rows' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: { type: integer, format: int64, minimum: 1 }
+    Limit:
+      name: limit
+      in: query
+      description: Filas por página (máximo `MAX_ROWS`; en CSV, `MAX_EXPORT_ROWS`)
+      schema: { type: integer, minimum: 1, default: 100 }
+    Offset:
+      name: offset
+      in: query
+      schema: { type: integer, minimum: 0, default: 0 }
+    Bbox:
+      name: bbox
+      in: query
+      description: 'Rectángulo oeste,sur,este,norte. Ej.: -90.13,13.15,-87.68,14.45 (El Salvador)'
+      schema: { type: string, pattern: '^-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?$' }
+    Lat:
+      name: lat
+      in: query
+      description: Latitud del centro (con `lon` y `radius_km`)
+      schema: { type: number, minimum: -90, maximum: 90 }
+    Lon:
+      name: lon
+      in: query
+      description: Longitud del centro (con `lat` y `radius_km`)
+      schema: { type: number, minimum: -180, maximum: 180 }
+    RadiusKm:
+      name: radius_km
+      in: query
+      description: Radio en km (con `lat` y `lon`)
+      schema: { type: number, minimum: 0.1, maximum: 2000 }
+    Polygon:
+      name: polygon
+      in: query
+      description: Geometría GeoJSON (Polygon o MultiPolygon) codificada en la URL. Requiere spatial en el servidor.
+      schema: { type: string }
+      example: '{"type":"Polygon","coordinates":[[[-89.4,13.5],[-89.0,13.5],[-89.0,13.9],[-89.4,13.9],[-89.4,13.5]]]}'
+    StartDate:
+      name: startDate
+      in: query
+      description: Fecha inicial inclusiva (YYYY-MM-DD). Obligatoria si se envía `endDate` (también `filter[startDate]`)
+      schema: { type: string, format: date }
+    EndDate:
+      name: endDate
+      in: query
+      description: Fecha final inclusiva (YYYY-MM-DD). Obligatoria si se envía `startDate` (también `filter[endDate]`)
+      schema: { type: string, format: date }
+    InstrumentFilter:
+      name: instrument
+      in: query
+      description: 'Uno o varios códigos separados por coma. Ej.: MODIS,VIIRS'
+      schema: { type: string }
+    SatelliteFilter:
+      name: satellite
+      in: query
+      description: 'Uno o varios satélites separados por coma. Ej.: N,N20,Terra,Aqua'
+      schema: { type: string }
+    MinConfidence:
+      name: min_confidence
+      in: query
+      description: Confianza mínima armonizada
+      schema: { type: string, enum: [low, nominal, high] }
+    DayNight:
+      name: daynight
+      in: query
+      schema: { type: string, enum: ['D', 'N'] }
+    Metric:
+      name: metric
+      in: query
+      description: cells = armonizado (celdas activas por día); detections = detecciones crudas
+      schema: { type: string, enum: [cells, detections], default: cells }
+    CellDeg:
+      name: cell_deg
+      in: query
+      description: Tamaño de celda en grados para metric=cells (0.01 ≈ 1.1 km)
+      schema: { type: number, minimum: 0.001, maximum: 1, default: 0.01 }
+    AnomalyCellDeg:
+      name: cell_deg
+      in: query
+      description: Tamaño de celda en grados para las anomalías (0.1 ≈ 11 km)
+      schema: { type: number, minimum: 0.001, maximum: 1, default: 0.1 }
+    MinBaselineYears:
+      name: min_baseline_years
+      in: query
+      description: Años anteriores mínimos para tener referencia
+      schema: { type: integer, minimum: 1, maximum: 50, default: 3 }
+
+  responses:
+    BadRequest:
+      description: JSON mal formado, tipos incorrectos, campos desconocidos, filtros inválidos o SQL inválido
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Unauthorized:
+      description: Falta `x-api-key` o es incorrecta
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          example: { error: x-api-key inválida o ausente }
+    NotFound:
+      description: No existe un registro con ese id
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          example: { error: detección con id 42 no existe }
+    Conflict:
+      description: Viola una restricción (duplicado o instrumento inexistente)
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    TooLarge:
+      description: Demasiados elementos o cuerpo demasiado grande
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ValidationError:
+      description: Un valor no cumple las reglas de validación
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          example: { error: latitude debe estar entre -90 y 90, index: 3 }
+    NoSpatial:
+      description: Se pidió `polygon` pero el servidor no tiene la extensión spatial
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+
+  schemas:
+    EpochMs:
+      type: integer
+      format: int64
+      description: Fecha como milisegundos desde 1970-01-01 UTC (lista para `new Date(ms)`)
+      examples: [1710402480000]
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: Mensaje legible del problema
+        index:
+          type: integer
+          minimum: 0
+          description: Solo al crear con un arreglo, posición (base 0) del elemento que falló
+
+    # ---------- Instrument
+    NewInstrument:
+      type: object
+      additionalProperties: false
+      required: [code, name]
+      properties:
+        code:
+          type: string
+          minLength: 1
+          maxLength: 20
+          description: Código único. Se guarda en mayúsculas.
+          examples: [VIIRS]
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+          examples: [Visible Infrared Imaging Radiometer Suite]
+    Instrument:
+      type: object
+      required: [id, code, name]
+      properties:
+        id: { type: integer, format: int64 }
+        code: { type: string }
+        name: { type: string }
+    InstrumentBulkCreated:
+      type: object
+      required: [count, items]
+      properties:
+        count: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Instrument' }
+
+    # ---------- Detection
+    NewDetection:
+      type: object
+      additionalProperties: false
+      required: [latitude, longitude, acq_date, acq_time, satellite, instrument]
+      properties:
+        latitude: { type: number, minimum: -90, maximum: 90 }
+        longitude: { type: number, minimum: -180, maximum: 180 }
+        bright_ti4:
+          type: [number, 'null']
+          minimum: 0
+          description: Temperatura de brillo canal I-4 (K). En MODIS, `brightness`.
+        scan: { type: [number, 'null'], minimum: 0, description: Tamaño del píxel a lo largo del barrido }
+        track: { type: [number, 'null'], minimum: 0, description: Tamaño del píxel a lo largo de la trayectoria }
+        acq_date: { type: string, format: date, description: 'YYYY-MM-DD' }
+        acq_time:
+          type: string
+          pattern: '^([01]?\d|2[0-3]):?[0-5]\d$|^\d{1,2}$'
+          description: Hora UTC. Acepta "0412", "412" o "04:12"; se guarda como "0412".
+        satellite: { type: string, minLength: 1, maxLength: 20, description: 'Ej.: N, N20, N21, Terra, Aqua' }
+        instrument:
+          type: string
+          minLength: 1
+          maxLength: 20
+          description: Código de un instrumento existente (`Instrument.code`). Se guarda en mayúsculas.
+        confidence:
+          type: [string, 'null']
+          description: |
+            Se guarda como `low` | `nominal` | `high`. También acepta VIIRS `l` | `n` | `h`
+            y MODIS 0-100 (menos de 30 low, menos de 80 nominal, el resto high).
+          examples: [nominal, n, '65']
+        version: { type: [string, 'null'], maxLength: 20, examples: [2.0NRT] }
+        bright_ti5: { type: [number, 'null'], minimum: 0, description: 'Temperatura de brillo canal I-5 (K). En MODIS, `bright_t31`.' }
+        frp: { type: [number, 'null'], minimum: 0, description: Fire Radiative Power (MW) }
+        daynight: { type: [string, 'null'], enum: ['D', 'N', null] }
+        type:
+          type: [integer, 'null']
+          enum: [0, 1, 2, 3, null]
+          description: 'Tipo de punto (archivo SP): 0 vegetación, 1 volcán, 2 otra fuente estática, 3 mar'
+    Detection:
+      type: object
+      required: [id, latitude, longitude, bright_ti4, scan, track, acq_date, acq_time, satellite,
+                 instrument, confidence, version, bright_ti5, frp, daynight, type]
+      properties:
+        id: { type: integer, format: int64 }
+        latitude: { type: number }
+        longitude: { type: number }
+        bright_ti4: { type: [number, 'null'] }
+        scan: { type: [number, 'null'] }
+        track: { type: [number, 'null'] }
+        acq_date:
+          $ref: '#/components/schemas/EpochMs'
+          description: Momento de la adquisición (acq_date + acq_time del registro)
+        acq_time: { type: string, pattern: '^\d{4}$' }
+        satellite: { type: string }
+        instrument: { type: string }
+        confidence: { type: [string, 'null'], enum: [low, nominal, high, null] }
+        version: { type: [string, 'null'] }
+        bright_ti5: { type: [number, 'null'] }
+        frp: { type: [number, 'null'] }
+        daynight: { type: [string, 'null'], enum: ['D', 'N', null] }
+        type: { type: [integer, 'null'], enum: [0, 1, 2, 3, null] }
+    DetectionBulkCreated:
+      type: object
+      required: [count, items]
+      properties:
+        count: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Detection' }
+    DetectionPage:
+      type: object
+      required: [total, limit, offset, items]
+      properties:
+        total: { type: integer, description: Total que cumple el filtro (sin paginar) }
+        limit: { type: integer }
+        offset: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Detection' }
+    RowError:
+      type: object
+      required: [line, error]
+      properties:
+        line: { type: integer, description: Línea del archivo (la 1 es el encabezado) }
+        error: { type: string }
+    ImportResult:
+      type: object
+      required: [received, valid, inserted, duplicates, updated, invalid, errors]
+      properties:
+        received: { type: integer, description: Filas de datos leídas }
+        valid: { type: integer }
+        inserted: { type: integer, description: Filas nuevas guardadas }
+        duplicates: { type: integer, description: Filas válidas que ya existían }
+        updated: { type: integer, description: Filas que ya existían sin `type` y se completaron (archivo SP) }
+        invalid: { type: integer }
+        errors:
+          type: array
+          maxItems: 50
+          items: { $ref: '#/components/schemas/RowError' }
+        harmonization:
+          $ref: '#/components/schemas/HarmonizationRun'
+          description: Solo si hubo filas nuevas o completadas, se pidió armonizar y el recálculo funcionó
+        harmonization_error:
+          type: string
+          description: Solo si el recálculo falló
+
+    # ---------- Harmonization
+    HarmonizationStatus:
+      type: string
+      enum: [ok, no_overlap, insufficient_data]
+      description: |
+        `ok`; `no_overlap`: no hay meses completos con ambos sensores, la serie es solo MODIS;
+        `insufficient_data`: no hay datos de Aqua MODIS, no hay serie.
+    HarmonizationRun:
+      type: object
+      required: [computed_at, status, detections, after_confidence, after_type, static_cells,
+                 after_static, used, first_month, last_month, overlap_start, overlap_end,
+                 overlap_months, mean_raw_diff_pct, mean_abs_harmonized_diff_pct, correlation, params]
+      properties:
+        computed_at: { $ref: '#/components/schemas/EpochMs' }
+        status: { $ref: '#/components/schemas/HarmonizationStatus' }
+        detections: { type: integer, description: Tras quitar duplicados y aplicar el área }
+        after_confidence: { type: integer }
+        after_type: { type: integer }
+        static_cells: { type: integer, description: Celdas descartadas como fuentes estáticas }
+        after_static: { type: integer }
+        used: { type: integer, description: Detecciones de Aqua y del VIIRS de referencia }
+        first_month: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        last_month: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        overlap_start: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        overlap_end: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+        overlap_months: { type: integer }
+        mean_raw_diff_pct: { type: [number, 'null'], description: Diferencia anual promedio VIIRS crudo vs MODIS (%) }
+        mean_abs_harmonized_diff_pct:
+          type: [number, 'null']
+          description: Diferencia anual absoluta promedio VIIRS armonizado (validación cruzada) vs MODIS (%)
+        correlation: { type: [number, 'null'], description: Correlación mensual MODIS vs VIIRS armonizado (descriptiva) }
+        params: { $ref: '#/components/schemas/HarmonizationParams' }
+    HarmonizationParams:
+      type: object
+      required: [bbox, cell_deg, min_confidence, static_threshold, static_min_months, snpp_end,
+                 viirs_priority, overlap_end, min_cells_month, dry_months, reference_years, utc_offset_hours]
+      properties:
+        bbox:
+          type: [string, 'null']
+          description: oeste,sur,este,norte (mismo formato que el filtro `bbox`). Null = sin recorte.
+          examples: ['-90.13,13.15,-87.68,14.45']
+        cell_deg: { type: number }
+        min_confidence: { type: string, enum: [nominal, high] }
+        static_threshold: { type: number }
+        static_min_months: { type: integer }
+        snpp_end:
+          $ref: '#/components/schemas/EpochMs'
+          description: Primer día sin Suomi NPP
+        viirs_priority: { type: array, items: { type: string } }
+        overlap_end:
+          $ref: '#/components/schemas/EpochMs'
+          description: Último mes usado para el factor
+        min_cells_month: { type: number }
+        dry_months: { type: array, items: { type: integer, minimum: 1, maximum: 12 } }
+        reference_years:
+          type: array
+          items: { type: integer }
+          minItems: 2
+          maxItems: 2
+        utc_offset_hours: { type: integer }
+    HarmonizationFactor:
+      type: object
+      required: [month, season, modis, viirs, f_month, f_season, factor, source]
+      properties:
+        month: { type: integer, minimum: 1, maximum: 12 }
+        season: { type: string, enum: [dry, wet] }
+        modis: { type: number, description: Celdas-día MODIS en el traslape }
+        viirs: { type: number, description: Celdas-día VIIRS en el traslape }
+        f_month: { type: [number, 'null'] }
+        f_season: { type: [number, 'null'] }
+        factor: { type: [number, 'null'], description: Celdas MODIS por cada celda VIIRS }
+        source: { type: string, enum: [month, season] }
+    HarmonizationValidationYear:
+      type: object
+      required: [year, months, modis, viirs_raw, viirs_harmonized, raw_diff_pct, harmonized_diff_pct]
+      properties:
+        year: { type: integer }
+        months: { type: integer }
+        modis: { type: number }
+        viirs_raw: { type: number }
+        viirs_harmonized: { type: [number, 'null'], description: VIIRS × factor calculado sin ese año }
+        raw_diff_pct: { type: [number, 'null'] }
+        harmonized_diff_pct: { type: [number, 'null'] }
+    HarmonizationReport:
+      type: object
+      required: [run, factors, validation]
+      properties:
+        run:
+          oneOf:
+            - $ref: '#/components/schemas/HarmonizationRun'
+            - type: 'null'
+        factors:
+          type: array
+          items: { $ref: '#/components/schemas/HarmonizationFactor' }
+        validation:
+          type: array
+          items: { $ref: '#/components/schemas/HarmonizationValidationYear' }
+    HarmonizedAnomalyLevel:
+      type: string
+      enum: [very_low, low, normal, high, very_high]
+      description: '≤ −1 very_low · ≤ −0.5 low · ≤ 0.5 normal · ≤ 1 high · > 1 very_high'
+    HarmonizedMonth:
+      type: object
+      required: [month, modis, viirs, harmonized, source, complete, median, p25, p75, anomaly, level]
+      properties:
+        month: { $ref: '#/components/schemas/EpochMs' }
+        modis: { type: [number, 'null'], description: Celdas-día MODIS Aqua }
+        viirs: { type: [number, 'null'], description: Celdas-día del VIIRS de referencia }
+        harmonized: { type: [number, 'null'], description: Equivalente MODIS }
+        source: { type: string, enum: [modis, viirs_factor] }
+        complete: { type: boolean }
+        median: { type: [number, 'null'], description: Mediana del mes en los años de referencia }
+        p25: { type: [number, 'null'] }
+        p75: { type: [number, 'null'] }
+        anomaly: { type: [number, 'null'] }
+        level:
+          oneOf:
+            - $ref: '#/components/schemas/HarmonizedAnomalyLevel'
+            - type: 'null'
+    HarmonizedSeries:
+      type: object
+      required: [run, items]
+      properties:
+        run:
+          oneOf:
+            - $ref: '#/components/schemas/HarmonizationRun'
+            - type: 'null'
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/HarmonizedMonth' }
+
+    # ---------- Burning Activity Stats
+    NewBurningActivityStat:
+      type: object
+      additionalProperties: false
+      required: [day, month, year, count]
+      properties:
+        day: { type: integer, minimum: 1, maximum: 31, description: Debe existir en ese mes y año }
+        month: { type: integer, minimum: 1, maximum: 12 }
+        year: { type: integer, minimum: 1900, maximum: 2100 }
+        count: { type: integer, format: int64, minimum: 0, description: Hotspots (o celdas) ese día }
+        max_frp: { type: [number, 'null'], minimum: 0, description: FRP máximo del día (MW) }
+    BurningActivityStat:
+      type: object
+      required: [id, date, count, max_frp]
+      properties:
+        id: { type: integer, format: int64 }
+        date: { $ref: '#/components/schemas/EpochMs' }
+        count: { type: integer, format: int64 }
+        max_frp: { type: [number, 'null'] }
+    BurningActivityStatBulkCreated:
+      type: object
+      required: [count, items]
+      properties:
+        count: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/BurningActivityStat' }
+    BurningActivityStatPage:
+      type: object
+      required: [total, limit, offset, items]
+      properties:
+        total: { type: integer }
+        limit: { type: integer }
+        offset: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/BurningActivityStat' }
+
+    RebuildResult:
+      allOf:
+        - $ref: '#/components/schemas/MetricInfo'
+        - type: object
+          required: [rows]
+          properties:
+            rows: { type: integer, description: Días guardados }
+
+    # ---------- Stats
+    MetricInfo:
+      type: object
+      required: [metric, cell_deg]
+      properties:
+        metric: { type: string, enum: [cells, detections] }
+        cell_deg: { type: [number, 'null'], description: Solo con metric=cells }
+    CalendarPoint:
+      type: object
+      required: [date, count, max_frp, active_days]
+      properties:
+        date:
+          $ref: '#/components/schemas/EpochMs'
+          description: Inicio del periodo (el día, o el primer día del mes)
+        count: { type: integer }
+        max_frp: { type: [number, 'null'] }
+        active_days: { type: [integer, 'null'], description: Solo por mes. Días con al menos un hotspot }
+    CalendarResponse:
+      allOf:
+        - $ref: '#/components/schemas/MetricInfo'
+        - type: object
+          required: [granularity, from, to, items]
+          properties:
+            granularity: { type: string, enum: [month, day] }
+            from: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`startDate` aplicado (null sin rango)' }
+            to: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`endDate` aplicado (null sin rango)' }
+            items:
+              type: array
+              items: { $ref: '#/components/schemas/CalendarPoint' }
+    MonthClimatology:
+      type: object
+      required: [month, years, median, mean, stddev, min, max, p25, p75, max_year]
+      properties:
+        month: { type: integer, minimum: 1, maximum: 12 }
+        years: { type: integer, description: Años que entran en el cálculo }
+        median: { type: number }
+        mean: { type: number }
+        stddev: { type: [number, 'null'] }
+        min: { type: integer }
+        max: { type: integer }
+        p25: { type: number }
+        p75: { type: number }
+        max_year: { type: integer, description: Año con el valor máximo }
+    ClimatologyResponse:
+      allOf:
+        - $ref: '#/components/schemas/MetricInfo'
+        - type: object
+          required: [from, to, months]
+          properties:
+            from: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`startDate` aplicado (null sin rango)' }
+            to: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: '`endDate` aplicado (null sin rango)' }
+            months:
+              type: array
+              items: { $ref: '#/components/schemas/MonthClimatology' }
+    Severity:
+      type: string
+      enum: [normal, low, moderate, high, extreme]
+      description: 'Por score: low ≥ 2, moderate ≥ 3, high ≥ 5, extreme ≥ 8'
+    AnomalyLocation:
+      type: object
+      required: [latitude, longitude, cell_deg]
+      properties:
+        latitude: { type: number, description: Latitud del centro de la celda }
+        longitude: { type: number, description: Longitud del centro de la celda }
+        cell_deg: { type: number }
+    AnomalyItem:
+      type: object
+      required: [id, date, location, observed, expected, ratio, score, severity, max_frp, baseline_years]
+      properties:
+        id: { type: string, examples: [2024-03-14_0.1_136_-893] }
+        date: { $ref: '#/components/schemas/EpochMs' }
+        location: { $ref: '#/components/schemas/AnomalyLocation' }
+        observed: { type: integer, description: Detecciones en la celda ese día }
+        expected: { type: number, description: Promedio diario de la celda en el mismo mes de los años anteriores }
+        ratio: { type: [number, 'null'], description: observed / expected. Null si expected es 0 }
+        score: { type: number, description: Desviación de Poisson estandarizada (≈ z-score) }
+        severity: { $ref: '#/components/schemas/Severity' }
+        max_frp: { type: [number, 'null'] }
+        baseline_years: { type: integer, description: Años anteriores usados como referencia }
+    AnomalyPage:
+      type: object
+      required: [cell_deg, total, limit, offset, items]
+      properties:
+        cell_deg: { type: number }
+        total: { type: integer }
+        limit: { type: integer }
+        offset: { type: integer }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/AnomalyItem' }
+    SummaryResponse:
+      allOf:
+        - $ref: '#/components/schemas/MetricInfo'
+        - type: object
+          required: [detections, total, first_date, last_date, max_frp, by_instrument, top_years, top_months]
+          properties:
+            detections: { type: integer, description: Detecciones crudas }
+            total: { type: integer, description: Total según la métrica }
+            first_date: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+            last_date: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }] }
+            max_frp: { type: [number, 'null'] }
+            by_instrument:
+              type: array
+              items:
+                type: object
+                required: [instrument, detections]
+                properties:
+                  instrument: { type: string }
+                  detections: { type: integer }
+            top_years:
+              type: array
+              items:
+                type: object
+                required: [year, count]
+                properties:
+                  year: { type: integer }
+                  count: { type: integer }
+            top_months:
+              type: array
+              items:
+                type: object
+                required: [date, count, max_frp]
+                properties:
+                  date:
+                    $ref: '#/components/schemas/EpochMs'
+                    description: Primer día del mes
+                  count: { type: integer }
+                  max_frp: { type: [number, 'null'] }
+
+    # ---------- FIRMS
+    SyncRequest:
+      type: object
+      additionalProperties: false
+      required: [source]
+      properties:
+        source:
+          type: string
+          enum: [MODIS_NRT, MODIS_SP, VIIRS_SNPP_NRT, VIIRS_SNPP_SP, VIIRS_NOAA20_NRT, VIIRS_NOAA20_SP, VIIRS_NOAA21_NRT]
+        area:
+          type: [string, 'null']
+          description: oeste,sur,este,norte. Por defecto el área configurada en el servidor (El Salvador).
+        days: { type: [integer, 'null'], minimum: 1, maximum: 10, default: 1 }
+        date: { type: [string, 'null'], format: date, description: Día inicial. Sin él, los días más recientes. }
+        harmonize: { type: [boolean, 'null'], default: true, description: Recalcular la armonización si hubo cambios }
+    SyncResult:
+      allOf:
+        - $ref: '#/components/schemas/ImportResult'
+        - type: object
+          required: [source, area, days, date]
+          properties:
+            source: { type: string }
+            area: { type: string }
+            days: { type: integer }
+            date: { oneOf: [{ $ref: '#/components/schemas/EpochMs' }, { type: 'null' }], description: Día inicial pedido }
+
+    # ---------- Explorer
+    TableInfo:
+      type: object
+      required: [schema, name, type]
+      properties:
+        schema: { type: string }
+        name: { type: string }
+        type: { type: string, examples: [BASE TABLE, VIEW] }
+    Rows:
+      type: array
+      description: Una fila por objeto; las claves son los nombres de columna.
+      items:
+        type: object
+        additionalProperties: true

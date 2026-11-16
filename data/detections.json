@@ -1,0 +1,38 @@
+[
+  {
+    "id": 101,
+    "latitude": 13.6929,
+    "longitude": -89.2182,
+    "bright_ti4": 330.5,
+    "scan": 0.39,
+    "track": 0.36,
+    "acq_date": 1710402480000,
+    "acq_time": "0748",
+    "satellite": "N",
+    "instrument": "VIIRS",
+    "confidence": "nominal",
+    "version": "2.0NRT",
+    "bright_ti5": 295.1,
+    "frp": 4.2,
+    "daynight": "N",
+    "type": 0
+  },
+  {
+    "id": 102,
+    "latitude": 13.8451,
+    "longitude": -89.0674,
+    "bright_ti4": 341.2,
+    "scan": 0.52,
+    "track": 0.48,
+    "acq_date": 1710526320000,
+    "acq_time": "1812",
+    "satellite": "N20",
+    "instrument": "VIIRS",
+    "confidence": "high",
+    "version": "2.0NRT",
+    "bright_ti5": 302.7,
+    "frp": 12.8,
+    "daynight": "D",
+    "type": 0
+  }
+]

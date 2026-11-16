@@ -35,6 +35,10 @@ Make sure to install the dependencies:
 pnpm install
 ```
 
+Copy `.env.example` to `.env` and set `NUXT_API_BASE_URL` and `NUXT_API_KEY`.
+
+The browser never talks to the API directly: every request goes to `/api/**` on the Nuxt server, which forwards it to `NUXT_API_BASE_URL` with the `x-api-key` header. Both variables are server-only, so the key is not shipped in the client bundle. They are read at runtime, so they must also be set where the production server runs.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
