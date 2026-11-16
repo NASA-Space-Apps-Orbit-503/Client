@@ -4,7 +4,8 @@
       "explore": "Explore",
       "historicalTrends": "Historical Trends",
       "anomalies": "Anomalies",
-      "methodology": "Methodology"
+      "methodology": "Methodology",
+      "howToUse": "How to use"
     }
   },
   "filters": {
@@ -514,6 +515,94 @@
       "firms": "NASA FIRMS · explore and download data",
       "viirs": "NASA FIRMS · VIIRS product and attributes",
       "snpp": "NOAA · end of Suomi NPP product delivery"
+    }
+  },
+  "howToUse": {
+    "title": "How to use Ignis SV",
+    "description": "A quick guide to finding, comparing and analyzing burning activity in El Salvador.",
+    "intro": "Each page answers a different question. Start with Explore to see where burning is detected, use Historical Trends to compare periods, and open Anomalies to find unusual activity.",
+    "nav": {
+      "filters": "Filters",
+      "explore": "Explore",
+      "trends": "Historical Trends",
+      "anomalies": "Anomalies",
+      "methodology": "Methodology"
+    },
+    "open": "Open {page}",
+    "filters": {
+      "title": "Set your filters",
+      "description": "Explore, Historical Trends and Anomalies share the same filters. They stay in sync between pages and are saved in the URL, so you can bookmark or share a view.",
+      "steps": {
+        "dates": {
+          "title": "Choose a date range",
+          "body": "Pick a start and an end date. Without dates, the full record is used."
+        },
+        "area": {
+          "title": "Choose an area (optional)",
+          "body": "Draw a circle with the circle tool on the map, press Select a point and click the map, or type latitude and longitude. The radius is optional, up to 300 km; without it, only the 0.01° cell containing the point (about 1 km per side) is searched. The area must be inside El Salvador."
+        },
+        "sensors": {
+          "title": "Filter sensors (optional)",
+          "body": "Limit the results to the MODIS or VIIRS instruments, or to specific satellites."
+        },
+        "apply": {
+          "title": "Press Apply",
+          "body": "Nothing is queried until you apply, so you can adjust several filters first. Clear filters resets the search."
+        }
+      }
+    },
+    "explore": {
+      "title": "Explore: where is burning detected?",
+      "description": "The landing page combines a map of detections, summary figures and the burning activity calendar.",
+      "items": {
+        "points": "Each point is a satellite detection: blue for MODIS, orange for VIIRS. Click a point to see its acquisition time, fire radiative power (FRP) and confidence.",
+        "more": "The map draws the first 500 detections. Use Load more points to draw up to 5,000, or narrow the filters.",
+        "toggle": "Hide filters collapses the filter panel to leave more room for the map.",
+        "summary": "Scroll down, or use the round arrow button, to see total detections, the peak month, active cells and detections per sensor.",
+        "calendar": "The calendar has one row per year and one column per month. Brighter cells mean more activity, not more severe fires; the legend shows the range of each color for the applied filters."
+      },
+      "captions": {
+        "map": "Detection map with the filter panel.",
+        "calendar": "Summary figures and burning activity calendar."
+      }
+    },
+    "trends": {
+      "title": "Historical Trends: how does activity change over time?",
+      "description": "Compare burning activity across months and years.",
+      "items": {
+        "period": "Choose the Period: Month compares the same months across years; Year compares annual totals.",
+        "select": "Select up to 8 years to compare and, in Month mode, the months to compare.",
+        "line": "Regional activity over time plots MODIS, VIIRS and the Harmonized series in comparable cell-days. It covers the whole region and only reacts to the date range.",
+        "bars": "The bar chart compares the selected years side by side and uses every applied filter.",
+        "table": "The table lists each period with its total, change and percentage change. Click a column header to sort.",
+        "csv": "Download CSV exports the table together with the applied filters."
+      },
+      "captions": {
+        "charts": "Period controls, regional series and comparison by year."
+      }
+    },
+    "anomalies": {
+      "title": "Anomalies: what departs from its history?",
+      "description": "Find days and places where activity was unusually high compared with previous years in the same month.",
+      "items": {
+        "filters": "Besides the shared filters, set a Minimum score (default 2) and, optionally, a Severity: Low, Moderate, High or Extreme.",
+        "map": "The map shows the anomalies on the current table page, colored by severity. Click a marker for details and use the marker size slider to see them better.",
+        "table": "The table shows date, location, score, observed and expected detections, and severity. Sort by a column, change the rows per page and move between pages.",
+        "csv": "Download CSV exports every matching anomaly, not only the current page.",
+        "charts": "The charts summarize all matching anomalies: per month, per year by month, a year-by-month heatmap and the score over time. Hover for exact values; drag the slider to zoom."
+      },
+      "captions": {
+        "map": "Anomaly filters and map colored by severity.",
+        "charts": "Charts summarizing the matching anomalies."
+      }
+    },
+    "methodology": {
+      "title": "Methodology: how are the data built?",
+      "body": "Read where the data come from, how MODIS and VIIRS records are unified and harmonized, how results are validated, and the business intelligence model behind the indicators."
+    },
+    "tip": {
+      "title": "Tip",
+      "body": "Use the language menu in the top-right corner to switch between English and Spanish at any time. Your filters are kept."
     }
   }
 }

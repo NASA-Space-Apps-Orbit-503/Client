@@ -24,6 +24,10 @@ const items = computed(() => [
   {
     label: t('header.nav.methodology'),
     to: '/methodology'
+  },
+  {
+    label: t('header.nav.howToUse'),
+    to: '/how-to-use'
   }
 ])
 

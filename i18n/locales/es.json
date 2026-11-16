@@ -4,7 +4,8 @@
       "explore": "Explorar",
       "historicalTrends": "Tendencias Históricas",
       "anomalies": "Anomalías",
-      "methodology": "Metodología"
+      "methodology": "Metodología",
+      "howToUse": "Cómo usar"
     }
   },
   "filters": {
@@ -515,6 +516,94 @@
       "firms": "NASA FIRMS · consulta y descarga de datos",
       "viirs": "NASA FIRMS · producto VIIRS y atributos",
       "snpp": "NOAA · fin de entrega de productos Suomi NPP"
+    }
+  },
+  "howToUse": {
+    "title": "Cómo usar Ignis SV",
+    "description": "Una guía rápida para encontrar, comparar y analizar la actividad de quema en El Salvador.",
+    "intro": "Cada página responde una pregunta distinta. Empieza en Explorar para ver dónde se detecta quema, usa Tendencias Históricas para comparar periodos y abre Anomalías para encontrar actividad inusual.",
+    "nav": {
+      "filters": "Filtros",
+      "explore": "Explorar",
+      "trends": "Tendencias Históricas",
+      "anomalies": "Anomalías",
+      "methodology": "Metodología"
+    },
+    "open": "Abrir {page}",
+    "filters": {
+      "title": "Configura tus filtros",
+      "description": "Explorar, Tendencias Históricas y Anomalías comparten los mismos filtros. Se mantienen al cambiar de página y se guardan en la URL, así puedes guardar o compartir una vista.",
+      "steps": {
+        "dates": {
+          "title": "Elige un rango de fechas",
+          "body": "Selecciona una fecha de inicio y una de fin. Sin fechas se usa todo el registro."
+        },
+        "area": {
+          "title": "Elige un área (opcional)",
+          "body": "Dibuja un círculo con la herramienta de círculo del mapa, pulsa Seleccionar un punto y haz clic en el mapa, o escribe la latitud y la longitud. El radio es opcional, hasta 300 km; sin él, solo se busca en la celda de 0,01° que contiene el punto (aproximadamente 1 km por lado). El área debe estar dentro de El Salvador."
+        },
+        "sensors": {
+          "title": "Filtra sensores (opcional)",
+          "body": "Limita los resultados a los instrumentos MODIS o VIIRS, o a satélites específicos."
+        },
+        "apply": {
+          "title": "Pulsa Aplicar",
+          "body": "No se consulta nada hasta que aplicas, así puedes ajustar varios filtros antes. Limpiar filtros reinicia la búsqueda."
+        }
+      }
+    },
+    "explore": {
+      "title": "Explorar: ¿dónde se detecta quema?",
+      "description": "La página de inicio combina un mapa de detecciones, cifras de resumen y el calendario de actividad de quema.",
+      "items": {
+        "points": "Cada punto es una detección satelital: azul para MODIS y naranja para VIIRS. Haz clic en un punto para ver su hora de adquisición, potencia radiativa del fuego (FRP) y confianza.",
+        "more": "El mapa dibuja las primeras 500 detecciones. Usa Cargar más puntos para dibujar hasta 5.000, o acota los filtros.",
+        "toggle": "Ocultar filtros contrae el panel de filtros para dejar más espacio al mapa.",
+        "summary": "Desplázate hacia abajo, o usa el botón redondo con la flecha, para ver el total de detecciones, el mes pico, las celdas activas y las detecciones por sensor.",
+        "calendar": "El calendario tiene una fila por año y una columna por mes. Los colores más brillantes indican más actividad, no incendios más severos; la leyenda muestra el rango de cada color según los filtros aplicados."
+      },
+      "captions": {
+        "map": "Mapa de detecciones con el panel de filtros.",
+        "calendar": "Cifras de resumen y calendario de actividad de quema."
+      }
+    },
+    "trends": {
+      "title": "Tendencias Históricas: ¿cómo cambia la actividad en el tiempo?",
+      "description": "Compara la actividad de quema entre meses y años.",
+      "items": {
+        "period": "Elige el Periodo: Mes compara los mismos meses entre años; Año compara totales anuales.",
+        "select": "Selecciona hasta 8 años a comparar y, en modo Mes, los meses a comparar.",
+        "line": "Actividad regional a lo largo del tiempo grafica MODIS, VIIRS y la serie Armonizada en celdas-día comparables. Cubre toda la región y solo responde al rango de fechas.",
+        "bars": "La gráfica de barras compara los años seleccionados lado a lado y usa todos los filtros aplicados.",
+        "table": "La tabla lista cada periodo con su total, cambio y cambio porcentual. Haz clic en el encabezado de una columna para ordenar.",
+        "csv": "Descargar CSV exporta la tabla junto con los filtros aplicados."
+      },
+      "captions": {
+        "charts": "Controles de periodo, series regionales y comparación por año."
+      }
+    },
+    "anomalies": {
+      "title": "Anomalías: ¿qué se aparta de su historia?",
+      "description": "Encuentra días y lugares donde la actividad fue inusualmente alta frente a años anteriores en el mismo mes.",
+      "items": {
+        "filters": "Además de los filtros compartidos, define un Puntaje mínimo (por defecto 2) y, si quieres, una Severidad: Baja, Moderada, Alta o Extrema.",
+        "map": "El mapa muestra las anomalías de la página actual de la tabla, coloreadas por severidad. Haz clic en un marcador para ver el detalle y usa el control de tamaño para verlos mejor.",
+        "table": "La tabla muestra fecha, ubicación, puntaje, detecciones observadas y esperadas, y severidad. Ordena por columna, cambia las filas por página y navega entre páginas.",
+        "csv": "Descargar CSV exporta todas las anomalías que coinciden, no solo la página actual.",
+        "charts": "Las gráficas resumen todas las anomalías que coinciden: por mes, por año y mes, un mapa de calor año-mes y el puntaje en el tiempo. Pasa el cursor para ver valores exactos; arrastra el control para hacer zoom."
+      },
+      "captions": {
+        "map": "Filtros de anomalías y mapa coloreado por severidad.",
+        "charts": "Gráficas que resumen las anomalías encontradas."
+      }
+    },
+    "methodology": {
+      "title": "Metodología: ¿cómo se construyen los datos?",
+      "body": "Consulta de dónde vienen los datos, cómo se unifican y armonizan los registros MODIS y VIIRS, cómo se validan los resultados y el modelo de inteligencia de negocio detrás de los indicadores."
+    },
+    "tip": {
+      "title": "Consejo",
+      "body": "Usa el menú de idioma en la esquina superior derecha para cambiar entre inglés y español en cualquier momento. Tus filtros se conservan."
     }
   }
 }
