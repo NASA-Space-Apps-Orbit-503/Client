@@ -45,7 +45,19 @@
   "explore": {
     "calendar": {
       "title": "Burning activity calendar",
-      "error": "Unable to load burning activity calendar"
+      "error": "Unable to load burning activity calendar",
+      "monthly": "Monthly {metric}",
+      "startUnavailable": "Start unavailable",
+      "endUnavailable": "End unavailable",
+      "legendTitle": "Color legend",
+      "levels": {
+        "0": "No activity",
+        "1": "Low activity",
+        "2": "Moderate activity",
+        "3": "High activity",
+        "4": "Very high activity"
+      },
+      "legendDescription": "Brighter colors mean more activity, not greater fire severity. Ranges are relative to the highest monthly count for the applied filters and update when those filters change."
     },
     "map": {
       "title": "Burning activity map",

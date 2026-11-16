@@ -46,7 +46,19 @@
   "explore": {
     "calendar": {
       "title": "Calendario de actividad de quema",
-      "error": "No se puede cargar el calendario de actividad de quema"
+      "error": "No se puede cargar el calendario de actividad de quema",
+      "monthly": "{metric} por mes",
+      "startUnavailable": "Inicio no disponible",
+      "endUnavailable": "Fin no disponible",
+      "legendTitle": "Significado de los colores",
+      "levels": {
+        "0": "Sin actividad",
+        "1": "Actividad baja",
+        "2": "Actividad moderada",
+        "3": "Actividad alta",
+        "4": "Actividad muy alta"
+      },
+      "legendDescription": "Los colores más intensos indican mayor actividad, no mayor gravedad del incendio. Los rangos dependen del máximo mensual de los filtros aplicados y cambian al modificarlos."
     },
     "map": {
       "title": "Mapa de actividad de quema",
