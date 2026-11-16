@@ -4,6 +4,8 @@ const { dateRange, latitude, longitude, radiusKm, instruments, satellites, getIn
 
 const props = defineProps<{
   classes?: string
+  /** Compact vertical layout for the Explore map overlay. */
+  stacked?: boolean
   /**
    * True when the page's own filters (`#page-filters` slot) differ from the ones last applied,
    * so the apply button is enabled even if the global filters did not change.
@@ -48,10 +50,10 @@ onMounted(() => {
 
 <template>
   <form
-    :class="classes"
+    :class="[stacked ? 'flex w-full flex-col gap-3' : 'col-span-12 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:flex lg:flex-wrap', classes]"
     @submit.prevent="onSubmit"
   >
-    <div class="col-span-12 w-full flex flex-col gap-2">
+    <div class="col-span-full flex w-full flex-col gap-2">
       <p
         v-if="!searchActive"
         role="status"
@@ -77,7 +79,7 @@ onMounted(() => {
     <UFormField
       :label="t('filters.dateRange.label')"
       :placeholder="t('filters.dateRange.placeholder')"
-      class="w-full"
+      :class="stacked ? 'w-full' : 'min-w-0 sm:col-span-2 lg:w-80 lg:flex-none'"
       size="sm"
     >
       <UInputDate
@@ -90,7 +92,7 @@ onMounted(() => {
     <UFormField
       :label="t('filters.latitude.label')"
       :placeholder="t('filters.latitude.placeholder')"
-      class="w-full"
+      :class="stacked ? 'w-full' : 'min-w-0 lg:w-40 lg:flex-none'"
       size="sm"
     >
       <UInputNumber
@@ -107,7 +109,7 @@ onMounted(() => {
     <UFormField
       :label="t('filters.longitude.label')"
       :placeholder="t('filters.longitude.placeholder')"
-      class="w-full"
+      :class="stacked ? 'w-full' : 'min-w-0 lg:w-40 lg:flex-none'"
       size="sm"
     >
       <UInputNumber
@@ -124,7 +126,7 @@ onMounted(() => {
     <UFormField
       :label="t('filters.radiusKm.label')"
       :hint="t('filters.optional')"
-      class="w-full"
+      :class="stacked ? 'w-full' : 'min-w-0 lg:w-40 lg:flex-none'"
       size="sm"
     >
       <UInputNumber
@@ -141,7 +143,7 @@ onMounted(() => {
     <UFormField
       :label="t('filters.instruments.label')"
       :placeholder="t('filters.instruments.placeholder')"
-      class="w-full"
+      :class="stacked ? 'w-full' : 'min-w-0 lg:min-w-40 lg:flex-1'"
       size="sm"
     >
       <USelectMenu
@@ -156,7 +158,7 @@ onMounted(() => {
     </UFormField>
     <UFormField
       :label="t('filters.satellites.label')"
-      class="w-full"
+      :class="stacked ? 'w-full' : 'min-w-0 lg:min-w-44 lg:flex-1'"
       size="sm"
     >
       <USelectMenu
@@ -171,9 +173,10 @@ onMounted(() => {
     </UFormField>
     <!-- Page-specific filters: applied together with the global ones by the same button -->
     <slot name="page-filters" />
-    <div class="w-full flex flex-wrap gap-2 self-end">
+    <div :class="['flex flex-wrap gap-2 self-end', stacked ? 'w-full' : 'lg:shrink-0']">
       <UButton
         type="submit"
+        :label="t('filters.apply')"
         icon="i-lucide-funnel"
         :loading="applying"
         :disabled="!canApply"
@@ -181,6 +184,7 @@ onMounted(() => {
       />
       <UButton
         type="button"
+        :label="t('filters.clear')"
         icon="i-lucide-funnel-x"
         color="neutral"
         variant="outline"
